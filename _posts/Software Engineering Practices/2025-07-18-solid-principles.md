@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Understanding SOLID Principles in Python"
+title: "3 Minute Guide to SOLID Principles in Python"
 date: 2025-07-18 10:00:00 +0530
 categories: [Software Engineering Practices]
 tags: [SOLID, Software Design, Clean Code, Python]
@@ -16,8 +16,7 @@ The SOLID principles are foundational design guidelines every software engineer 
 
 ---
 
-## 1. Single Responsibility Principle (SRP)
-
+# 1. Single Responsibility Principle (SRP)
 **Definition**  
 A class should have only one reason to change.
 
@@ -35,20 +34,19 @@ class InvoicePrinter:
         print(f"Total: {invoice.calculate_total()}")
 ```
 
-### Where It Breaks
+## Where It Breaks
 Combining calculation logic and printing in the same class.
 
-### Follow-ups / Key Considerations
+## Follow-ups / Key Considerations
 
-What constitutes “one reason to change” in your domain?
+1. What constitutes “one reason to change” in your domain?
 
-How do you decompose responsibilities in microservices?
+2. How do you decompose responsibilities in microservices?
 
-#### Interview Question
+### Interview Question
 Describe a class you refactored to adhere to SRP and the benefits you observed.
 
-## 2. Open/Closed Principle (OCP)
-
+# 2. Open/Closed Principle (OCP)
 **Definition**  
 Software entities should be open for extension but closed for modification.
 
@@ -63,18 +61,18 @@ class ChristmasDiscount(DiscountStrategy):
         return total * 0.9
 ```
 
-### Where It Breaks
+## Where It Breaks
 Adding conditional logic for every new discount in a monolithic function or class.
 
-### Follow-ups / Key Considerations
-How would you apply new behaviors without touching existing code?
+## Follow-ups / Key Considerations
+1. How would you apply new behaviors without touching existing code?
 
-Can you illustrate this with plugin architectures or feature flags?
+2. Can you illustrate this with plugin architectures or feature flags?
 
-#### Interview Question
+### Interview Question
 Explain how you would design a pricing engine to support multiple discount types without modifying core logic.
 
-## 3. Liskov Substitution Principle (LSP)
+# 3. Liskov Substitution Principle (LSP)
 **Definition**
 Subtypes should be substitutable for their base types without altering program correctness.
 
@@ -87,18 +85,18 @@ class Bird:
 class Sparrow(Bird):
     pass
 ```
-### Where It Breaks
+## Where It Breaks
 If you subclass Bird with Penguin and its fly() method raises an exception.
 
-### Follow-ups / Key Considerations
-How do you design class hierarchies to avoid violating LSP?
+## Follow-ups / Key Considerations
+1. How do you design class hierarchies to avoid violating LSP?
 
-When is composition preferable to inheritance?
+2. When is composition preferable to inheritance?
 
-#### Interview Question
-Can you describe a scenario where inheritance violated LSP and how you refactored it?
+### Interview Question
+1. Can you describe a scenario where inheritance violated LSP and how you refactored it?
 
-## 4. Interface Segregation Principle (ISP)
+# 4. Interface Segregation Principle (ISP)
 **Definition**
 Clients should not be forced to depend on interfaces they do not use.
 
@@ -122,18 +120,18 @@ class MultiFunctionDevice(Printer, Scanner):
         pass
 ```
 
-### Where It Breaks
+## Where It Breaks
 A single interface that includes print, scan, fax, etc., forcing clients to implement unused methods.
 
-### Follow-ups / Key Considerations
-How do you structure interfaces (or abstract base classes) in Python to avoid this?
+## Follow-ups / Key Considerations
+1. How do you structure interfaces (or abstract base classes) in Python to avoid this?
 
-What role do mixins play here?
+2. What role do mixins play here?
 
-Interview Question
-How would you refactor a monolithic interface into more focused abstractions?
+### Interview Question
+1. How would you refactor a monolithic interface into more focused abstractions?
 
-## 5. Dependency Inversion Principle (DIP)
+# 5. Dependency Inversion Principle (DIP)
 **Definition**
 High-level modules should not depend on low-level modules; both should depend on abstractions.
 
@@ -158,26 +156,26 @@ class ReportGenerator:
         print(f"Report: {self.fetcher.fetch()}")
 ```
 
-### Where It Breaks
+## Where It Breaks
 Hard-coding a specific data source inside ReportGenerator instead of depending on an abstraction.
 
-### Follow-ups / Key Considerations
+## Follow-ups / Key Considerations
 
-How do you apply DIP in Python without formal interfaces?
+1. How do you apply DIP in Python without formal interfaces?
 
-What patterns (e.g., factory, dependency injection frameworks) can help?
+2. What patterns (e.g., factory, dependency injection frameworks) can help?
 
-#### Interview Question
+### Interview Question
 Describe how you would design a module to allow swapping data sources at runtime.
 
-#### Interview-Favorite Questions
-Which SOLID principle is hardest to apply in large microservices architectures?
+### Interview-Favorite Questions
+1. Which SOLID principle is hardest to apply in large microservices architectures?
 
-How does the Open/Closed Principle relate to feature toggles?
+2. How does the Open/Closed Principle relate to feature toggles?
 
-Can you demonstrate the Dependency Inversion Principle in pure Python?
+3. Can you demonstrate the Dependency Inversion Principle in pure Python?
 
-Describe a situation where you violated SRP and how you refactored the code.
+4. Describe a situation where you violated SRP and how you refactored the code.
 
-What are the trade-offs between inheritance and composition regarding LSP?
+5. What are the trade-offs between inheritance and composition regarding LSP?
 
