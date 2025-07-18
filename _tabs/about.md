@@ -3,11 +3,6 @@
 icon: fas fa-info-circle
 order: 4
 ---
----
-title: About
-icon: fas fa-user
-order: 1
----
 
 ## Hi, I’m Toshali.
 
