@@ -173,6 +173,9 @@ collections:
   software-engineering-practices:
     output: true
     sort_by: order
+  llms:
+    output: true
+    sort_by: order 
 
 defaults:
   - scope:
