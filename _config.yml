@@ -26,7 +26,7 @@ description: >- # used by seo meta and the atom feed
 url: ""
 
 include:
-  - _includes/head/custom.html
+  - _includes
 
 
 github:
