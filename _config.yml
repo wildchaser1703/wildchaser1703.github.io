@@ -180,6 +180,10 @@ collections:
   llms:
     output: true
     sort_by: order 
+  reflections:
+    output: true
+    sort_by: order
+
 
 defaults:
   - scope:
