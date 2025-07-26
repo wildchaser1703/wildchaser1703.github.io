@@ -183,6 +183,10 @@ collections:
   reflections:
     output: true
     sort_by: order
+  machine-learning:
+      output: true
+      sort_by: order
+
 
 
 defaults:
