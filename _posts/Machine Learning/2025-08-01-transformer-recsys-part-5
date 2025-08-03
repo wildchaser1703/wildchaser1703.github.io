@@ -1,0 +1,113 @@
+
+# Part 5: Transformers and Pre-trained Models for Recommendation Systems
+
+In this part, we will explore how to use **transformers** and **pre-trained models** for **next-item recommendation** and solving **cold-start problems**.
+
+---
+
+## Why Transformers?
+
+Transformers, originally designed for NLP tasks, are now widely adopted in recommender systems. Their self-attention mechanism allows them to capture long-range dependencies, which is essential in modeling user sequences.
+
+### Benefits:
+
+- **Sequence modeling**: Learn user behavior patterns.
+- **Parallelism**: Faster training compared to RNNs.
+- **Pretraining possibilities**: Leverage large-scale user interaction datasets.
+
+---
+
+## Next-Item Recommendation with Transformers
+
+The task is to predict the next item a user might interact with, given their interaction history.
+
+### Dataset
+
+We'll use a session-based dataset like `RetailRocket` or `MovieLens`.
+
+### Architecture
+
+We use a BERT-style model:
+- **Input**: Sequence of item embeddings
+- **Masking**: Randomly mask items for prediction
+- **Output**: Softmax over item vocabulary
+
+```python
+from transformers import BertModel, BertConfig
+import torch.nn as nn
+
+class BERT4Rec(nn.Module):
+    def __init__(self, num_items, hidden_size):
+        super().__init__()
+        config = BertConfig(
+            vocab_size=num_items,
+            hidden_size=hidden_size,
+            num_attention_heads=4,
+            num_hidden_layers=2
+        )
+        self.bert = BertModel(config)
+        self.output = nn.Linear(hidden_size, num_items)
+
+    def forward(self, input_ids, attention_mask):
+        outputs = self.bert(input_ids=input_ids, attention_mask=attention_mask)
+        return self.output(outputs.last_hidden_state)
+```
+
+---
+
+## Cold-Start Problem
+
+When new users or items enter the system with no interaction history, models fail to recommend properly.
+
+### Strategies to Address Cold-Start
+
+1. **Meta-learning**: Train a model to adapt quickly to new users/items.
+2. **Content-based features**: Use item/user metadata (e.g., genre, age, profile).
+3. **Pre-trained embeddings**: Use CLIP, BERT, or multimodal encoders to generate embeddings from item descriptions/images.
+
+---
+
+## Pretrained Embeddings for Recommendation
+
+You can use models like `CLIP` (for images), `BERT` (for text), or `Sentence-BERT` to initialize item/user embeddings.
+
+### Code Sample
+
+```python
+from sentence_transformers import SentenceTransformer
+
+model = SentenceTransformer('all-MiniLM-L6-v2')
+descriptions = ["romantic comedy movie", "horror movie about haunted house"]
+embeddings = model.encode(descriptions)
+```
+
+---
+
+## Evaluation Metrics
+
+Common metrics to evaluate sequential recommendations include:
+- **Recall@K**
+- **MRR (Mean Reciprocal Rank)**
+- **NDCG@K**
+
+These metrics are especially useful in ranking-based tasks.
+
+---
+
+## Best Practices
+
+- Use **layer normalization** and **dropout** for regularization.
+- Warm-start your transformer with **pretrained weights**.
+- Use **label smoothing** to help generalize predictions.
+- Consider **distillation** from a larger model.
+
+---
+
+## Summary
+
+In Part 5, we demonstrated how transformer-based architectures and pretrained models can be leveraged for:
+- Next-item prediction using BERT-style architectures.
+- Cold-start solutions using meta-learning or multimodal embeddings.
+- Practical implementations using Hugging Face and Sentence-BERT.
+
+Stay tuned for Part 6: **Multi-objective optimization in recommender systems**.
