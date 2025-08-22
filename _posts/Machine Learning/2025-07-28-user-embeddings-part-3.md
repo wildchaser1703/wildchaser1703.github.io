@@ -1,3 +1,9 @@
+---
+title: "User Embeddings Part 3: Applications and Real-World Impact"
+date: 2025-07-28
+categories: [Recommender Systems, Deep Learning]
+tags: [User Embeddings, Companies ,Personalization, Cold Start, Ethics, Deep Learning]
+---
 
 # User Embeddings Part 3: Applications and Real-World Impact
 
