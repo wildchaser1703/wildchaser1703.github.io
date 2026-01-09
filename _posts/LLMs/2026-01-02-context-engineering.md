@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Context Engineering: The Forgotten Architecture of LLM Systems"
-date: 2026-01-12 10:00:00 +0530
+date: 2026-01-02 10:00:00 +0530
 categories: [LLM, System Design]
 tags: [LLM, System Design, Transformers, MLOps, Inference, Architecture]
 math: true
