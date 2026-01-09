@@ -16,10 +16,10 @@ timezone:
 
 title: Toshali's Blog # the main title
 
-tagline: Data Science | Machine Learning # it will display as the subtitle
+tagline: Machine Learning | AI # it will display as the subtitle
 
 description: >- # used by seo meta and the atom feed
-  Hi, I'm Toshali Mohapatra. I’m a Data Scientist passionate about AI, writing, and building things that matter.
+  Hi, I'm Toshali Mohapatra. I’m an AI Engineer passionate about AI, writing, and building things that matter.
 
 # Fill in the protocol & hostname for your site.
 # E.g. 'https://username.github.io', note that it does not end with a '/'.
@@ -27,7 +27,6 @@ url: ""
 
 include:
   - _includes
-
 
 github:
   username: wildchaser1703 # change to your GitHub username
@@ -179,15 +178,13 @@ collections:
     sort_by: order
   llms:
     output: true
-    sort_by: order 
+    sort_by: order
   reflections:
     output: true
     sort_by: order
   machine-learning:
-      output: true
-      sort_by: order
-
-
+    output: true
+    sort_by: order
 
 defaults:
   - scope:
@@ -242,5 +239,3 @@ jekyll-archives:
   permalinks:
     tag: /tags/:name/
     category: /categories/:name/
-
-
