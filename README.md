@@ -1,6 +1,6 @@
 # Toshali Mohapatra’s site
 
-This site uses a Node.js static build. It combines writing, small projects, studies, and artwork in one design.
+This site uses a Node.js static build. It combines writing, small projects, studies, and artwork in one design. Inter, from Google Fonts, is hosted locally; the site does not request its typeface from an external font service.
 
 ## Develop
 

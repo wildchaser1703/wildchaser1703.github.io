@@ -28,6 +28,9 @@ try {
       assert.equal(response.status(), 200, `${route} status`);
       assert.equal(await page.locator('.site-header').count(), 1, `${route} header`);
       assert.equal(await page.locator('.site-footer').count(), 1, `${route} footer`);
+      assert.equal(await page.locator('.brand .flow-mark').isVisible(), true, `${route} logo`);
+      assert.equal(await page.locator('.brand .flow-mark').evaluate(element => element.complete && element.naturalWidth > 0), true, `${route} logo loaded`);
+      assert.equal(await page.locator('link[rel="icon"]').getAttribute('href'), '/assets/img/flow-mark.png', `${route} favicon`);
       assert.equal(await page.evaluate(() => document.documentElement.scrollWidth > innerWidth), false, `${route} overflow at ${width}px`);
       if (route === '/' && width === 1440) {
         assert.equal(await page.locator('.art-image img').count(), 11);
