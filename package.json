@@ -1,0 +1,23 @@
+{
+  "name": "toshali-site",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "test": "node scripts/check.mjs",
+    "test:browser": "node scripts/check-browser.mjs",
+    "dev": "npm run build && node scripts/serve.mjs"
+  },
+  "dependencies": {
+    "cheerio": "1.1.2",
+    "gray-matter": "4.0.3",
+    "highlight.js": "11.11.1",
+    "katex": "0.19.1",
+    "markdown-it": "14.3.3",
+    "markdown-it-footnote": "4.0.0",
+    "markdown-it-task-lists": "2.1.1"
+  },
+  "devDependencies": {
+    "playwright": "1.65.1"
+  }
+}
