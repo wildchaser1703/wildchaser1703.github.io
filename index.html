@@ -1,6 +1,11 @@
 ---
-layout: home
-# Index page
+layout: notebook
+title: Home
 ---
-category: true
-tag: true
+{% if paginator.page > 1 %}
+<section class="section"><p class="eyebrow">Writing / page {{ paginator.page }}</p><h1>More notes from the field</h1><div class="writing-list">{% for post in paginator.posts %}<a href="{{ post.url | relative_url }}"><span>{{ post.date | date: '%Y · %b' }}</span><strong>{{ post.title }}</strong><span aria-hidden="true">↗</span></a>{% endfor %}</div><nav aria-label="Writing pages">{% if paginator.previous_page %}{% if paginator.previous_page == 1 %}<a href="{{ '/writing/' | relative_url }}">← Previous</a>{% else %}<a href="{{ paginator.previous_page_path | relative_url }}">← Previous</a>{% endif %}{% endif %} {% if paginator.next_page %}<a href="{{ paginator.next_page_path | relative_url }}">Next →</a>{% endif %}</nav></section>
+{% else %}
+<section class="hero"><div class="hero-copy"><p class="eyebrow">Notes from an AI engineer · 01</p><h1>I build AI systems. I keep notes on machines, people, and what happens when they meet.</h1><p class="intro">An illustrated notebook of questions, experiments, and things worth understanding.</p><a class="action" href="{{ '/studies/what-makes-a-wait-feel-long/' | relative_url }}">Explore the first study ↗</a></div><a class="art-link" href="{{ '/studies/what-makes-a-wait-feel-long/' | relative_url }}" aria-label="Explore What makes a wait feel long?"><div class="sheet"><div class="sheet-top"><span>STUDY 01 / TIME</span><span>4 SEC</span></div><svg class="line-field" viewBox="0 0 600 460" role="presentation" aria-hidden="true">{% for row in (0..11) %}{% for column in (0..17) %}{% assign variation = column | times: column | plus: row | times: 17 | modulo: 19 %}{% assign x = column | times: 32 | plus: 20 %}{% assign y = row | times: 33 | plus: variation | plus: 34 %}{% assign end_x = x | plus: variation | minus: 6 %}{% assign length = variation | divided_by: 2 | plus: 15 %}{% assign end_y = y | minus: length %}<line x1="{{ x }}" y1="{{ y }}" x2="{{ end_x }}" y2="{{ end_y }}" />{% endfor %}{% endfor %}</svg><div class="timeline"><span>0</span><span>1</span><span>2</span><span>3</span><span>4 s</span></div><p>Same words. Different moments.<br>What changes in the waiting?</p></div></a></section>
+<section class="section"><div class="section-head"><p class="eyebrow">A selection / 02</p><h2>Notes from the field</h2><a href="{{ '/archives/' | relative_url }}">All writing ↗</a></div><div class="writing-list">{% for slug in site.data.notebook.picks %}{% assign post = site.posts | where: 'slug', slug | first %}{% if post %}<a href="{{ post.url | relative_url }}"><span>{{ post.date | date: '%Y · %b' }}</span><strong>{{ post.title }}</strong><span aria-hidden="true">↗</span></a>{% endif %}{% endfor %}</div></section>
+<section class="section about-strip"><p class="eyebrow">A little about me / 03</p><h2>Learning in public, one question at a time.</h2><a class="action" href="{{ '/about/' | relative_url }}">More about Toshali ↗</a></section>
+{% endif %}

@@ -1,0 +1,6 @@
+---
+layout: notebook
+title: Writing
+permalink: /writing/
+---
+<section class="section"><p class="eyebrow">Writing / page 1</p><h1>Notes from the field</h1><div class="writing-list">{% for post in site.posts limit: site.paginate %}<a href="{{ post.url | relative_url }}"><span>{{ post.date | date: '%Y · %b' }}</span><strong>{{ post.title }}</strong><span aria-hidden="true">↗</span></a>{% endfor %}</div><nav aria-label="Writing pages">{% if site.posts.size > site.paginate %}<a href="{{ '/page2/' | relative_url }}">Next →</a>{% endif %} <a href="{{ '/archives/' | relative_url }}">All writing ↗</a></nav></section>

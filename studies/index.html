@@ -1,0 +1,6 @@
+---
+layout: notebook
+title: Studies
+permalink: /studies/
+---
+<section class="section study-index"><p class="eyebrow">Studies / an illustrated notebook</p><h1>Questions, seen from a few angles.</h1><p class="intro">Small experiments for thinking through how things work.</p><a class="study-card" href="{{ '/studies/what-makes-a-wait-feel-long/' | relative_url }}"><div><p class="eyebrow">Study 01 · Time</p><h2>What makes a wait feel long?</h2><p>Four words, two ways of seeing them arrive.</p><span class="action">Open the study ↗</span></div><svg class="study-field" viewBox="0 0 400 220" aria-hidden="true">{% for row in (0..5) %}{% for column in (0..11) %}{% assign variation = column | times: column | plus: row | times: 17 | modulo: 19 %}{% assign x = column | times: 32 | plus: 20 %}{% assign y = row | times: 33 | plus: variation | plus: 28 %}{% assign end_x = x | plus: variation | minus: 6 %}{% assign length = variation | divided_by: 2 | plus: 15 %}{% assign end_y = y | minus: length %}<line x1="{{ x }}" y1="{{ y }}" x2="{{ end_x }}" y2="{{ end_y }}" />{% endfor %}{% endfor %}</svg></a></section>
