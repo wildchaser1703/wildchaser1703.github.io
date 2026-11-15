@@ -1,0 +1,209 @@
+{
+  "categories": {
+    "deep-learning": [
+      "user-embeddings-part-3",
+      "user-embeddings-part-2"
+    ],
+    "learning": [
+      "how-to-read-documentation"
+    ],
+    "llm": [
+      "context-engineering",
+      "demystifying-rag"
+    ],
+    "machine-learning": [
+      "end-to-end-mlops",
+      "model-drift-in-production",
+      "user-embeddings-part-1",
+      "llms-101",
+      "llm-evaluation-metrics-beyond-accuracy"
+    ],
+    "mlops": [
+      "end-to-end-mlops",
+      "model-drift-in-production",
+      "llm-evaluation-metrics-beyond-accuracy"
+    ],
+    "rag": [
+      "demystifying-rag"
+    ],
+    "recommender-systems": [
+      "user-embeddings-part-3",
+      "user-embeddings-part-2"
+    ],
+    "reflections": [
+      "persistence-against-the-tide"
+    ],
+    "research": [
+      "research-principles-part-5",
+      "research-principles-part-4",
+      "research-principles-part-3",
+      "research-principles-part-2",
+      "research-principles"
+    ],
+    "software-engineering": [
+      "research-principles-part-5",
+      "research-principles-part-4",
+      "research-principles-part-3",
+      "research-principles-part-2",
+      "research-principles",
+      "how-to-read-documentation"
+    ],
+    "software-engineering-practices": [
+      "solid-principles"
+    ],
+    "system-design": [
+      "context-engineering",
+      "llms-101"
+    ]
+  },
+  "tags": {
+    "academic-reading": [
+      "research-principles-part-3"
+    ],
+    "architecture": [
+      "context-engineering",
+      "llms-101"
+    ],
+    "clean-code": [
+      "solid-principles"
+    ],
+    "cold-start": [
+      "user-embeddings-part-3",
+      "user-embeddings-part-2"
+    ],
+    "companies": [
+      "user-embeddings-part-3"
+    ],
+    "critical-thinking": [
+      "research-principles-part-2",
+      "research-principles"
+    ],
+    "deep-learning": [
+      "user-embeddings-part-3",
+      "user-embeddings-part-2"
+    ],
+    "documentation": [
+      "how-to-read-documentation"
+    ],
+    "embeddings": [
+      "user-embeddings-part-1"
+    ],
+    "engineering-practices": [
+      "research-principles-part-5",
+      "research-principles",
+      "how-to-read-documentation"
+    ],
+    "ethics": [
+      "user-embeddings-part-3",
+      "user-embeddings-part-2"
+    ],
+    "evaluation-metrics": [
+      "llm-evaluation-metrics-beyond-accuracy"
+    ],
+    "evidence-evaluation": [
+      "research-principles-part-2"
+    ],
+    "experimentation": [
+      "research-principles-part-4"
+    ],
+    "inference": [
+      "context-engineering",
+      "llms-101"
+    ],
+    "learning-how-to-learn": [
+      "how-to-read-documentation"
+    ],
+    "life": [
+      "persistence-against-the-tide"
+    ],
+    "llm": [
+      "context-engineering",
+      "llms-101"
+    ],
+    "llm-evaluation": [
+      "llm-evaluation-metrics-beyond-accuracy"
+    ],
+    "llms": [
+      "demystifying-rag"
+    ],
+    "machine-learning": [
+      "user-embeddings-part-1"
+    ],
+    "mindset": [
+      "persistence-against-the-tide"
+    ],
+    "ml-systems": [
+      "end-to-end-mlops",
+      "demystifying-rag",
+      "model-drift-in-production",
+      "llm-evaluation-metrics-beyond-accuracy"
+    ],
+    "mlops": [
+      "context-engineering",
+      "llms-101"
+    ],
+    "model-drift": [
+      "end-to-end-mlops",
+      "model-drift-in-production"
+    ],
+    "monitoring": [
+      "end-to-end-mlops",
+      "model-drift-in-production"
+    ],
+    "perseverance": [
+      "persistence-against-the-tide"
+    ],
+    "personalization": [
+      "user-embeddings-part-3",
+      "user-embeddings-part-2"
+    ],
+    "production-ml": [
+      "end-to-end-mlops",
+      "model-drift-in-production",
+      "llm-evaluation-metrics-beyond-accuracy"
+    ],
+    "python": [
+      "solid-principles"
+    ],
+    "rag": [
+      "demystifying-rag"
+    ],
+    "recommendation-systems": [
+      "user-embeddings-part-1"
+    ],
+    "reproducibility": [
+      "research-principles-part-4"
+    ],
+    "research-methodology": [
+      "research-principles-part-5",
+      "research-principles-part-4",
+      "research-principles-part-3",
+      "research-principles-part-2",
+      "research-principles"
+    ],
+    "software-design": [
+      "solid-principles"
+    ],
+    "solid": [
+      "solid-principles"
+    ],
+    "system-design": [
+      "context-engineering",
+      "llms-101"
+    ],
+    "technical-comprehension": [
+      "research-principles-part-3"
+    ],
+    "thinking": [
+      "research-principles-part-5"
+    ],
+    "transformers": [
+      "context-engineering",
+      "llms-101"
+    ],
+    "user-embeddings": [
+      "user-embeddings-part-3",
+      "user-embeddings-part-2"
+    ]
+  }
+}

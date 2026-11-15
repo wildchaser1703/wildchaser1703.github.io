@@ -1,0 +1,26 @@
+[
+  {
+    "slug": "art-and-science-of-paper",
+    "title": "The Art and Science of Paper",
+    "intro": "Notes and observations from Toshali’s Frugal Science Lab Notebook.",
+    "paragraphs": [
+      "Being the foodie that I am, the highlight of the lecture was definitely pasta. I will definitely try and experiment with pasta and paper!",
+      "It was interesting to learn that we still don’t have mathematical equations to define the tensile strength of paper. I also tried tearing up a lot of pages: wet paper makes less noise than dry paper.",
+      "Thin paper curls up more than wider paper strips. When we tear paper faster, it makes more sound. I could see more pronounced fibres on wet paper than on dry paper.",
+      "Paper is a world of random network fibres! It assumes a helix kind of structure after drying and being hung. Reminds me of the classical DNA structure that we all have studied about!",
+      "Could something be done to wet paper to turn it into the original paper? What if I used tea, coffee, or another solvent to wet the paper and then dried it? How can we get the original properties of paper then?"
+    ]
+  },
+  {
+    "slug": "compliant-design-flexures",
+    "title": "Compliant Design / Flexures",
+    "intro": "Notes and observations from Toshali’s Frugal Science Lab Notebook.",
+    "paragraphs": [
+      "The most intriguing aspect about the lecture this week was making objects that are in the nanometer range!",
+      "Using a glue gun, we can make a thin polymer wire that becomes invisible after a certain interval of time as we keep pulling it. The faster we pull, the more it stretches when it is hot. The ends still remain visible; however, in a particular zone it seems to disappear.",
+      "Compliant designs can be thought of as monolithic structures that transform inputs to desired outputs through the structure itself.",
+      "Blade flexures can move around and bend like torsion too. As the thickness of the blade increases, it becomes difficult to twist it. A notch flexure has a dent between the ends that changes these constraints.",
+      "Could logic gates be built using compliant design mechanisms? Papers online suggest that mechanical structures have implemented NOT, AND, and OR gates."
+    ]
+  }
+]
