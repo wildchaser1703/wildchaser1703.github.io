@@ -21,3 +21,5 @@
 @media(max-width:760px){.site-footer,.projects-grid,.section-heading,.comparison{grid-template-columns:minmax(0,1fr)}.footer-links{display:flex;flex-wrap:wrap;gap:.6rem 1.5rem}.hero-copy h1,.section-heading h2{overflow-wrap:anywhere}}
 .flow-mark{display:inline-block;width:1em;height:1em;object-fit:contain;vertical-align:middle}.footer-mark .flow-mark{filter:brightness(0) invert(1)}
 .hero-copy h1 em,.section-heading h2 em,.page-heading h1 em,.closing p em{font-style:normal;font-weight:inherit}
+.favorite-item .food-home-link{display:inline-block;margin-top:1rem}.food-gallery{columns:3;column-gap:1.5rem}.food-photo{break-inside:avoid;margin:0 0 1.5rem}.food-photo a,.food-photo img{display:block}.food-photo img{width:100%;height:auto;background:var(--sunlight)}.food-photo figcaption{padding-top:.6rem;color:var(--muted);font-size:.9rem}.food-empty{color:var(--muted);border-top:1px solid var(--line);padding-top:1.5rem}@media(max-width:760px){.food-gallery{columns:2;column-gap:1rem}.food-photo{margin-bottom:1rem}}@media(max-width:300px){.food-gallery{columns:1}}
+@media(max-width:760px){.site-header nav{column-gap:.65rem}}
