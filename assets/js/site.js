@@ -1,3 +1,97 @@
+// Homepage selections rotate only while visible and idle. Native image links
+// remain usable with JavaScript disabled, reduced motion, or a failed download.
+const collectionData = document.querySelector('#home-collections');
+if (collectionData) {
+  const collections = JSON.parse(collectionData.textContent);
+  const motion = matchMedia('(prefers-reduced-motion: reduce)');
+  for (const section of document.querySelectorAll('[data-collection]')) {
+    const kind = section.dataset.collection;
+    const entries = collections[kind];
+    const figures = [...section.querySelectorAll('figure')];
+    const controls = section.querySelector('.collection-controls');
+    const next = controls.querySelector('[data-collection-next]');
+    const pause = controls.querySelector('[data-collection-pause]');
+    const status = controls.querySelector('[role="status"]');
+    let paused = motion.matches, busy = false, visible = false, timer;
+    let bag = [];
+    const source = item => kind === 'art' ? `/assets/art/${encodeURIComponent(item.file)}` : `/assets/img/food/${encodeURIComponent(item.file)}`;
+    const shuffle = values => {
+      for (let i = values.length-1; i>0; i--) {
+        const j = Math.floor(Math.random()*(i+1));
+        [values[i],values[j]] = [values[j],values[i]];
+      }
+      return values;
+    };
+    function resetTimer() {
+      clearTimeout(timer);
+      if (paused || motion.matches || document.hidden || !visible) return;
+      timer = setTimeout(async () => {
+        if (!section.matches(':hover') && !section.contains(document.activeElement) && !document.querySelector('.image-viewer[open]')) await advance(false);
+        resetTimer();
+      }, 12000);
+    }
+    function syncPause() {
+      pause.textContent = motion.matches ? 'Rotation off' : paused ? 'Resume rotation' : 'Pause rotation';
+      pause.setAttribute('aria-pressed', String(paused || motion.matches));
+      pause.disabled = motion.matches;
+      pause.title = motion.matches ? 'Automatic rotation is off for reduced motion. Use More to browse.' : '';
+      resetTimer();
+    }
+    async function advance(manual = true) {
+      if (busy || document.querySelector('.image-viewer[open]')) return;
+      busy = true;
+      next.disabled = true;
+      const current = new Set(figures.map(figure => figure.querySelector('a').getAttribute('href')));
+      const selected = [];
+      while (selected.length < figures.length) {
+        if (!bag.length) bag = shuffle(entries.filter(item => !current.has(source(item)) && !selected.includes(item)));
+        const item = bag.pop();
+        if (item && !current.has(source(item)) && !selected.includes(item)) selected.push(item);
+      }
+      try {
+        const loaded = await Promise.all(selected.map(async item => {
+          const image = new Image();
+          image.src = kind === 'food' && item.preview ? `/assets/img/food/previews/${encodeURIComponent(item.preview)}` : source(item);
+          await image.decode();
+          return image.src;
+        }));
+        // An image viewer may have opened while the next selection downloaded.
+        if (document.querySelector('.image-viewer[open]') || (!manual && (paused || motion.matches || document.hidden || !visible || section.matches(':hover') || section.contains(document.activeElement)))) return;
+        selected.forEach((item,i) => {
+          const figure = figures[i], link = figure.querySelector('a'), image = link.querySelector('img');
+          link.href = source(item);
+          link.setAttribute('aria-label', kind === 'art' ? `View ${item.title}` : `View full-size photo: ${item.alt}`);
+          image.src = loaded[i];
+          image.alt = kind === 'art' ? item.title : item.alt;
+          image.width = item.width;
+          image.height = item.height;
+          if (kind === 'art') {
+            figure.querySelector('figcaption strong').textContent = item.title;
+            figure.querySelector('figcaption span').textContent = item.caption;
+          } else figure.querySelector('figcaption').textContent = item.caption;
+        });
+        if (manual) status.textContent = 'Three more ' + (kind === 'art' ? 'paintings.' : 'photographs.');
+      } catch {
+        if (manual) status.textContent = 'Could not load the next selection. Please try again.';
+      } finally {
+        busy = false;
+        next.disabled = false;
+      }
+    }
+    controls.hidden = false;
+    next.addEventListener('click', async () => { await advance(); resetTimer(); });
+    pause.addEventListener('click', () => { paused = !paused; syncPause(); });
+    motion.addEventListener('change', () => { paused = motion.matches; syncPause(); });
+    document.addEventListener('visibilitychange', resetTimer);
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(([entry]) => { visible = entry.isIntersecting; resetTimer(); }, {threshold:.15}).observe(section);
+    } else visible = true;
+    window.addEventListener('pagehide', () => clearTimeout(timer));
+    window.addEventListener('pageshow', resetTimer);
+    syncPause();
+  }
+}
+
 const searchInput = document.querySelector('#search-input');
 const menuButton = document.querySelector('.menu-toggle');
 const mainNavigation = document.querySelector('#main-navigation');

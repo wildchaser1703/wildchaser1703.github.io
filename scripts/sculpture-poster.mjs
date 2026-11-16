@@ -3,7 +3,7 @@
 import { mkdir } from 'node:fs/promises';
 import sharp from 'sharp';
 import { fileURLToPath, pathToFileURL } from 'node:url';
-import { BACKGROUND, FRAME, VARIANT_COUNT, createSculpture } from '../assets/js/sculpture-shape.js';
+import { FRAME, VARIANT_COUNT, createSculpture } from '../assets/js/sculpture-shape.js';
 
 export async function generatePosters(destination = new URL('../assets/img/', import.meta.url)) {
   await mkdir(destination, { recursive: true });
@@ -24,7 +24,6 @@ export async function generatePosters(destination = new URL('../assets/img/', im
     const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height}" viewBox="0 0 ${width} ${height}" role="img" aria-labelledby="title desc">
 <title id="title">Woven field — study ${String(variant + 1).padStart(2, '0')}</title>
 <desc id="desc">Fine saffron, amber and vermilion threads cross an asymmetric folded loop, leaving an open aperture at its centre.</desc>
-<rect width="${width}" height="${height}" fill="${BACKGROUND}"/>
 <g fill="none" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
 ${paths.join('\n')}
 </g>
