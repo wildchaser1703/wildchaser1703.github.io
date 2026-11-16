@@ -1,4 +1,5 @@
 import { BACKGROUND, FRAME, createSculpture, createLineData, normalizeVariant } from './sculpture-shape.js';
+import { createBloom } from './sculpture-bloom.js';
 
 const instances = new WeakMap();
 const vertexShader = `
@@ -48,6 +49,7 @@ export function initSculpture(figure) {
   const counter = figure.querySelector('[data-sculpture-variant]');
   const reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
   const small = window.matchMedia('(max-width: 640px), (pointer: coarse)');
+  const dark = window.matchMedia('(prefers-color-scheme: dark)');
   const listeners = new AbortController();
   const newSeed = () => crypto.getRandomValues(new Uint32Array(1))[0];
   let variant = normalizeVariant(newSeed());
@@ -58,7 +60,7 @@ export function initSculpture(figure) {
   let failed = false;
   let pageHidden = false;
   let generation = 0;
-  let renderer, scene, camera, geometry, material, lines, three;
+  let renderer, scene, camera, geometry, material, lines, three, bloom;
   let frame = 0;
   let elapsed = 0;
   let previousTime = 0;
@@ -89,6 +91,7 @@ export function initSculpture(figure) {
   function showRenderer(mode) {
     figure.dataset.renderer = mode;
     const live = mode === 'webgl';
+    if (!live) figure.dataset.bloom = 'off';
     canvas.hidden = !live;
     canvas.style.visibility = live ? 'visible' : 'hidden';
     canvas.setAttribute('aria-hidden', 'true');
@@ -135,6 +138,8 @@ export function initSculpture(figure) {
   function release() {
     stop();
     canvas.removeEventListener('webglcontextlost', contextLost);
+    bloom?.dispose();
+    bloom = undefined;
     geometry?.dispose();
     material?.dispose();
     renderer?.dispose();
@@ -157,7 +162,22 @@ export function initSculpture(figure) {
 
   function draw() {
     if (!renderer || !width || !height) return;
-    try { renderer.render(scene, camera); }
+    try {
+      if (bloom) {
+        try {
+          bloom.render(scene, camera);
+          figure.dataset.bloom = 'on';
+          return;
+        } catch {
+          // A post-processing failure should not take the artwork away.
+          bloom.dispose();
+          bloom = undefined;
+          renderer.setRenderTarget(null);
+        }
+      }
+      figure.dataset.bloom = 'off';
+      renderer.render(scene, camera);
+    }
     catch { fallback(true); }
   }
 
@@ -217,6 +237,7 @@ export function initSculpture(figure) {
       renderer.setPixelRatio(pixelRatio);
       material.uniforms.pixelRatio.value = pixelRatio;
       renderer.setSize(width, height, false);
+      bloom?.resize(width, height, pixelRatio, quality === 'mobile');
       // Contain the exact poster frame, even in a tall mobile stage.
       const aspect = width / height;
       const halfHeight = Math.max(FRAME.height / 2, FRAME.width / (2 * aspect));
@@ -258,6 +279,8 @@ export function initSculpture(figure) {
         uniforms: { time: { value: elapsed }, pixelRatio: { value: 1 }, pointer: { value: new three.Vector3() } },
         vertexShader, fragmentShader, transparent: true, depthTest: false, depthWrite: false,
       });
+      bloom = createBloom(three, renderer);
+      bloom.setTheme(dark.matches);
       replaceGeometry();
       resize();
       if (!renderer) return;
@@ -305,6 +328,7 @@ export function initSculpture(figure) {
   listen(stage, 'pointercancel', () => { target.strength = 0; }, { passive: true });
   listen(document, 'visibilitychange', () => { target.strength = 0; syncMotion(); });
   listen(window, 'resize', resize, { passive: true });
+  listen(dark, 'change', () => { bloom?.setTheme(dark.matches); draw(); });
   listen(window, 'pagehide', event => {
     pageHidden = true;
     if (event.persisted) syncMotion();

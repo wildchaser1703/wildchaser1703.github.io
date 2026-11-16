@@ -56,6 +56,9 @@ em { font-style: normal; }
 .button:hover { background: var(--clay); border-color: var(--clay); }
 .text-link { display: inline-flex; align-items: center; gap: 1rem; padding-block: .6rem; text-decoration: none; font-size: .9rem; }
 .text-link:hover { text-decoration: underline; text-decoration-color: var(--clay); }
+.site-header nav a, .text-link { transition: color .16s ease; }
+.hero-actions .arrow-icon { transition: transform .18s ease; }
+.hero-actions .button:is(:hover, :focus-visible) .arrow-icon { transform: translateY(3px); }
 .home-hero { max-width: 1800px; margin: auto; display: grid; grid-template-columns: .9fr 1.1fr; align-items: center; gap: 2%; padding: 1.5rem var(--gutter); }
 .hero-copy { padding-block: 1.5rem; }
 .hero-copy .kicker { display: flex; align-items: center; gap: .6rem; color: var(--clay); }
@@ -396,6 +399,16 @@ em { font-style: normal; }
   .trace span::before { background: var(--muted); }
   .trace span.visible::before { background: var(--clay); }
 }
+/* A short arrival cue uses ordinary CSS animation. Navigation and history stay
+   native, and content has no persistent hidden/loading state. */
+@media (prefers-reduced-motion: no-preference) {
+  main > :first-child:not(.home-hero) { animation: page-enter 180ms ease-out; }
+}
+.scroll-dissolve { opacity: var(--section-opacity, 1); }
+@media (prefers-reduced-motion: reduce), print {
+  .scroll-dissolve { opacity: 1 !important; }
+}
+@keyframes page-enter { from { opacity: .9; } to { opacity: 1; } }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   *, *::before, *::after { animation: none !important; transition: none !important; }

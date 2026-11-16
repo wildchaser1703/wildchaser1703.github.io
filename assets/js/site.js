@@ -145,6 +145,47 @@ if (menuButton && mainNavigation) {
 }
 
 const directoryFilters = document.querySelector('.directory-filters');
+
+// A reversible dissolve at the viewport edges. Keep the reading area fully
+// opaque, including long sections; scroll position is the only animation clock.
+if (document.querySelector('main > .home-hero')) {
+  const motion = matchMedia('(prefers-reduced-motion: reduce)');
+  const sections = [...document.querySelectorAll('main > .home-hero, main > .section-block')];
+  let frame = 0;
+  const smooth = value => {
+    const t = Math.max(0, Math.min(1, value));
+    return t * t * (3 - 2 * t);
+  };
+  function update() {
+    frame = 0;
+    const height = innerHeight;
+    const atEnd = scrollY + height >= document.documentElement.scrollHeight - 2;
+    // Read all geometry before writing styles to avoid layout thrashing.
+    const opacity = sections.map(section => {
+      if (motion.matches || section.querySelector(':focus-visible')) return 1;
+      const rect = section.getBoundingClientRect();
+      const entering = atEnd ? 1 : smooth((height - rect.top) / (height * .25));
+      const leaving = smooth(rect.bottom / (height * .3));
+      return Math.min(entering, leaving);
+    });
+    sections.forEach((section, index) => {
+      section.classList.add('scroll-dissolve');
+      section.style.setProperty('--section-opacity', opacity[index].toFixed(4));
+    });
+  }
+  function schedule() {
+    if (!frame) frame = requestAnimationFrame(update);
+  }
+  addEventListener('scroll', schedule, { passive: true });
+  addEventListener('resize', schedule);
+  addEventListener('pageshow', schedule);
+  addEventListener('pagehide', () => { cancelAnimationFrame(frame); frame = 0; });
+  document.addEventListener('focusin', schedule);
+  document.addEventListener('focusout', schedule);
+  motion.addEventListener('change', schedule);
+  schedule();
+}
+
 if (directoryFilters) {
   const rows = [...document.querySelectorAll('.directory-row')];
   const preview = document.querySelector('.directory-preview');

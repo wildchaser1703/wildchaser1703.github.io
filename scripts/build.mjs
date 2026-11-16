@@ -164,7 +164,7 @@ await mkdir(path.join(out, 'assets/js/vendor'), {recursive:true});
 await cp('node_modules/three/build/three.module.min.js',path.join(out,'assets/js/vendor/three.module.js'));
 await cp('node_modules/three/build/three.core.min.js',path.join(out,'assets/js/vendor/three.core.min.js'));
 await cp('node_modules/three/LICENSE',path.join(out,'assets/js/vendor/THREE-LICENSE.txt'));
-for (const file of ['site.js', 'wait-study.js', 'sculpture.js', 'sculpture-shape.js']) await cp(path.join('assets/js', file), path.join(out, 'assets/js', file));
+for (const file of ['site.js', 'wait-study.js', 'sculpture.js', 'sculpture-shape.js', 'sculpture-bloom.js']) await cp(path.join('assets/js', file), path.join(out, 'assets/js', file));
 for (const file of ['site.js', 'sculpture.js', 'vendor/three.module.js']) {
   const target = path.join(out, 'assets/js', file);
   const source = await readFile(target, 'utf8');
