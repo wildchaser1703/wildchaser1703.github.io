@@ -156,6 +156,10 @@ export function initSculpture(figure) {
   function tick(timestamp) {
     frame = 0;
     if (!canAnimate()) { syncMotion(); return; }
+    if (previousTime && timestamp - previousTime < 1000 / 30) {
+      frame = requestAnimationFrame(tick);
+      return;
+    }
     const dt = previousTime ? Math.min((timestamp - previousTime) / 1000, 0.05) : 0;
     previousTime = timestamp;
     elapsed += dt;
@@ -342,7 +346,11 @@ export function initSculpture(figure) {
   }
 
   instances.set(figure, destroy);
-  void start();
+  // Keep the poster and page responsive while the browser paints its content.
+  requestAnimationFrame(() => requestAnimationFrame(() => {
+    if (typeof requestIdleCallback === 'function') requestIdleCallback(() => void start(), { timeout: 1500 });
+    else setTimeout(() => void start(), 0);
+  }));
   return destroy;
 }
 

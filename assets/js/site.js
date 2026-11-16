@@ -162,5 +162,5 @@ document.addEventListener('click', async event => {
 });
 
 if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.getRegistrations().then(registrations => Promise.all(registrations.filter(registration => new URL(registration.active?.scriptURL || registration.waiting?.scriptURL || registration.installing?.scriptURL || location.origin).pathname === '/sw.min.js').map(registration => registration.unregister()))).catch(() => {});
+  navigator.serviceWorker.getRegistrations().then(registrations => Promise.all(registrations.filter(registration => new URL(registration.active?.scriptURL || registration.waiting?.scriptURL || registration.installing?.scriptURL || location.origin).pathname === '/sw.min.js').map(registration => registration.update()))).catch(() => {});
 }

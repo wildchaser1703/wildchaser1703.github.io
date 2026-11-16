@@ -23,6 +23,10 @@ const legacyTaxonomy = JSON.parse(await readFile('data/legacy-taxonomy.json', 'u
 const esc = value => String(value ?? '').replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;').replaceAll('"', '&quot;').replaceAll("'", '&#39;');
 const slugify = value => String(value).toLowerCase().trim().replace(/[^\p{L}\p{N}]+/gu, '-').replace(/^-|-$/g, '');
 const sha = value => createHash('sha256').update(value).digest('hex');
+// A release must never reuse cached styles or modules from a different build.
+const assetInputs = ['package-lock.json', 'scripts/build.mjs', 'scripts/design-components.mjs', 'assets/css/site.css', ...(await readdir('assets/js')).filter(file => file.endsWith('.js')).sort().map(file => `assets/js/${file}`)];
+const assetVersion = sha(Buffer.concat(await Promise.all(assetInputs.map(file => readFile(file))))).slice(0, 16);
+const versionAssets = html => html.replace(/((?:src|href)="\/assets\/(?:css|js)\/[^"?]+\.(?:css|js))"/g, `$1?v=${assetVersion}"`);
 function renderMath(html) {
   const $ = cheerio.load(html, null, false);
   const nodes = [];
@@ -119,7 +123,7 @@ async function writePage(route, contents) {
   const relative = route.replace(/^\/+|\/+$/g, '');
   const target = relative ? path.join(out, relative, 'index.html') : path.join(out, 'index.html');
   await mkdir(path.dirname(target), { recursive: true });
-  await writeFile(target, contents);
+  await writeFile(target, versionAssets(contents));
 }
 function field() {
   let lines = '';
@@ -159,6 +163,11 @@ await cp('node_modules/three/build/three.module.min.js',path.join(out,'assets/js
 await cp('node_modules/three/build/three.core.min.js',path.join(out,'assets/js/vendor/three.core.min.js'));
 await cp('node_modules/three/LICENSE',path.join(out,'assets/js/vendor/THREE-LICENSE.txt'));
 for (const file of ['site.js', 'wait-study.js', 'sculpture.js', 'sculpture-shape.js']) await cp(path.join('assets/js', file), path.join(out, 'assets/js', file));
+for (const file of ['site.js', 'sculpture.js', 'vendor/three.module.js']) {
+  const target = path.join(out, 'assets/js', file);
+  const source = await readFile(target, 'utf8');
+  await writeFile(target, source.replace(/(['"])((?:\.\/|\/assets\/js\/)[^'"?]+\.js|\/search-index\.json)\1/g, `$1$2?v=${assetVersion}$1`));
+}
 await cp('assets/css/site.css', path.join(out, 'assets/css/site.css'));
 await cp('node_modules/katex/dist/katex.min.css', path.join(out, 'assets/css/katex.min.css'));
 await cp('node_modules/katex/dist/fonts', path.join(out, 'assets/css/fonts'), { recursive: true });
@@ -270,4 +279,5 @@ await writeFile(path.join(out, 'sitemap.xml'), `<?xml version="1.0" encoding="UT
 await writeFile(path.join(out, 'robots.txt'), 'User-agent: *\nAllow: /\nSitemap: https://wildchaser1703.github.io/sitemap.xml\n');
 await writeFile(path.join(out, '404.html'), page('Not found', `<section class="inner-page"><p class="kicker">404 / LOST IN THE MARGINS</p><h1>That page isn’t here.</h1><a class="button" href="/">Back to the start ↗</a></section>`, { url: '/404.html' }));
 await writeFile(path.join(out, '.nojekyll'), '');
+await writeFile(path.join(out, '404.html'), versionAssets(await readFile(path.join(out, '404.html'), 'utf8')));
 console.log(`Built ${posts.length} posts, ${taxonomy.categories.size} categories, and ${taxonomy.tags.size} tags.`);
