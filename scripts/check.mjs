@@ -137,7 +137,7 @@ const navigation = ['Projects', 'Writing', 'Art', 'Food', 'About', 'Search'];
 for (const file of pages) {
   const $ = cheerio.load(await readFile(file, 'utf8'));
   const links = $('.site-header nav a');
-  check(JSON.stringify(links.map((i, el) => $(el).attr('href')).get()) === JSON.stringify(navigation.map(name => `/${name.toLowerCase()}/`)), `Incorrect navigation: ${path.relative(root, file)}`);
+  check(JSON.stringify(links.map((i, el) => $(el).attr('href')).get()) === JSON.stringify(navigation.map(name => name === 'About' ? '/#about' : `/${name.toLowerCase()}/`)), `Incorrect navigation: ${path.relative(root, file)}`);
   check(!$('.site-header nav').is('[hidden]') && $('.menu-toggle[hidden][aria-expanded="false"]').length === 1, `Navigation must work without JavaScript: ${path.relative(root, file)}`);
 }
 const sculpture = home('figure[data-sculpture]');
@@ -157,7 +157,7 @@ const expectedItems = [
 for (const item of expectedItems) {
   const row = directory(`.directory-row[href="${item.route}"]`);
   check(row.length === 1 && row.attr('data-kind') === item.kind, `Missing or miscategorized directory item: ${item.slug}`);
-  check(row.attr('data-preview') === `/assets/img/project-${item.slug}.svg` && row.find('img').attr('src') === row.attr('data-preview'), `Missing desktop/mobile preview: ${item.slug}`);
+  check(row.attr('data-preview')?.startsWith(`/assets/img/project-${item.slug}.svg?v=`) && row.find('img').attr('src') === row.attr('data-preview'), `Missing desktop/mobile preview: ${item.slug}`);
 }
 for (const project of engineering) {
   check(home(`a[href="/projects/${project.slug}/"]`).length > 0, `Missing selected AI project: ${project.slug}`);

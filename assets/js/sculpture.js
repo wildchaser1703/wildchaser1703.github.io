@@ -1,4 +1,4 @@
-import { BACKGROUND, FRAME, VARIANT_COUNT, createSculpture, createLineData, normalizeVariant } from './sculpture-shape.js';
+import { BACKGROUND, FRAME, createSculpture, createLineData, normalizeVariant } from './sculpture-shape.js';
 
 const instances = new WeakMap();
 const vertexShader = `
@@ -49,7 +49,9 @@ export function initSculpture(figure) {
   const reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
   const small = window.matchMedia('(max-width: 640px), (pointer: coarse)');
   const listeners = new AbortController();
-  let variant = normalizeVariant(figure.dataset.variant);
+  const newSeed = () => crypto.getRandomValues(new Uint32Array(1))[0];
+  let variant = normalizeVariant(newSeed());
+  let posterURL;
   let quality = small.matches ? 'mobile' : 'desktop';
   let userPaused = false;
   let destroyed = false;
@@ -73,9 +75,15 @@ export function initSculpture(figure) {
 
   function updateEdition() {
     figure.dataset.variant = String(variant);
-    const source = `/assets/img/sculpture-${variant}.webp`;
-    if (poster.getAttribute('src') !== source) poster.setAttribute('src', source);
-    if (counter) counter.textContent = `${String(variant + 1).padStart(2, '0')} / 03`;
+    const paths = createSculpture(variant, 'preview').map(({points,color,opacity}) => {
+      let d = '';
+      for (let i=0;i<points.length;i+=3) d += `${i?'L':'M'}${(450+points[i]*140).toFixed(1)} ${(380-points[i+1]*140).toFixed(1)}`;
+      return `<path d="${d}" stroke="rgb(${color.join(',')})" stroke-opacity="${opacity}"/>`;
+    }).join('');
+    if (posterURL) URL.revokeObjectURL(posterURL);
+    posterURL = URL.createObjectURL(new Blob([`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 760"><g fill="none" stroke-width="1.3">${paths}</g></svg>`],{type:'image/svg+xml'}));
+    poster.src = posterURL;
+    if (counter) counter.textContent = `Seed ${variant.toString(16).padStart(8,'0')}`;
   }
 
   function showRenderer(mode) {
@@ -230,7 +238,7 @@ export function initSculpture(figure) {
       // Current Three supports WebGL2; use the real canvas, not a spare context.
       if (typeof canvas.getContext !== 'function' || !('WebGL2RenderingContext' in window)) return;
       const context = canvas.getContext('webgl2', {
-        alpha: false, antialias: true, depth: false, stencil: false,
+        alpha: true, antialias: true, depth: false, stencil: false,
         powerPreference: 'low-power', preserveDrawingBuffer: false,
       });
       if (!context || context.isContextLost()) { fallback(true); return; }
@@ -238,8 +246,8 @@ export function initSculpture(figure) {
       if (destroyed || token !== generation || reduced.matches) return;
       three = module;
       canvas.addEventListener('webglcontextlost', contextLost);
-      renderer = new three.WebGLRenderer({ canvas, context, antialias: true, alpha: false });
-      renderer.setClearColor(BACKGROUND, 1);
+      renderer = new three.WebGLRenderer({ canvas, context, antialias: true, alpha: true });
+      renderer.setClearColor(BACKGROUND, 0);
       renderer.outputColorSpace = three.SRGBColorSpace;
       // Shader compile failures may otherwise only log and leave a blank hero.
       renderer.debug.onShaderError = () => { throw new Error('Sculpture shader unavailable'); };
@@ -272,7 +280,8 @@ export function initSculpture(figure) {
     if (status) status.textContent = userPaused ? 'Motion paused.' : 'Motion resumed.';
   });
   listen(next, 'click', () => {
-    variant = (variant + 1) % VARIANT_COUNT;
+    const seed = newSeed();
+    variant = seed === variant ? normalizeVariant(seed + 1) : seed;
     updateEdition();
     target.strength = 0;
     if (renderer) {
@@ -282,7 +291,7 @@ export function initSculpture(figure) {
         draw();
       } catch { fallback(true); }
     }
-    if (status) status.textContent = `Variation ${variant + 1} of ${VARIANT_COUNT}.`;
+    if (status) status.textContent = 'New woven field generated.';
   });
   listen(stage, 'pointermove', event => {
     // Passive mouse/hovering pen only: touch remains native page scrolling.
@@ -343,6 +352,7 @@ export function initSculpture(figure) {
     if (next) next.hidden = true;
     syncMotion();
     instances.delete(figure);
+    if (posterURL) URL.revokeObjectURL(posterURL);
   }
 
   instances.set(figure, destroy);

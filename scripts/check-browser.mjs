@@ -74,7 +74,7 @@ async function screenshot(page, name, fullPage = true) {
 async function checkNavigation(page, width) {
   const nav = page.getByRole('navigation', { name: 'Main navigation', includeHidden: true });
   const menu = page.locator('.menu-toggle');
-  assert.deepEqual(await nav.locator('a').evaluateAll(links => links.map(link => link.getAttribute('href'))), ['/projects/', '/writing/', '/art/', '/food/', '/about/', '/search/']);
+  assert.deepEqual(await nav.locator('a').evaluateAll(links => links.map(link => link.getAttribute('href'))), ['/projects/', '/writing/', '/art/', '/food/', '/#about', '/search/']);
   if (width <= 760) {
     await menu.waitFor({ state: 'visible' });
     await nav.waitFor({ state: 'hidden' });
@@ -140,7 +140,7 @@ async function checkDirectory(page, width) {
     const preview = page.locator('.directory-preview img');
     for (const [index, action] of [[1, 'hover'], [2, 'focus']]) {
       await rows.nth(index)[action]();
-      await attribute(preview, 'src', `/assets/img/project-${engineering[index].slug}.svg`);
+      await attribute(preview, 'src', await rows.nth(index).getAttribute('data-preview'));
       await preview.waitFor({ state: 'visible' });
       await decode(preview);
     }
@@ -192,6 +192,7 @@ try {
     observe(page, name, true);
     for (const route of routes) {
       await visit(page, route);
+      if (route === '/about/') await page.waitForURL(base + '/#about');
       assert.equal(await page.locator('.site-header').count(), 1, `${route} header`);
       assert.equal(await page.locator('.site-footer').count(), 1, `${route} footer`);
       await decode(page.locator('.brand .flow-mark'));
@@ -303,10 +304,10 @@ try {
     await attribute(figure, 'data-paused', 'true');
     await attribute(toggle, 'aria-pressed', 'true');
     const variants = new Set();
-    for (let index = 0; index < 3; index++) {
+    for (let index = 0; index < 7; index++) {
       const variant = await figure.getAttribute('data-variant');
       variants.add(variant);
-      if (screenshotDir) {
+      if (screenshotDir && index < 3) {
         const file = path.join(screenshotDir, `${width === 1440 ? 'desktop' : 'mobile'}-sculpture-${variant}.png`);
         await figure.screenshot({ path: file, animations: 'disabled' });
         console.log(`Screenshot: ${file}`);
@@ -316,7 +317,7 @@ try {
       await attribute(figure, 'data-renderer', 'webgl');
       await attribute(figure, 'data-paused', 'true');
     }
-    assert.equal(variants.size, 3);
+    assert.equal(variants.size, 7);
     await toggle.click();
     await attribute(figure, 'data-paused', 'false');
     await attribute(toggle, 'aria-pressed', 'false');

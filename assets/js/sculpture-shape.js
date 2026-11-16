@@ -7,6 +7,7 @@ export const BACKGROUND = '#f8f6f0';
 export const VARIANT_COUNT = 3;
 export const FRAME = Object.freeze({ width: 6.4, height: 5.4 });
 export const QUALITY = Object.freeze({
+  preview: { warp: 100, weft: 180, around: 80, across: 20 },
   desktop: { warp: 300, weft: 660, around: 240, across: 40 },
   mobile: { warp: 180, weft: 420, around: 160, across: 28 },
 });
@@ -30,12 +31,24 @@ function randomGenerator(seed) {
 
 export function normalizeVariant(variant = 0) {
   const value = Number(variant);
-  return Number.isFinite(value) ? ((Math.trunc(value) % VARIANT_COUNT) + VARIANT_COUNT) % VARIANT_COUNT : 0;
+  return Number.isFinite(value) ? Math.trunc(value) >>> 0 : 0;
+}
+
+const editionCache = new Map();
+function edition(seed) {
+  seed = normalizeVariant(seed);
+  if (seed < editions.length) return editions[seed];
+  if (!editionCache.has(seed)) {
+    const random = randomGenerator(seed);
+    if (editionCache.size > 16) editionCache.clear();
+    editionCache.set(seed, {seed,phase:random()*TAU,oval:.85+random()*.35,lift:.35+random()*.55,twist:.5+random()*.7,rx:-.7+random()*.5,ry:-.5+random(),rz:random()*TAU});
+  }
+  return editionCache.get(seed);
 }
 
 /** Point on a folded annulus; v runs from inner to outer selvedge. */
 export function surfacePoint(u, v, variant = 0, weave = 0) {
-  const e = editions[normalizeVariant(variant)];
+  const e = edition(variant);
   const q = u + e.phase;
   const radius = 1.34 + 0.15 * Math.cos(3 * q + 0.6) + 0.1 * Math.sin(2 * q);
   const width = 0.57 + 0.16 * Math.sin(q - 0.8) + 0.075 * Math.cos(2 * q + 1);
@@ -67,7 +80,8 @@ function threadColor(heat) {
 export function createSculpture(variant = 0, quality = 'desktop') {
   variant = normalizeVariant(variant);
   const { warp, weft, around, across } = QUALITY[quality] || QUALITY.desktop;
-  const random = randomGenerator(editions[variant].seed);
+  const shape = edition(variant);
+  const random = randomGenerator(shape.seed);
   const strands = [];
   for (let family = 0; family < 2; family++) {
     const count = family === 0 ? warp : weft;
@@ -88,7 +102,7 @@ export function createSculpture(variant = 0, quality = 'desktop') {
       }
       const heat = family === 0
         ? 0.1 + 0.72 * fraction + (random() - 0.5) * 0.15
-        : 0.37 + 0.3 * Math.sin(fraction * TAU + editions[variant].phase) + random() * 0.16;
+        : 0.37 + 0.3 * Math.sin(fraction * TAU + shape.phase) + random() * 0.16;
       strands.push({ points, color: threadColor(heat), opacity: family === 0 ? 0.52 : 0.64, family, depth: depth / (segments + 1) });
     }
   }
