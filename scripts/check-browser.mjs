@@ -1,5 +1,6 @@
 import assert from 'node:assert/strict';
 import { spawn } from 'node:child_process';
+import { readFile } from 'node:fs/promises';
 import net from 'node:net';
 import { setTimeout as delay } from 'node:timers/promises';
 import { chromium } from 'playwright';
@@ -9,6 +10,7 @@ await new Promise((resolve, reject) => probe.once('error', reject).listen(0, '12
 const port = probe.address().port;
 await new Promise(resolve => probe.close(resolve));
 const base = `http://127.0.0.1:${port}`;
+const foodPhotos = JSON.parse(await readFile('data/food.json', 'utf8'));
 const server = spawn(process.execPath, ['scripts/serve.mjs'], { env: { ...process.env, PORT: String(port) }, stdio: 'inherit' });
 let browser;
 try {
@@ -23,7 +25,7 @@ try {
     const page = await browser.newPage({ viewport: { width, height: 800 }, reducedMotion: 'reduce' });
     const errors = [];
     page.on('pageerror', error => errors.push(error.message));
-    for (const route of ['/', '/writing/', '/archives/', '/categories/', '/tags/', '/posts/context-engineering/', '/posts/llms-101/', '/notes/art-and-science-of-paper/', '/projects/counter/', '/studies/what-makes-a-wait-feel-long/']) {
+    for (const route of ['/', '/food/', '/writing/', '/archives/', '/categories/', '/tags/', '/posts/context-engineering/', '/posts/llms-101/', '/notes/art-and-science-of-paper/', '/projects/counter/', '/studies/what-makes-a-wait-feel-long/']) {
       const response = await page.goto(base + route, { waitUntil: 'networkidle' });
       assert.equal(response.status(), 200, `${route} status`);
       assert.equal(await page.locator('.site-header').count(), 1, `${route} header`);
@@ -40,12 +42,34 @@ try {
           await image.evaluate(element => element.decode());
         }
       }
+      if (route === '/food/') {
+        assert.equal(await page.locator('.food-photo img').count(), foodPhotos.length);
+        if (!foodPhotos.length) assert.equal(await page.locator('.food-empty').isVisible(), true);
+        for (const [index, image] of (await page.locator('.food-photo img').all()).entries()) {
+          await image.scrollIntoViewIfNeeded();
+          await image.evaluate(element => element.decode());
+          if (foodPhotos[index].width !== undefined) {
+            const size = await image.evaluate(element => ({ width: element.naturalWidth, height: element.naturalHeight }));
+            assert.deepEqual(size, { width: foodPhotos[index].width, height: foodPhotos[index].height });
+          }
+        }
+      }
       if (route === '/posts/llms-101/') assert.equal(await page.locator('.katex-display').count(), 4);
       if (route === '/posts/context-engineering/') {
         await page.locator('.article-toc summary').click();
         await page.locator('.article-toc a').first().click();
         assert.equal(new URL(page.url()).hash, '#the-fundamental-constraint');
       }
+    }
+    await page.goto(base);
+    await page.getByRole('navigation', { name: 'Main navigation' }).getByRole('link', { name: 'Food', exact: true }).click();
+    assert.equal(new URL(page.url()).pathname, '/food/');
+    if (foodPhotos.length) {
+      const imageLink = page.locator('.food-photo a').first();
+      const imagePath = await imageLink.getAttribute('href');
+      const [response] = await Promise.all([page.waitForResponse(base + imagePath), imageLink.click()]);
+      assert.equal(response.status(), 200);
+      assert.match(response.headers()['content-type'], /^image\//);
     }
     await page.goto(`${base}/search/`);
     await page.locator('#search-input').fill('context engineering');
@@ -76,6 +100,8 @@ try {
   await page.close();
   const noScript = await browser.newContext({ javaScriptEnabled: false });
   const staticPage = await noScript.newPage();
+  await staticPage.goto(`${base}/food/`);
+  assert.equal(await staticPage.locator('.food-photo img').count(), foodPhotos.length);
   await staticPage.goto(`${base}/studies/what-makes-a-wait-feel-long/`);
   assert.equal(await staticPage.locator('.comparison').isVisible(), true);
   await noScript.close();

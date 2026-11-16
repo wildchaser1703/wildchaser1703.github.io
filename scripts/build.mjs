@@ -1,5 +1,5 @@
 import { createHash } from 'node:crypto';
-import { cp, mkdir, readFile, readdir, rm, writeFile } from 'node:fs/promises';
+import { cp, mkdir, readFile, readdir, rm, stat, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import matter from 'gray-matter';
 import MarkdownIt from 'markdown-it';
@@ -12,6 +12,7 @@ import * as cheerio from 'cheerio';
 const root = process.cwd();
 const out = path.join(root, 'dist');
 const portfolio = JSON.parse(await readFile('data/portfolio.json', 'utf8'));
+const foodPhotos = JSON.parse(await readFile('data/food.json', 'utf8'));
 const fieldNotes = JSON.parse(await readFile('data/field-notes.json', 'utf8'));
 const legacy = JSON.parse(await readFile('data/legacy-posts.json', 'utf8'));
 const legacyTaxonomy = JSON.parse(await readFile('data/legacy-taxonomy.json', 'utf8'));
@@ -100,7 +101,7 @@ const dateText = date => new Intl.DateTimeFormat('en', { year: 'numeric', month:
 const postUrl = post => `/posts/${encodeURIComponent(post.slug)}/`;
 const postRow = post => `<a class="post-row" href="${postUrl(post)}"><time datetime="${post.date.toISOString()}">${dateText(post.date)}</time><span>${esc(post.title)}</span><span aria-hidden="true">↗</span></a>`;
 const mark = '<img class="flow-mark" src="/assets/img/flow-mark.png" width="1254" height="1254" alt="" aria-hidden="true">';
-const header = `<header class="site-header"><a class="brand" href="/" aria-label="Toshali Mohapatra, home"><span class="brand-mark" aria-hidden="true">${mark}</span><span>Toshali<br>Mohapatra</span></a><nav aria-label="Main navigation"><a href="/writing/">Writing</a><a href="/#projects">Projects</a><a href="/#art">Art</a><a href="/studies/">Studies</a><a class="search-link" href="/search/" aria-label="Search writing">Search <span aria-hidden="true">↗</span></a></nav></header>`;
+const header = `<header class="site-header"><a class="brand" href="/" aria-label="Toshali Mohapatra, home"><span class="brand-mark" aria-hidden="true">${mark}</span><span>Toshali<br>Mohapatra</span></a><nav aria-label="Main navigation"><a href="/writing/">Writing</a><a href="/#projects">Projects</a><a href="/#art">Art</a><a href="/food/">Food</a><a href="/studies/">Studies</a><a class="search-link" href="/search/" aria-label="Search writing">Search <span aria-hidden="true">↗</span></a></nav></header>`;
 const footer = `<footer class="site-footer"><div><span class="footer-mark" aria-hidden="true">${mark}</span><p>Made of questions,<br>ideas &amp; experiments.</p></div><div class="footer-links"><a href="/writing/">Writing</a><a href="/categories/">Categories</a><a href="/tags/">Tags</a><a href="/feed.xml">RSS</a><a href="mailto:toshalimohapatra1@gmail.com">Say hello ↗</a></div><small>© ${new Date().getUTCFullYear()} Toshali Mohapatra</small></footer>`;
 function page(title, body, options = {}) {
   const canonical = `https://wildchaser1703.github.io${options.url || '/'}`;
@@ -127,7 +128,7 @@ const featured = featuredSlugs.map(slug => bySlug.get(slug)).filter(Boolean);
 const projects = portfolio.projects.map((item, index) => `<a class="project-row" href="/projects/${esc(item.slug)}/"><span class="project-number">${String(index + 1).padStart(2, '0')}</span><span>${esc(item.title)}</span><span aria-hidden="true">↗</span></a>`).join('');
 const fieldNoteCards = fieldNotes.map(item => `<a class="project-row" href="/notes/${esc(item.slug)}/"><span class="project-number">NOTE</span><span>${esc(item.title)}</span><span aria-hidden="true">↗</span></a>`).join('');
 const art = portfolio.art.map((item, index) => `<figure class="art-item"><div class="art-image"><img src="/assets/art/${esc(item.file)}" alt="${esc(item.title)}" ${index > 2 ? 'loading="lazy"' : ''}></div><figcaption><strong>${esc(item.title)}</strong><span>${esc(item.caption)}</span></figcaption></figure>`).join('');
-const favorites = portfolio.favorites.map(item => `<div class="favorite-item"><span class="kicker">${esc(item.kind)}</span><p>${esc(item.title)}</p></div>`).join('');
+const favorites = portfolio.favorites.map(item => `<div class="favorite-item"><span class="kicker">${esc(item.kind)}</span><p>${esc(item.title)}</p>${item.kind === 'Food' ? '<a class="text-link food-home-link" href="/food/">Food photos <span aria-hidden="true">↗</span></a>' : ''}</div>`).join('');
 const home = `<section class="home-hero"><div class="hero-copy"><p class="kicker">An ever-evolving collection</p><h1>Curious by<br><em>nature.</em></h1><p class="hero-lede">I’m Toshali. I build AI systems, draw, and follow ideas wherever they lead.</p><div class="hero-actions"><a class="button" href="/writing/">Explore the writing <span aria-hidden="true">↗</span></a><a class="text-link" href="#projects">See what I make <span aria-hidden="true">↓</span></a></div></div><div class="hero-visual"><div class="field-meta"><span>A SMALL STUDY IN VARIATION</span><span>01 / 01</span></div>${field()}<div class="field-caption"><span>A line, repeated.<br>Never quite the same.</span><span>FIG. 01</span></div></div><span class="hero-index" aria-hidden="true">T / M</span></section><section class="section-block" id="writing"><div class="section-heading"><div><p class="kicker">01 / WORDS &amp; IDEAS</p><h2>Notes from<br><em>the field.</em></h2></div><p>Thoughts on AI, engineering, and figuring things out as I go.</p></div><div class="post-list">${featured.map(postRow).join('')}</div><a class="text-link section-link" href="/writing/">All writing <span aria-hidden="true">↗</span></a></section><section class="section-block project-section" id="projects"><div class="section-heading"><div><p class="kicker">02 / EXPERIMENTS</p><h2>Making things<br><em>to learn things.</em></h2></div><p>Little explorations in code, interaction, and design—collected from my portfolio.</p></div><div class="projects-grid"><div class="project-note"><span class="project-glyph" aria-hidden="true">${mark}</span><p>Some ideas are best understood by making them.</p><small>CODE / PLAY / REPEAT</small></div><div class="project-list">${projects}${fieldNoteCards}</div></div></section><section class="section-block art-section" id="art"><div class="section-heading"><div><p class="kicker">03 / THE BONUS SECTION</p><h2>Beyond<br><em>the screen.</em></h2></div><p>A few paintings and pieces from my collection. A different way to notice the world.</p></div><div class="art-grid">${art}</div></section><section class="section-block favorites-section"><div class="section-heading"><div><p class="kicker">04 / LITTLE JOYS</p><h2>A few <em>favorites.</em></h2></div><p>A film, a book, and a kind of food I keep coming back to.</p></div><div class="favorites-grid">${favorites}</div></section><section class="closing"><span aria-hidden="true">${mark}</span><p>Always learning.<br><em>Always making.</em></p><a class="button" href="mailto:toshalimohapatra1@gmail.com">Say hello ↗</a></section>`;
 
 await rm(out, { recursive: true, force: true });
@@ -143,6 +144,25 @@ await cp('node_modules/katex/dist/katex.min.css', path.join(out, 'assets/css/kat
 await cp('node_modules/katex/dist/fonts', path.join(out, 'assets/css/fonts'), { recursive: true });
 await cp('public/sw.min.js', path.join(out, 'sw.min.js'));
 await writePage('/', page('Home', home));
+
+if (!Array.isArray(foodPhotos)) throw new Error('Food photos must be an array.');
+const foodGallery = (await Promise.all(foodPhotos.map(async (photo, index) => {
+  if (!photo || typeof photo.file !== 'string' || !photo.file || path.basename(photo.file) !== photo.file || typeof photo.alt !== 'string' || !photo.alt.trim() || (photo.caption !== undefined && typeof photo.caption !== 'string') || (photo.preview !== undefined && (typeof photo.preview !== 'string' || !photo.preview || path.basename(photo.preview) !== photo.preview))) {
+    throw new Error(`Invalid food photo entry at index ${index}.`);
+  }
+  const hasDimensions = photo.width !== undefined || photo.height !== undefined;
+  if (hasDimensions && (!Number.isSafeInteger(photo.width) || photo.width <= 0 || !Number.isSafeInteger(photo.height) || photo.height <= 0)) {
+    throw new Error(`Invalid food photo dimensions at index ${index}.`);
+  }
+  if (!(await stat(path.join('assets/img/food', photo.file))).isFile()) throw new Error(`Missing food photo: ${photo.file}`);
+  const src = `/assets/img/food/${encodeURIComponent(photo.file)}`;
+  if (photo.preview && !(await stat(path.join('assets/img/food/previews', photo.preview))).isFile()) throw new Error(`Missing food preview: ${photo.preview}`);
+  const displaySrc = photo.preview ? `/assets/img/food/previews/${encodeURIComponent(photo.preview)}` : src;
+  const dimensions = hasDimensions ? ` width="${photo.width}" height="${photo.height}"` : '';
+  return `<figure class="food-photo"><a href="${src}" aria-label="View full-size photo: ${esc(photo.alt)}"><img src="${displaySrc}" alt="${esc(photo.alt)}"${dimensions} decoding="async"${index > 2 ? ' loading="lazy"' : ''}></a>${photo.caption ? `<figcaption>${esc(photo.caption)}</figcaption>` : ''}</figure>`;
+}))).join('');
+const foodBody = `<section class="inner-page food-page"><header class="page-heading"><p class="kicker">PHOTO COLLECTION</p><h1>Food</h1><p>Meals, drinks, and sweet things.</p></header>${foodPhotos.length ? `<div class="food-gallery" role="group" aria-label="Food photographs">${foodGallery}</div>` : '<p class="food-empty">No photos to show yet.</p>'}</section>`;
+await writePage('/food/', page('Food', foodBody, { url: '/food/', description: 'Food photographs from Toshali Mohapatra.' }));
 
 const browseNav = `<nav class="browse-nav" aria-label="Browse writing"><a href="/writing/">Latest</a><a href="/archives/">Archive</a><a href="/categories/">Categories</a><a href="/tags/">Tags</a><a href="/search/">Search ↗</a></nav>`;
 function writingPage(title, entries, intro = '') {
@@ -214,7 +234,7 @@ await writePage('/about/', '<!doctype html><html lang="en"><head><meta charset="
 
 const feedEntries = posts.map(post => `<entry><title>${esc(post.title)}</title><id>https://wildchaser1703.github.io${postUrl(post)}</id><link href="https://wildchaser1703.github.io${postUrl(post)}"/><updated>${post.date.toISOString()}</updated><content type="html">${esc(post.html)}</content></entry>`).join('');
 await writeFile(path.join(out, 'feed.xml'), `<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom"><title>Toshali Mohapatra</title><id>https://wildchaser1703.github.io/</id><link href="https://wildchaser1703.github.io/feed.xml" rel="self"/><updated>${(posts[0]?.date || new Date(0)).toISOString()}</updated>${feedEntries}</feed>`);
-const paths = ['/', '/writing/', '/archives/', '/categories/', '/tags/', '/search/', '/studies/', '/studies/what-makes-a-wait-feel-long/', ...portfolio.projects.map(project => `/projects/${project.slug}/`), ...fieldNotes.map(note => `/notes/${note.slug}/`), ...posts.map(postUrl), ...[...taxonomy.categories.keys()].map(slug => `/categories/${slug}/`), ...[...taxonomy.tags.keys()].map(slug => `/tags/${slug}/`)];
+const paths = ['/', '/food/', '/writing/', '/archives/', '/categories/', '/tags/', '/search/', '/studies/', '/studies/what-makes-a-wait-feel-long/', ...portfolio.projects.map(project => `/projects/${project.slug}/`), ...fieldNotes.map(note => `/notes/${note.slug}/`), ...posts.map(postUrl), ...[...taxonomy.categories.keys()].map(slug => `/categories/${slug}/`), ...[...taxonomy.tags.keys()].map(slug => `/tags/${slug}/`)];
 await writeFile(path.join(out, 'sitemap.xml'), `<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${paths.map(url => `<url><loc>https://wildchaser1703.github.io${esc(url)}</loc></url>`).join('')}</urlset>`);
 await writeFile(path.join(out, 'robots.txt'), 'User-agent: *\nAllow: /\nSitemap: https://wildchaser1703.github.io/sitemap.xml\n');
 await writeFile(path.join(out, '404.html'), page('Not found', `<section class="inner-page"><p class="kicker">404 / LOST IN THE MARGINS</p><h1>That page isn’t here.</h1><a class="button" href="/">Back to the start ↗</a></section>`, { url: '/404.html' }));
