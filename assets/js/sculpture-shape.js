@@ -4,18 +4,21 @@ export const BACKGROUND = '#f8f6f0';
 export const FRAME = Object.freeze({width:6.4,height:5.4});
 export const VARIANT_COUNT = 3;
 export const normalizeVariant = value => Number.isFinite(Number(value)) ? Math.trunc(Number(value)) >>> 0 : 0;
-// Four distinct poses retain the authored folios while changing their volume.
-const poses = [
-  {width:1.15, height:.94, fan:.34, depth:1.65, twist:.38, bow:.12, yaw:-.55, tilt:.12},
-  {width:.92, height:1.08, fan:.10, depth:1.95, twist:-.60, bow:.35, yaw:.62, tilt:-.24},
-  {width:1.22, height:.88, fan:.46, depth:1.35, twist:.72, bow:-.26, yaw:.28, tilt:.34},
-  {width:.95, height:1.02, fan:.25, depth:2.1, twist:-.28, bow:-.38, yaw:-.78, tilt:-.18},
-];
+// Independent continuous parameters, not a catalogue of preset poses.
 function edition(seed) {
   let n=normalizeVariant(seed);
-  const random=()=>{n=(Math.imul(n,1664525)+1013904223)>>>0;return n/4294967296;};
-  const pose=poses[n % poses.length];
-  return {...pose, yaw:pose.yaw+(random()-.5)*.28, twist:pose.twist+(random()-.5)*.18};
+  const random=()=>{
+    n=(n+0x6d2b79f5)>>>0;
+    let t=Math.imul(n^(n>>>15),1|n);
+    t^=t+Math.imul(t^(t>>>7),61|t);
+    return ((t^(t>>>14))>>>0)/4294967296;
+  };
+  const range=(min,max)=>min+(max-min)*random();
+  return {
+    width:range(.78,1.35),height:range(.84,1.12),fan:range(.04,.56),
+    depth:range(1.05,2.25),twist:range(-1.05,1.05),bow:range(-.5,.5),
+    yaw:range(-1,1),tilt:range(-.5,.5),curl:range(-.35,.35),splay:range(-.24,.24),
+  };
 }
 function transform(points, layers, e) {
   const result=new Float32Array(points.length);
@@ -23,8 +26,8 @@ function transform(points, layers, e) {
     const leaf=(typeof layers==='number'?layers:layers[i/3])-2;
     const t=Math.max(-1,Math.min(1,points[i+1]/2));
     let x=points[i]*e.width+leaf*e.fan*.42*(.3+Math.cos(t*1.2));
-    let y=points[i+1]*e.height;
-    let z=points[i+2]*e.depth+e.bow*Math.sin(t*Math.PI)+leaf*.08*Math.sin(t*2);
+    let y=points[i+1]*e.height+leaf*e.splay*Math.sin(t*Math.PI)*.3;
+    let z=points[i+2]*e.depth+e.bow*Math.sin(t*Math.PI)+leaf*.08*Math.sin(t*2)+e.curl*Math.sin(t*3+leaf*.35)*(1-t*t);
     const angle=e.twist*t+e.yaw, c=Math.cos(angle),s=Math.sin(angle);
     [x,z]=[x*c+z*s,-x*s+z*c];
     result[i]=x*Math.cos(e.tilt)-y*Math.sin(e.tilt);
@@ -58,6 +61,30 @@ function geometry(seed) {
   const result={positions,normals,pose,scale};
   if(cache.size>=4) cache.delete(cache.keys().next().value);
   cache.set(seed,result);return result;
+}
+/** Screen-space displacement stops "new" editions from looking almost identical. */
+export function variationDistance(a,b) {
+  const p=geometry(a).positions,q=geometry(b).positions;
+  let sum=0,count=0;
+  for(let i=0;i<p.length;i+=39){sum+=(p[i]-q[i])**2+(p[i+1]-q[i+1])**2;count++;}
+  return Math.sqrt(sum/count);
+}
+export function nextVariation(current,randomSeed,recent=[]) {
+  let best=current,bestDistance=-1;
+  // Bounded search, also works if a random source repeats the same seed.
+  for(let i=0;i<8;i++) {
+    const candidate=normalizeVariant(randomSeed()+Math.imul(current+1,0x85ebca6b)+Math.imul(i,0x9e3779b9));
+    if(candidate===current || recent.includes(candidate)) continue;
+    const distance=variationDistance(current,candidate);
+    if(distance>bestDistance){best=candidate;bestDistance=distance;}
+    if(distance>=.32) return candidate;
+  }
+  if(best===current) {
+    // Even a pathological source cannot trap the control on the current seed.
+    best=normalizeVariant(current+1);
+    while(recent.includes(best) || best===current) best=normalizeVariant(best+1);
+  }
+  return best;
 }
 export function createSculpture(seed=0) {
   const {pose,scale}=geometry(seed);
