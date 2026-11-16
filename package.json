@@ -4,7 +4,7 @@
   "type": "module",
   "scripts": {
     "build": "node scripts/build.mjs",
-    "test": "node scripts/check.mjs",
+    "test": "node scripts/check.mjs && node scripts/check-sculpture.mjs",
     "test:browser": "node scripts/check-browser.mjs && node scripts/check-cache.mjs && node scripts/check-polish.mjs",
     "dev": "npm run build && node scripts/serve.mjs"
   },
