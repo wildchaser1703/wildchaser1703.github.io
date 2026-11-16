@@ -47,6 +47,8 @@ try {
       assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false);
       assert.equal(await page.evaluate(()=>getComputedStyle(document.documentElement).colorScheme),colorScheme);
       if(route==='/') {
+        await page.locator('[data-collection="art"][data-collection-ready="true"]').waitFor();
+        await page.locator('[data-collection="food"][data-collection-ready="true"]').waitFor();
         for(const url of ['https://x.com/sudoher','https://linkedin.com/in/toshalimohapatra','mailto:toshalimohapatra1@gmail.com']) assert.equal(await page.locator('.hero-socials a[href="'+url+'"]').count(),1);
         await page.locator('.hero-about summary').click();
         assert.equal(await page.locator('.favorite-item').count(),3);
@@ -126,13 +128,24 @@ try {
   page.on('pageerror',error=>errors.push(error.message));
   await page.clock.install();
   await page.goto(base);
+  await page.locator('[data-collection="food"][data-collection-ready="true"]').waitFor();
+  await page.locator('[data-collection="art"][data-collection-ready="true"]').waitFor();
+  // A pointer resting over a gallery must not prevent the requested rotation.
+  for (const kind of ['art','food']) {
+    const gallery = page.locator('[data-collection="'+kind+'"]');
+    await gallery.locator('a[data-gallery]').first().hover();
+    await delay(100);
+    const previous = await gallery.locator('a[data-gallery]').evaluateAll(items=>items.map(x=>x.getAttribute('href')));
+    await page.clock.fastForward(6100);
+    await poll(async()=>(await gallery.locator('a[data-gallery]').first().getAttribute('href'))!==previous[0],kind+' did not rotate while hovered');
+  }
   const section=page.locator('[data-collection="food"]');
   await section.scrollIntoViewIfNeeded();
   await page.mouse.move(0,0);
   await delay(100);
   const first=section.locator('a[data-gallery]').first();
   const before=await first.getAttribute('href');
-  await page.clock.fastForward(12100);
+  await page.clock.fastForward(6100);
   await poll(async()=>await first.getAttribute('href')!==before,'Automatic rotation did not run');
   await section.locator('[data-collection-pause]').click();
   const paused=await first.getAttribute('href');
@@ -153,9 +166,39 @@ try {
     assert.equal(await page.evaluate(()=>getComputedStyle(document.documentElement).colorScheme),colorScheme,'Theme did not follow a live system change');
   }
   await page.close();
+  // Reloads must start with three different images, even with reduced motion.
+  for(const storageAvailable of [true,false]) {
+    const context=await browser.newContext({reducedMotion:'reduce'});
+    if(!storageAvailable) await context.addInitScript(()=>{
+      Storage.prototype.getItem=Storage.prototype.setItem=()=>{throw new DOMException('Storage disabled','SecurityError');};
+    });
+    const returning=await context.newPage();
+    returning.on('pageerror',error=>errors.push(error.message));
+    const previous={art:[],food:[]};
+    for(let visit=0;visit<4;visit++) {
+      await returning.goto(base);
+      for(const kind of ['art','food']) {
+        const gallery=returning.locator('[data-collection="'+kind+'"][data-collection-ready="true"]');
+        await gallery.waitFor();
+        const current=await gallery.locator('a[data-gallery]').evaluateAll(items=>items.map(x=>x.getAttribute('href')));
+        assert.equal(new Set(current).size,3);
+        if(storageAvailable) assert.ok(current.every(url=>!previous[kind].includes(url)),kind+' repeats images from the previous visit');
+        previous[kind]=current;
+      }
+    }
+    await returning.evaluate(()=>dispatchEvent(new PageTransitionEvent('pageshow',{persisted:true})));
+    for(const kind of ['art','food']) {
+      const gallery=returning.locator('[data-collection="'+kind+'"]');
+      await poll(async()=>{
+        const current=await gallery.locator('a[data-gallery]').evaluateAll(items=>items.map(x=>x.getAttribute('href')));
+        return current.every(url=>!previous[kind].includes(url));
+      },kind+' did not refresh on history restoration');
+    }
+    await context.close();
+  }
   assert.deepEqual(errors,[]);
   if(directory) await writeFile(directory+'/accessibility-results.json',JSON.stringify(reports,null,2));
-  console.log('40 generated seeds; automatic rotation, pause, viewer stability and reduced motion passed.');
+  console.log('40 generated seeds; fresh selections across reloads, disabled-storage fallback, rotation while hovered, pause, viewer stability and reduced motion passed.');
 } finally {
   await browser?.close();
   server.kill();

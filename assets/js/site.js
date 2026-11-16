@@ -1,4 +1,4 @@
-// Homepage selections rotate only while visible and idle. Native image links
+// Each visit starts with a fresh selection, then rotates while visible. Image links
 // remain usable with JavaScript disabled, reduced motion, or a failed download.
 const collectionData = document.querySelector('#home-collections');
 if (collectionData) {
@@ -12,6 +12,12 @@ if (collectionData) {
     const next = controls.querySelector('[data-collection-next]');
     const pause = controls.querySelector('[data-collection-pause]');
     const status = controls.querySelector('[role="status"]');
+    const storageKey = 'home-selection-' + kind;
+    let previousVisit = [];
+    try {
+      const saved = JSON.parse(localStorage.getItem(storageKey));
+      if (Array.isArray(saved)) previousVisit = saved.filter(value => typeof value === 'string').slice(0, figures.length);
+    } catch { /* Storage may be disabled; fresh random selections still work. */ }
     let paused = motion.matches, busy = false, visible = false, timer;
     let bag = [];
     const source = item => kind === 'art' ? `/assets/art/${encodeURIComponent(item.file)}` : `/assets/img/food/${encodeURIComponent(item.file)}`;
@@ -26,9 +32,9 @@ if (collectionData) {
       clearTimeout(timer);
       if (paused || motion.matches || document.hidden || !visible) return;
       timer = setTimeout(async () => {
-        if (!section.matches(':hover') && !section.contains(document.activeElement) && !document.querySelector('.image-viewer[open]')) await advance(false);
+        if (!section.querySelector('a[data-gallery]:focus-visible') && !document.querySelector('.image-viewer[open]')) await advance(false);
         resetTimer();
-      }, 12000);
+      }, 6000);
     }
     function syncPause() {
       pause.textContent = motion.matches ? 'Rotation off' : paused ? 'Resume rotation' : 'Pause rotation';
@@ -37,11 +43,18 @@ if (collectionData) {
       pause.title = motion.matches ? 'Automatic rotation is off for reduced motion. Use More to browse.' : '';
       resetTimer();
     }
-    async function advance(manual = true) {
+    async function advance(manual = true, initial = false) {
       if (busy || document.querySelector('.image-viewer[open]')) return;
       busy = true;
       next.disabled = true;
       const current = new Set(figures.map(figure => figure.querySelector('a').getAttribute('href')));
+      if (initial) previousVisit.forEach(url => current.add(url));
+      // Keep enough candidates if the collection ever becomes smaller.
+      if (entries.filter(item => !current.has(source(item))).length < figures.length) {
+        current.clear();
+        if (initial) previousVisit.forEach(url => current.add(url));
+      }
+      if (entries.filter(item => !current.has(source(item))).length < figures.length) current.clear();
       const selected = [];
       while (selected.length < figures.length) {
         if (!bag.length) bag = shuffle(entries.filter(item => !current.has(source(item)) && !selected.includes(item)));
@@ -56,7 +69,7 @@ if (collectionData) {
           return image.src;
         }));
         // An image viewer may have opened while the next selection downloaded.
-        if (document.querySelector('.image-viewer[open]') || (!manual && (paused || motion.matches || document.hidden || !visible || section.matches(':hover') || section.contains(document.activeElement)))) return;
+        if (document.querySelector('.image-viewer[open]') || (!manual && !initial && (paused || motion.matches || document.hidden || !visible || section.querySelector('a[data-gallery]:focus-visible')))) return;
         selected.forEach((item,i) => {
           const figure = figures[i], link = figure.querySelector('a'), image = link.querySelector('img');
           link.href = source(item);
@@ -70,12 +83,14 @@ if (collectionData) {
             figure.querySelector('figcaption span').textContent = item.caption;
           } else figure.querySelector('figcaption').textContent = item.caption;
         });
+        try { localStorage.setItem(storageKey, JSON.stringify(selected.map(source))); } catch {}
         if (manual) status.textContent = 'Three more ' + (kind === 'art' ? 'paintings.' : 'photographs.');
       } catch {
         if (manual) status.textContent = 'Could not load the next selection. Please try again.';
       } finally {
         busy = false;
         next.disabled = false;
+        if (initial) section.dataset.collectionReady = 'true';
       }
     }
     controls.hidden = false;
@@ -87,8 +102,13 @@ if (collectionData) {
       new IntersectionObserver(([entry]) => { visible = entry.isIntersecting; resetTimer(); }, {threshold:.15}).observe(section);
     } else visible = true;
     window.addEventListener('pagehide', () => clearTimeout(timer));
-    window.addEventListener('pageshow', resetTimer);
+    window.addEventListener('pageshow', event => {
+      if (event.persisted) void advance(false, true);
+      resetTimer();
+    });
     syncPause();
+    // Initial selection also changes for visitors who prefer reduced motion.
+    void advance(false, true);
   }
 }
 

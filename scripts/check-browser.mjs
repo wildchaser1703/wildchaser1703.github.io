@@ -44,9 +44,11 @@ function observe(page, label, reduced = false) {
     if (/\/three[^/]*\.js(?:\?|$)/i.test(request.url())) threeRequests.push(`${label}: ${request.url()}`);
   });
 }
-async function visit(page, route) {
+async function visit(page, route, scriptsEnabled = true) {
   const response = await page.goto(base + route, { waitUntil: 'domcontentloaded' });
   assert.equal(response.status(), 200, `${route} status`);
+  if (route === '/' && scriptsEnabled) await page.locator('[data-collection="art"][data-collection-ready="true"]').waitFor();
+  if (route === '/' && scriptsEnabled) await page.locator('[data-collection="food"][data-collection-ready="true"]').waitFor();
 }
 async function decode(image) {
   await image.evaluate(async element => {
@@ -359,7 +361,7 @@ try {
     const noScript = await browser.newContext({ javaScriptEnabled: false, viewport: { width, height: 900 } });
     const page = await noScript.newPage();
     observe(page, `no JS ${width}`);
-    await visit(page, '/');
+    await visit(page, '/', false);
     await page.locator('.site-header nav').waitFor({ state: 'visible' });
     await page.locator('.menu-toggle').waitFor({ state: 'hidden' });
     await page.locator('.sculpture-poster').waitFor({ state: 'visible' });
