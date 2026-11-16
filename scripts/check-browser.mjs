@@ -160,6 +160,7 @@ async function checkStaticSculpture(page, name) {
   const poster = figure.locator('.sculpture-poster');
   await figure.locator('[data-sculpture-next]').waitFor({ state: 'visible' });
   await attribute(figure, 'data-renderer', 'static');
+  await attribute(figure, 'data-bloom', 'off');
   await attribute(figure, 'data-paused', 'true');
   await poster.waitFor({ state: 'visible' });
   await decode(poster);
@@ -298,6 +299,7 @@ try {
     const figure = page.locator('figure[data-sculpture]');
     await figure.scrollIntoViewIfNeeded();
     await attribute(figure, 'data-renderer', 'webgl');
+    await attribute(figure, 'data-bloom', 'on');
     await attribute(figure, 'data-paused', 'false');
     await figure.locator('canvas').waitFor({ state: 'visible' });
     assert.equal(await figure.locator('canvas').evaluate(canvas => canvas.width > 0 && canvas.height > 0), true);
@@ -317,9 +319,16 @@ try {
       await figure.locator('[data-sculpture-next]').click();
       await eventually(async () => assert.notEqual(await figure.getAttribute('data-variant'), variant), 'WebGL variation did not change');
       await attribute(figure, 'data-renderer', 'webgl');
+      await attribute(figure, 'data-bloom', 'on');
       await attribute(figure, 'data-paused', 'true');
     }
     assert.equal(variants.size, 7);
+    // Resize and a system-theme change must redraw the bloom while paused.
+    await page.setViewportSize({ width: width + 20, height: 800 });
+    await page.emulateMedia({ colorScheme: 'dark' });
+    await attribute(figure, 'data-bloom', 'on');
+    await attribute(figure, 'data-paused', 'true');
+    await page.setViewportSize({ width, height: 900 });
     await toggle.click();
     await attribute(figure, 'data-paused', 'false');
     await attribute(toggle, 'aria-pressed', 'false');
@@ -342,6 +351,61 @@ try {
     await checkStaticSculpture(page, 'lost WebGL context');
     await page.close();
   }
+  const bloomFailure = await browser.newPage({ reducedMotion: 'no-preference' });
+  observe(bloomFailure, 'bloom failure');
+  await bloomFailure.route('**/sculpture-bloom.js*', route => route.fulfill({
+    contentType: 'text/javascript',
+    body: 'export function createBloom() { return {resize(){},setTheme(){},dispose(){},render(){throw Error("Framebuffer unavailable")}}; }',
+  }));
+  await visit(bloomFailure, '/');
+  await attribute(bloomFailure.locator('[data-sculpture]'), 'data-renderer', 'webgl');
+  await attribute(bloomFailure.locator('[data-sculpture]'), 'data-bloom', 'off');
+  await bloomFailure.locator('[data-sculpture-next]').click();
+  await attribute(bloomFailure.locator('[data-sculpture]'), 'data-renderer', 'webgl');
+  await bloomFailure.close();
+
+  const transitions = await browser.newPage({ viewport: {width:1440,height:900}, reducedMotion:'no-preference' });
+  observe(transitions, 'navigation transitions');
+  await visit(transitions, '/');
+  await transitions.locator('.writing-section').evaluate(element => scrollTo({top:element.getBoundingClientRect().top + scrollY - innerHeight - 60,behavior:'instant'}));
+  await eventually(async () => assert.equal(await transitions.locator('.writing-section').evaluate(el => getComputedStyle(el).opacity), '0'), 'Below-fold section blends into the background');
+  const drift = await transitions.locator('.writing-section').evaluate(element => new Promise(resolve => {
+    const positions = [];
+    const top = element.getBoundingClientRect().top + scrollY;
+    let start;
+    scrollTo({top:top - 100,behavior:'smooth'});
+    function sample(time) {
+      start ??= time;
+      positions.push(element.getBoundingClientRect().top + scrollY);
+      if (time - start < 600) requestAnimationFrame(sample);
+      else resolve(Math.max(...positions) - Math.min(...positions));
+    }
+    requestAnimationFrame(sample);
+  }));
+  assert.ok(drift < 1, 'A reveal must not move content independently of scrolling');
+  // Start a fresh visit: the preceding scroll may already reveal this section.
+  await visit(transitions, '/');
+  await transitions.locator('.personal-section').evaluate(element => scrollTo({top:element.getBoundingClientRect().top + scrollY - innerHeight - 60,behavior:'instant'}));
+  await eventually(async () => assert.equal(await transitions.locator('.personal-section').evaluate(el => getComputedStyle(el).opacity), '0'), 'Below-fold personal section dissolves');
+  await transitions.emulateMedia({reducedMotion:'reduce'});
+  await eventually(async () => assert.equal(await transitions.locator('.personal-section').evaluate(element => element.getAnimations().length), 0), 'Reduced motion should cancel the entrance');
+  await eventually(async () => assert.equal(await transitions.locator('.personal-section').evaluate(element => getComputedStyle(element).opacity), '1'), 'Reduced motion restores full opacity');
+  // The primary link keeps native fragment/history behaviour with motion off.
+  await transitions.locator('.hero-actions a').click();
+  assert.equal(new URL(transitions.url()).hash, '#projects');
+  await transitions.emulateMedia({reducedMotion:'no-preference'});
+  await transitions.locator('#main-navigation a[href="/projects/"]').click();
+  await transitions.waitForURL(base + '/projects/');
+  assert.equal(await transitions.locator('main > :first-child').evaluate(element => getComputedStyle(element).animationName), 'page-enter');
+  await eventually(async () => assert.equal(await transitions.locator('main > :first-child').evaluate(element => getComputedStyle(element).opacity), '1'), 'Page entrance should finish visibly');
+  await transitions.goBack();
+  await transitions.locator('.hero-copy h1').waitFor();
+  assert.equal(await transitions.evaluate(() => getComputedStyle(document.body).opacity), '1');
+  await transitions.locator('#about').evaluate(element => element.scrollIntoView({behavior:'instant'}));
+  await transitions.locator('.about-socials a').first().focus();
+  await eventually(async () => assert.equal(await transitions.locator('#about').evaluate(element => element.getAnimations().length), 0), 'Keyboard focus should cancel the entrance');
+  await transitions.close();
+
   const fallback = await browser.newPage({ reducedMotion: 'no-preference' });
   observe(fallback, 'no WebGL');
   await fallback.addInitScript(() => {
