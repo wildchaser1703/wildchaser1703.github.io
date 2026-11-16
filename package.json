@@ -5,7 +5,7 @@
   "scripts": {
     "build": "node scripts/build.mjs",
     "test": "node scripts/check.mjs",
-    "test:browser": "node scripts/check-browser.mjs",
+    "test:browser": "node scripts/check-browser.mjs && node scripts/check-cache.mjs",
     "dev": "npm run build && node scripts/serve.mjs"
   },
   "dependencies": {
