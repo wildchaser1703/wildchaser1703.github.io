@@ -1,3 +1,4 @@
+import {variationDistance} from '../assets/js/sculpture-shape.js';
 import assert from 'node:assert/strict';
 import { spawn } from 'node:child_process';
 import { mkdir, readFile } from 'node:fs/promises';
@@ -318,7 +319,7 @@ try {
       }
       await figure.locator('[data-sculpture-next]').click();
       await eventually(async () => assert.notEqual(await figure.getAttribute('data-variant'), variant), 'WebGL variation did not change');
-      assert.notEqual(Number(await figure.getAttribute('data-variant')) % 4, Number(variant) % 4, 'New variation must change the fold family');
+      assert.ok(variationDistance(Number(await figure.getAttribute('data-variant')), Number(variant)) > .2, 'New variation must visibly change the sculpture');
       await attribute(figure, 'data-renderer', 'webgl');
       await attribute(figure, 'data-bloom', 'on');
       await attribute(figure, 'data-paused', 'true');

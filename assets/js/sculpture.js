@@ -1,4 +1,4 @@
-import { BACKGROUND, FRAME, createMeshData, createPosterSvg, normalizeVariant } from './sculpture-shape.js';
+import { BACKGROUND, FRAME, createMeshData, createPosterSvg, normalizeVariant, nextVariation } from './sculpture-shape.js';
 import { createBloom } from './sculpture-bloom.js';
 
 const instances = new WeakMap();
@@ -60,6 +60,7 @@ export function initSculpture(figure) {
   const listeners = new AbortController();
   const newSeed = () => crypto.getRandomValues(new Uint32Array(1))[0];
   let variant = normalizeVariant(newSeed());
+  const recentVariants = [variant];
   let posterURL;
   let mobile = small.matches;
   let userPaused = false;
@@ -304,10 +305,9 @@ export function initSculpture(figure) {
     if (status) status.textContent = userPaused ? 'Motion paused.' : 'Motion resumed.';
   });
   listen(next, 'click', () => {
-    let seed = newSeed();
-    // Each click advances to a genuinely different fold family.
-    if (seed % 4 === variant % 4) seed = normalizeVariant(seed + 1);
-    variant = seed;
+    variant = nextVariation(variant, newSeed, recentVariants);
+    recentVariants.push(variant);
+    if (recentVariants.length > 32) recentVariants.shift();
     updateEdition();
     target.strength = 0;
     if (renderer) {
