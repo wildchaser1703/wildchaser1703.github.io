@@ -56,7 +56,7 @@ em { font-style: normal; }
 .button:hover { background: var(--clay); border-color: var(--clay); }
 .text-link { display: inline-flex; align-items: center; gap: 1rem; padding-block: .6rem; text-decoration: none; font-size: .9rem; }
 .text-link:hover { text-decoration: underline; text-decoration-color: var(--clay); }
-.home-hero { max-width: 1800px; margin: auto; display: grid; grid-template-columns: .9fr 1.1fr; align-items: center; gap: 2%; padding: 2rem var(--gutter) 2.5rem; }
+.home-hero { max-width: 1800px; margin: auto; display: grid; grid-template-columns: .9fr 1.1fr; align-items: center; gap: 2%; padding: 1.5rem var(--gutter); }
 .hero-copy { padding-block: 1.5rem; }
 .hero-copy .kicker { display: flex; align-items: center; gap: .6rem; color: var(--clay); }
 .status-dot { width: 6px; height: 6px; background: var(--clay); border-radius: 50%; }
@@ -65,7 +65,7 @@ em { font-style: normal; }
 .hero-lede { max-width: 25rem; font-size: clamp(1.05rem, 1.45vw, 1.3rem); line-height: 1.55; }
 .hero-actions { display: flex; flex-wrap: wrap; gap: .7rem 1.5rem; align-items: center; margin-top: 2rem; }
 .sculpture { min-width: 0; }
-.sculpture-stage { position: relative; height: clamp(260px, 26vw, 400px); isolation: isolate; }
+.sculpture-stage { position: relative; height: clamp(260px, 24vw, 380px); isolation: isolate; }
 .sculpture-stage img, .sculpture-canvas { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; }
 .sculpture-canvas { opacity: 0; transition: opacity .3s; touch-action: pan-y; }
 .sculpture[data-renderer='webgl'] .sculpture-canvas { opacity: 1; }
@@ -82,7 +82,7 @@ em { font-style: normal; }
 .section-heading { display: flex; justify-content: space-between; align-items: end; gap: 2rem; margin-bottom: 2.5rem; }
 .section-heading h2 { margin-top: .85rem; }
 .section-heading > .text-link { flex-shrink: 0; }
-.selected-work { padding-top: 3rem; }
+.selected-work { padding-top: 2rem; }
 .selected-work > .section-heading { margin-bottom: 1.5rem; }
 .selected-projects { display: grid; gap: 2.5rem; }
 .selected-project { display: grid; grid-template-columns: 1.1fr 1fr; gap: 4rem; align-items: start; min-width: 0; padding-block: 2rem; border-top: 1px solid var(--line); }
@@ -270,13 +270,13 @@ em { font-style: normal; }
   .site-header nav a { font-size: .85rem; }
   .site-header .search-link { padding-left: 0; border: 0; }
   .menu-toggle:not([hidden]) { display: block; }
-  .home-hero { grid-template-columns: minmax(0,1fr); padding: 2rem var(--gutter) 1.5rem; min-height: auto; gap: 1rem; }
+  .home-hero { grid-template-columns: minmax(0,1fr); padding: 1.5rem var(--gutter) 1rem; min-height: auto; gap: 1rem; }
   .hero-copy { padding-block: 0; }
   .hero-copy h1 { font-size: clamp(2.8rem,11vw,4rem); margin: .7rem 0 1rem; }
   .hero-lede { font-size: 1.1rem; max-width: 25rem; }
   .hero-actions { margin-top: 1rem; }
   .sculpture { margin-top: .5rem; }
-  .sculpture-stage { height: 210px; }
+  .sculpture-stage { height: 180px; }
   .sculpture figcaption { gap: .2rem; }
   .sculpture-controls { width: auto; gap: .8rem; font-size: .72rem; }
   .section-block { padding: 3.5rem var(--gutter); }
@@ -285,7 +285,7 @@ em { font-style: normal; }
   .selected-projects { grid-template-columns: minmax(0,1fr); gap: 2.5rem; }
   .selected-project { grid-template-columns: minmax(0,1fr); gap: 1.5rem; padding-block: 1.5rem; }
   .selected-project h3 { font-size: 1.8rem; }
-  .selected-work { padding-top: 2rem; }
+  .selected-work { padding-top: 1.5rem; }
   .selected-work > .section-heading { flex-direction: row; align-items: center; flex-wrap: wrap; }
   .selected-work h2 { font-size: 1.8rem; }
   .writing-section { grid-template-columns: minmax(0,1fr); gap: 2rem; }

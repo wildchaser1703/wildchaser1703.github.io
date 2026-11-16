@@ -55,7 +55,7 @@ try {
     await page.waitForFunction(async () => (await navigator.serviceWorker.getRegistrations()).length === 0);
     if (repaired) {
       await page.locator('.hero-copy h1').waitFor();
-      assert.equal(await page.title(), 'AI Engineer · Toshali Mohapatra');
+      assert.equal(await page.title(), 'Home · Toshali Mohapatra');
       assert.equal(await page.evaluate(() => getComputedStyle(document.body).opacity), '1');
       await page.reload();
       assert.equal(await page.locator('.hero-copy h1').isVisible(), true);

@@ -30,7 +30,7 @@ export function sculpture() {
 
 function projectCard(project, index) {
   return `<article class="selected-project" aria-labelledby="project-${e(project.slug)}">
-    <div class="selected-project-copy"><span class="kicker">${String(index + 1).padStart(2, '0')}</span><h3 id="project-${e(project.slug)}"><a href="${projectUrl(project)}">${e(project.title)}</a></h3><p>${e(project.summary)}</p>
+    <div class="selected-project-copy"><span class="kicker">${String(index + 1).padStart(2, '0')}</span><h3 id="project-${e(project.slug)}"><a href="${projectUrl(project)}">${e(project.title)}</a></h3><p>${e(project.homeSummary ?? project.summary)}</p>
     <p class="project-decision">${e(project.decisions[0].body)}</p>
     <p class="project-limit"><strong>Current scope</strong> ${e(project.limitations[0])}</p>
     <div class="project-links"><a class="text-link" href="${projectUrl(project)}">Read project notes ${arrow}</a><a class="text-link" href="${e(project.evidence[0].url)}">${e(project.evidence[0].label)} ${arrow}</a></div></div>
@@ -42,7 +42,7 @@ export function homePage({ engineering, art, food, writing, favorites = [] }) {
   const selectedArt = ['Day for The Hunt','Rain','Cat'].map(title => art.find(item => item.title === title)).filter(Boolean);
   const selectedFood = [40,29,69].map(i => food[i]).filter(Boolean);
   const selectedProjects = ['production-rag-system', 'agentic-insight-analyst'].map(slug => engineering.find(project => project.slug === slug)).filter(Boolean);
-  return `<section class="home-hero"><div class="hero-copy"><p class="kicker">AI Engineer</p><h1>Toshali<br>Mohapatra<span class="title-period">.</span></h1><p class="hero-lede">I build retrieval and agent systems.</p><div class="hero-actions"><a class="button" href="#projects">View projects ${arrow}</a></div></div>${sculpture()}</section>
+  return `<section class="home-hero"><div class="hero-copy"><h1>Toshali<br>Mohapatra<span class="title-period">.</span></h1><p class="hero-lede">Most of the work lives below the sentence.</p><div class="hero-actions"><a class="button" href="#projects">Explore my systems <svg class="arrow-icon" aria-hidden="true" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 4v16M5 13l7 7 7-7"/></svg></a></div></div>${sculpture()}</section>
   <section class="section-block selected-work" id="projects"><div class="section-heading"><h2>Selected projects</h2><a class="text-link" href="/projects/">All projects ${arrow}</a></div><div class="selected-projects">${selectedProjects.map(projectCard).join('')}</div></section>
   <section class="section-block writing-section" id="writing"><div class="writing-intro"><h2>Writing</h2><p>Notes on the decisions behind AI systems, and what happens when theory meets practice.</p><a class="text-link" href="/writing/">All writing ${arrow}</a></div><div class="post-list">${writing}</div></section>
   <section class="section-block personal-section" aria-labelledby="personal-heading"><div class="section-heading"><h2 id="personal-heading">Away from the keyboard.</h2><p>I also paint, write, and take far too many photos of food.</p></div><div class="personal-collections">
