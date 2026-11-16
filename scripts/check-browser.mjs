@@ -318,6 +318,7 @@ try {
       }
       await figure.locator('[data-sculpture-next]').click();
       await eventually(async () => assert.notEqual(await figure.getAttribute('data-variant'), variant), 'WebGL variation did not change');
+      assert.notEqual(Number(await figure.getAttribute('data-variant')) % 4, Number(variant) % 4, 'New variation must change the fold family');
       await attribute(figure, 'data-renderer', 'webgl');
       await attribute(figure, 'data-bloom', 'on');
       await attribute(figure, 'data-paused', 'true');

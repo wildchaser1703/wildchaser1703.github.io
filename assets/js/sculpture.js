@@ -28,14 +28,14 @@ const fragmentShader = `
   varying vec3 location;
   void main() {
     vec3 n = normalize(surfaceNormal) * (gl_FrontFacing ? 1.0 : -1.0);
-    vec3 key = normalize(vec3(1.8 + .35 * sin(time * .23), 2.0, 3.0));
+    vec3 key = normalize(vec3(2.8 + .45 * sin(time * .23), 1.6, 2.0));
     float diffuse = max(dot(n, key), 0.0);
     float rim = pow(1.0 - abs(n.z), 3.0);
     float specular = pow(max(dot(n, normalize(key + vec3(0,0,1))),0.0), 42.0);
     // Thin flowing ink traces, interrupted by a quiet travelling signal.
     float trace = pow(.5 + .5 * sin(location.y * 66.0 + location.x * 12.0), 28.0);
     float pulse = pow(.5 + .5 * sin(location.y * 2.0 - time * .65), 16.0);
-    vec3 color = ink * (.42 + .75 * diffuse) + vec3(1.0,.60,.24) * (specular*.3 + rim*.16);
+    vec3 color = ink * (.24 + .95 * diffuse) + vec3(1.0,.60,.24) * (specular*.42 + rim*.22);
     color *= 1.0 - trace * .12;
     color += vec3(.3,.1,.02) * trace * pulse;
     gl_FragColor = vec4(color, 1.0);
@@ -304,8 +304,10 @@ export function initSculpture(figure) {
     if (status) status.textContent = userPaused ? 'Motion paused.' : 'Motion resumed.';
   });
   listen(next, 'click', () => {
-    const seed = newSeed();
-    variant = seed === variant ? normalizeVariant(seed + 1) : seed;
+    let seed = newSeed();
+    // Each click advances to a genuinely different fold family.
+    if (seed % 4 === variant % 4) seed = normalizeVariant(seed + 1);
+    variant = seed;
     updateEdition();
     target.strength = 0;
     if (renderer) {
