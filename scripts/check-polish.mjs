@@ -49,10 +49,17 @@ try {
       if(route==='/') {
         await page.locator('[data-collection="art"][data-collection-ready="true"]').waitFor();
         await page.locator('[data-collection="food"][data-collection-ready="true"]').waitFor();
-        for(const url of ['https://x.com/sudoher','https://linkedin.com/in/toshalimohapatra','mailto:toshalimohapatra1@gmail.com']) assert.equal(await page.locator('.hero-socials a[href="'+url+'"]').count(),1);
-        await page.locator('.hero-about summary').click();
+        for(const url of ['https://x.com/sudoher','https://linkedin.com/in/toshalimohapatra','mailto:toshalimohapatra1@gmail.com']) assert.equal(await page.locator('.about-socials a[href="'+url+'"]').count(),1);
+        await page.locator('.hero-actions a').click();
+        assert.equal(new URL(page.url()).hash, '#projects');
+        assert.ok(await page.locator('#projects').evaluate(el => Math.abs(el.getBoundingClientRect().top) < 150));
+        await page.locator('.sculpture-info summary').focus();
+        await page.keyboard.press('Enter');
+        assert.equal(await page.locator('.sculpture-info').getAttribute('open'), '');
+        assert.equal(await page.locator('[data-sculpture-variant]').isVisible(), true);
+        await page.keyboard.press('Enter');
+        assert.equal(await page.locator('.sculpture-info').getAttribute('open'), null);
         assert.equal(await page.locator('.favorite-item').count(),3);
-        await page.locator('.hero-about summary').click();
         for(const kind of ['art','food']) {
           const section=page.locator('[data-collection="'+kind+'"]');
           const links=section.locator('a[data-gallery]');
@@ -97,6 +104,8 @@ try {
     await page.goto(base+'/about/');
     await page.waitForURL(base+'/#about');
     assert.equal(await page.locator('.home-hero').count(),1);
+    assert.equal(await page.locator('#about h2').textContent(), 'A little more about me');
+    assert.ok(await page.locator('#about').evaluate(el => Math.abs(el.getBoundingClientRect().top) < 150));
     // SVG label bounds must fit inside their boxes in both themes.
     for(const project of engineering) {
       await page.goto(base+'/assets/img/project-'+project.slug+'.svg');

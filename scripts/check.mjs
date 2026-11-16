@@ -159,8 +159,10 @@ for (const item of expectedItems) {
   check(row.length === 1 && row.attr('data-kind') === item.kind, `Missing or miscategorized directory item: ${item.slug}`);
   check(row.attr('data-preview')?.startsWith(`/assets/img/project-${item.slug}.svg?v=`) && row.find('img').attr('src') === row.attr('data-preview'), `Missing desktop/mobile preview: ${item.slug}`);
 }
+const featuredProjects = ['production-rag-system', 'agentic-insight-analyst'];
+check(home('.selected-project').length === featuredProjects.length, 'Homepage should feature two engineering projects');
+for (const slug of featuredProjects) check(home(`.selected-project a[href="/projects/${slug}/"]`).length > 0, `Missing selected AI project: ${slug}`);
 for (const project of engineering) {
-  check(home(`a[href="/projects/${project.slug}/"]`).length > 0, `Missing selected AI project: ${project.slug}`);
   const $ = cheerio.load(await readFile(path.join(root, 'projects', project.slug, 'index.html'), 'utf8'));
   check($('.case-body').length === 1, `Missing AI case body: ${project.slug}`);
   // Preserve source-reviewed results and caveats rather than inventing benchmark expectations.
