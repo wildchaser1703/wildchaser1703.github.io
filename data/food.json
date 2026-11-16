@@ -4,531 +4,607 @@
     "alt": "A tray of rice and vegetables on grass.",
     "width": 960,
     "height": 1280,
-    "preview": "food-001.webp"
+    "preview": "food-001.webp",
+    "caption": "Picnic fuel"
   },
   {
     "file": "food-002.jpg",
     "alt": "A tall iced drink topped with whipped cream at a café.",
     "width": 960,
     "height": 1280,
-    "preview": "food-002.webp"
+    "preview": "food-002.webp",
+    "caption": "Extra whipped cream"
   },
   {
     "file": "food-003.jpg",
     "alt": "A cup of coffee with latte art beside sugar packets.",
     "width": 964,
     "height": 1280,
-    "preview": "food-003.webp"
+    "preview": "food-003.webp",
+    "caption": "A slow coffee"
   },
   {
     "file": "food-004.jpg",
     "alt": "A plate of sliced cucumbers and tomatoes outdoors.",
     "width": 1280,
     "height": 960,
-    "preview": "food-004.webp"
+    "preview": "food-004.webp",
+    "caption": "Some actual greens"
   },
   {
     "file": "food-005.jpg",
     "alt": "A bowl of fried bites with greens, beside a spoon.",
     "width": 1207,
     "height": 853,
-    "preview": "food-005.webp"
+    "preview": "food-005.webp",
+    "caption": "Not sharing this"
   },
   {
     "file": "food-006.jpg",
     "alt": "Two chocolate-frosted doughnuts with sprinkles in a box.",
     "width": 616,
     "height": 1280,
-    "preview": "food-006.webp"
+    "preview": "food-006.webp",
+    "caption": "One each? Sure."
   },
   {
     "file": "food-007.jpg",
     "alt": "A plate of rice with leafy greens and side dishes.",
     "width": 964,
     "height": 1280,
-    "preview": "food-007.webp"
+    "preview": "food-007.webp",
+    "caption": "The green plate"
   },
   {
     "file": "food-008.jpg",
     "alt": "Curry and bread rolls on a tray with small bowls of accompaniments.",
     "width": 1280,
     "height": 576,
-    "preview": "food-008.webp"
+    "preview": "food-008.webp",
+    "caption": "More pav, please"
   },
   {
     "file": "food-009.jpg",
     "alt": "An iced drink beside a smartphone on a café table.",
     "width": 964,
     "height": 1280,
-    "preview": "food-009.webp"
+    "preview": "food-009.webp",
+    "caption": "A little pause"
   },
   {
     "file": "food-010.jpg",
     "alt": "A platter of rice, curries and side dishes with a drink.",
     "width": 1280,
     "height": 1210,
-    "preview": "food-010.webp"
+    "preview": "food-010.webp",
+    "caption": "Bit of everything"
   },
   {
     "file": "food-011.jpg",
     "alt": "A bowl of curry with a serving spoon.",
     "width": 964,
     "height": 1280,
-    "preview": "food-011.webp"
+    "preview": "food-011.webp",
+    "caption": "Curry fixes things"
   },
   {
     "file": "food-012.jpg",
     "alt": "A round dish topped with vegetables and sauce.",
     "width": 1280,
     "height": 679,
-    "preview": "food-012.webp"
+    "preview": "food-012.webp",
+    "caption": "More sauce, please"
   },
   {
     "file": "food-013.jpg",
     "alt": "A plate of rice, curry and vegetables in small bowls.",
     "width": 1280,
     "height": 853,
-    "preview": "food-013.webp"
+    "preview": "food-013.webp",
+    "caption": "Little bowls everywhere"
   },
   {
     "file": "food-014.jpg",
     "alt": "A phone screenshot of food and snack jars on a table.",
     "width": 640,
     "height": 1280,
-    "preview": "food-014.webp"
+    "preview": "food-014.webp",
+    "caption": "Snacks on standby"
   },
   {
     "file": "food-015.jpg",
     "alt": "A plated savoury dish with greens and sauce.",
     "width": 1280,
     "height": 853,
-    "preview": "food-015.webp"
+    "preview": "food-015.webp",
+    "caption": "A little fancy"
   },
   {
     "file": "food-016.jpg",
     "alt": "A spread of sweets and savoury dishes in small bowls.",
     "width": 960,
     "height": 1280,
-    "preview": "food-016.webp"
+    "preview": "food-016.webp",
+    "caption": "Both, obviously"
   },
   {
     "file": "food-017.jpg",
     "alt": "A hand holding a wrapped chocolate ice cream bar.",
     "width": 964,
     "height": 1280,
-    "preview": "food-017.webp"
+    "preview": "food-017.webp",
+    "caption": "Chocolate comes first"
   },
   {
     "file": "food-018.jpg",
     "alt": "A bowl of seasoned rice and vegetables with a spoon.",
     "width": 957,
     "height": 1280,
-    "preview": "food-018.webp"
+    "preview": "food-018.webp",
+    "caption": "A bowlful, please"
   },
   {
     "file": "food-019.jpg",
     "alt": "A plate of spiced rice with savoury toppings.",
     "width": 1280,
     "height": 957,
-    "preview": "food-019.webp"
+    "preview": "food-019.webp",
+    "caption": "Rice done right"
   },
   {
     "file": "food-020.jpg",
     "alt": "A tall iced coffee in front of a laptop.",
     "width": 964,
     "height": 1280,
-    "preview": "food-020.webp"
+    "preview": "food-020.webp",
+    "caption": "Coffee before emails"
   },
   {
     "file": "food-021.jpg",
     "alt": "A hand holding a small cup of ice cream.",
     "width": 960,
     "height": 1280,
-    "preview": "food-021.webp"
+    "preview": "food-021.webp",
+    "caption": "Just for me"
   },
   {
     "file": "food-022.jpg",
     "alt": "Three bowls of food with a green sauce and sliced onions.",
     "width": 1280,
     "height": 957,
-    "preview": "food-022.webp"
+    "preview": "food-022.webp",
+    "caption": "The whole spread"
   },
   {
     "file": "food-023.jpg",
     "alt": "A folded dosa served with chutneys on a banana leaf.",
     "width": 1125,
     "height": 1280,
-    "preview": "food-023.webp"
+    "preview": "food-023.webp",
+    "caption": "That dosa though"
   },
   {
     "file": "food-024.jpg",
     "alt": "A spread of prepared noodles, snack packets and drinks.",
     "width": 957,
     "height": 1280,
-    "preview": "food-024.webp"
+    "preview": "food-024.webp",
+    "caption": "Noodles and company"
   },
   {
     "file": "food-025.jpg",
     "alt": "A pan of diced vegetables and other ingredients.",
     "width": 960,
     "height": 1280,
-    "preview": "food-025.webp"
+    "preview": "food-025.webp",
+    "caption": "From the pan"
   },
   {
     "file": "food-026.jpg",
     "alt": "A hand holding a selection of bite-sized sweets.",
     "width": 964,
     "height": 1280,
-    "preview": "food-026.webp"
+    "preview": "food-026.webp",
+    "caption": "Tiny but good"
   },
   {
     "file": "food-027.jpg",
     "alt": "Three burgers in takeaway boxes.",
     "width": 960,
     "height": 1280,
-    "preview": "food-027.webp"
+    "preview": "food-027.webp",
+    "caption": "All three, please"
   },
   {
     "file": "food-028.jpg",
     "alt": "A bowl of seasoned rice and vegetables with sliced onion and a drink.",
     "width": 1280,
     "height": 1141,
-    "preview": "food-028.webp"
+    "preview": "food-028.webp",
+    "caption": "Don’t skip onions"
   },
   {
     "file": "food-029.jpg",
     "alt": "A close view of a round dish topped with vegetables and sauce.",
     "width": 1280,
     "height": 853,
-    "preview": "food-029.webp"
+    "preview": "food-029.webp",
+    "caption": "A closer look"
   },
   {
     "file": "food-030.jpg",
     "alt": "Three ice cream treats in cones and a cup.",
     "width": 1175,
     "height": 1280,
-    "preview": "food-030.webp"
+    "preview": "food-030.webp",
+    "caption": "One of each"
   },
   {
     "file": "food-031.jpg",
     "alt": "Four scoops of different ice cream flavours in two bowls.",
     "width": 1280,
     "height": 1277,
-    "preview": "food-031.webp"
+    "preview": "food-031.webp",
+    "caption": "Four scoops later"
   },
   {
     "file": "food-032.jpg",
     "alt": "A hand holding a tub of ice cream.",
     "width": 854,
     "height": 1280,
-    "preview": "food-032.webp"
+    "preview": "food-032.webp",
+    "caption": "Just the tub"
   },
   {
     "file": "food-033.jpg",
     "alt": "Chopped vegetables and herbs arranged on a tray for cooking.",
     "width": 1280,
     "height": 960,
-    "preview": "food-033.webp"
+    "preview": "food-033.webp",
+    "caption": "Before it begins"
   },
   {
     "file": "food-034.jpg",
     "alt": "A small round chocolate cake on a plate.",
     "width": 964,
     "height": 1280,
-    "preview": "food-034.webp"
+    "preview": "food-034.webp",
+    "caption": "Always more chocolate"
   },
   {
     "file": "food-035.jpg",
     "alt": "A pizza with toppings in an open box.",
     "width": 964,
     "height": 1280,
-    "preview": "food-035.webp"
+    "preview": "food-035.webp",
+    "caption": "The pizza arrived"
   },
   {
     "file": "food-036.jpg",
     "alt": "A pizza topped with corn and cheese.",
     "width": 1280,
     "height": 1188,
-    "preview": "food-036.webp"
+    "preview": "food-036.webp",
+    "caption": "Corn on pizza"
   },
   {
     "file": "food-037.jpg",
     "alt": "Two cups of drinks with green and brown latte art.",
     "width": 964,
     "height": 1280,
-    "preview": "food-037.webp"
+    "preview": "food-037.webp",
+    "caption": "A drink each"
   },
   {
     "file": "food-038.jpg",
     "alt": "A pizza topped with onions and green peppers.",
     "width": 1280,
     "height": 1216,
-    "preview": "food-038.webp"
+    "preview": "food-038.webp",
+    "caption": "Onions, always"
   },
   {
     "file": "food-039.jpg",
     "alt": "A dosa, savoury fritters, chutneys and coffee on a tray.",
     "width": 1280,
     "height": 623,
-    "preview": "food-039.webp"
+    "preview": "food-039.webp",
+    "caption": "Dosa with everything"
   },
   {
     "file": "food-040.jpg",
     "alt": "A pot of seasoned rice with a spoon.",
     "width": 1280,
     "height": 956,
-    "preview": "food-040.webp"
+    "preview": "food-040.webp",
+    "caption": "Pass the spoon"
   },
   {
     "file": "food-041.jpg",
     "alt": "A cup of coffee with leaf-shaped latte art.",
     "width": 964,
     "height": 1280,
-    "preview": "food-041.webp"
+    "preview": "food-041.webp",
+    "caption": "Almost too pretty"
   },
   {
     "file": "food-042.jpg",
     "alt": "A cup of coffee with heart-shaped latte art.",
     "width": 1280,
     "height": 1072,
-    "preview": "food-042.webp"
+    "preview": "food-042.webp",
+    "caption": "A little heart"
   },
   {
     "file": "food-043.jpg",
     "alt": "Several savoury dishes served on banana leaves with curry.",
     "width": 1280,
     "height": 964,
-    "preview": "food-043.webp"
+    "preview": "food-043.webp",
+    "caption": "Save me some"
   },
   {
     "file": "food-044.jpg",
     "alt": "A cup of tea, an orange and a packet of chocolate.",
     "width": 1280,
     "height": 1021,
-    "preview": "food-044.webp"
+    "preview": "food-044.webp",
+    "caption": "Tea and company"
   },
   {
     "file": "food-045.jpg",
     "alt": "A rolled dosa with two small bowls of chutney.",
     "width": 960,
     "height": 1280,
-    "preview": "food-045.webp"
+    "preview": "food-045.webp",
+    "caption": "Dosa, obviously"
   },
   {
     "file": "food-046.jpg",
     "alt": "A vegetable pizza on a table with a person in the background.",
     "width": 964,
     "height": 1280,
-    "preview": "food-046.webp"
+    "preview": "food-046.webp",
+    "caption": "Pizza for sharing"
   },
   {
     "file": "food-047.jpg",
     "alt": "A bowl of rice, curry and colourful vegetables.",
     "width": 1280,
     "height": 987,
-    "preview": "food-047.webp"
+    "preview": "food-047.webp",
+    "caption": "A good mix"
   },
   {
     "file": "food-048.jpg",
     "alt": "A bowl of rice mixed with leafy greens.",
     "width": 960,
     "height": 1280,
-    "preview": "food-048.webp"
+    "preview": "food-048.webp",
+    "caption": "Yes, more greens"
   },
   {
     "file": "food-049.jpg",
     "alt": "A pizza with corn and melted cheese.",
     "width": 1275,
     "height": 1280,
-    "preview": "food-049.webp"
+    "preview": "food-049.webp",
+    "caption": "More corn, please"
   },
   {
     "file": "food-050.jpg",
     "alt": "Fried eggs, toast and sauce on a plate.",
     "width": 1189,
     "height": 1280,
-    "preview": "food-050.webp"
+    "preview": "food-050.webp",
+    "caption": "Eggs and toast"
   },
   {
     "file": "food-051.jpg",
     "alt": "Three decorated doughnuts in a box.",
     "width": 1280,
     "height": 964,
-    "preview": "food-051.webp"
+    "preview": "food-051.webp",
+    "caption": "Which one first?"
   },
   {
     "file": "food-052.jpg",
     "alt": "A pizza topped with vegetables and sauce.",
     "width": 1249,
     "height": 1280,
-    "preview": "food-052.webp"
+    "preview": "food-052.webp",
+    "caption": "Another pizza, yes"
   },
   {
     "file": "food-053.jpg",
     "alt": "Several plates of noodles and small dishes of sauce.",
     "width": 960,
     "height": 1280,
-    "preview": "food-053.webp"
+    "preview": "food-053.webp",
+    "caption": "Noodles for everyone"
   },
   {
     "file": "food-054.jpg",
     "alt": "Five savoury fritters in a tray with three sauces.",
     "width": 1280,
     "height": 978,
-    "preview": "food-054.webp"
+    "preview": "food-054.webp",
+    "caption": "Chutney is essential"
   },
   {
     "file": "food-055.jpg",
     "alt": "A plate of savoury food and a rolled dosa outdoors.",
     "width": 960,
     "height": 1280,
-    "preview": "food-055.webp"
+    "preview": "food-055.webp",
+    "caption": "Better eaten outside"
   },
   {
     "file": "food-056.jpg",
     "alt": "French fries with a bowl of soup.",
     "width": 1280,
     "height": 957,
-    "preview": "food-056.webp"
+    "preview": "food-056.webp",
+    "caption": "Fries with soup"
   },
   {
     "file": "food-057.jpg",
     "alt": "A cup of tea beside colourful tea packets.",
     "width": 1202,
     "height": 842,
-    "preview": "food-057.webp"
+    "preview": "food-057.webp",
+    "caption": "Tea, always"
   },
   {
     "file": "food-058.jpg",
     "alt": "A slice of vegetable pizza on a plate.",
     "width": 964,
     "height": 1280,
-    "preview": "food-058.webp"
+    "preview": "food-058.webp",
+    "caption": "Just one slice"
   },
   {
     "file": "food-059.jpg",
     "alt": "Two coffee drinks on a table beside a laptop.",
     "width": 964,
     "height": 1280,
-    "preview": "food-059.webp"
+    "preview": "food-059.webp",
+    "caption": "Two coffees, please"
   },
   {
     "file": "food-060.jpg",
     "alt": "A chocolate dessert in a small foil cup.",
     "width": 964,
     "height": 1280,
-    "preview": "food-060.webp"
+    "preview": "food-060.webp",
+    "caption": "Chocolate for comfort"
   },
   {
     "file": "food-061.jpg",
     "alt": "A bowl of savoury food with herbs and a slice of toast.",
     "width": 964,
     "height": 1280,
-    "preview": "food-061.webp"
+    "preview": "food-061.webp",
+    "caption": "Don’t forget bread"
   },
   {
     "file": "food-062.jpg",
     "alt": "A pizza in a box with a spoon and a hand at the edge.",
     "width": 964,
     "height": 1280,
-    "preview": "food-062.webp"
+    "preview": "food-062.webp",
+    "caption": "Pizza, up close"
   },
   {
     "file": "food-063.jpg",
     "alt": "A hand holding a red paper cup of a chocolate drink.",
     "width": 960,
     "height": 1280,
-    "preview": "food-063.webp"
+    "preview": "food-063.webp",
+    "caption": "A chocolate break"
   },
   {
     "file": "food-064.jpg",
     "alt": "A hand holding an opened coconut.",
     "width": 960,
     "height": 1280,
-    "preview": "food-064.webp"
+    "preview": "food-064.webp",
+    "caption": "Fresh coconut water"
   },
   {
     "file": "food-065.jpg",
     "alt": "Flatbread served with a bowl of chickpeas and vegetables.",
     "width": 1072,
     "height": 853,
-    "preview": "food-065.webp"
+    "preview": "food-065.webp",
+    "caption": "Bread meets chickpeas"
   },
   {
     "file": "food-066.jpg",
     "alt": "A pizza topped with greens and mushrooms.",
     "width": 1280,
     "height": 1159,
-    "preview": "food-066.webp"
+    "preview": "food-066.webp",
+    "caption": "Mushrooms belong here"
   },
   {
     "file": "food-067.jpg",
     "alt": "A hand holding a pretzel-shaped baked snack.",
     "width": 1051,
     "height": 1280,
-    "preview": "food-067.webp"
+    "preview": "food-067.webp",
+    "caption": "A little twist"
   },
   {
     "file": "food-068.jpg",
     "alt": "A bowl of grains and vegetables topped with leafy greens.",
     "width": 1280,
     "height": 1216,
-    "preview": "food-068.webp"
+    "preview": "food-068.webp",
+    "caption": "Actually, more greens"
   },
   {
     "file": "food-069.jpg",
     "alt": "Flatbreads served with a bowl of legumes and a green sauce.",
     "width": 960,
     "height": 1280,
-    "preview": "food-069.webp"
+    "preview": "food-069.webp",
+    "caption": "Bread for dipping"
   },
   {
     "file": "food-070.jpg",
     "alt": "Rice and small side dishes arranged on a banana leaf.",
     "width": 1280,
     "height": 964,
-    "preview": "food-070.webp"
+    "preview": "food-070.webp",
+    "caption": "No plate needed"
   },
   {
     "file": "food-071.jpg",
     "alt": "A bowl of noodles in front of a laptop.",
     "width": 960,
     "height": 1280,
-    "preview": "food-071.webp"
+    "preview": "food-071.webp",
+    "caption": "Noodles between tabs"
   },
   {
     "file": "food-072.jpg",
     "alt": "Fried eggs, toast, sliced vegetables and tea on a tray.",
     "width": 1280,
     "height": 964,
-    "preview": "food-072.webp"
+    "preview": "food-072.webp",
+    "caption": "Breakfast looks good"
   },
   {
     "file": "food-073.jpg",
     "alt": "An ice cream display case filled with different flavours.",
     "width": 1280,
     "height": 964,
-    "preview": "food-073.webp"
+    "preview": "food-073.webp",
+    "caption": "Can’t pick one"
   },
   {
     "file": "food-074.jpg",
     "alt": "Rice, curries, sweets and mango arranged on plates.",
     "width": 1280,
     "height": 853,
-    "preview": "food-074.webp"
+    "preview": "food-074.webp",
+    "caption": "Don’t forget mango"
   },
   {
     "file": "food-075.jpg",
     "alt": "A bowl of noodles with side dishes and chopsticks.",
     "width": 1280,
     "height": 993,
-    "preview": "food-075.webp"
+    "preview": "food-075.webp",
+    "caption": "Pass the chopsticks"
   },
   {
     "file": "food-076.jpg",
     "alt": "A bowl of seasoned rice with a pink drink.",
     "width": 1280,
     "height": 761,
-    "preview": "food-076.webp"
+    "preview": "food-076.webp",
+    "caption": "And a drink"
   }
 ]

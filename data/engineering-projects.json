@@ -1,0 +1,230 @@
+[
+  {
+    "slug": "production-rag-system",
+    "title": "Documentation RAG Pipeline",
+    "kind": "AI engineering",
+    "summary": "A modular pipeline that retrieves web documentation and supplies it as context for generated answers.",
+    "source": "https://github.com/wildchaser1703/production-rag-system",
+    "sourceCommit": "65eb63dcc132fa772de9c06215311677bc105b4a",
+    "stack": [
+      "Python",
+      "LangChain",
+      "ChromaDB",
+      "OpenAI",
+      "RAGAS",
+      "pytest"
+    ],
+    "problem": "Answer technical questions using relevant documentation, with separate components for ingestion, retrieval, and generation.",
+    "approach": [
+      "Load web pages and split documents into overlapping chunks.",
+      "Embed chunks with OpenAI, persist them in ChromaDB, and retrieve relevant context.",
+      "Compose retrieval and generation with LangChain; provide a separate RAGAS evaluation wrapper."
+    ],
+    "decisions": [
+      {
+        "title": "Separate pipeline stages",
+        "body": "Document processing, vector storage, and answer generation live in separate classes, making their responsibilities visible."
+      },
+      {
+        "title": "Keep retrieval configurable",
+        "body": "Chunk size and overlap are constructor parameters; retrieval defaults to four matches and accepts search settings."
+      },
+      {
+        "title": "Make evaluation explicit",
+        "body": "A separate evaluator accepts questions, answers, contexts, and reference answers. Its presence does not establish answer quality."
+      }
+    ],
+    "limitations": [
+      "The included tests cover chunking and processor defaults, not retrieval or answer quality.",
+      "The example runner does not yet invoke the evaluator; answer quality needs an end-to-end evaluation.",
+      "Answers are plain text without source citations. The prompt requests context-based answers but does not enforce grounding."
+    ],
+    "diagram": {
+      "nodes": [
+        "Web pages",
+        "Text chunks",
+        "Chroma index",
+        "Retrieved context",
+        "Answer"
+      ],
+      "caption": "The implemented ingestion-to-answer path; RAGAS evaluation is a separate component."
+    },
+    "evidence": [
+      {
+        "label": "Pipeline wiring",
+        "url": "https://github.com/wildchaser1703/production-rag-system/blob/65eb63dcc132fa772de9c06215311677bc105b4a/src/rag_pipeline/main.py"
+      },
+      {
+        "label": "Persistent vector retrieval",
+        "url": "https://github.com/wildchaser1703/production-rag-system/blob/65eb63dcc132fa772de9c06215311677bc105b4a/src/rag_pipeline/retrieval/vector_store.py"
+      },
+      {
+        "label": "Generation chain",
+        "url": "https://github.com/wildchaser1703/production-rag-system/blob/65eb63dcc132fa772de9c06215311677bc105b4a/src/rag_pipeline/generation/generator.py"
+      },
+      {
+        "label": "Evaluation wrapper",
+        "url": "https://github.com/wildchaser1703/production-rag-system/blob/65eb63dcc132fa772de9c06215311677bc105b4a/src/rag_pipeline/evaluation/evaluator.py"
+      },
+      {
+        "label": "Ingestion test source",
+        "url": "https://github.com/wildchaser1703/production-rag-system/blob/65eb63dcc132fa772de9c06215311677bc105b4a/tests/test_ingestion.py"
+      }
+    ],
+    "result": "The repository brings document processing, persistent retrieval, and answer generation into one configurable pipeline. It also includes chunking tests and a separate evaluation wrapper."
+  },
+  {
+    "slug": "agentic-insight-analyst",
+    "title": "Agentic Insight Analyst",
+    "kind": "AI engineering",
+    "summary": "A feedback-analysis agent with model-selected tools, inspectable working memory, and explicit stopping rules.",
+    "source": "https://github.com/wildchaser1703/agentic-insight-analyst",
+    "sourceCommit": "3ed7e28095bfab7f1de102d2807c2c63bb43cfe5",
+    "stack": [
+      "Python",
+      "OpenAI",
+      "FastAPI",
+      "pandas",
+      "scikit-learn",
+      "pytest"
+    ],
+    "problem": "Turn survey scores and written feedback into a structured report while keeping tool choices and intermediate outputs inspectable.",
+    "approach": [
+      "Inspect a CSV and ask a language model to propose analysis steps.",
+      "Select from registered tools for TF-IDF clustering, phrase extraction, score analysis, and simple summaries.",
+      "Record tool outputs in session memory, evaluate stopping conditions, and synthesize findings and recommendations."
+    ],
+    "decisions": [
+      {
+        "title": "Use a fixed tool registry",
+        "body": "The controller validates selected tool names against a registry and prepares arguments in code."
+      },
+      {
+        "title": "Bound the analysis loop",
+        "body": "Iteration limits, repeated-tool detection, and a heuristic progress score determine when analysis stops."
+      },
+      {
+        "title": "Expose intermediate work",
+        "body": "Working memory records plans, tool selections, outputs, and evaluations; the API returns a structured report and execution trace."
+      }
+    ],
+    "limitations": [
+      "Progress is estimated from insight counts, tool variety, and tool success; it does not verify the stated success criteria.",
+      "Summary and recommendation tools use word counts and templates; evaluating report usefulness is a separate next step.",
+      "Memory and background jobs are held in process. LLM failures can fall back to empty JSON without making the final success flag false.",
+      "The API accepts raw_text but does not pass it into the agent; the implemented analysis path uses CSV files."
+    ],
+    "diagram": {
+      "nodes": [
+        "Goal + CSV",
+        "Plan",
+        "Select tool",
+        "Observe + evaluate",
+        "Report"
+      ],
+      "caption": "Tool selection repeats until a stopping rule fires, then the agent synthesizes a report."
+    },
+    "evidence": [
+      {
+        "label": "Agent controller",
+        "url": "https://github.com/wildchaser1703/agentic-insight-analyst/blob/3ed7e28095bfab7f1de102d2807c2c63bb43cfe5/src/agent.py"
+      },
+      {
+        "label": "Analysis tool implementations",
+        "url": "https://github.com/wildchaser1703/agentic-insight-analyst/blob/3ed7e28095bfab7f1de102d2807c2c63bb43cfe5/src/tools.py"
+      },
+      {
+        "label": "Stopping heuristics",
+        "url": "https://github.com/wildchaser1703/agentic-insight-analyst/blob/3ed7e28095bfab7f1de102d2807c2c63bb43cfe5/src/evaluator.py"
+      },
+      {
+        "label": "API and job handling",
+        "url": "https://github.com/wildchaser1703/agentic-insight-analyst/blob/3ed7e28095bfab7f1de102d2807c2c63bb43cfe5/api/main.py"
+      },
+      {
+        "label": "Tool and mocked-agent test source",
+        "url": "https://github.com/wildchaser1703/agentic-insight-analyst/blob/3ed7e28095bfab7f1de102d2807c2c63bb43cfe5/tests/test_agent_flow.py"
+      }
+    ],
+    "result": "The implementation connects an agent controller, a fixed set of analysis tools, session memory, and a FastAPI interface. Tests cover individual tools and a mocked agent flow."
+  },
+  {
+    "slug": "retail-demand-forecasting-system",
+    "title": "Retail Demand Forecasting",
+    "kind": "AI engineering",
+    "summary": "A forecasting workbench with data validation, temporal features, baseline and tree models, and evaluation utilities.",
+    "source": "https://github.com/wildchaser1703/retail-demand-forecasting-system",
+    "sourceCommit": "9fd10d476d6188444efe2b73c74551a5d52505e7",
+    "stack": [
+      "Python",
+      "pandas",
+      "scikit-learn",
+      "XGBoost",
+      "LightGBM",
+      "MLflow",
+      "pytest"
+    ],
+    "problem": "Explore how retail sales history and calendar features can support demand forecasts, using a synthetic-data demonstration.",
+    "approach": [
+      "Load and validate sales records, aggregate store-level demand, and split by date.",
+      "Create calendar, lag, rolling, and difference features for tree models alongside simple forecasting baselines.",
+      "Provide metric comparison, feature-importance inspection, model persistence, and separate MLflow logging utilities."
+    ],
+    "decisions": [
+      {
+        "title": "Keep simple baselines visible",
+        "body": "Naive, seasonal-naive, and moving-average forecasts provide reference approaches alongside tree-based models."
+      },
+      {
+        "title": "Split observations by date",
+        "body": "Train, validation, and test periods use chronological boundaries. Feature construction still needs correction to prevent target leakage."
+      },
+      {
+        "title": "Separate evaluation and tracking",
+        "body": "Metric computation and MLflow logging have dedicated modules; the main runner initializes tracking but does not log complete training runs."
+      }
+    ],
+    "limitations": [
+      "Rolling and difference features include the current sales target, leaking the answer into model inputs. Accuracy claims require corrected features and fresh evaluation.",
+      "The runner mixes daily-total baseline forecasts with store-level ML predictions, so comparisons and ensemble inputs need alignment.",
+      "The multi-step ML forecasting helper remains unimplemented. The demonstration uses synthetic data."
+    ],
+    "diagram": {
+      "nodes": [
+        "Sales records",
+        "Validate + split",
+        "Features",
+        "Forecast models",
+        "Metric comparison"
+      ],
+      "caption": "Source-level training workflow; leakage and forecast alignment must be fixed before its scores are meaningful."
+    },
+    "evidence": [
+      {
+        "label": "Training workflow",
+        "url": "https://github.com/wildchaser1703/retail-demand-forecasting-system/blob/9fd10d476d6188444efe2b73c74551a5d52505e7/scripts/run_pipeline.py"
+      },
+      {
+        "label": "Features and leakage limitation",
+        "url": "https://github.com/wildchaser1703/retail-demand-forecasting-system/blob/9fd10d476d6188444efe2b73c74551a5d52505e7/src/feature_engineering.py"
+      },
+      {
+        "label": "Model wrappers and forecast limits",
+        "url": "https://github.com/wildchaser1703/retail-demand-forecasting-system/blob/9fd10d476d6188444efe2b73c74551a5d52505e7/src/ml_models.py"
+      },
+      {
+        "label": "Tracking utilities",
+        "url": "https://github.com/wildchaser1703/retail-demand-forecasting-system/blob/9fd10d476d6188444efe2b73c74551a5d52505e7/src/mlflow_utils.py"
+      },
+      {
+        "label": "Baseline test source",
+        "url": "https://github.com/wildchaser1703/retail-demand-forecasting-system/blob/9fd10d476d6188444efe2b73c74551a5d52505e7/tests/test_models.py"
+      },
+      {
+        "label": "Metric test source",
+        "url": "https://github.com/wildchaser1703/retail-demand-forecasting-system/blob/9fd10d476d6188444efe2b73c74551a5d52505e7/tests/test_evaluation.py"
+      }
+    ],
+    "result": "The workbench implements data validation, forecasting baselines, tree-model wrappers, and evaluation utilities. Correcting target leakage and aligning forecast granularity are necessary before comparing model scores."
+  }
+]

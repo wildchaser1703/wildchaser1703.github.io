@@ -15,9 +15,11 @@
     "katex": "0.19.1",
     "markdown-it": "14.3.3",
     "markdown-it-footnote": "4.0.0",
-    "markdown-it-task-lists": "2.1.1"
+    "markdown-it-task-lists": "2.1.1",
+    "three": "0.182.0"
   },
   "devDependencies": {
-    "playwright": "1.65.1"
+    "playwright": "1.65.1",
+    "sharp": "0.34.5"
   }
 }

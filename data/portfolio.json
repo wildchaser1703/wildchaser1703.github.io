@@ -1,28 +1,126 @@
 {
   "projects": [
-    {"slug":"louboutin-3d-card","title":"Louboutin 3D Card","description":"A product-card experiment that tilts and moves its elements in response to pointer movement.","url":"https://github.com/wildchaser1703/MyProjects/tree/master/Louboutin%203D%20card"},
-    {"slug":"type-and-speak","title":"Type and Speak","description":"A browser speech-synthesis experiment with voice, rate, and pitch controls.","url":"https://github.com/wildchaser1703/MyProjects/tree/master/type_and_speak"},
-    {"slug":"flip-colour","title":"Flip Colour","description":"A small colour experiment that changes the background and displays the selected colour value.","url":"https://github.com/wildchaser1703/MyProjects/tree/master/Flip%20Colour"},
-    {"slug":"form-design","title":"Form Design","description":"A tutorial-based interface experiment exploring transitions between login and sign-up layouts. It is a visual prototype, not an authentication service.","url":"https://github.com/wildchaser1703/MyProjects/tree/master/form"},
-    {"slug":"morse-code","title":"Morse Code","description":"A C++ experiment that translates letters and numbers into Morse code and plays tones on Windows.","url":"https://github.com/wildchaser1703/MyProjects/blob/master/Morse_Code_Generator.cpp"},
-    {"slug":"counter","title":"Counter","description":"A small browser counter with controls to increase, decrease, and reset a value.","url":"https://github.com/wildchaser1703/MyProjects/tree/master/Counter"}
+    {
+      "slug": "louboutin-3d-card",
+      "title": "Louboutin 3D Card",
+      "description": "A product-card experiment that tilts and moves its elements in response to pointer movement.",
+      "url": "https://github.com/wildchaser1703/MyProjects/tree/master/Louboutin%203D%20card"
+    },
+    {
+      "slug": "type-and-speak",
+      "title": "Type and Speak",
+      "description": "A browser speech-synthesis experiment with voice, rate, and pitch controls.",
+      "url": "https://github.com/wildchaser1703/MyProjects/tree/master/type_and_speak"
+    },
+    {
+      "slug": "flip-colour",
+      "title": "Flip Colour",
+      "description": "A small colour experiment that changes the background and displays the selected colour value.",
+      "url": "https://github.com/wildchaser1703/MyProjects/tree/master/Flip%20Colour"
+    },
+    {
+      "slug": "form-design",
+      "title": "Form Design",
+      "description": "A tutorial-based interface experiment exploring transitions between login and sign-up layouts. It is a visual prototype, not an authentication service.",
+      "url": "https://github.com/wildchaser1703/MyProjects/tree/master/form"
+    },
+    {
+      "slug": "morse-code",
+      "title": "Morse Code",
+      "description": "A C++ experiment that translates letters and numbers into Morse code and plays tones on Windows.",
+      "url": "https://github.com/wildchaser1703/MyProjects/blob/master/Morse_Code_Generator.cpp"
+    },
+    {
+      "slug": "counter",
+      "title": "Counter",
+      "description": "A small browser counter with controls to increase, decrease, and reset a value.",
+      "url": "https://github.com/wildchaser1703/MyProjects/tree/master/Counter"
+    }
   ],
   "favorites": [
-    {"kind":"Film","title":"The Pursuit of Happyness"},
-    {"kind":"Book","title":"Outliers by Malcolm Gladwell"},
-    {"kind":"Food","title":"Sino–Korean cuisine"}
+    {
+      "kind": "Film",
+      "title": "The Pursuit of Happyness"
+    },
+    {
+      "kind": "Book",
+      "title": "Outliers by Malcolm Gladwell"
+    },
+    {
+      "kind": "Food",
+      "title": "Sino\u2013Korean cuisine"
+    }
   ],
   "art": [
-    {"title":"Statue of Liberty","caption":"Inspired by the NYC Theatre Group","file":"4c6a3e30-3653-4cbc-830d-8539896ef074.jpg"},
-    {"title":"Day for The Hunt","caption":"Inspired by Aborigines’ Art","file":"37317e78-2dec-43e6-a7f1-c163eedfd449.jpg"},
-    {"title":"Omega","caption":"This is the real thing!","file":"8d5340ef-323f-49d8-a0c5-dd8aa884e9a4.jpg"},
-    {"title":"Violet Flowers","caption":"Random imagination, I guess","file":"b99e02d5-a4cb-415a-8063-bcb2733dd37f.jpg"},
-    {"title":"Cat","caption":"Three colours, that’s it","file":"77b010dd-8e66-408c-9e6f-a24cc9a2bbd9.jpg"},
-    {"title":"Rain","caption":"Pure bliss","file":"2398620f-765e-4a64-b569-c2daaacbb897.jpg"},
-    {"title":"Evening Still","caption":"A simple sunset painting","file":"7027b559-592f-4946-a19e-6aaf6f892e1d.jpg"},
-    {"title":"Diwali Diya","caption":"There is light at the end of the tunnel","file":"9a2c67ea-cddf-4e16-97dc-04fe9797347b.jpg"},
-    {"title":"Space.com Entry for Painting Competition","caption":"This is rocket science","file":"966fed01-ff78-41c1-9c8c-016c10e03b36.jpg"},
-    {"title":"World Environment Day","caption":"Created for a school magazine","file":"f7906abf-03dd-40b9-ad4e-6f2811bd0714.jpg"},
-    {"title":"The Effects of Global Warming","caption":"Imagining the future","file":"f3d5ba19-0108-432e-b512-2a15aa5b455c.jpg"}
+    {
+      "title": "Day for The Hunt",
+      "caption": "Inspired by Aborigines\u2019 Art",
+      "file": "37317e78-2dec-43e6-a7f1-c163eedfd449.jpg",
+      "width": 1080,
+      "height": 810
+    },
+    {
+      "title": "Omega",
+      "caption": "This is the real thing!",
+      "file": "8d5340ef-323f-49d8-a0c5-dd8aa884e9a4.jpg",
+      "width": 1080,
+      "height": 1079
+    },
+    {
+      "title": "Violet Flowers",
+      "caption": "Random imagination, I guess",
+      "file": "b99e02d5-a4cb-415a-8063-bcb2733dd37f.jpg",
+      "width": 1080,
+      "height": 847
+    },
+    {
+      "title": "Cat",
+      "caption": "Three colours, that\u2019s it",
+      "file": "77b010dd-8e66-408c-9e6f-a24cc9a2bbd9.jpg",
+      "width": 367,
+      "height": 367
+    },
+    {
+      "title": "Rain",
+      "caption": "Pure bliss",
+      "file": "2398620f-765e-4a64-b569-c2daaacbb897.jpg",
+      "width": 1080,
+      "height": 938
+    },
+    {
+      "title": "Evening Still",
+      "caption": "A simple sunset painting",
+      "file": "7027b559-592f-4946-a19e-6aaf6f892e1d.jpg",
+      "width": 1080,
+      "height": 1080
+    },
+    {
+      "title": "Diwali Diya",
+      "caption": "There is light at the end of the tunnel",
+      "file": "9a2c67ea-cddf-4e16-97dc-04fe9797347b.jpg",
+      "width": 1080,
+      "height": 930
+    },
+    {
+      "title": "Space.com Entry for Painting Competition",
+      "caption": "This is rocket science",
+      "file": "966fed01-ff78-41c1-9c8c-016c10e03b36.jpg",
+      "width": 1080,
+      "height": 810
+    },
+    {
+      "title": "World Environment Day",
+      "caption": "Created for a school magazine",
+      "file": "f7906abf-03dd-40b9-ad4e-6f2811bd0714.jpg",
+      "width": 1080,
+      "height": 774
+    },
+    {
+      "title": "The Effects of Global Warming",
+      "caption": "Imagining the future",
+      "file": "f3d5ba19-0108-432e-b512-2a15aa5b455c.jpg",
+      "width": 1080,
+      "height": 790
+    }
   ]
 }

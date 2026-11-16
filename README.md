@@ -1,6 +1,6 @@
 # Toshali Mohapatra’s site
 
-This site uses a Node.js static build. It combines writing, small projects, studies, and artwork in one design. Inter, from Google Fonts, is hosted locally; the site does not request its typeface from an external font service.
+This site uses a Node.js static build. It combines AI engineering projects, writing, an original Three.js sculpture, artwork, and food photography. The intended typefaces are Sequel Sans and PP Fraktion Mono; licensed files are pending and the current draft uses authorized system fallbacks. See [font setup](assets/fonts/README.md) and the [four-stage redesign review](docs/redesign-review.md).
 
 ## Develop
 
@@ -19,7 +19,7 @@ For the browser interaction checks, run `npx playwright install chromium` once a
 
 Published Markdown remains in `_posts`. `data/legacy-posts.json` contains preserved renderings and hashes for the existing articles so their formatting and heading fragments remain stable. When an existing article is edited, the build renders its Markdown and reuses known heading IDs where possible; the checks report missing legacy fragments. New Markdown posts use a dated filename, front matter with a title and date, and optional `categories` and `tags` arrays.
 
-Portfolio projects and artwork are listed in `data/portfolio.json`; selected notebook excerpts are in `data/field-notes.json`. Artwork is stored locally under `assets/art`.
+Source-backed engineering case studies are in `data/engineering-projects.json`. Other portfolio projects and artwork are listed in `data/portfolio.json`; selected notebook excerpts are in `data/field-notes.json`. Artwork is stored locally under `assets/art`.
 
 ## Deployment
 
