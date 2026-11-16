@@ -2,6 +2,7 @@
   {
     "slug": "production-rag-system",
     "title": "Documentation RAG Pipeline",
+    "homeSummary": "From documents to retrieved context to generated answers.",
     "kind": "AI engineering",
     "summary": "A modular pipeline that retrieves web documentation and supplies it as context for generated answers.",
     "source": "https://github.com/wildchaser1703/production-rag-system",
@@ -76,6 +77,7 @@
   {
     "slug": "agentic-insight-analyst",
     "title": "Agentic Insight Analyst",
+    "homeSummary": "Tool execution, working memory, and stopping rules.",
     "kind": "AI engineering",
     "summary": "A feedback-analysis agent with model-selected tools, inspectable working memory, and explicit stopping rules.",
     "source": "https://github.com/wildchaser1703/agentic-insight-analyst",
