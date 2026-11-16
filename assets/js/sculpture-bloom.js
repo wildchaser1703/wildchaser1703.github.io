@@ -1,9 +1,9 @@
-// Small, transparent-background bloom: render the weave once, blur its brighter
-// threads at reduced resolution, then composite beneath the crisp original.
+// Small, transparent-background bloom: render the sculpture once, blur its brighter
+// highlights at reduced resolution, then composite beneath the crisp original.
 // Uses RGBA8 targets, so it needs no floating-point framebuffer extensions.
 export function createBloom(three, renderer) {
   const options = { depthBuffer: false, stencilBuffer: false };
-  const source = new three.WebGLRenderTarget(1, 1, { ...options, samples: 2 });
+  const source = new three.WebGLRenderTarget(1, 1, { ...options, depthBuffer: true, samples: 2 });
   const horizontal = new three.WebGLRenderTarget(1, 1, options);
   const vertical = new three.WebGLRenderTarget(1, 1, options);
   const vertexShader = `
@@ -87,7 +87,7 @@ export function createBloom(three, renderer) {
       horizontal.setSize(blurWidth, blurHeight);
       vertical.setSize(blurWidth, blurHeight);
     },
-    setTheme(dark) { composite.uniforms.strength.value = dark ? 1.0 : 0.65; },
+    setTheme(dark) { composite.uniforms.strength.value = dark ? 0.28 : 0.12; },
     render(scene, sceneCamera) {
       renderer.setRenderTarget(source);
       renderer.render(scene, sceneCamera);

@@ -1,37 +1,44 @@
-import { BACKGROUND, FRAME, createSculpture, createLineData, normalizeVariant } from './sculpture-shape.js';
+import { BACKGROUND, FRAME, createMeshData, createPosterSvg, normalizeVariant } from './sculpture-shape.js';
 import { createBloom } from './sculpture-bloom.js';
 
 const instances = new WeakMap();
 const vertexShader = `
-  attribute vec3 threadColor;
-  attribute float threadOpacity;
+  attribute vec3 folioColor;
   uniform float time;
-  uniform float pixelRatio;
   uniform vec3 pointer;
   varying vec3 ink;
-  varying float alpha;
+  varying vec3 surfaceNormal;
+  varying vec3 location;
   void main() {
     vec3 p = position;
-    // A small travelling breath, not a rotating object or a particle system.
-    p.x += 0.018 * sin(time * 0.31 + position.y * 1.4) * sin(time * 0.19);
-    p.y += 0.022 * sin(time * 0.23 + position.x * 1.1) * sin(time * 0.17);
-    p.z += 0.025 * sin(time * 0.27 + position.x + position.y) * sin(time * 0.21);
-    vec2 delta = p.xy - pointer.xy;
-    float influence = exp(-dot(delta, delta) / 0.45) * pointer.z;
-    p.xy += delta * influence * 0.12;
-    p.y += influence * 0.065;
-    p.z += influence * 0.16;
-    ink = threadColor;
-    // Native GL lines are one physical pixel: retain ink density on Retina.
-    alpha = min(threadOpacity * pixelRatio, 1.0);
+    float breath = sin(time * .42 + p.y * 1.3);
+    p.x += .035 * breath * (1.0 - abs(p.y) / 2.5);
+    p.z += .045 * sin(time * .35 + p.y * 1.5);
+    p.z += pointer.z * .035 * sin(p.y + pointer.x);
+    ink = folioColor;
+    surfaceNormal = normalize(normalMatrix * normal);
+    location = p;
     gl_Position = projectionMatrix * modelViewMatrix * vec4(p, 1.0);
   }
 `;
 const fragmentShader = `
+  uniform float time;
   varying vec3 ink;
-  varying float alpha;
+  varying vec3 surfaceNormal;
+  varying vec3 location;
   void main() {
-    gl_FragColor = vec4(ink, alpha);
+    vec3 n = normalize(surfaceNormal) * (gl_FrontFacing ? 1.0 : -1.0);
+    vec3 key = normalize(vec3(1.8 + .35 * sin(time * .23), 2.0, 3.0));
+    float diffuse = max(dot(n, key), 0.0);
+    float rim = pow(1.0 - abs(n.z), 3.0);
+    float specular = pow(max(dot(n, normalize(key + vec3(0,0,1))),0.0), 42.0);
+    // Thin flowing ink traces, interrupted by a quiet travelling signal.
+    float trace = pow(.5 + .5 * sin(location.y * 66.0 + location.x * 12.0), 28.0);
+    float pulse = pow(.5 + .5 * sin(location.y * 2.0 - time * .65), 16.0);
+    vec3 color = ink * (.42 + .75 * diffuse) + vec3(1.0,.60,.24) * (specular*.3 + rim*.16);
+    color *= 1.0 - trace * .12;
+    color += vec3(.3,.1,.02) * trace * pulse;
+    gl_FragColor = vec4(color, 1.0);
     #include <colorspace_fragment>
   }
 `;
@@ -54,13 +61,13 @@ export function initSculpture(figure) {
   const newSeed = () => crypto.getRandomValues(new Uint32Array(1))[0];
   let variant = normalizeVariant(newSeed());
   let posterURL;
-  let quality = small.matches ? 'mobile' : 'desktop';
+  let mobile = small.matches;
   let userPaused = false;
   let destroyed = false;
   let failed = false;
   let pageHidden = false;
   let generation = 0;
-  let renderer, scene, camera, geometry, material, lines, three, bloom;
+  let renderer, scene, camera, geometry, material, mesh, three, bloom;
   let frame = 0;
   let elapsed = 0;
   let previousTime = 0;
@@ -77,13 +84,8 @@ export function initSculpture(figure) {
 
   function updateEdition() {
     figure.dataset.variant = String(variant);
-    const paths = createSculpture(variant, 'preview').map(({points,color,opacity}) => {
-      let d = '';
-      for (let i=0;i<points.length;i+=3) d += `${i?'L':'M'}${(450+points[i]*140).toFixed(1)} ${(380-points[i+1]*140).toFixed(1)}`;
-      return `<path d="${d}" stroke="rgb(${color.join(',')})" stroke-opacity="${opacity}"/>`;
-    }).join('');
     if (posterURL) URL.revokeObjectURL(posterURL);
-    posterURL = URL.createObjectURL(new Blob([`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 760"><g fill="none" stroke-width="1.3">${paths}</g></svg>`],{type:'image/svg+xml'}));
+    posterURL = URL.createObjectURL(new Blob([createPosterSvg(variant)], {type:'image/svg+xml'}));
     poster.src = posterURL;
     if (counter) counter.textContent = `Seed ${variant.toString(16).padStart(8,'0')}`;
   }
@@ -101,7 +103,7 @@ export function initSculpture(figure) {
     poster.style.visibility = live ? 'hidden' : 'visible';
     if (live) {
       stage.setAttribute('role', 'img');
-      stage.setAttribute('aria-label', poster.alt || 'An asymmetric loop woven from fine gold, orange and red threads.');
+      stage.setAttribute('aria-label', poster.alt || 'Five folded folios in ochre and vermilion, joined along a flowing spine.');
     } else {
       stage.removeAttribute('role');
       stage.removeAttribute('aria-label');
@@ -143,7 +145,7 @@ export function initSculpture(figure) {
     geometry?.dispose();
     material?.dispose();
     renderer?.dispose();
-    geometry = material = renderer = scene = camera = lines = undefined;
+    geometry = material = renderer = scene = camera = mesh = undefined;
   }
 
   function fallback(permanent = false) {
@@ -197,30 +199,31 @@ export function initSculpture(figure) {
     pointer.x += (target.x - pointer.x) * ease;
     pointer.y += (target.y - pointer.y) * ease;
     pointer.z += (target.strength - pointer.z) * ease;
-    // A small viewpoint change exposes the actual depth between woven layers.
+    // A small viewpoint change exposes the actual depth between the folded folios.
     // Settle back to the poster composition when the pointer leaves the work.
-    lines.rotation.x += (-pointer.y * pointer.z * 0.04 - lines.rotation.x) * ease;
-    lines.rotation.y += (pointer.x * pointer.z * 0.045 - lines.rotation.y) * ease;
+    mesh.rotation.x += (-pointer.y * pointer.z * 0.04 - mesh.rotation.x) * ease;
+    mesh.rotation.y += (pointer.x * pointer.z * 0.045 - mesh.rotation.y) * ease;
     draw();
     if (canAnimate()) frame = requestAnimationFrame(tick);
   }
 
   function replaceGeometry() {
-    const data = createLineData(createSculpture(variant, quality));
+    const data = createMeshData(variant);
     // Shader output uses Three's sRGB conversion, so decode vertex ink first.
     const decode = value => value <= 0.04045 ? value / 12.92 : ((value + 0.055) / 1.055) ** 2.4;
     for (let i = 0; i < data.colors.length; i++) data.colors[i] = decode(data.colors[i]);
     const replacement = new three.BufferGeometry();
     replacement.setAttribute('position', new three.BufferAttribute(data.positions, 3));
-    replacement.setAttribute('threadColor', new three.BufferAttribute(data.colors, 3));
-    replacement.setAttribute('threadOpacity', new three.BufferAttribute(data.opacities, 1));
-    if (lines) lines.geometry = replacement;
+    replacement.setAttribute('folioColor', new three.BufferAttribute(data.colors, 3));
+    replacement.setAttribute('normal', new three.BufferAttribute(data.normals, 3));
+    replacement.setIndex(data.indices);
+    if (mesh) mesh.geometry = replacement;
     geometry?.dispose();
     geometry = replacement;
-    if (!lines) {
-      lines = new three.LineSegments(geometry, material);
-      lines.frustumCulled = false;
-      scene.add(lines);
+    if (!mesh) {
+      mesh = new three.Mesh(geometry, material);
+      mesh.frustumCulled = false;
+      scene.add(mesh);
     }
   }
 
@@ -231,13 +234,11 @@ export function initSculpture(figure) {
       width = Math.round(rect.width);
       height = Math.round(rect.height);
       if (!width || !height) { syncMotion(); return; }
-      const newQuality = small.matches ? 'mobile' : 'desktop';
-      if (newQuality !== quality) { quality = newQuality; replaceGeometry(); }
-      const pixelRatio = Math.min(window.devicePixelRatio || 1, quality === 'mobile' ? 1.5 : 2);
+      mobile = small.matches;
+      const pixelRatio = Math.min(window.devicePixelRatio || 1, mobile ? 1.5 : 2);
       renderer.setPixelRatio(pixelRatio);
-      material.uniforms.pixelRatio.value = pixelRatio;
       renderer.setSize(width, height, false);
-      bloom?.resize(width, height, pixelRatio, quality === 'mobile');
+      bloom?.resize(width, height, pixelRatio, mobile);
       // Contain the exact poster frame, even in a tall mobile stage.
       const aspect = width / height;
       const halfHeight = Math.max(FRAME.height / 2, FRAME.width / (2 * aspect));
@@ -259,7 +260,7 @@ export function initSculpture(figure) {
       // Current Three supports WebGL2; use the real canvas, not a spare context.
       if (typeof canvas.getContext !== 'function' || !('WebGL2RenderingContext' in window)) return;
       const context = canvas.getContext('webgl2', {
-        alpha: true, antialias: true, depth: false, stencil: false,
+        alpha: true, antialias: true, depth: true, stencil: false,
         powerPreference: 'low-power', preserveDrawingBuffer: false,
       });
       if (!context || context.isContextLost()) { fallback(true); return; }
@@ -276,8 +277,8 @@ export function initSculpture(figure) {
       camera = new three.OrthographicCamera(-3.2, 3.2, 2.7, -2.7, 0.1, 20);
       camera.position.z = 8;
       material = new three.ShaderMaterial({
-        uniforms: { time: { value: elapsed }, pixelRatio: { value: 1 }, pointer: { value: new three.Vector3() } },
-        vertexShader, fragmentShader, transparent: true, depthTest: false, depthWrite: false,
+        uniforms: { time: { value: elapsed }, pointer: { value: new three.Vector3() } },
+        vertexShader, fragmentShader, side: three.DoubleSide, depthTest: true, depthWrite: true,
       });
       bloom = createBloom(three, renderer);
       bloom.setTheme(dark.matches);
@@ -314,7 +315,7 @@ export function initSculpture(figure) {
         draw();
       } catch { fallback(true); }
     }
-    if (status) status.textContent = 'New woven field generated.';
+    if (status) status.textContent = 'New folio edition generated.';
   });
   listen(stage, 'pointermove', event => {
     // Passive mouse/hovering pen only: touch remains native page scrolling.
