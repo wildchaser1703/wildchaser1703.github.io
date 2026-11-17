@@ -127,10 +127,10 @@ async function artCaptions(page, selector) {
 }
 async function checkDirectory(page, width) {
   const rows = page.locator('.directory-row[data-kind]');
-  assert.equal(await rows.count(), 12);
+  assert.equal(await rows.count(), 5);
   const filters = page.locator('.directory-filters');
   await filters.waitFor({ state: 'visible' });
-  for (const [kind, count] of [['AI engineering', 3], ['Experiments', 7], ['Field notes', 2], ['All', 12]]) {
+  for (const [kind, count] of [['Machine learning', 3], ['LLM systems', 2], ['All', 5]]) {
     const button = filters.getByRole('button', { name: kind, exact: true });
     await button.click();
     await attribute(button, 'aria-pressed', 'true');
@@ -189,7 +189,7 @@ try {
     assert.match(await response.text(), /data-preserved="true"/, `Legacy body: ${slug}`);
   }
   const viewports = [{ width: 1440, height: 900, name: 'desktop' }, { width: 390, height: 844, name: 'mobile' }, { width: 320, height: 800, name: 'narrow' }, { width: 844, height: 390, name: 'landscape' }];
-  const routes = ['/', '/projects/', '/art/', '/food/', '/about/', '/writing/', '/archives/', '/categories/', '/tags/', '/posts/context-engineering/', '/posts/llms-101/', '/notes/art-and-science-of-paper/', '/projects/counter/', '/studies/what-makes-a-wait-feel-long/', ...engineering.map(item => `/projects/${item.slug}/`)];
+  const routes = ['/', '/projects/', '/projects/archive/', '/art/', '/food/', '/about/', '/writing/', '/archives/', '/categories/', '/tags/', '/posts/context-engineering/', '/posts/llms-101/', '/notes/art-and-science-of-paper/', '/projects/counter/', '/studies/what-makes-a-wait-feel-long/', ...engineering.map(item => `/projects/${item.slug}/`)];
   const captures = new Map([['/', 'home'], ['/projects/', 'projects'], ['/art/', 'art'], ['/food/', 'food'], ['/posts/context-engineering/', 'article']]);
   for (const { width, height, name } of viewports) {
     const page = await browser.newPage({ viewport: { width, height }, reducedMotion: 'reduce' });
@@ -435,7 +435,7 @@ try {
     assert.equal(await page.locator('.home-art-grid a[data-gallery="home-art"]').count(), 3);
     await page.getByRole('navigation', { name: 'Main navigation' }).getByRole('link', { name: 'Projects', exact: true }).click();
     await page.waitForURL(`${base}/projects/`);
-    assert.equal(await page.locator('.directory-row:visible').count(), 12);
+    assert.equal(await page.locator('.directory-row:visible').count(), 5);
     for (const link of await page.locator('.directory-row').all()) assert.equal((await page.request.get(base + await link.getAttribute('href'))).status(), 200);
     for (const [route, selector, count] of [['/art/', '.art-item a', 10], ['/food/', '.food-photo a', 76]]) {
       await visit(page, route);
