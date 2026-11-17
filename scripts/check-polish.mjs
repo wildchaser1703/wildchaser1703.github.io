@@ -49,7 +49,7 @@ try {
       if(route==='/') {
         await page.locator('[data-collection="art"][data-collection-ready="true"]').waitFor();
         await page.locator('[data-collection="food"][data-collection-ready="true"]').waitFor();
-        for(const url of ['https://x.com/sudoher','https://linkedin.com/in/toshalimohapatra','mailto:toshalimohapatra1@gmail.com']) assert.equal(await page.locator('.about-socials a[href="'+url+'"]').count(),1);
+        for(const url of ['https://x.com/sudoher','https://linkedin.com/in/toshalimohapatra','https://substack.com/@toshalimohapatra','mailto:toshalimohapatra1@gmail.com']) assert.equal(await page.locator('.about-socials a[href="'+url+'"]').count(),1);
         await page.locator('.hero-actions a').click();
         assert.equal(new URL(page.url()).hash, '#projects');
         assert.ok(await page.locator('#projects').evaluate(el => Math.abs(el.getBoundingClientRect().top) < 150));
