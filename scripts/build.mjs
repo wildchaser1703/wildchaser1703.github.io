@@ -176,7 +176,8 @@ await cp('node_modules/katex/dist/fonts', path.join(out, 'assets/css/fonts'), { 
 await cp('public/sw.min.js', path.join(out, 'sw.min.js'));
 for (const item of directory) await writeFile(path.join(out, 'assets/img', `project-${item.slug}.svg`), diagramSvg(item));
 await writePage('/', page('Home', home, {description:'Most of the work lives below the sentence. Projects, writing, art, and photography by Toshali Mohapatra.',script:'<script type="module" src="/assets/js/sculpture.js"></script>'}));
-await writePage('/projects/', page('Projects', directoryPage(directory), {url:'/projects/'}));
+await writePage('/projects/', page('Projects', directoryPage(directory.filter(item => engineering.some(project => project.slug === item.slug && !project.archived))), {url:'/projects/'}));
+await writePage('/projects/archive/', page('Project archive', directoryPage(directory.filter(item => !engineering.some(project => project.slug === item.slug && !project.archived)), true), {url:'/projects/archive/'}));
 await writePage('/art/', page('Art', artPage(portfolio.art), {url:'/art/'}));
 for (const project of engineering) await writePage(`/projects/${project.slug}/`, page(project.title, engineeringPage(project), {url:`/projects/${project.slug}/`,description:project.summary}));
 

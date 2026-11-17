@@ -1,87 +1,12 @@
 [
   {
-    "slug": "production-rag-system",
-    "title": "Documentation RAG Pipeline",
-    "homeSummary": "From documents to retrieved context to generated answers.",
-    "kind": "AI engineering",
-    "summary": "A modular pipeline that retrieves web documentation and supplies it as context for generated answers.",
-    "source": "https://github.com/wildchaser1703/production-rag-system",
-    "sourceCommit": "65eb63dcc132fa772de9c06215311677bc105b4a",
-    "stack": [
-      "Python",
-      "LangChain",
-      "ChromaDB",
-      "OpenAI",
-      "RAGAS",
-      "pytest"
-    ],
-    "problem": "Answer technical questions using relevant documentation, with separate components for ingestion, retrieval, and generation.",
-    "approach": [
-      "Load web pages and split documents into overlapping chunks.",
-      "Embed chunks with OpenAI, persist them in ChromaDB, and retrieve relevant context.",
-      "Compose retrieval and generation with LangChain; provide a separate RAGAS evaluation wrapper."
-    ],
-    "decisions": [
-      {
-        "title": "Separate pipeline stages",
-        "body": "Document processing, vector storage, and answer generation live in separate classes, making their responsibilities visible."
-      },
-      {
-        "title": "Keep retrieval configurable",
-        "body": "Chunk size and overlap are constructor parameters; retrieval defaults to four matches and accepts search settings."
-      },
-      {
-        "title": "Make evaluation explicit",
-        "body": "A separate evaluator accepts questions, answers, contexts, and reference answers. Its presence does not establish answer quality."
-      }
-    ],
-    "limitations": [
-      "The included tests cover chunking and processor defaults, not retrieval or answer quality.",
-      "The example runner does not yet invoke the evaluator; answer quality needs an end-to-end evaluation.",
-      "Answers are plain text without source citations. The prompt requests context-based answers but does not enforce grounding."
-    ],
-    "diagram": {
-      "nodes": [
-        "Web pages",
-        "Text chunks",
-        "Chroma index",
-        "Retrieved context",
-        "Answer"
-      ],
-      "caption": "The implemented ingestion-to-answer path; RAGAS evaluation is a separate component."
-    },
-    "evidence": [
-      {
-        "label": "Pipeline wiring",
-        "url": "https://github.com/wildchaser1703/production-rag-system/blob/65eb63dcc132fa772de9c06215311677bc105b4a/src/rag_pipeline/main.py"
-      },
-      {
-        "label": "Persistent vector retrieval",
-        "url": "https://github.com/wildchaser1703/production-rag-system/blob/65eb63dcc132fa772de9c06215311677bc105b4a/src/rag_pipeline/retrieval/vector_store.py"
-      },
-      {
-        "label": "Generation chain",
-        "url": "https://github.com/wildchaser1703/production-rag-system/blob/65eb63dcc132fa772de9c06215311677bc105b4a/src/rag_pipeline/generation/generator.py"
-      },
-      {
-        "label": "Evaluation wrapper",
-        "url": "https://github.com/wildchaser1703/production-rag-system/blob/65eb63dcc132fa772de9c06215311677bc105b4a/src/rag_pipeline/evaluation/evaluator.py"
-      },
-      {
-        "label": "Ingestion test source",
-        "url": "https://github.com/wildchaser1703/production-rag-system/blob/65eb63dcc132fa772de9c06215311677bc105b4a/tests/test_ingestion.py"
-      }
-    ],
-    "result": "The repository brings document processing, persistent retrieval, and answer generation into one configurable pipeline. It also includes chunking tests and a separate evaluation wrapper."
-  },
-  {
     "slug": "agentic-insight-analyst",
     "title": "Agentic Insight Analyst",
     "homeSummary": "Tool execution, working memory, and stopping rules.",
-    "kind": "AI engineering",
-    "summary": "A feedback-analysis agent with model-selected tools, inspectable working memory, and explicit stopping rules.",
-    "source": "https://github.com/wildchaser1703/agentic-insight-analyst",
-    "sourceCommit": "3ed7e28095bfab7f1de102d2807c2c63bb43cfe5",
+    "kind": "LLM systems",
+    "summary": "A feedback-analysis agent with explicit tools, working memory, bounded execution and honest failure reporting.",
+    "source": "https://github.com/wildchaser1703/agentic-insight-analyst/tree/7138cfd0b4f4b50b91ab45f0fa0baad897ef94cd",
+    "sourceCommit": "7138cfd0b4f4b50b91ab45f0fa0baad897ef94cd",
     "stack": [
       "Python",
       "OpenAI",
@@ -92,7 +17,7 @@
     ],
     "problem": "Turn survey scores and written feedback into a structured report while keeping tool choices and intermediate outputs inspectable.",
     "approach": [
-      "Inspect a CSV and ask a language model to propose analysis steps.",
+      "Inspect a CSV or convert raw feedback into a temporary dataset, then ask a language model to propose analysis steps.",
       "Select from registered tools for TF-IDF clustering, phrase extraction, score analysis, and simple summaries.",
       "Record tool outputs in session memory, evaluate stopping conditions, and synthesize findings and recommendations."
     ],
@@ -111,66 +36,215 @@
       }
     ],
     "limitations": [
-      "Progress is estimated from insight counts, tool variety, and tool success; it does not verify the stated success criteria.",
-      "Summary and recommendation tools use word counts and templates; evaluating report usefulness is a separate next step.",
-      "Memory and background jobs are held in process. LLM failures can fall back to empty JSON without making the final success flag false.",
-      "The API accepts raw_text but does not pass it into the agent; the implemented analysis path uses CSV files."
+      "A local, single-process agent prototype; jobs and working memory are not durable across restarts.",
+      "Stopping uses a heuristic progress score, not independently verified goal completion.",
+      "Offline tests validate execution and failure handling; live report usefulness and factual accuracy remain unmeasured."
     ],
     "diagram": {
       "nodes": [
-        "Goal + CSV",
-        "Plan",
-        "Select tool",
-        "Observe + evaluate",
-        "Report"
+        "CSV / feedback",
+        "Validated plan",
+        "Registered tool",
+        "Observe / stop",
+        "Checked report"
       ],
-      "caption": "Tool selection repeats until a stopping rule fires, then the agent synthesizes a report."
+      "caption": "A bounded tool loop turns feedback into a checked report; failed execution is reported explicitly."
     },
     "evidence": [
       {
         "label": "Agent controller",
-        "url": "https://github.com/wildchaser1703/agentic-insight-analyst/blob/3ed7e28095bfab7f1de102d2807c2c63bb43cfe5/src/agent.py"
+        "url": "https://github.com/wildchaser1703/agentic-insight-analyst/blob/7138cfd0b4f4b50b91ab45f0fa0baad897ef94cd/src/agent.py"
       },
       {
-        "label": "Analysis tool implementations",
-        "url": "https://github.com/wildchaser1703/agentic-insight-analyst/blob/3ed7e28095bfab7f1de102d2807c2c63bb43cfe5/src/tools.py"
+        "label": "Analysis tools",
+        "url": "https://github.com/wildchaser1703/agentic-insight-analyst/blob/7138cfd0b4f4b50b91ab45f0fa0baad897ef94cd/src/tools.py"
       },
       {
-        "label": "Stopping heuristics",
-        "url": "https://github.com/wildchaser1703/agentic-insight-analyst/blob/3ed7e28095bfab7f1de102d2807c2c63bb43cfe5/src/evaluator.py"
+        "label": "Local API and input handling",
+        "url": "https://github.com/wildchaser1703/agentic-insight-analyst/blob/7138cfd0b4f4b50b91ab45f0fa0baad897ef94cd/api/main.py"
       },
       {
-        "label": "API and job handling",
-        "url": "https://github.com/wildchaser1703/agentic-insight-analyst/blob/3ed7e28095bfab7f1de102d2807c2c63bb43cfe5/api/main.py"
+        "label": "Failure regression tests",
+        "url": "https://github.com/wildchaser1703/agentic-insight-analyst/blob/7138cfd0b4f4b50b91ab45f0fa0baad897ef94cd/tests/test_failures.py"
       },
       {
-        "label": "Tool and mocked-agent test source",
-        "url": "https://github.com/wildchaser1703/agentic-insight-analyst/blob/3ed7e28095bfab7f1de102d2807c2c63bb43cfe5/tests/test_agent_flow.py"
+        "label": "Setup and scope",
+        "url": "https://github.com/wildchaser1703/agentic-insight-analyst/blob/7138cfd0b4f4b50b91ab45f0fa0baad897ef94cd/README.md"
       }
     ],
-    "result": "The implementation connects an agent controller, a fixed set of analysis tools, session memory, and a FastAPI interface. Tests cover individual tools and a mocked agent flow."
+    "result": "35 offline tests cover tools, memory, model and validation failures, raw-text cleanup and job status. Provider errors and unknown tools fail explicitly instead of producing a successful fallback report.",
+    "stage": "Agent prototype"
+  },
+  {
+    "slug": "depth-estimation",
+    "title": "Depth Estimation & Segmentation",
+    "homeSummary": "A TensorNet-based study of shared features for depth and segmentation.",
+    "kind": "Machine learning",
+    "summary": "A TensorNet-based PyTorch study of joint foreground segmentation and depth prediction from paired images.",
+    "source": "https://github.com/wildchaser1703/Depth-Estimation/tree/0bf8e8b01c7aee58647989e4b45e1f562e8454cc",
+    "sourceCommit": "0bf8e8b01c7aee58647989e4b45e1f562e8454cc",
+    "stack": [
+      "Python",
+      "PyTorch",
+      "CNNs",
+      "Residual networks",
+      "Dice loss",
+      "SSIM"
+    ],
+    "problem": "Predict where a foreground object is and its depth using a background image paired with an image containing that object.",
+    "approach": [
+      "Encode the background and composite image separately before combining their representations.",
+      "Use residual encoder blocks and skip connections, then decode into separate depth and foreground-mask outputs.",
+      "Train with separate scene-disjoint datasets and record normalized-depth RMSE, mask IoU, a checkpoint and input-file hashes."
+    ],
+    "decisions": [
+      {
+        "title": "Learn related tasks together",
+        "body": "A shared representation feeds separate decoders for depth and segmentation, while skip connections preserve spatial detail."
+      },
+      {
+        "title": "Compare the loss functions",
+        "body": "The repository documents RMSE, SSIM, binary cross-entropy and Dice experiments rather than presenting one training run as conclusive."
+      },
+      {
+        "title": "Build on attributed library code",
+        "body": "The setup documentation identifies TensorNet v0.9 as the source of the included library code; this case study presents the experiments without claiming a wholly original framework."
+      }
+    ],
+    "limitations": [
+      "A TensorNet-based paired-image research study; real-data benchmark results have not been independently reproduced.",
+      "Inference requires both a background and a composite image.",
+      "CPU smoke and training tests use synthetic tensors; they establish runnable training, not depth accuracy."
+    ],
+    "diagram": {
+      "nodes": [
+        "Paired images",
+        "Separate encoders",
+        "Shared features",
+        "Depth + mask heads",
+        "Pixel predictions"
+      ],
+      "caption": "A shared encoder representation branches into two task-specific decoders; this schematic condenses the parallel paths."
+    },
+    "evidence": [
+      {
+        "label": "Dual-output model",
+        "url": "https://github.com/wildchaser1703/Depth-Estimation/blob/0bf8e8b01c7aee58647989e4b45e1f562e8454cc/model/dsresnet.py"
+      },
+      {
+        "label": "Paired-image training and validation",
+        "url": "https://github.com/wildchaser1703/Depth-Estimation/blob/0bf8e8b01c7aee58647989e4b45e1f562e8454cc/training.py"
+      },
+      {
+        "label": "Model and checkpoint tests",
+        "url": "https://github.com/wildchaser1703/Depth-Estimation/blob/0bf8e8b01c7aee58647989e4b45e1f562e8454cc/tests/test_model.py"
+      },
+      {
+        "label": "Scene-disjoint validation tests",
+        "url": "https://github.com/wildchaser1703/Depth-Estimation/blob/0bf8e8b01c7aee58647989e4b45e1f562e8454cc/tests/test_training.py"
+      },
+      {
+        "label": "Setup and TensorNet attribution",
+        "url": "https://github.com/wildchaser1703/Depth-Estimation/blob/0bf8e8b01c7aee58647989e4b45e1f562e8454cc/README.md"
+      }
+    ],
+    "result": "An installable CPU workflow with seven tests covering both output heads, gradients, checkpoint reload, training/validation and overlapping-scene rejection. Historical loss-comparison notebooks retain their original results and attribution.",
+    "stage": "Research study"
+  },
+  {
+    "slug": "production-rag-system",
+    "title": "Documentation RAG Pipeline",
+    "homeSummary": "From documents to retrieved context to generated answers.",
+    "kind": "LLM systems",
+    "summary": "A documentation retrieval pipeline with persistent indexing, source-linked answers and explicit abstention.",
+    "source": "https://github.com/wildchaser1703/production-rag-system/tree/c57557c280ae175b7acf9bce7249b6c8aee4e940",
+    "sourceCommit": "c57557c280ae175b7acf9bce7249b6c8aee4e940",
+    "stack": [
+      "Python",
+      "LangChain",
+      "ChromaDB",
+      "OpenAI",
+      "pytest"
+    ],
+    "problem": "Answer technical questions using relevant documentation, with separate components for ingestion, retrieval, and generation.",
+    "approach": [
+      "Load web pages and split documents into overlapping chunks.",
+      "Embed chunks with OpenAI, persist them in ChromaDB, and retrieve relevant context.",
+      "Retrieve once, generate an answer with numbered citations, and return the exact source snippets supplied to the model."
+    ],
+    "decisions": [
+      {
+        "title": "Separate pipeline stages",
+        "body": "Document processing, vector storage, and answer generation live in separate classes, making their responsibilities visible."
+      },
+      {
+        "title": "Keep retrieval configurable",
+        "body": "Chunk size and overlap are constructor parameters; retrieval defaults to four matches and accepts search settings."
+      },
+      {
+        "title": "Check sources and failure paths",
+        "body": "Empty retrieval abstains without a model call. Missing or invalid citation IDs and provider failures are rejected; source-labelled cases support retrieval evaluation."
+      }
+    ],
+    "limitations": [
+      "Citation checks validate source IDs, not whether every statement is supported by the source.",
+      "Offline retrieval tests use deterministic embeddings and mocked generation; representative semantic retrieval and answer quality remain unmeasured.",
+      "Changed documents create new content-addressed chunks; replacing a corpus requires a fresh collection or database rebuild."
+    ],
+    "diagram": {
+      "nodes": [
+        "Documents",
+        "Stable chunk IDs",
+        "Chroma retrieval",
+        "Source context",
+        "Cited answer"
+      ],
+      "caption": "Retrieved source snippets accompany each answer; empty retrieval abstains and invalid citations fail validation."
+    },
+    "evidence": [
+      {
+        "label": "Source-linked generation",
+        "url": "https://github.com/wildchaser1703/production-rag-system/blob/c57557c280ae175b7acf9bce7249b6c8aee4e940/src/rag_pipeline/generation/generator.py"
+      },
+      {
+        "label": "Persistent vector retrieval",
+        "url": "https://github.com/wildchaser1703/production-rag-system/blob/c57557c280ae175b7acf9bce7249b6c8aee4e940/src/rag_pipeline/retrieval/vector_store.py"
+      },
+      {
+        "label": "Retrieval evaluation",
+        "url": "https://github.com/wildchaser1703/production-rag-system/blob/c57557c280ae175b7acf9bce7249b6c8aee4e940/src/rag_pipeline/evaluation/evaluator.py"
+      },
+      {
+        "label": "Pipeline integration tests",
+        "url": "https://github.com/wildchaser1703/production-rag-system/blob/c57557c280ae175b7acf9bce7249b6c8aee4e940/tests/test_pipeline.py"
+      },
+      {
+        "label": "Setup and scope",
+        "url": "https://github.com/wildchaser1703/production-rag-system/blob/c57557c280ae175b7acf9bce7249b6c8aee4e940/README.md"
+      }
+    ],
+    "result": "10 offline tests exercise chunking, a real persistent Chroma store, duplicate ingestion, citation mapping, abstention and failure propagation. Retrieval metrics run without a paid judge model.",
+    "stage": "RAG prototype"
   },
   {
     "slug": "retail-demand-forecasting-system",
     "title": "Retail Demand Forecasting",
-    "kind": "AI engineering",
-    "summary": "A forecasting workbench with data validation, temporal features, baseline and tree models, and evaluation utilities.",
-    "source": "https://github.com/wildchaser1703/retail-demand-forecasting-system",
-    "sourceCommit": "9fd10d476d6188444efe2b73c74551a5d52505e7",
+    "kind": "Machine learning",
+    "summary": "A forecasting workbench with leakage-tested features, recursive predictions and a fair comparison against simple baselines.",
+    "source": "https://github.com/wildchaser1703/retail-demand-forecasting-system/tree/acb816a3d8a5ea10174ea7440a3cfe816cdb288d",
+    "sourceCommit": "acb816a3d8a5ea10174ea7440a3cfe816cdb288d",
     "stack": [
       "Python",
       "pandas",
+      "NumPy",
       "scikit-learn",
-      "XGBoost",
-      "LightGBM",
-      "MLflow",
       "pytest"
     ],
-    "problem": "Explore how retail sales history and calendar features can support demand forecasts, using a synthetic-data demonstration.",
+    "problem": "Compare demand forecasts fairly: the same stores, dates and forecast horizon, using only information available at prediction time.",
     "approach": [
-      "Load and validate sales records, aggregate store-level demand, and split by date.",
-      "Create calendar, lag, rolling, and difference features for tree models alongside simple forecasting baselines.",
-      "Provide metric comparison, feature-importance inspection, model persistence, and separate MLflow logging utilities."
+      "Validate daily sales and aggregate product rows to a common store/day grain.",
+      "Fit naive, seasonal-naive, moving-average and random-forest models before the same temporal cutoff.",
+      "Predict the complete held-out horizon recursively, then save aligned predictions and MAE/RMSE results."
     ],
     "decisions": [
       {
@@ -178,55 +252,123 @@
         "body": "Naive, seasonal-naive, and moving-average forecasts provide reference approaches alongside tree-based models."
       },
       {
-        "title": "Split observations by date",
-        "body": "Train, validation, and test periods use chronological boundaries. Feature construction still needs correction to prevent target leakage."
+        "title": "Keep future targets out",
+        "body": "Rolling and difference features use prior observations. Recursive forecasts feed predictions back into the next step, never held-out actuals."
       },
       {
-        "title": "Separate evaluation and tracking",
-        "body": "Metric computation and MLflow logging have dedicated modules; the main runner initializes tracking but does not log complete training runs."
+        "title": "Compare like with like",
+        "body": "Every model is scored on identical store/date keys. Regression tests change held-out targets and verify that predictions do not change."
       }
     ],
     "limitations": [
-      "Rolling and difference features include the current sales target, leaking the answer into model inputs. Accuracy claims require corrected features and fresh evaluation.",
-      "The runner mixes daily-total baseline forecasts with store-level ML predictions, so comparisons and ensemble inputs need alignment.",
-      "The multi-step ML forecasting helper remains unimplemented. The demonstration uses synthetic data."
+      "The bundled demonstration is synthetic; its scores are not evidence of performance on real retail demand.",
+      "The supported workflow requires complete daily series with at least 60 training days and a shared test horizon.",
+      "Historical statistical, boosting and tracking modules remain experimental references outside the maintained core workflow."
     ],
     "diagram": {
       "nodes": [
-        "Sales records",
-        "Validate + split",
-        "Features",
-        "Forecast models",
-        "Metric comparison"
+        "Store / day sales",
+        "Common cutoff",
+        "Past-only inputs",
+        "Recursive forecast",
+        "Aligned metrics"
       ],
-      "caption": "Source-level training workflow; leakage and forecast alignment must be fixed before its scores are meaningful."
+      "caption": "All models forecast the same held-out store/day observations without consuming future targets."
     },
     "evidence": [
       {
-        "label": "Training workflow",
-        "url": "https://github.com/wildchaser1703/retail-demand-forecasting-system/blob/9fd10d476d6188444efe2b73c74551a5d52505e7/scripts/run_pipeline.py"
+        "label": "Evaluation workflow",
+        "url": "https://github.com/wildchaser1703/retail-demand-forecasting-system/blob/acb816a3d8a5ea10174ea7440a3cfe816cdb288d/scripts/run_pipeline.py"
       },
       {
-        "label": "Features and leakage limitation",
-        "url": "https://github.com/wildchaser1703/retail-demand-forecasting-system/blob/9fd10d476d6188444efe2b73c74551a5d52505e7/src/feature_engineering.py"
+        "label": "Past-only features",
+        "url": "https://github.com/wildchaser1703/retail-demand-forecasting-system/blob/acb816a3d8a5ea10174ea7440a3cfe816cdb288d/src/feature_engineering.py"
       },
       {
-        "label": "Model wrappers and forecast limits",
-        "url": "https://github.com/wildchaser1703/retail-demand-forecasting-system/blob/9fd10d476d6188444efe2b73c74551a5d52505e7/src/ml_models.py"
+        "label": "Recursive forecasting",
+        "url": "https://github.com/wildchaser1703/retail-demand-forecasting-system/blob/acb816a3d8a5ea10174ea7440a3cfe816cdb288d/src/ml_models.py"
       },
       {
-        "label": "Tracking utilities",
-        "url": "https://github.com/wildchaser1703/retail-demand-forecasting-system/blob/9fd10d476d6188444efe2b73c74551a5d52505e7/src/mlflow_utils.py"
+        "label": "Leakage and alignment tests",
+        "url": "https://github.com/wildchaser1703/retail-demand-forecasting-system/blob/acb816a3d8a5ea10174ea7440a3cfe816cdb288d/tests/test_leakage.py"
       },
       {
-        "label": "Baseline test source",
-        "url": "https://github.com/wildchaser1703/retail-demand-forecasting-system/blob/9fd10d476d6188444efe2b73c74551a5d52505e7/tests/test_models.py"
-      },
-      {
-        "label": "Metric test source",
-        "url": "https://github.com/wildchaser1703/retail-demand-forecasting-system/blob/9fd10d476d6188444efe2b73c74551a5d52505e7/tests/test_evaluation.py"
+        "label": "Setup and evaluation protocol",
+        "url": "https://github.com/wildchaser1703/retail-demand-forecasting-system/blob/acb816a3d8a5ea10174ea7440a3cfe816cdb288d/README.md"
       }
     ],
-    "result": "The workbench implements data validation, forecasting baselines, tree-model wrappers, and evaluation utilities. Correcting target leakage and aligning forecast granularity are necessary before comparing model scores."
+    "result": "36 offline tests and a complete synthetic demonstration validate the core workflow, including target-leakage regressions and recursive forecasts. Predictions and evaluation metadata are saved for inspection.",
+    "stage": "Forecasting workbench"
+  },
+  {
+    "slug": "intelliquery",
+    "title": "IntelliQuery: Visual Question Answering",
+    "homeSummary": "Combining image and question representations to predict an answer.",
+    "kind": "Machine learning",
+    "summary": "An image-and-question feature-fusion baseline with image-disjoint evaluation and a training-only answer vocabulary.",
+    "source": "https://github.com/wildchaser1703/IntelliQuery/tree/65a5c2f1978f6daa89a387bb17474fdf1cc52c88",
+    "sourceCommit": "65a5c2f1978f6daa89a387bb17474fdf1cc52c88",
+    "stack": [
+      "Python",
+      "NumPy",
+      "scikit-learn",
+      "VQA",
+      "pytest"
+    ],
+    "problem": "Predict an answer to a natural-language question about an image using both visual and textual information.",
+    "approach": [
+      "Load aligned image vectors, question vectors and answer labels from non-object NumPy arrays.",
+      "Keep every question about an image in the same partition; fit the answer vocabulary and scaler on training examples only.",
+      "Train two 200-unit hidden layers, then report held-out exact match, a majority-answer baseline, vocabulary coverage and per-question predictions."
+    ],
+    "decisions": [
+      {
+        "title": "Split by image, not question",
+        "body": "Grouping by image prevents related questions about the same scene from appearing on both sides of the holdout."
+      },
+      {
+        "title": "Account for unknown answers",
+        "body": "Build a vocabulary of up to 500 answers from training data. Test-only answers count as incorrect instead of disappearing from evaluation."
+      },
+      {
+        "title": "Make the baseline lineage visible",
+        "body": "The README links the VQA dataset, related research and upstream demo implementations that informed the experiment."
+      }
+    ],
+    "limitations": [
+      "The maintained runner is verified on synthetic features; real VQA performance has not been reproduced.",
+      "Image and question feature extraction is external to the maintained classifier workflow. Historical BERT/image notebooks remain references.",
+      "Lowercase/trim exact match is not the official VQA consensus metric. This is an attributed baseline, not a novel architecture."
+    ],
+    "diagram": {
+      "nodes": [
+        "Image + question",
+        "Aligned features",
+        "Image-held-out split",
+        "Train-only fit",
+        "Answer evaluation"
+      ],
+      "caption": "Questions sharing an image stay together; vocabulary and scaling are learned only from training examples."
+    },
+    "evidence": [
+      {
+        "label": "Feature-fusion training and evaluation",
+        "url": "https://github.com/wildchaser1703/IntelliQuery/blob/65a5c2f1978f6daa89a387bb17474fdf1cc52c88/intelliquery/train.py"
+      },
+      {
+        "label": "Holdout and input tests",
+        "url": "https://github.com/wildchaser1703/IntelliQuery/blob/65a5c2f1978f6daa89a387bb17474fdf1cc52c88/tests/test_training.py"
+      },
+      {
+        "label": "Original research notebook",
+        "url": "https://github.com/wildchaser1703/IntelliQuery/blob/65a5c2f1978f6daa89a387bb17474fdf1cc52c88/IntelliQuery_Model.ipynb"
+      },
+      {
+        "label": "Dataset and upstream references",
+        "url": "https://github.com/wildchaser1703/IntelliQuery/blob/65a5c2f1978f6daa89a387bb17474fdf1cc52c88/README.md"
+      }
+    ],
+    "result": "Five offline tests cover image-disjoint splitting, unknown answers, deterministic training, input alignment and rejection of pickle arrays. A small synthetic run exercises training and evaluation without presenting its score as a VQA benchmark.",
+    "stage": "Multimodal baseline"
   }
 ]

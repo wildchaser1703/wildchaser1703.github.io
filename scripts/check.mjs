@@ -143,23 +143,27 @@ for (const file of pages) {
 const sculpture = home('figure[data-sculpture]');
 check(sculpture.length === 1 && sculpture.attr('data-renderer') === 'static' && sculpture.attr('data-paused') === 'true' && sculpture.attr('data-variant') === '0', 'Sculpture must start as a static poster');
 check(sculpture.find('img.sculpture-poster:not([hidden])').length === 1 && sculpture.find('[data-sculpture-next]').length === 1 && sculpture.find('[data-sculpture-toggle]').length === 1, 'Missing sculpture poster or controls');
-check(engineering.length === 3 && portfolio.projects.length === 6 && notes.length === 2, 'Directory source counts changed');
-check(directory('.directory-row[data-kind]').length === 12 && directory('.directory-row[hidden]').length === 0, 'Directory must initially expose all twelve items');
-const kinds = ['All', 'AI engineering', 'Experiments', 'Field notes'];
+const selectedEngineering = engineering.filter(item => !item.archived);
+check(selectedEngineering.length === 5, 'Expected five curated ML/AI projects');
+check(directory('.directory-row[data-kind]').length === 5 && directory('.directory-row[hidden]').length === 0, 'Selected directory must show five projects');
+const kinds = ['All', 'LLM systems', 'Machine learning'];
 check(JSON.stringify(directory('.directory-filters button[data-filter]').map((i, el) => directory(el).attr('data-filter')).get()) === JSON.stringify(kinds), 'Incorrect directory filters');
 for (const kind of kinds) check(directory(`button[data-filter="${kind}"]`).attr('aria-pressed') === String(kind === 'All'), `Incorrect initial filter state: ${kind}`);
-const expectedItems = [
-  ...engineering.map(item => ({ ...item, kind: 'AI engineering', route: `/projects/${item.slug}/` })),
-  ...portfolio.projects.map(item => ({ ...item, kind: 'Experiments', route: `/projects/${item.slug}/` })),
-  { slug: 'wait-study', kind: 'Experiments', route: '/studies/what-makes-a-wait-feel-long/' },
-  ...notes.map(item => ({ ...item, kind: 'Field notes', route: `/notes/${item.slug}/` }))
-];
+const archive = cheerio.load(await readFile(path.join(root, 'projects/archive/index.html'), 'utf8'));
+check(archive('.directory-row').length === 9, 'Earlier work must remain accessible in the archive');
+for (const slug of portfolio.projects.map(p=>p.slug)) {
+  check(archive(`.directory-row[href="/projects/${slug}/"]`).length === 1, `Missing archived project: ${slug}`);
+  check(directory(`.directory-row[href="/projects/${slug}/"]`).length === 0, `Archived project promoted into selection: ${slug}`);
+}
+const expectedItems = selectedEngineering.map(item => ({...item,route:`/projects/${item.slug}/`}));
 for (const item of expectedItems) {
   const row = directory(`.directory-row[href="${item.route}"]`);
   check(row.length === 1 && row.attr('data-kind') === item.kind, `Missing or miscategorized directory item: ${item.slug}`);
   check(row.attr('data-preview')?.startsWith(`/assets/img/project-${item.slug}.svg?v=`) && row.find('img').attr('src') === row.attr('data-preview'), `Missing desktop/mobile preview: ${item.slug}`);
 }
-const featuredProjects = ['production-rag-system', 'agentic-insight-analyst'];
+check(directory('a[href="/projects/retail-demand-forecasting-system/"]').length === 1, 'Keep forecasting visible as a workbench');
+for (const project of selectedEngineering) check(directory(`a[href="/projects/${project.slug}/"]`).text().includes(project.stage), `Missing readiness label: ${project.slug}`);
+const featuredProjects = ['agentic-insight-analyst', 'depth-estimation'];
 check(home('.selected-project').length === featuredProjects.length, 'Homepage should feature two engineering projects');
 for (const slug of featuredProjects) check(home(`.selected-project a[href="/projects/${slug}/"]`).length > 0, `Missing selected AI project: ${slug}`);
 for (const project of engineering) {
@@ -188,6 +192,6 @@ if (!accessibleAnchors || !focusableBlocks) failures.push('No accessible heading
 if (failures.length) { console.error(failures.join('\n')); process.exitCode = 1; }
 else {
   console.log(`Checked ${pages.length} pages, ${checked} internal references, ${Object.keys(legacy).length} published posts and their fragments.`);
-  console.log('Verified 19 source-byte hashes, redesigned navigation, 12 directory entries, 3 AI case studies, 3 selected / 10 full artworks, and 3 selected / 76 full food photos.');
+  console.log('Verified 19 source-byte hashes, redesigned navigation, 5 selected projects, 9 archived entries, 5 ML/AI case studies, 3 selected / 10 full artworks, and 3 selected / 76 full food photos.');
   console.log(`Verified ${accessibleAnchors} named heading permalinks and ${focusableBlocks} keyboard-focusable code/math blocks.`);
 }
