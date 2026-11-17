@@ -1,5 +1,77 @@
 [
   {
+    "slug": "durable-tool-runs",
+    "title": "Durable Tool Runs",
+    "homeSummary": "Leased workers, idempotent effects, and recovery after a crash.",
+    "kind": "LLM systems",
+    "summary": "A recoverable execution service for tool-using systems, with PostgreSQL leases, replayable events, and idempotent tool effects.",
+    "source": "https://github.com/wildchaser1703/durable-tool-runs/tree/617e9049e017f0be7b70a7d1d45068aa6e18401e",
+    "sourceCommit": "617e9049e017f0be7b70a7d1d45068aa6e18401e",
+    "stack": [
+      "Python",
+      "FastAPI",
+      "PostgreSQL",
+      "SQLAlchemy",
+      "Docker Compose",
+      "pytest"
+    ],
+    "problem": "A tool-using system can crash after an external effect commits but before it records success. Retrying blindly can produce a duplicate effect; giving up loses a recoverable run.",
+    "approach": [
+      "Persist each run, its single v1 step, and an ordered event trail in PostgreSQL before a worker begins execution.",
+      "Workers claim queued or expired work with a PostgreSQL lease using row locks and SKIP LOCKED, so another worker can reclaim abandoned work.",
+      "Pass a stable idempotency key to the included record tool. A retried call returns its original effect rather than creating another one."
+    ],
+    "decisions": [
+      {
+        "title": "Keep the queue in PostgreSQL",
+        "body": "Runs, leases, effects and events live in one durable store. That makes recovery inspectable and avoids an in-memory job queue disappearing with a worker."
+      },
+      {
+        "title": "Make ambiguity explicit",
+        "body": "The service provides effectively-once effects only when a tool honours a stable idempotency key. It does not claim exactly-once execution for arbitrary external APIs."
+      },
+      {
+        "title": "Replay events in database order",
+        "body": "Run events use a monotonic database sequence, not timestamps or UUIDs, so events created in the same transaction retain causal order."
+      }
+    ],
+    "limitations": [
+      "v1 runs one persisted record step; multi-step planning, dependency graphs, authentication and distributed notifications are not implemented.",
+      "The included record tool is a controlled local provider. Real third-party tools need their own idempotency contract before retries are safe.",
+      "The crash test proves recovery for this service boundary; it is not a production reliability or throughput benchmark."
+    ],
+    "diagram": {
+      "nodes": [
+        "Create run",
+        "Lease a step",
+        "Idempotent tool",
+        "Ordered events",
+        "Recover or finish"
+      ],
+      "caption": "An abandoned lease is reclaimed; repeating the same idempotency key replays the original effect instead of creating a duplicate."
+    },
+    "evidence": [
+      {
+        "label": "Worker lease and recovery loop",
+        "url": "https://github.com/wildchaser1703/durable-tool-runs/blob/617e9049e017f0be7b70a7d1d45068aa6e18401e/app/service.py"
+      },
+      {
+        "label": "PostgreSQL run and event schema",
+        "url": "https://github.com/wildchaser1703/durable-tool-runs/blob/617e9049e017f0be7b70a7d1d45068aa6e18401e/app/models.py"
+      },
+      {
+        "label": "Crash-recovery integration tests",
+        "url": "https://github.com/wildchaser1703/durable-tool-runs/blob/617e9049e017f0be7b70a7d1d45068aa6e18401e/tests/test_recovery.py"
+      },
+      {
+        "label": "Local setup, guarantees and boundaries",
+        "url": "https://github.com/wildchaser1703/durable-tool-runs/blob/617e9049e017f0be7b70a7d1d45068aa6e18401e/README.md"
+      }
+    ],
+    "result": "Four PostgreSQL-backed integration tests cover a successful run, cancellation, API allowlisting, and a worker crash after an effect commits. The recovery test verifies one effect, two attempts, a reclaimed lease, and an ordered event trace.",
+    "stage": "Execution service"
+  },
+  {
     "slug": "agentic-insight-analyst",
     "title": "Agentic Insight Analyst",
     "homeSummary": "Tool execution, working memory, and stopping rules.",

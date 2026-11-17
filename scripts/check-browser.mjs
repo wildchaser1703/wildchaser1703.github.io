@@ -127,10 +127,10 @@ async function artCaptions(page, selector) {
 }
 async function checkDirectory(page, width) {
   const rows = page.locator('.directory-row[data-kind]');
-  assert.equal(await rows.count(), 5);
+  assert.equal(await rows.count(), 6);
   const filters = page.locator('.directory-filters');
   await filters.waitFor({ state: 'visible' });
-  for (const [kind, count] of [['Machine learning', 3], ['LLM systems', 2], ['All', 5]]) {
+  for (const [kind, count] of [['Machine learning', 3], ['LLM systems', 3], ['All', 6]]) {
     const button = filters.getByRole('button', { name: kind, exact: true });
     await button.click();
     await attribute(button, 'aria-pressed', 'true');
@@ -433,7 +433,7 @@ try {
     assert.equal(await page.locator('.home-art-grid a[data-gallery="home-art"]').count(), 3);
     await page.getByRole('navigation', { name: 'Main navigation' }).getByRole('link', { name: 'Projects', exact: true }).click();
     await page.waitForURL(`${base}/projects/`);
-    assert.equal(await page.locator('.directory-row:visible').count(), 5);
+    assert.equal(await page.locator('.directory-row:visible').count(), 6);
     for (const link of await page.locator('.directory-row').all()) assert.equal((await page.request.get(base + await link.getAttribute('href'))).status(), 200);
     for (const [route, selector, count] of [['/art/', '.art-item a', 10], ['/food/', '.food-photo a', 76]]) {
       await visit(page, route);
