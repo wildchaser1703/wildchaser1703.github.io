@@ -77,7 +77,7 @@ async function screenshot(page, name, fullPage = true) {
 async function checkNavigation(page, width) {
   const nav = page.getByRole('navigation', { name: 'Main navigation', includeHidden: true });
   const menu = page.locator('.menu-toggle');
-  assert.deepEqual(await nav.locator('a').evaluateAll(links => links.map(link => link.getAttribute('href'))), ['/projects/', '/writing/', '/art/', '/food/', '/#about', '/search/']);
+  assert.deepEqual(await nav.locator('a').evaluateAll(links => links.map(link => link.getAttribute('href'))), ['/projects/', '/writing/', '/art/', '/food/', '/search/']);
   if (width <= 760) {
     await menu.waitFor({ state: 'visible' });
     await nav.waitFor({ state: 'hidden' });
@@ -196,7 +196,6 @@ try {
     observe(page, name, true);
     for (const route of routes) {
       await visit(page, route);
-      if (route === '/about/') await page.waitForURL(base + '/#about');
       assert.equal(await page.locator('.site-header').count(), 1, `${route} header`);
       assert.equal(await page.locator('.site-footer').count(), 1, `${route} footer`);
       await decode(page.locator('.brand .flow-mark'));
@@ -403,9 +402,8 @@ try {
   await transitions.goBack();
   await transitions.locator('.hero-copy h1').waitFor();
   assert.equal(await transitions.evaluate(() => getComputedStyle(document.body).opacity), '1');
-  await transitions.locator('#about').evaluate(element => element.scrollIntoView({behavior:'instant'}));
-  await transitions.locator('.about-socials a').first().focus();
-  await eventually(async () => assert.equal(await transitions.locator('#about').evaluate(element => element.getAnimations().length), 0), 'Keyboard focus should cancel the entrance');
+  await transitions.locator('.footer-links a[href="https://github.com/wildchaser1703"]').focus();
+  await eventually(async () => assert.equal(await transitions.locator('.site-footer').evaluate(element => element.getAnimations().length), 0), 'Keyboard focus should cancel the entrance');
   await transitions.close();
 
   const fallback = await browser.newPage({ reducedMotion: 'no-preference' });
