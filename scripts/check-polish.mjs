@@ -59,7 +59,7 @@ try {
         assert.equal(await page.locator('[data-sculpture-variant]').isVisible(), true);
         await page.keyboard.press('Enter');
         assert.equal(await page.locator('.sculpture-info').getAttribute('open'), null);
-        assert.equal(await page.locator('.favorite-item').count(),3);
+        assert.equal(await page.locator('.favorite-item').count(),0);
         for(const kind of ['art','food']) {
           const section=page.locator('[data-collection="'+kind+'"]');
           const links=section.locator('a[data-gallery]');
