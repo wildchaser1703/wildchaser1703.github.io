@@ -175,7 +175,7 @@ await cp('node_modules/katex/dist/katex.min.css', path.join(out, 'assets/css/kat
 await cp('node_modules/katex/dist/fonts', path.join(out, 'assets/css/fonts'), { recursive: true });
 await cp('public/sw.min.js', path.join(out, 'sw.min.js'));
 for (const item of directory) await writeFile(path.join(out, 'assets/img', `project-${item.slug}.svg`), diagramSvg(item));
-await writePage('/', page('Home', home, {description:'Most of the work lives below the sentence. Projects, writing, art, and photography by Toshali Mohapatra.',script:'<script type="module" src="/assets/js/sculpture.js"></script>'}));
+await writePage('/', page('Home', home, {description:'Systems around language models: evidence, failure, writing, art, and photography by Toshali Mohapatra.',script:'<script type="module" src="/assets/js/sculpture.js"></script>'}));
 await writePage('/projects/', page('Projects', directoryPage(directory.filter(item => engineering.some(project => project.slug === item.slug && !project.archived))), {url:'/projects/'}));
 await writePage('/projects/archive/', page('Project archive', directoryPage(directory.filter(item => !engineering.some(project => project.slug === item.slug && !project.archived)), true), {url:'/projects/archive/'}));
 await writePage('/art/', page('Art', artPage(portfolio.art), {url:'/art/'}));
@@ -199,7 +199,7 @@ const browseNav = `<nav class="browse-nav" aria-label="Browse writing"><a href="
 function writingPage(title, entries, intro = '') {
   return `<section class="inner-page">${browseNav}<header class="page-heading"><p class="kicker">WORDS &amp; IDEAS</p><h1>${esc(title)}</h1>${intro ? `<p>${esc(intro)}</p>` : ''}</header><div class="post-list">${entries.map(postRow).join('')}</div></section>`;
 }
-await writePage('/writing/', page('Writing', writingPage('Writing', posts.slice(0, 10), 'Notes on machines, people, and everything in between.') + (posts.length > 10 ? '<div class="pagination"><a href="/page2/">Older writing →</a></div>' : ''), { url: '/writing/' }));
+await writePage('/writing/', page('Writing', writingPage('Writing', posts.slice(0, 10), 'Notes on systems, research, and the things I am still working out.') + (posts.length > 10 ? '<div class="pagination"><a href="/page2/">Older writing →</a></div>' : ''), { url: '/writing/' }));
 for (let current = 2; current <= Math.ceil(posts.length / 10); current++) {
   const previous = current === 2 ? '/writing/' : `/page${current - 1}/`;
   const next = current < Math.ceil(posts.length / 10) ? `<a href="/page${current + 1}/">Older writing →</a>` : '';
