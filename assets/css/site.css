@@ -203,9 +203,6 @@ em { font-style: normal; }
 .about-lede { font-size: clamp(1.5rem,2.5vw,2rem); line-height: 1.45; letter-spacing: -.02em; margin-bottom: 1.5rem; }
 .about-copy > p:not(.about-lede) { color: var(--muted); }
 .about-links { display: flex; flex-wrap: wrap; align-items: center; gap: 1rem; margin: 2rem 0 3rem; }
-.favorites-grid { display: grid; grid-template-columns: 1fr; }
-.favorite-item { border-top: 1px solid var(--line); padding: 1rem 0; }
-.favorite-item p { margin-top: .4rem; }
 .image-viewer { width: min(94vw,1200px); max-width: none; height: min(92dvh,900px); max-height: none; padding: 0; border: 1px solid var(--line); background: var(--paper); color: var(--ink); overflow: hidden; }
 .image-viewer[open] { display: flex; flex-direction: column; }
 .image-viewer::backdrop { background: rgb(24 24 22 / .88); }

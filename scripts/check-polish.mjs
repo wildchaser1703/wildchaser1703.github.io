@@ -104,8 +104,13 @@ try {
     await page.goto(base+'/about/');
     await page.waitForURL(base+'/#about');
     assert.equal(await page.locator('.home-hero').count(),1);
-    assert.equal(await page.locator('#about h2').textContent(), 'A little more about me');
-    assert.ok(await page.locator('#about').evaluate(el => Math.abs(el.getBoundingClientRect().top) < 150));
+    assert.equal(await page.locator('#about h2').textContent(), 'About');
+    // A short final section can reach the document's scroll limit before its anchor reaches the header.
+    assert.ok(await page.locator('#about').evaluate(el => {
+      const {top, bottom} = el.getBoundingClientRect();
+      const atEnd = Math.abs(scrollY + innerHeight - document.documentElement.scrollHeight) < 2;
+      return top >= 0 && bottom <= innerHeight && (top < 150 || atEnd);
+    }));
     // SVG label bounds must fit inside their boxes in both themes.
     for(const project of engineering) {
       await page.goto(base+'/assets/img/project-'+project.slug+'.svg');

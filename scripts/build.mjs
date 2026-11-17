@@ -139,7 +139,7 @@ function field() {
 const featuredSlugs = ['context-engineering', 'model-drift-in-production', 'persistence-against-the-tide'];
 const featured = featuredSlugs.map(slug => bySlug.get(slug)).filter(Boolean);
 const directory = directoryItems(engineering, portfolio, fieldNotes);
-const home = homePage({engineering, art:portfolio.art, food:foodPhotos, favorites:portfolio.favorites, writing:featured.map(postRow).join('')});
+const home = homePage({engineering, art:portfolio.art, food:foodPhotos, writing:featured.map(postRow).join('')});
 
 await rm(out, { recursive: true, force: true });
 await mkdir(path.join(out, 'assets'), { recursive: true });
