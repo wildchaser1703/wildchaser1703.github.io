@@ -38,7 +38,7 @@ function projectCard(project, index) {
   </article>`;
 }
 
-export function homePage({ engineering, art, food, writing, favorites = [] }) {
+export function homePage({ engineering, art, food, writing }) {
   const selectedArt = ['Day for The Hunt','Rain','Cat'].map(title => art.find(item => item.title === title)).filter(Boolean);
   const selectedFood = [40,29,69].map(i => food[i]).filter(Boolean);
   const selectedProjects = ['agentic-insight-analyst', 'depth-estimation'].map(slug => engineering.find(project => project.slug === slug)).filter(Boolean);
@@ -49,7 +49,7 @@ export function homePage({ engineering, art, food, writing, favorites = [] }) {
     <section class="home-art" id="art" data-collection="art" aria-labelledby="art-heading"><div class="collection-heading"><h3 id="art-heading">Art</h3><a class="text-link" href="/art/">The collection ${arrow}</a></div><div class="collection-controls" hidden><button type="button" data-collection-next>More paintings ↗</button><button type="button" data-collection-pause aria-pressed="false">Pause rotation</button><span class="sr-only" role="status"></span></div><div class="home-art-grid">${selectedArt.map((item,i) => artFigure(item,i+1,'home-art')).join('')}</div></section>
     <section class="home-food" id="food" data-collection="food" aria-labelledby="food-heading"><div class="collection-heading"><h3 id="food-heading">Food</h3><a class="text-link" href="/food/">All ${food.length} photographs ${arrow}</a></div><div class="collection-controls" hidden><button type="button" data-collection-next>More photographs ↗</button><button type="button" data-collection-pause aria-pressed="false">Pause rotation</button><span class="sr-only" role="status"></span></div><div class="home-food-grid">${selectedFood.map((photo,index) => foodFigure(photo,{index:index+3,group:'home-food'})).join('')}</div></section>
   </div></section>
-  <section class="section-block home-about" id="about" aria-labelledby="about-heading"><div><h2 id="about-heading">A little more about me</h2><div class="about-socials"><a href="mailto:toshalimohapatra1@gmail.com">Email</a><a href="https://github.com/wildchaser1703">GitHub</a><a href="https://x.com/sudoher">X</a><a href="https://linkedin.com/in/toshalimohapatra">LinkedIn</a></div></div><div class="about-copy"><p>This site brings together the things I build, the ideas I write about, and the paintings and photographs I make along the way.</p><p>You’ll find engineering projects alongside small browser experiments, research notes, and quite a few meals.</p><div class="favorites-grid">${favorites.map(item=>`<div class="favorite-item"><span class="kicker">${e(item.kind)}</span><p>${e(item.title)}</p></div>`).join('')}</div></div></section>
+  <section class="section-block home-about" id="about" aria-labelledby="about-heading"><div><h2 id="about-heading">About</h2><div class="about-socials"><a href="mailto:toshalimohapatra1@gmail.com">Email</a><a href="https://github.com/wildchaser1703">GitHub</a><a href="https://x.com/sudoher">X</a><a href="https://linkedin.com/in/toshalimohapatra">LinkedIn</a></div></div><div class="about-copy"><p>I’m drawn to the systems beneath language models. I also write, paint, and make procedural art.</p></div></section>
   <script type="application/json" id="home-collections">${JSON.stringify({art,food}).replaceAll('<','\\u003c')}</script>`;
 }
 
