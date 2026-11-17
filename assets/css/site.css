@@ -370,18 +370,12 @@ em { font-style: normal; }
 .personal-collections .art-item:first-child .art-image, .personal-collections .food-photo:first-child a { aspect-ratio: 4 / 5; }
 .personal-collections .art-item figcaption { display: block; }
 .personal-collections .art-item figcaption span { display: block; text-align: left; max-width: none; margin-top: .3rem; }
-.home-about { display: grid; grid-template-columns: 1fr 1.5fr; gap: 8%; }
-.home-about h2 { max-width: 22rem; font-size: clamp(2rem, 3vw, 3rem); }
-.about-copy { max-width: 42rem; }
-.about-socials { display: flex; flex-wrap: wrap; gap: .25rem 1.4rem; margin-top: 1.5rem; font: .8rem var(--mono); }
-.about-socials a { display: inline-flex; align-items: center; min-height: 44px; }
 @media (max-width: 1000px) {
   .personal-collections { gap: 2rem; }
 }
 @media (max-width: 760px) {
-  .personal-collections, .home-about { grid-template-columns: minmax(0,1fr); gap: 3rem; }
+  .personal-collections { grid-template-columns: minmax(0,1fr); gap: 3rem; }
   .personal-section > .section-heading { margin-bottom: 2.5rem; }
-  .home-about { gap: 1.5rem; }
 }
 @media (prefers-color-scheme: dark) {
   :root { color-scheme: dark; --paper: #191a18; --ink: #f4f1e8; --muted: #bdb9ad; --line: #484940; --clay: #ffad7c; --sunlight: #292b25; --peach: #343128; --white: #20221e; --surface: #22241f; --code-surface: #262923; --code-header: #33362e; }

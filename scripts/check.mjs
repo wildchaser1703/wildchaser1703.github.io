@@ -133,11 +133,11 @@ for (const [label, $] of [['home', home], ['art', art]]) {
   }
 }
 for (const file of ['assets/art/4c6a3e30-3653-4cbc-830d-8539896ef074.jpg', 'dist/assets/art/4c6a3e30-3653-4cbc-830d-8539896ef074.jpg']) check(!await exists(file), `Removed painting file remains: ${file}`);
-const navigation = ['Projects', 'Writing', 'Art', 'Food', 'About', 'Search'];
+const navigation = ['Projects', 'Writing', 'Art', 'Food', 'Search'];
 for (const file of pages) {
   const $ = cheerio.load(await readFile(file, 'utf8'));
   const links = $('.site-header nav a');
-  check(JSON.stringify(links.map((i, el) => $(el).attr('href')).get()) === JSON.stringify(navigation.map(name => name === 'About' ? '/#about' : `/${name.toLowerCase()}/`)), `Incorrect navigation: ${path.relative(root, file)}`);
+  check(JSON.stringify(links.map((i, el) => $(el).attr('href')).get()) === JSON.stringify(navigation.map(name => `/${name.toLowerCase()}/`)), `Incorrect navigation: ${path.relative(root, file)}`);
   check(!$('.site-header nav').is('[hidden]') && $('.menu-toggle[hidden][aria-expanded="false"]').length === 1, `Navigation must work without JavaScript: ${path.relative(root, file)}`);
 }
 const sculpture = home('figure[data-sculpture]');
