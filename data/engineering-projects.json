@@ -2,74 +2,79 @@
   {
     "slug": "durable-tool-runs",
     "title": "Durable Tool Runs",
-    "homeSummary": "Leased workers, idempotent effects, and recovery after a crash.",
+    "homeSummary": "Recovering tool runs when an action succeeds but its worker disappears.",
     "kind": "LLM systems",
-    "summary": "A recoverable execution service for tool-using systems, with PostgreSQL leases, replayable events, and idempotent tool effects.",
-    "source": "https://github.com/wildchaser1703/durable-tool-runs/tree/8764073d50ef6a1ef7ee864ae92d54a984bd44ec",
-    "sourceCommit": "8764073d50ef6a1ef7ee864ae92d54a984bd44ec",
+    "summary": "A durable execution service with fenced PostgreSQL leases, sequential steps, persisted retries, and a separate idempotent HTTP provider.",
+    "source": "https://github.com/wildchaser1703/durable-tool-runs/tree/877c6b468bbb02a5bf4d4c2ed34b7b2e058a0b9c",
+    "sourceCommit": "877c6b468bbb02a5bf4d4c2ed34b7b2e058a0b9c",
     "stack": [
       "Python",
       "FastAPI",
       "PostgreSQL",
-      "SQLAlchemy",
+      "SQLite",
       "Docker Compose",
       "pytest"
     ],
     "problem": "A tool-using system can crash after an external effect commits but before it records success. Retrying blindly can produce a duplicate effect; giving up loses a recoverable run.",
     "approach": [
-      "Persist each run, its single v1 step, and an ordered event trail in PostgreSQL before a worker begins execution.",
-      "Workers claim queued or expired work with a PostgreSQL lease using row locks and SKIP LOCKED, so another worker can reclaim abandoned work.",
-      "Pass a stable idempotency key to the included record tool. A retried call returns its original effect rather than creating another one."
+      "Persist sequential steps and an event trail in PostgreSQL before execution. Each claim gets a fresh token and a renewable lease based on the database clock.",
+      "Call an independent HTTP provider that stores effects in SQLite. Reuse the same idempotency key after a lost response or worker crash.",
+      "Fence stale workers, persist retry delays, and serialize cancellation with completion. Leave unknown remote outcomes in an explicit needs_review state."
     ],
     "decisions": [
       {
-        "title": "Keep the queue in PostgreSQL",
-        "body": "Runs, leases, effects and events live in one durable store. That makes recovery inspectable and avoids an in-memory job queue disappearing with a worker."
+        "title": "Separate the effect from the runner",
+        "body": "The provider commits outside the runner transaction. A real process-kill test exercises the gap between a remote action and locally recorded success."
       },
       {
-        "title": "Make ambiguity explicit",
-        "body": "The service provides effectively-once effects only when a tool honours a stable idempotency key. It does not claim exactly-once execution for arbitrary external APIs."
+        "title": "Protect state and effects separately",
+        "body": "Claim tokens prevent stale workers from changing a replacement's state. Provider idempotency prevents duplicate effects. Neither guarantees exactly-once execution for arbitrary APIs."
       },
       {
-        "title": "Replay events in database order",
-        "body": "Run events use a monotonic database sequence, not timestamps or UUIDs, so events created in the same transaction retain causal order."
+        "title": "Keep cancellation honest",
+        "body": "Queued work can stop; an action already committed cannot be undone. Ambiguous outcomes require reconciliation instead of a false claim that nothing happened."
       }
     ],
     "limitations": [
-      "v1 runs one persisted record step; multi-step planning, dependency graphs, authentication and distributed notifications are not implemented.",
-      "The included record tool is a controlled local provider. Real third-party tools need their own idempotency contract before retries are safe.",
-      "The crash test proves recovery for this service boundary; it is not a production reliability or throughput benchmark."
+      "A local reference service with sequential record steps. No authentication, tenant isolation, general DAG planner or automated compensation.",
+      "Retry safety depends on a provider's idempotency contract and retained storage. needs_review requires operator reconciliation.",
+      "The free CPU classifier scored 4/9 on a synthetic development set, although all nine workflows completed. Execution reliability does not establish model quality.",
+      "Crash, concurrency and migration checks do not establish production throughput or availability."
     ],
     "diagram": {
       "nodes": [
-        "Create run",
-        "Lease a step",
-        "Idempotent tool",
-        "Ordered events",
-        "Recover or finish"
+        "Persist steps",
+        "Fence a claim",
+        "HTTP provider",
+        "Store effect",
+        "Replay or review"
       ],
-      "caption": "An abandoned lease is reclaimed; repeating the same idempotency key replays the original effect instead of creating a duplicate."
+      "caption": "Runner state and provider effects live in separate databases. A reclaimed attempt reuses the provider key; a stale claim cannot overwrite its replacement."
     },
     "evidence": [
       {
-        "label": "Worker lease and recovery loop",
-        "url": "https://github.com/wildchaser1703/durable-tool-runs/blob/8764073d50ef6a1ef7ee864ae92d54a984bd44ec/app/service.py"
+        "label": "Failure boundaries and measured results",
+        "url": "https://github.com/wildchaser1703/durable-tool-runs/blob/877c6b468bbb02a5bf4d4c2ed34b7b2e058a0b9c/docs/case-study.md"
       },
       {
-        "label": "PostgreSQL run and event schema",
-        "url": "https://github.com/wildchaser1703/durable-tool-runs/blob/8764073d50ef6a1ef7ee864ae92d54a984bd44ec/app/models.py"
+        "label": "Process-kill, race and migration tests",
+        "url": "https://github.com/wildchaser1703/durable-tool-runs/blob/877c6b468bbb02a5bf4d4c2ed34b7b2e058a0b9c/tests/test_recovery.py"
       },
       {
-        "label": "Crash-recovery integration tests",
-        "url": "https://github.com/wildchaser1703/durable-tool-runs/blob/8764073d50ef6a1ef7ee864ae92d54a984bd44ec/tests/test_recovery.py"
+        "label": "Local model predictions and completed runs",
+        "url": "https://github.com/wildchaser1703/durable-tool-runs/blob/877c6b468bbb02a5bf4d4c2ed34b7b2e058a0b9c/evidence/triage.json"
       },
       {
-        "label": "Local setup, guarantees and boundaries",
-        "url": "https://github.com/wildchaser1703/durable-tool-runs/blob/8764073d50ef6a1ef7ee864ae92d54a984bd44ec/README.md"
+        "label": "Verification, setup and release limits",
+        "url": "https://github.com/wildchaser1703/durable-tool-runs/blob/877c6b468bbb02a5bf4d4c2ed34b7b2e058a0b9c/docs/verification.md"
+      },
+      {
+        "label": "CI for this source revision",
+        "url": "https://github.com/wildchaser1703/durable-tool-runs/actions/runs/44146743328"
       }
     ],
-    "result": "Four PostgreSQL-backed integration tests cover a successful run, cancellation, API allowlisting, and a worker crash after an effect commits. The recovery test verifies one effect, two attempts, a reclaimed lease, and an ordered event trace.",
-    "stage": "Execution service"
+    "result": "30 automated tests passed. A killed worker recovered an independently committed effect with the same key. A live two-step workflow, browser API check and Compose teardown/startup check passed. The local model completed 9/9 workflows but classified only 4/9 tickets correctly.",
+    "stage": "Verified local reference"
   },
   {
     "slug": "agentic-insight-analyst",
