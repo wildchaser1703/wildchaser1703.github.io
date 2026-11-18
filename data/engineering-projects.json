@@ -1,5 +1,67 @@
 [
   {
+    "slug": "inference-gate",
+    "title": "Inference Gate",
+    "homeSummary": "A bounded queue for deciding how much inference work to admit.",
+    "kind": "LLM systems",
+    "summary": "An inference gateway that compares token-budget admission with a fixed concurrency limit under controlled workloads.",
+    "source": "/assets/downloads/inference-gate-45fa4c3.zip",
+    "sourceLabel": "Download source and results",
+    "sourceCommit": "45fa4c3c41611be5687faac15a73a26e8f451d7a",
+    "stack": [
+      "Python",
+      "FastAPI",
+      "PyTorch",
+      "Transformers",
+      "Docker",
+      "pytest"
+    ],
+    "problem": "An inference server can accept work faster than it can finish it. Queues grow, deadlines expire, and a fixed request count does not reflect the different sizes of prompts and expected outputs.",
+    "approach": [
+      "Count prompt tokens and reserve capacity for the requested maximum output before admitting work. Bound the queue and reject or expire requests when capacity or time runs out.",
+      "Compare token-budget admission with fixed concurrency against the same open-loop request trace. Record outcomes, latency, throughput and peak reservations.",
+      "Use a real local Transformers backend for CPU inference, a synthetic fixture for controlled overload, and a vLLM adapter intended for a future free Kaggle GPU run."
+    ],
+    "decisions": [
+      {
+        "title": "Budget for the work, not just the request",
+        "body": "Prompt and maximum output tokens determine each reservation. This is a static estimate of memory pressure, not a guarantee against GPU out-of-memory errors."
+      },
+      {
+        "title": "Hold capacity until work actually ends",
+        "body": "A client timeout does not necessarily stop inference. The gateway retains the reservation until the backend finishes; unknown remote outcomes stop new admissions until checked."
+      },
+      {
+        "title": "Measure useful work alongside latency",
+        "body": "Rejecting more requests can lower successful-request latency while reducing completed work. Reports preserve errors and completion counts, not just speed."
+      }
+    ],
+    "limitations": [
+      "The Kaggle T4/vLLM experiment did not complete: GPU compatibility, memory behavior and performance remain unverified.",
+      "One CPU trial is a functional observation, not a statistically supported speedup. The synthetic fixture is not GPU performance evidence.",
+      "Local research service: no authentication, distributed admission, streaming or production availability claim. Queued requests are in memory.",
+      "M4/MPS execution is implemented but has not been verified on the user's Mac."
+    ],
+    "diagram": {
+      "nodes": [
+        "Incoming requests",
+        "Count tokens",
+        "Bounded queue",
+        "Admission budget",
+        "Inference engine"
+      ],
+      "caption": "The gateway reserves prompt and maximum output tokens before sending accepted work to an inference engine."
+    },
+    "evidence": [
+      {
+        "label": "Download source, tests and recorded results",
+        "url": "/assets/downloads/inference-gate-45fa4c3.zip"
+      }
+    ],
+    "result": "Fifteen tests passed locally. One real CPU trial completed 12/12 requests under each policy; one synthetic overload trial showed the token budget capped reservations while rejecting more requests. GPU evaluation remains pending.",
+    "stage": "CPU-verified · GPU pending"
+  },
+  {
     "slug": "durable-tool-runs",
     "title": "Durable Tool Runs",
     "homeSummary": "Recovering tool runs when an action succeeds but its worker disappears.",
