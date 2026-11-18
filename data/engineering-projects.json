@@ -4,9 +4,9 @@
     "title": "Durable Tool Runs",
     "homeSummary": "Recovering tool runs when an action succeeds but its worker disappears.",
     "kind": "LLM systems",
-    "summary": "A durable execution service with fenced PostgreSQL leases, sequential steps, persisted retries, and a separate idempotent HTTP provider.",
-    "source": "https://github.com/wildchaser1703/durable-tool-runs/tree/877c6b468bbb02a5bf4d4c2ed34b7b2e058a0b9c",
-    "sourceCommit": "877c6b468bbb02a5bf4d4c2ed34b7b2e058a0b9c",
+    "summary": "A durable execution service for tool-using systems: deduplicated submissions, recoverable workers, and an independently persisted tool provider.",
+    "source": "https://github.com/wildchaser1703/durable-tool-runs/tree/5687022cc61c425ed88bd14ee7112414b1cdb8de",
+    "sourceCommit": "5687022cc61c425ed88bd14ee7112414b1cdb8de",
     "stack": [
       "Python",
       "FastAPI",
@@ -17,29 +17,29 @@
     ],
     "problem": "A tool-using system can crash after an external effect commits but before it records success. Retrying blindly can produce a duplicate effect; giving up loses a recoverable run.",
     "approach": [
-      "Persist sequential steps and an event trail in PostgreSQL before execution. Each claim gets a fresh token and a renewable lease based on the database clock.",
-      "Call an independent HTTP provider that stores effects in SQLite. Reuse the same idempotency key after a lost response or worker crash.",
-      "Fence stale workers, persist retry delays, and serialize cancellation with completion. Leave unknown remote outcomes in an explicit needs_review state."
+      "Persist sequential steps and an event trail in PostgreSQL. Submission keys deduplicate client retries; renewable leases and fresh claim tokens protect worker ownership.",
+      "Call a separate HTTP provider that stores effects in SQLite. Reuse the same tool key after a lost response or worker crash.",
+      "Bound retries and request sizes, stop new claims during shutdown, and reconcile uncertain outcomes only after confirming the provider's stored effect."
     ],
     "decisions": [
       {
         "title": "Separate the effect from the runner",
-        "body": "The provider commits outside the runner transaction. A real process-kill test exercises the gap between a remote action and locally recorded success."
+        "body": "The provider commits outside the runner transaction. A process-kill test exercises the gap between a remote action and locally recorded success."
       },
       {
         "title": "Protect state and effects separately",
-        "body": "Claim tokens prevent stale workers from changing a replacement's state. Provider idempotency prevents duplicate effects. Neither guarantees exactly-once execution for arbitrary APIs."
+        "body": "Submission keys deduplicate requests, claim tokens fence stale workers, and provider keys protect effects. Each mechanism addresses a different failure boundary."
       },
       {
-        "title": "Keep cancellation honest",
-        "body": "Queued work can stop; an action already committed cannot be undone. Ambiguous outcomes require reconciliation instead of a false claim that nothing happened."
+        "title": "Keep recovery explicit",
+        "body": "Cancellation cannot undo a committed action. Reconciliation verifies the original key and payload before resuming work; missing or conflicting effects stay open for review."
       }
     ],
     "limitations": [
-      "A local reference service with sequential record steps. No authentication, tenant isolation, general DAG planner or automated compensation.",
-      "Retry safety depends on a provider's idempotency contract and retained storage. needs_review requires operator reconciliation.",
-      "The free CPU classifier scored 4/9 on a synthetic development set, although all nine workflows completed. Execution reliability does not establish model quality.",
-      "Crash, concurrency and migration checks do not establish production throughput or availability."
+      "A single-operator reference service with optional authentication, bounded API behavior and non-root containers. It does not provide tenant isolation, arbitrary tool adapters or automatic compensation.",
+      "Retry safety depends on the provider's idempotency contract and retained storage. Unconfirmed effects require operator review.",
+      "The free CPU model classified 24/30 held-out synthetic tickets correctly, including errors on two instruction-override cases. All 30 workflows completed; classification still needs human review.",
+      "The concurrency and backup checks are bounded local trials, not production capacity or availability guarantees."
     ],
     "diagram": {
       "nodes": [
@@ -53,28 +53,28 @@
     },
     "evidence": [
       {
-        "label": "Failure boundaries and measured results",
-        "url": "https://github.com/wildchaser1703/durable-tool-runs/blob/877c6b468bbb02a5bf4d4c2ed34b7b2e058a0b9c/docs/case-study.md"
+        "label": "Hardening decisions and measured results",
+        "url": "https://github.com/wildchaser1703/durable-tool-runs/blob/5687022cc61c425ed88bd14ee7112414b1cdb8de/docs/hardening.md"
       },
       {
         "label": "Process-kill, race and migration tests",
-        "url": "https://github.com/wildchaser1703/durable-tool-runs/blob/877c6b468bbb02a5bf4d4c2ed34b7b2e058a0b9c/tests/test_recovery.py"
+        "url": "https://github.com/wildchaser1703/durable-tool-runs/blob/5687022cc61c425ed88bd14ee7112414b1cdb8de/tests/test_recovery.py"
       },
       {
-        "label": "Local model predictions and completed runs",
-        "url": "https://github.com/wildchaser1703/durable-tool-runs/blob/877c6b468bbb02a5bf4d4c2ed34b7b2e058a0b9c/evidence/triage.json"
+        "label": "Submission, authentication and reconciliation tests",
+        "url": "https://github.com/wildchaser1703/durable-tool-runs/blob/5687022cc61c425ed88bd14ee7112414b1cdb8de/tests/test_hardening.py"
       },
       {
-        "label": "Verification, setup and release limits",
-        "url": "https://github.com/wildchaser1703/durable-tool-runs/blob/877c6b468bbb02a5bf4d4c2ed34b7b2e058a0b9c/docs/verification.md"
+        "label": "Held-out model predictions and completed runs",
+        "url": "https://github.com/wildchaser1703/durable-tool-runs/blob/5687022cc61c425ed88bd14ee7112414b1cdb8de/evidence/triage-current.json"
       },
       {
         "label": "CI for this source revision",
-        "url": "https://github.com/wildchaser1703/durable-tool-runs/actions/runs/44146743328"
+        "url": "https://github.com/wildchaser1703/durable-tool-runs/actions/runs/44153538770"
       }
     ],
-    "result": "30 automated tests passed. A killed worker recovered an independently committed effect with the same key. A live two-step workflow, browser API check and Compose teardown/startup check passed. The local model completed 9/9 workflows but classified only 4/9 tickets correctly.",
-    "stage": "Verified local reference"
+    "result": "45 automated tests passed. In a concurrency check, 100 submissions produced 50 runs and 100 intended effects without duplicates. Backup restoration and desktop/mobile API checks passed. The local model completed all 30 evaluation workflows and classified 24 tickets correctly (macro-F1: 0.803).",
+    "stage": "Hardened reference service"
   },
   {
     "slug": "agentic-insight-analyst",
