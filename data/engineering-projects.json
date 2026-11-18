@@ -1,5 +1,82 @@
 [
   {
+    "slug": "durable-tool-runs",
+    "title": "Durable Tool Runs",
+    "homeSummary": "Recovering tool runs when an action succeeds but its worker disappears.",
+    "kind": "LLM systems",
+    "summary": "A durable execution service for tool-using systems: deduplicated submissions, recoverable workers, and an independently persisted tool provider.",
+    "source": "https://github.com/wildchaser1703/durable-tool-runs/tree/5687022cc61c425ed88bd14ee7112414b1cdb8de",
+    "sourceCommit": "5687022cc61c425ed88bd14ee7112414b1cdb8de",
+    "stack": [
+      "Python",
+      "FastAPI",
+      "PostgreSQL",
+      "SQLite",
+      "Docker Compose",
+      "pytest"
+    ],
+    "problem": "A tool-using system can crash after an external effect commits but before it records success. Retrying blindly can produce a duplicate effect; giving up loses a recoverable run.",
+    "approach": [
+      "Persist sequential steps and an event trail in PostgreSQL. Submission keys deduplicate client retries; renewable leases and fresh claim tokens protect worker ownership.",
+      "Call a separate HTTP provider that stores effects in SQLite. Reuse the same tool key after a lost response or worker crash.",
+      "Bound retries and request sizes, stop new claims during shutdown, and reconcile uncertain outcomes only after confirming the provider's stored effect."
+    ],
+    "decisions": [
+      {
+        "title": "Separate the effect from the runner",
+        "body": "The provider commits outside the runner transaction. A process-kill test exercises the gap between a remote action and locally recorded success."
+      },
+      {
+        "title": "Protect state and effects separately",
+        "body": "Submission keys deduplicate requests, claim tokens fence stale workers, and provider keys protect effects. Each mechanism addresses a different failure boundary."
+      },
+      {
+        "title": "Keep recovery explicit",
+        "body": "Cancellation cannot undo a committed action. Reconciliation verifies the original key and payload before resuming work; missing or conflicting effects stay open for review."
+      }
+    ],
+    "limitations": [
+      "A single-operator reference service with optional authentication, bounded API behavior and non-root containers. It does not provide tenant isolation, arbitrary tool adapters or automatic compensation.",
+      "Retry safety depends on the provider's idempotency contract and retained storage. Unconfirmed effects require operator review.",
+      "The free CPU model classified 24/30 held-out synthetic tickets correctly, including errors on two instruction-override cases. All 30 workflows completed; classification still needs human review.",
+      "The concurrency and backup checks are bounded local trials, not production capacity or availability guarantees."
+    ],
+    "diagram": {
+      "nodes": [
+        "Persist steps",
+        "Fence a claim",
+        "HTTP provider",
+        "Store effect",
+        "Replay or review"
+      ],
+      "caption": "Runner state and provider effects live in separate databases. A reclaimed attempt reuses the provider key; a stale claim cannot overwrite its replacement."
+    },
+    "evidence": [
+      {
+        "label": "Hardening decisions and measured results",
+        "url": "https://github.com/wildchaser1703/durable-tool-runs/blob/5687022cc61c425ed88bd14ee7112414b1cdb8de/docs/hardening.md"
+      },
+      {
+        "label": "Process-kill, race and migration tests",
+        "url": "https://github.com/wildchaser1703/durable-tool-runs/blob/5687022cc61c425ed88bd14ee7112414b1cdb8de/tests/test_recovery.py"
+      },
+      {
+        "label": "Submission, authentication and reconciliation tests",
+        "url": "https://github.com/wildchaser1703/durable-tool-runs/blob/5687022cc61c425ed88bd14ee7112414b1cdb8de/tests/test_hardening.py"
+      },
+      {
+        "label": "Held-out model predictions and completed runs",
+        "url": "https://github.com/wildchaser1703/durable-tool-runs/blob/5687022cc61c425ed88bd14ee7112414b1cdb8de/evidence/triage-current.json"
+      },
+      {
+        "label": "CI for this source revision",
+        "url": "https://github.com/wildchaser1703/durable-tool-runs/actions/runs/44153538770"
+      }
+    ],
+    "result": "45 automated tests passed. In a concurrency check, 100 submissions produced 50 runs and 100 intended effects without duplicates. Backup restoration and desktop/mobile API checks passed. The local model completed all 30 evaluation workflows and classified 24 tickets correctly (macro-F1: 0.803).",
+    "stage": "Hardened reference service"
+  },
+  {
     "slug": "agentic-insight-analyst",
     "title": "Agentic Insight Analyst",
     "homeSummary": "Tool execution, working memory, and stopping rules.",
