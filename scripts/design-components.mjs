@@ -11,7 +11,7 @@ export function navigation(mark) {
 }
 
 export function siteFooter() {
-  return `<footer class="site-footer"><div class="footer-contact"><p class="kicker">Get in touch</p><a href="mailto:toshalimohapatra1@gmail.com">Say hello ${arrow}</a></div><div class="footer-links" aria-label="Social profiles"><a href="https://github.com/wildchaser1703">GitHub ${arrow}</a><a href="https://x.com/sudoher">X ${arrow}</a><a href="https://linkedin.com/in/toshalimohapatra">LinkedIn ${arrow}</a><a href="https://substack.com/@toshalimohapatra">Substack ${arrow}</a></div><div class="footer-bottom"><span>Toshali Mohapatra</span><small>© ${new Date().getUTCFullYear()}</small><a href="#main">Back to top ↑</a></div></footer>`;
+  return `<footer class="site-footer"><div class="footer-contact"><p class="kicker">Get in touch</p><a href="mailto:toshalimohapatra1@gmail.com">Say hello ${arrow}</a></div><div class="footer-links" aria-label="Social profiles"><a href="https://github.com/wildchaser1703">GitHub ${arrow}</a><a href="https://x.com/sudoher">X ${arrow}</a><a href="https://linkedin.com/in/toshalimohapatra">LinkedIn ${arrow}</a><a href="https://substack.com/@toshalimohapatra">Substack ${arrow}</a><a href="https://www.youtube.com/@toshalimohapatra">YouTube ${arrow}</a></div><div class="footer-bottom"><span>Toshali Mohapatra</span><small>© ${new Date().getUTCFullYear()}</small><a href="#main">Back to top ↑</a></div></footer>`;
 }
 
 export function artFigure(item, index = 0, group = 'art') {

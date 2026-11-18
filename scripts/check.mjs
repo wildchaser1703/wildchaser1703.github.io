@@ -125,7 +125,7 @@ check(home('.hero-lede').text().trim() === 'I build the machinery around languag
 check(home('.hero-detail').text().trim() === 'Where an answer comes from, what a system does, and what happens when it fails.', 'Homepage introduction needs its supporting question');
 check(home('.writing-intro').text().includes('Thinking in public'), 'Homepage writing needs its narrative connection');
 check(home('.personal-section h2').text().trim() === 'Other ways of paying attention.', 'Creative work should not be split off as an afterthought');
-check(home('.site-footer .footer-links a').length === 4 && home('.site-footer .footer-links a').map((index, element) => home(element).attr('href')).get().every(href => /^https:\/\//.test(href)), 'Footer should contain only social links');
+check(home('.site-footer .footer-links a').length === 5 && home('.site-footer .footer-links a').map((index, element) => home(element).attr('href')).get().every(href => /^https:\/\//.test(href)), 'Footer should contain only social links');
 check(home('.home-art-grid .art-item').length === 3 && home('.home-art-grid a[data-gallery="home-art"]').length === 3, 'Homepage must show three selected artworks in its own gallery');
 check(portfolio.art.length === 10 && art('.art-item').length === 10 && art('a[data-gallery="art"]').length === 10, 'Full art collection must contain ten works');
 check(!portfolio.art.some(item => /krishna|statue of liberty/i.test(item.title)), 'Removed artwork remains in portfolio data');
