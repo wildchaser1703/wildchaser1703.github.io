@@ -149,8 +149,8 @@ const sculpture = home('figure[data-sculpture]');
 check(sculpture.length === 1 && sculpture.attr('data-renderer') === 'static' && sculpture.attr('data-paused') === 'true' && sculpture.attr('data-variant') === '0', 'Sculpture must start as a static poster');
 check(sculpture.find('img.sculpture-poster:not([hidden])').length === 1 && sculpture.find('[data-sculpture-next]').length === 1 && sculpture.find('[data-sculpture-toggle]').length === 1, 'Missing sculpture poster or controls');
 const selectedEngineering = engineering.filter(item => !item.archived);
-check(selectedEngineering.length === 6, 'Expected six curated ML/AI projects');
-check(directory('.directory-row[data-kind]').length === 6 && directory('.directory-row[hidden]').length === 0, 'Selected directory must show six projects');
+check(selectedEngineering.length === 7, 'Expected seven curated ML/AI projects');
+check(directory('.directory-row[data-kind]').length === 7 && directory('.directory-row[hidden]').length === 0, 'Selected directory must show seven projects');
 const kinds = ['All', 'LLM systems', 'Machine learning'];
 check(JSON.stringify(directory('.directory-filters button[data-filter]').map((i, el) => directory(el).attr('data-filter')).get()) === JSON.stringify(kinds), 'Incorrect directory filters');
 for (const kind of kinds) check(directory(`button[data-filter="${kind}"]`).attr('aria-pressed') === String(kind === 'All'), `Incorrect initial filter state: ${kind}`);
@@ -168,7 +168,7 @@ for (const item of expectedItems) {
 }
 check(directory('a[href="/projects/retail-demand-forecasting-system/"]').length === 1, 'Keep forecasting visible as a workbench');
 for (const project of selectedEngineering) check(directory(`a[href="/projects/${project.slug}/"]`).text().includes(project.stage), `Missing readiness label: ${project.slug}`);
-const featuredProjects = ['durable-tool-runs'];
+const featuredProjects = ['durable-tool-runs', 'inference-gate'];
 check(home('.selected-project').length === featuredProjects.length, 'Homepage should feature the current engineering project');
 for (const slug of featuredProjects) check(home(`.selected-project a[href="/projects/${slug}/"]`).length > 0, `Missing selected AI project: ${slug}`);
 for (const project of engineering) {
@@ -197,6 +197,6 @@ if (!accessibleAnchors || !focusableBlocks) failures.push('No accessible heading
 if (failures.length) { console.error(failures.join('\n')); process.exitCode = 1; }
 else {
   console.log(`Checked ${pages.length} pages, ${checked} internal references, ${Object.keys(legacy).length} published posts and their fragments.`);
-  console.log('Verified 19 source-byte hashes, redesigned navigation, 6 selected projects, 9 archived entries, 6 ML/AI case studies, 3 selected / 10 full artworks, and 3 selected / 76 full food photos.');
+  console.log('Verified 19 source-byte hashes, redesigned navigation, 7 selected projects, 9 archived entries, 7 ML/AI case studies, 3 selected / 10 full artworks, and 3 selected / 76 full food photos.');
   console.log(`Verified ${accessibleAnchors} named heading permalinks and ${focusableBlocks} keyboard-focusable code/math blocks.`);
 }

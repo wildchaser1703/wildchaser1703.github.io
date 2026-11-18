@@ -144,7 +144,7 @@ const home = homePage({engineering, art:portfolio.art, food:foodPhotos, writing:
 await rm(out, { recursive: true, force: true });
 await mkdir(path.join(out, 'assets'), { recursive: true });
 await generatePosters(new URL('../dist/assets/img/', import.meta.url));
-for (const directory of ['art', 'img']) await cp(path.join('assets', directory), path.join(out, 'assets', directory), { recursive: true });
+for (const directory of ['art', 'img', 'downloads']) await cp(path.join('assets', directory), path.join(out, 'assets', directory), { recursive: true });
 // Keep the original logo source; the interface only needs a small raster.
 await sharp('assets/img/flow-mark.png').resize(128, 128).png({ compressionLevel: 9 }).toFile(path.join(out, 'assets/img/flow-mark.png'));
 await mkdir(path.join(out, 'assets', 'fonts'), { recursive: true });
