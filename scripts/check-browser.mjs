@@ -77,7 +77,7 @@ async function screenshot(page, name, fullPage = true) {
 async function checkNavigation(page, width) {
   const nav = page.getByRole('navigation', { name: 'Main navigation', includeHidden: true });
   const menu = page.locator('.menu-toggle');
-  assert.deepEqual(await nav.locator('a').evaluateAll(links => links.map(link => link.getAttribute('href'))), ['/projects/', '/writing/', '/art/', '/food/', '/search/']);
+  assert.deepEqual(await nav.locator('a').evaluateAll(links => links.map(link => link.getAttribute('href'))), ['/projects/', '/writing/', '/art/', '/food/', '/just-because/', '/search/']);
   if (width <= 760) {
     await menu.waitFor({ state: 'visible' });
     await nav.waitFor({ state: 'hidden' });
@@ -189,7 +189,7 @@ try {
     assert.match(await response.text(), /data-preserved="true"/, `Legacy body: ${slug}`);
   }
   const viewports = [{ width: 1440, height: 900, name: 'desktop' }, { width: 390, height: 844, name: 'mobile' }, { width: 320, height: 800, name: 'narrow' }, { width: 844, height: 390, name: 'landscape' }];
-  const routes = ['/', '/projects/', '/projects/archive/', '/art/', '/food/', '/about/', '/writing/', '/archives/', '/categories/', '/tags/', '/posts/context-engineering/', '/posts/llms-101/', '/notes/art-and-science-of-paper/', '/projects/counter/', '/studies/what-makes-a-wait-feel-long/', ...engineering.map(item => `/projects/${item.slug}/`)];
+  const routes = ['/', '/projects/', '/projects/archive/', '/art/', '/food/', '/just-because/', '/just-because/indian-art/', '/just-because/indian-art/pattachitra/', '/about/', '/writing/', '/archives/', '/categories/', '/tags/', '/posts/context-engineering/', '/posts/llms-101/', '/notes/art-and-science-of-paper/', '/projects/counter/', '/studies/what-makes-a-wait-feel-long/', ...engineering.map(item => `/projects/${item.slug}/`)];
   const captures = new Map([['/', 'home'], ['/projects/', 'projects'], ['/art/', 'art'], ['/food/', 'food'], ['/posts/context-engineering/', 'article']]);
   for (const { width, height, name } of viewports) {
     const page = await browser.newPage({ viewport: { width, height }, reducedMotion: 'reduce' });

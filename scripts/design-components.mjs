@@ -7,7 +7,7 @@ const previewUrl = item => `/assets/img/project-${item.slug}.svg`;
 export const projectUrl = item => item.route || `/projects/${item.slug}/`;
 
 export function navigation(mark) {
-  return `<a class="skip-link" href="#main">Skip to content</a><header class="site-header"><a class="brand" href="/" aria-label="Toshali Mohapatra, home"><span class="brand-mark" aria-hidden="true">${mark}</span><span>Toshali Mohapatra</span></a><button type="button" class="menu-toggle" aria-expanded="false" aria-controls="main-navigation" hidden>Menu <span aria-hidden="true">+</span></button><nav id="main-navigation" aria-label="Main navigation">${[['Projects','/projects/'],['Writing','/writing/'],['Art','/art/'],['Food','/food/']].map(([name,url]) => `<a href="${url}">${name}</a>`).join('')}<a class="search-link" href="/search/" aria-label="Search the site">Search ${arrow}</a></nav></header>`;
+  return `<a class="skip-link" href="#main">Skip to content</a><header class="site-header"><a class="brand" href="/" aria-label="Toshali Mohapatra, home"><span class="brand-mark" aria-hidden="true">${mark}</span><span>Toshali Mohapatra</span></a><button type="button" class="menu-toggle" aria-expanded="false" aria-controls="main-navigation" hidden>Menu <span aria-hidden="true">+</span></button><nav id="main-navigation" aria-label="Main navigation">${[['Projects','/projects/'],['Writing','/writing/'],['Art','/art/'],['Food','/food/'],['Just Because','/just-because/']].map(([name,url]) => `<a href="${url}">${name}</a>`).join('')}<a class="search-link" href="/search/" aria-label="Search the site">Search ${arrow}</a></nav></header>`;
 }
 
 export function siteFooter() {

@@ -409,3 +409,47 @@ em { font-style: normal; }
   .site-header, .site-footer, .hero-actions, .sculpture-controls, .article-toc { display: none; }
   body { background: white; color: black; }
 }
+/* Just Because — a home for independent projects and field notes. */
+.curiosity-page { max-width: 1320px; margin: 0 auto; padding: 3rem var(--gutter) 7rem; }
+.curiosity-page .back-link { display: inline-block; margin-bottom: 3rem; }
+.curiosity-hero { padding: clamp(4rem, 9vw, 9rem) 0; border-bottom: 1px solid var(--line); }
+.curiosity-hero h1, .atlas-hero h1, .tradition-hero h1 { margin: 1rem 0 2rem; font-size: clamp(4rem, 10vw, 10rem); font-weight: 400; letter-spacing: -.07em; line-height: .91; }
+.curiosity-hero h1 em, .atlas-hero h1 em, .tradition-hero h1 span { color: var(--clay); font-family: Georgia, serif; font-weight: 400; }
+.curiosity-hero > p:not(.kicker), .atlas-hero > div > p:first-child { max-width: 31rem; font-size: clamp(1.2rem, 2vw, 1.6rem); line-height: 1.5; }
+.curiosity-heading, .atlas-section-head { padding: 5rem 0 2rem; }
+.curiosity-heading h2, .atlas-section-head h2, .atlas-method h2, .tradition-body h2 { font-size: clamp(2rem, 4vw, 4rem); letter-spacing: -.045em; line-height: 1.08; font-weight: 400; }
+.curiosity-heading > p:last-child, .atlas-section-head > p:last-child { max-width: 42rem; line-height: 1.6; }
+.curiosity-projects { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 1.5rem; }
+.curiosity-card { min-height: 19rem; border: 1px solid var(--line); padding: clamp(1.5rem, 3vw, 3rem); display: flex; flex-direction: column; align-items: flex-start; }
+.curiosity-card h3 { font-size: clamp(2rem, 3vw, 3rem); font-weight: 400; letter-spacing: -.05em; margin: 2rem 0 1rem; }
+.curiosity-card h3 a, .atlas-row h3 a { text-decoration: none; }
+.curiosity-card p:not(.kicker) { max-width: 28rem; line-height: 1.6; }
+.curiosity-card .text-link { margin-top: auto; padding-top: 2rem; }
+.atlas-hero { display: grid; grid-template-columns: 1.2fr .8fr; align-items: end; gap: 3rem; padding: 3rem 0 5rem; border-bottom: 1px solid var(--line); }
+.atlas-hero h1 { font-size: clamp(4rem, 8.5vw, 8.5rem); margin-bottom: 0; }
+.atlas-note { font-size: .9rem; line-height: 1.6; opacity: .78; }
+.atlas-row { display: grid; grid-template-columns: 4rem minmax(0,1fr) 8rem 10rem; align-items: center; gap: 1rem; padding: 1.7rem 0; border-top: 1px solid var(--line); }
+.atlas-row:last-child { border-bottom: 1px solid var(--line); }
+.atlas-number, .atlas-medium, .atlas-status, .atlas-link { font: .75rem var(--mono); }
+.atlas-row h3 { margin: 0; font-size: clamp(1.4rem,2vw,2rem); font-weight: 400; letter-spacing: -.04em; }
+.atlas-row p { margin: .4rem 0 0; font-size: .9rem; }
+.atlas-status { opacity: .7; }
+.atlas-method { margin-top: 6rem; border-top: 1px solid var(--line); padding: 3rem 0; }
+.atlas-method p:not(.kicker) { max-width: 50rem; line-height: 1.7; }
+.tradition-hero { padding: 3rem 0 5rem; border-bottom: 1px solid var(--line); }
+.tradition-hero h1 { overflow-wrap: anywhere; }
+.tradition-lede { font-size: clamp(1.25rem,2vw,1.7rem); max-width: 36rem; }
+.tradition-grid { display: grid; grid-template-columns: minmax(12rem, .6fr) minmax(0, 1.4fr); gap: clamp(3rem,8vw,8rem); padding-top: 4rem; }
+.tradition-grid dt { font: .72rem var(--mono); margin-top: 1.5rem; opacity: .7; }
+.tradition-grid dd { margin: .4rem 0; line-height: 1.5; }
+.tradition-body section { padding-bottom: 4rem; }
+.tradition-body p:not(.kicker), .source-list { max-width: 45rem; line-height: 1.75; }
+.source-list li { margin-bottom: 1rem; }
+@media (max-width: 760px) {
+  .curiosity-projects, .atlas-hero, .tradition-grid { grid-template-columns: 1fr; }
+  .curiosity-hero h1, .atlas-hero h1, .tradition-hero h1 { font-size: clamp(3.5rem, 14vw, 6rem); }
+  .atlas-row { grid-template-columns: 2rem minmax(0,1fr) auto; }
+  .atlas-medium { display: none; }
+  .atlas-status, .atlas-link { text-align: right; max-width: 7rem; }
+  .tradition-grid { gap: 2.5rem; }
+}

@@ -138,13 +138,20 @@ for (const [label, $] of [['home', home], ['art', art]]) {
   }
 }
 for (const file of ['assets/art/4c6a3e30-3653-4cbc-830d-8539896ef074.jpg', 'dist/assets/art/4c6a3e30-3653-4cbc-830d-8539896ef074.jpg']) check(!await exists(file), `Removed painting file remains: ${file}`);
-const navigation = ['Projects', 'Writing', 'Art', 'Food', 'Search'];
+const navigation = ['Projects', 'Writing', 'Art', 'Food', 'Just-Because', 'Search'];
 for (const file of pages) {
   const $ = cheerio.load(await readFile(file, 'utf8'));
   const links = $('.site-header nav a');
   check(JSON.stringify(links.map((i, el) => $(el).attr('href')).get()) === JSON.stringify(navigation.map(name => `/${name.toLowerCase()}/`)), `Incorrect navigation: ${path.relative(root, file)}`);
   check(!$('.site-header nav').is('[hidden]') && $('.menu-toggle[hidden][aria-expanded="false"]').length === 1, `Navigation must work without JavaScript: ${path.relative(root, file)}`);
 }
+const curiosities = cheerio.load(await readFile(path.join(root, 'just-because/index.html'), 'utf8'));
+const atlas = cheerio.load(await readFile(path.join(root, 'just-because/indian-art/index.html'), 'utf8'));
+const pattachitra = cheerio.load(await readFile(path.join(root, 'just-because/indian-art/pattachitra/index.html'), 'utf8'));
+check(curiosities('main a[href="/just-because/indian-art/"]').length > 0, 'Just Because must link to the atlas');
+check(atlas('main a[href="/just-because/indian-art/pattachitra/"]').length > 0, 'Atlas must link to the Pattachitra field note');
+check(pattachitra('main a[href="https://odisha.gov.in/en/odisha-tourism/patta-chitra"]').length === 1, 'Field note must cite its process source');
+check(pattachitra('main a[href="https://www.ngv.vic.gov.au/explore/collection/work/155146/"]').length > 0, 'Field note must link to its object record');
 const sculpture = home('figure[data-sculpture]');
 check(sculpture.length === 1 && sculpture.attr('data-renderer') === 'static' && sculpture.attr('data-paused') === 'true' && sculpture.attr('data-variant') === '0', 'Sculpture must start as a static poster');
 check(sculpture.find('img.sculpture-poster:not([hidden])').length === 1 && sculpture.find('[data-sculpture-next]').length === 1 && sculpture.find('[data-sculpture-toggle]').length === 1, 'Missing sculpture poster or controls');

@@ -11,6 +11,7 @@ import * as cheerio from 'cheerio';
 import sharp from 'sharp';
 import { arrow, navigation, siteFooter, homePage, directoryItems, directoryPage, engineeringPage, diagramSvg, artPage, foodPage } from './design-components.mjs';
 import { generatePosters } from './sculpture-poster.mjs';
+import { justBecausePage, atlasPage, pattachitraPage } from './just-because.mjs';
 
 const root = process.cwd();
 const out = path.join(root, 'dist');
@@ -24,7 +25,7 @@ const esc = value => String(value ?? '').replaceAll('&', '&amp;').replaceAll('<'
 const slugify = value => String(value).toLowerCase().trim().replace(/[^\p{L}\p{N}]+/gu, '-').replace(/^-|-$/g, '');
 const sha = value => createHash('sha256').update(value).digest('hex');
 // A release must never reuse cached styles or modules from a different build.
-const assetInputs = ['package-lock.json', 'scripts/build.mjs', 'scripts/design-components.mjs', 'assets/css/site.css', ...(await readdir('assets/js')).filter(file => file.endsWith('.js')).sort().map(file => `assets/js/${file}`)];
+const assetInputs = ['package-lock.json', 'scripts/build.mjs', 'scripts/design-components.mjs', 'scripts/just-because.mjs', 'assets/css/site.css', ...(await readdir('assets/js')).filter(file => file.endsWith('.js')).sort().map(file => `assets/js/${file}`)];
 const assetVersion = sha(Buffer.concat(await Promise.all(assetInputs.map(file => readFile(file))))).slice(0, 16);
 const versionAssets = html => html
   .replace(/((?:src|href)="\/assets\/(?:css|js)\/[^"?]+\.(?:css|js))"/g, `$1?v=${assetVersion}"`)
@@ -179,6 +180,9 @@ await writePage('/', page('Home', home, {description:'Systems around language mo
 await writePage('/projects/', page('Projects', directoryPage(directory.filter(item => engineering.some(project => project.slug === item.slug && !project.archived))), {url:'/projects/'}));
 await writePage('/projects/archive/', page('Project archive', directoryPage(directory.filter(item => !engineering.some(project => project.slug === item.slug && !project.archived)), true), {url:'/projects/archive/'}));
 await writePage('/art/', page('Art', artPage(portfolio.art), {url:'/art/'}));
+await writePage('/just-because/', page('Just Because', justBecausePage(), {url:'/just-because/',description:'A collection of personal projects made from curiosity.'}));
+await writePage('/just-because/indian-art/', page('Indian Art Atlas', atlasPage(), {url:'/just-because/indian-art/',description:'An evolving index of visual arts and crafts.'}));
+await writePage('/just-because/indian-art/pattachitra/', page('Pattachitra · Indian Art Atlas', pattachitraPage(), {url:'/just-because/indian-art/pattachitra/',description:'A sourced field note on Odisha Pattachitra.'}));
 for (const project of engineering) await writePage(`/projects/${project.slug}/`, page(project.title, engineeringPage(project), {url:`/projects/${project.slug}/`,description:project.summary}));
 
 if (!Array.isArray(foodPhotos)) throw new Error('Food photos must be an array.');
@@ -277,7 +281,7 @@ await writePage('/about/', page('About', '<section class="inner-page"><h1>About 
 
 const feedEntries = posts.map(post => `<entry><title>${esc(post.title)}</title><id>https://wildchaser1703.github.io${postUrl(post)}</id><link href="https://wildchaser1703.github.io${postUrl(post)}"/><updated>${post.date.toISOString()}</updated><content type="html">${esc(post.html)}</content></entry>`).join('');
 await writeFile(path.join(out, 'feed.xml'), `<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom"><title>Toshali Mohapatra</title><id>https://wildchaser1703.github.io/</id><link href="https://wildchaser1703.github.io/feed.xml" rel="self"/><updated>${(posts[0]?.date || new Date(0)).toISOString()}</updated>${feedEntries}</feed>`);
-const paths = ['/', '/projects/', '/art/', '/about/', ...engineering.map(item=>`/projects/${item.slug}/`), '/food/', '/writing/', '/archives/', '/categories/', '/tags/', '/search/', '/studies/', '/studies/what-makes-a-wait-feel-long/', ...portfolio.projects.map(project => `/projects/${project.slug}/`), ...fieldNotes.map(note => `/notes/${note.slug}/`), ...posts.map(postUrl), ...[...taxonomy.categories.keys()].map(slug => `/categories/${slug}/`), ...[...taxonomy.tags.keys()].map(slug => `/tags/${slug}/`)];
+const paths = ['/', '/projects/', '/art/', '/about/', '/just-because/', '/just-because/indian-art/', '/just-because/indian-art/pattachitra/', ...engineering.map(item=>`/projects/${item.slug}/`), '/food/', '/writing/', '/archives/', '/categories/', '/tags/', '/search/', '/studies/', '/studies/what-makes-a-wait-feel-long/', ...portfolio.projects.map(project => `/projects/${project.slug}/`), ...fieldNotes.map(note => `/notes/${note.slug}/`), ...posts.map(postUrl), ...[...taxonomy.categories.keys()].map(slug => `/categories/${slug}/`), ...[...taxonomy.tags.keys()].map(slug => `/tags/${slug}/`)];
 await writeFile(path.join(out, 'sitemap.xml'), `<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${paths.map(url => `<url><loc>https://wildchaser1703.github.io${esc(url)}</loc></url>`).join('')}</urlset>`);
 await writeFile(path.join(out, 'robots.txt'), 'User-agent: *\nAllow: /\nSitemap: https://wildchaser1703.github.io/sitemap.xml\n');
 await writeFile(path.join(out, '404.html'), page('Not found', `<section class="inner-page"><p class="kicker">404 / LOST IN THE MARGINS</p><h1>That page isn’t here.</h1><a class="button" href="/">Back to the start ↗</a></section>`, { url: '/404.html' }));
