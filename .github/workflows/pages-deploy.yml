@@ -62,6 +62,17 @@ jobs:
 
       - name: Test browser interactions
         run: npm run test:browser
+        env:
+          SCREENSHOT_DIR: ${{ runner.temp }}/site-screenshots
+
+      - name: Save browser screenshots for review
+        if: github.event_name == 'pull_request' && always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: browser-screenshots
+          path: ${{ runner.temp }}/site-screenshots
+          if-no-files-found: ignore
+          retention-days: 7
 
       - name: Upload site artifact
         if: github.event_name != 'pull_request'
