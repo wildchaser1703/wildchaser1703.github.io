@@ -428,6 +428,9 @@ em { font-style: normal; }
 .atlas-hero { display: grid; grid-template-columns: 1.2fr .8fr; align-items: end; gap: 3rem; padding: 3rem 0 5rem; border-bottom: 1px solid var(--line); }
 .atlas-hero h1 { font-size: clamp(4rem, 8.5vw, 8.5rem); margin-bottom: 0; }
 .atlas-note { font-size: .9rem; line-height: 1.6; opacity: .78; }
+.atlas-featured-work { max-width: 960px; margin: 4rem auto 0; }
+.atlas-featured-work img { display: block; width: 100%; height: auto; }
+.atlas-featured-work figcaption { margin-top: 1rem; max-width: 55rem; font: .8rem/1.7 var(--mono); }
 .atlas-row { display: grid; grid-template-columns: 4rem minmax(0,1fr) 8rem 10rem; align-items: center; gap: 1rem; padding: 1.7rem 0; border-top: 1px solid var(--line); }
 .atlas-row:last-child { border-bottom: 1px solid var(--line); }
 .atlas-number, .atlas-medium, .atlas-status, .atlas-link { font: .75rem var(--mono); }

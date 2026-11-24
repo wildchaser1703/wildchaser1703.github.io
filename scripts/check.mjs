@@ -150,6 +150,8 @@ const atlas = cheerio.load(await readFile(path.join(root, 'just-because/indian-a
 const pattachitra = cheerio.load(await readFile(path.join(root, 'just-because/indian-art/pattachitra/index.html'), 'utf8'));
 check(curiosities('main a[href="/just-because/indian-art/"]').length > 0, 'Just Because must link to the atlas');
 check(atlas('main a[href="/just-because/indian-art/pattachitra/"]').length > 0, 'Atlas must link to the Pattachitra field note');
+check(atlas('.atlas-featured-work img[alt][width][height]').length === 1 && atlas('.atlas-featured-work figcaption a[href="https://collections.lacma.org/object/39937"]').length === 1, 'Atlas featured work needs an accessible image and museum record');
+check(pattachitra('.atlas-featured-work figcaption').text().includes('regional context'), 'Puri painting must be clearly labelled as regional context');
 check(pattachitra('main a[href="https://odisha.gov.in/en/odisha-tourism/patta-chitra"]').length === 1, 'Field note must cite its process source');
 check(pattachitra('main a[href="https://www.ngv.vic.gov.au/explore/collection/work/155146/"]').length > 0, 'Field note must link to its object record');
 const sculpture = home('figure[data-sculpture]');
