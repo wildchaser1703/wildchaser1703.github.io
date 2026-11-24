@@ -189,8 +189,9 @@ try {
     assert.match(await response.text(), /data-preserved="true"/, `Legacy body: ${slug}`);
   }
   const viewports = [{ width: 1440, height: 900, name: 'desktop' }, { width: 390, height: 844, name: 'mobile' }, { width: 320, height: 800, name: 'narrow' }, { width: 844, height: 390, name: 'landscape' }];
-  const routes = ['/', '/projects/', '/projects/archive/', '/art/', '/food/', '/just-because/', '/just-because/indian-art/', '/just-because/indian-art/pattachitra/', '/about/', '/writing/', '/archives/', '/categories/', '/tags/', '/posts/context-engineering/', '/posts/llms-101/', '/notes/art-and-science-of-paper/', '/projects/counter/', '/studies/what-makes-a-wait-feel-long/', ...engineering.map(item => `/projects/${item.slug}/`)];
-  const captures = new Map([['/', 'home'], ['/projects/', 'projects'], ['/art/', 'art'], ['/food/', 'food'], ['/posts/context-engineering/', 'article']]);
+  const atlasSlugs = ['pattachitra', 'mithila', 'gond', 'warli', 'kalamkari', 'dhokra', 'longpi'];
+  const routes = ['/', '/projects/', '/projects/archive/', '/art/', '/food/', '/just-because/', '/just-because/indian-art/', ...atlasSlugs.map(slug => `/just-because/indian-art/${slug}/`), '/about/', '/writing/', '/archives/', '/categories/', '/tags/', '/posts/context-engineering/', '/posts/llms-101/', '/notes/art-and-science-of-paper/', '/projects/counter/', '/studies/what-makes-a-wait-feel-long/', ...engineering.map(item => `/projects/${item.slug}/`)];
+  const captures = new Map([['/', 'home'], ['/projects/', 'projects'], ['/art/', 'art'], ['/food/', 'food'], ['/just-because/indian-art/', 'indian-art-atlas'], ['/just-because/indian-art/pattachitra/', 'pattachitra'], ['/posts/context-engineering/', 'article']]);
   for (const { width, height, name } of viewports) {
     const page = await browser.newPage({ viewport: { width, height }, reducedMotion: 'reduce' });
     observe(page, name, true);
@@ -211,6 +212,43 @@ try {
         await checkStaticSculpture(page, name);
       }
       if (route === '/projects/') await checkDirectory(page, width);
+      if (route === '/just-because/indian-art/') {
+        const rows = page.locator('.atlas-row');
+        const visibleRows = page.locator('.atlas-row:visible');
+        const search = page.locator('#atlas-search');
+        const category = page.locator('#atlas-category');
+        const reset = page.locator('#atlas-reset');
+        assert.equal(await rows.count(), 7);
+        assert.equal(await visibleRows.count(), 7);
+        if (width === 1440) {
+          for (const image of await page.locator('.atlas-featured-work img, .atlas-card-image img').all()) {
+            await image.scrollIntoViewIfNeeded();
+            await decode(image);
+          }
+        }
+        await search.fill('pattachitra');
+        assert.equal(await visibleRows.count(), 1, `Atlas search at ${width}`);
+        assert.match(await visibleRows.first().textContent(), /pattachitra/i);
+        await search.fill('no-such-art-form-12345');
+        assert.equal(await visibleRows.count(), 0, 'Atlas should display no matches');
+        assert.ok((await page.locator('[data-atlas-status]').textContent()).trim());
+        await reset.click();
+        assert.equal(await visibleRows.count(), 7, 'Reset clears search');
+        await category.selectOption({ label: 'Pottery' });
+        assert.equal(await visibleRows.count(), 1, 'Pottery filter');
+        assert.match(await visibleRows.first().textContent(), /longpi/i);
+        await reset.click();
+        assert.equal(await visibleRows.count(), 7, 'Reset clears category');
+        await page.locator('#atlas-region').selectOption({ label: 'Odisha' });
+        assert.equal(await visibleRows.count(), 2, 'Odisha filter includes Pattachitra and Dhokra');
+        await reset.click();
+        assert.equal(await visibleRows.count(), 7, 'Reset clears region');
+        await search.focus();
+        await page.keyboard.type('warli');
+        assert.equal(await visibleRows.count(), 1, 'Keyboard search');
+        assert.match(await visibleRows.first().textContent(), /warli/i);
+        await reset.click();
+      }
       if (route === '/art/') {
         await checkGallery(page, '.art-item a[data-gallery="art"]', 10, portfolio.art.map(item => `${item.title} — ${item.caption}`));
         assert.doesNotMatch(await page.locator('main').textContent(), /Krishna|Statue of Liberty/i);
@@ -446,6 +484,13 @@ try {
       await page.locator(selector).first().click();
       await page.waitForURL(base + target);
       assert.equal((await page.request.get(base + target)).status(), 200);
+    }
+    await visit(page, '/just-because/indian-art/', false);
+    assert.equal(await page.locator('.atlas-row:visible').count(), 7, 'All atlas entries must work without JavaScript');
+    for (const slug of atlasSlugs) {
+      const route = `/just-because/indian-art/${slug}/`;
+      assert.equal(await page.locator(`.atlas-row a[href="${route}"]`).first().isVisible(), true, `Atlas link without JS: ${slug}`);
+      assert.equal((await page.request.get(base + route)).status(), 200, `Atlas route without JS: ${slug}`);
     }
     await visit(page, '/food/');
     assert.equal(await page.locator('.food-selection a:visible').count(), 3);
