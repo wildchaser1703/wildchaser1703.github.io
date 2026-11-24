@@ -489,7 +489,7 @@ try {
     assert.equal(await page.locator('.atlas-row:visible').count(), 7, 'All atlas entries must work without JavaScript');
     for (const slug of atlasSlugs) {
       const route = `/just-because/indian-art/${slug}/`;
-      assert.equal(await page.locator(`.atlas-row a[href="${route}"]`).first().isVisible(), true, `Atlas link without JS: ${slug}`);
+      assert.equal(await page.locator(`.atlas-row h3 a[href="${route}"]`).isVisible(), true, `Atlas link without JS: ${slug}`);
       assert.equal((await page.request.get(base + route)).status(), 200, `Atlas route without JS: ${slug}`);
     }
     await visit(page, '/food/');
