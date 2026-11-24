@@ -63,7 +63,11 @@ async function screenshot(page, name, fullPage = true) {
   await page.evaluate(() => document.fonts.ready);
   for (const img of await page.locator('main img').all()) {
     if (!await img.isVisible()) continue;
-    if (!await img.evaluate(element => new URL(element.src).origin === location.origin)) continue;
+    const sourceIsLocal = await img.evaluate(element => new URL(element.src).origin === location.origin);
+    // Atlas art is externally hosted and lazy-loaded. Scroll and decode it for
+    // both desktop and mobile captures so the screenshots show real content.
+    const isAtlasArt = await img.evaluate(element => Boolean(element.closest('.atlas-featured-work, .atlas-card-image')));
+    if (!sourceIsLocal && !isAtlasArt) continue;
     if (!fullPage && !await img.evaluate(element => { const r = element.getBoundingClientRect(); return r.top < innerHeight && r.bottom > 0; })) continue;
     if (fullPage) await img.scrollIntoViewIfNeeded();
     await decode(img);

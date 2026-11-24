@@ -467,10 +467,10 @@ em { font-style: normal; }
 .atlas-row[hidden], [data-atlas-empty][hidden] { display: none; }
 .atlas-featured-work img { object-fit: contain; }
 @media (max-width: 760px) { .atlas-controls:not([hidden]) { align-items: stretch; } .atlas-controls label:first-child { width: 100%; } .atlas-controls input { width: 100%; min-width: 0; } .atlas-controls [role="status"] { width: 100%; margin: 0; } }
-.atlas-list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(1rem, 3vw, 2.5rem); }
-.atlas-row { display: flex; flex-direction: column; align-items: flex-start; min-width: 0; gap: .8rem; padding: 1.5rem 0; border-top: 1px solid var(--line); }
+.atlas-list { display: block; column-count: 2; column-gap: clamp(1rem, 3vw, 2.5rem); }
+.atlas-row { display: inline-flex; width: 100%; box-sizing: border-box; break-inside: avoid; vertical-align: top; flex-direction: column; align-items: flex-start; min-width: 0; gap: .8rem; padding: 1.5rem 0; border-top: 1px solid var(--line); }
 .atlas-card-image { width: 100%; margin: 0 0 1rem; }
 .atlas-card-image img { display: block; max-width: 100%; width: 100%; height: 300px; object-fit: contain; object-position: left center; }
 .atlas-card-image figcaption { max-width: 40rem; margin-top: .5rem; font: .7rem/1.5 var(--mono); }
 .atlas-link { margin-top: auto; padding-top: .8rem; }
-@media (max-width: 760px) { .atlas-list { grid-template-columns: 1fr; } .atlas-card-image img { height: auto; max-height: 420px; } .atlas-link { text-align: left; } }
+@media (max-width: 760px) { .atlas-list { column-count: 1; } .atlas-card-image img { height: auto; max-height: 420px; } .atlas-link { text-align: left; } }
