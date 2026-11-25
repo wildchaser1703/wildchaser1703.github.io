@@ -11,10 +11,12 @@ import * as cheerio from 'cheerio';
 import sharp from 'sharp';
 import { arrow, navigation, siteFooter, homePage, directoryItems, directoryPage, engineeringPage, diagramSvg, artPage, foodPage } from './design-components.mjs';
 import { generatePosters } from './sculpture-poster.mjs';
-import { justBecausePage, atlasPage, traditionPage, worksPage, workPage, makersPage, makerPage, regionsPage, regionPage, regionSlug, collections, collectionsPage, curatedPage, savedPage, contributePage } from './just-because.mjs';
+import { justBecausePage, atlasPage, traditionPage, worksPage, workPage, makersPage, makerPage, regionsPage, regionPage, regionSlug, collections, collectionsPage, curatedPage, savedPage, contributePage, exhibitionsPage, exhibitionPage } from './just-because.mjs';
 
 const traditions = JSON.parse(await readFile('data/indian-art.json', 'utf8'));
 const atlasWorks = JSON.parse(await readFile('data/atlas-works.json', 'utf8'));
+const exhibitions = JSON.parse(await readFile('data/atlas-exhibitions.json', 'utf8'));
+const imageAudit = JSON.parse(await readFile('data/atlas-image-audit.json', 'utf8'));
 const atlasMakers = JSON.parse(await readFile('data/atlas-makers.json', 'utf8'));
 const curiosityProjects = JSON.parse(await readFile('data/curiosity-projects.json', 'utf8'));
 const indiaOutline = JSON.parse(await readFile('data/india-outline.json', 'utf8'));
@@ -22,7 +24,7 @@ const atlasGeography = JSON.parse(await readFile('data/atlas-geography.json', 'u
 const atlasRegions = [...new Set(traditions.flatMap(form => form.locations))].sort();
 const registeredPlaces = [...atlasGeography.states, ...atlasGeography.unionTerritories, ...atlasGeography.beyondIndia];
 if (atlasGeography.states.length !== 28 || atlasGeography.unionTerritories.length !== 8 || new Set(registeredPlaces.map(place => place.name)).size !== registeredPlaces.length || new Set(registeredPlaces.map(place => regionSlug(place.name))).size !== registeredPlaces.length || registeredPlaces.some(place => !atlasRegions.includes(place.name)) || atlasRegions.some(region => !registeredPlaces.some(place => place.name === region))) throw new Error('Atlas geography must cover all states, union territories and listed cross-border places.');
-for (const [label, records] of [['tradition', traditions], ['work', atlasWorks], ['maker', atlasMakers]]) {
+for (const [label, records] of [['tradition', traditions], ['work', atlasWorks], ['maker', atlasMakers], ['exhibition', exhibitions]]) {
   if (new Set(records.map(record => record.slug)).size !== records.length || records.some(record => !/^[a-z0-9-]+$/.test(record.slug))) throw new Error(`Invalid or duplicate ${label} slug.`);
 }
 for (const form of traditions) {
@@ -30,7 +32,31 @@ for (const form of traditions) {
   for (const index of [...(form.traditionSourceRefs || []), ...(form.processSourceRefs || [])]) if (!Number.isInteger(index) || !form.sources[index]) throw new Error(`Invalid source reference for ${form.slug}`);
 }
 const formIds = new Set(traditions.map(form => form.slug));
-if (atlasWorks.some(work => !formIds.has(work.tradition) || !work.recordUrl || !work.title || !work.maker || (work.image && (!work.imageSource || !work.credit)))) throw new Error('Invalid artwork provenance.');
+const workBySlug = new Map(atlasWorks.map(work => [work.slug, work]));
+if (Object.keys(imageAudit).length !== atlasWorks.length) throw new Error('Every work needs a documented image audit.');
+for (const work of atlasWorks) {
+  const audit = imageAudit[work.slug];
+  if (!work.recordUrl || !work.title || !work.maker || !audit?.notes || !audit.checked || audit.objectSource !== work.recordUrl || (work.tradition && !formIds.has(work.tradition)) || work.places?.some(place => !atlasRegions.includes(place))) {
+    throw new Error(`Invalid work provenance: ${work.slug}`);
+  }
+  if (Boolean(work.image) !== (audit.status === 'verified')) throw new Error(`Work display and audit disagree: ${work.slug}`);
+  if (!work.image) continue;
+  if (!work.imageAlt || work.imageAlt === work.title || !work.imageSource || !work.licenseUrl || !work.credit ||
+      !audit.image || !audit.photoCreator || !audit.policy || !audit.match || audit.licenseUrl !== work.licenseUrl) {
+    throw new Error(`Missing image provenance: ${work.slug}`);
+  }
+  const expected = new Map([[work.thumbnail, work.thumbnailWidth], [work.preview, work.previewWidth], [work.image, work.width]]);
+  for (const [file, width] of expected) {
+    if (!file?.startsWith('/assets/img/museum/') || !width) throw new Error(`Missing local image variant: ${work.slug}`);
+    const metadata = await sharp(file.slice(1)).metadata();
+    if (metadata.width !== width || Math.abs(metadata.height - work.height * width / work.width) > Math.max(2, work.height / work.width)) throw new Error(`Invalid image size: ${file}`);
+  }
+}
+if (exhibitions.length < 2 || exhibitions.some(show => !show.question || !show.introduction ||
+    show.works.length < 2 || new Set(show.works.map(entry => entry.slug)).size !== show.works.length ||
+    show.works.some(entry => !entry.label || !workBySlug.get(entry.slug)?.image))) {
+  throw new Error('Exhibitions need interpretive labels and verified artwork images.');
+}
 if (atlasMakers.some(maker => !maker.url || maker.traditions.some(slug => !formIds.has(slug)))) throw new Error('Invalid maker attribution.');
 if (collections.some(group => group.works.some(slug => !atlasWorks.some(work => work.slug === slug)))) throw new Error('Invalid curated collection.');
 const root = process.cwd();
@@ -45,7 +71,7 @@ const esc = value => String(value ?? '').replaceAll('&', '&amp;').replaceAll('<'
 const slugify = value => String(value).toLowerCase().trim().replace(/[^\p{L}\p{N}]+/gu, '-').replace(/^-|-$/g, '');
 const sha = value => createHash('sha256').update(value).digest('hex');
 // A release must never reuse cached styles or modules from a different build.
-const assetInputs = ['package-lock.json', 'scripts/build.mjs', 'scripts/design-components.mjs', 'scripts/just-because.mjs', 'data/indian-art.json', 'data/atlas-works.json', 'data/atlas-makers.json', 'data/curiosity-projects.json', 'data/india-outline.json', 'data/atlas-geography.json', 'assets/css/site.css', ...(await readdir('assets/js')).filter(file => file.endsWith('.js')).sort().map(file => `assets/js/${file}`)];
+const assetInputs = ['package-lock.json', 'scripts/build.mjs', 'scripts/design-components.mjs', 'scripts/just-because.mjs', 'data/indian-art.json', 'data/atlas-works.json', 'data/atlas-exhibitions.json', 'data/atlas-image-audit.json', 'data/atlas-makers.json', 'data/curiosity-projects.json', 'data/india-outline.json', 'data/atlas-geography.json', 'assets/css/site.css', ...(await readdir('assets/js')).filter(file => file.endsWith('.js')).sort().map(file => `assets/js/${file}`)];
 const assetVersion = sha(Buffer.concat(await Promise.all(assetInputs.map(file => readFile(file))))).slice(0, 16);
 const versionAssets = html => html
   .replace(/((?:src|href)="\/assets\/(?:css|js)\/[^"?]+\.(?:css|js))"/g, `$1?v=${assetVersion}"`)
@@ -205,7 +231,7 @@ await writePage('/projects/', page('Projects', directoryPage(directory.filter(it
 await writePage('/projects/archive/', page('Project archive', directoryPage(directory.filter(item => !engineering.some(project => project.slug === item.slug && !project.archived)), true), {url:'/projects/archive/'}));
 await writePage('/art/', page('Art', artPage(portfolio.art), {url:'/art/'}));
 await writePage('/just-because/', page('Just Because', justBecausePage(curiosityProjects), {url:'/just-because/',description:'A collection of personal projects made from curiosity.'}));
-await writePage('/just-because/indian-art/', page('Indian Art Atlas', atlasPage(traditions, atlasGeography), {url:'/just-because/indian-art/',description:'An evolving index of visual arts and crafts.',script:'<script defer src="/assets/js/indian-art.js"></script>'}));
+await writePage('/just-because/indian-art/', page('Indian Art Atlas', atlasPage(traditions, atlasGeography, atlasWorks, exhibitions), {url:'/just-because/indian-art/',description:'An evolving index of visual arts and crafts.',script:'<script defer src="/assets/js/indian-art.js"></script>'}));
 for (const [index, form] of traditions.entries()) {
   if (!/^[a-z0-9-]+$/.test(form.slug) || !form.sources?.length) throw new Error('Invalid atlas record');
   const route = `/just-because/indian-art/${form.slug}/`;
@@ -213,14 +239,16 @@ for (const [index, form] of traditions.entries()) {
 }
 const atlasBase = '/just-because/indian-art/';
 const atlasScript = '<script defer src="/assets/js/indian-art.js"></script>';
-const atlasExtraPaths = ['works/', 'makers/', 'regions/', 'collections/', 'collection/', 'contribute/', ...atlasWorks.map(w => `works/${w.slug}/`), ...atlasMakers.map(m => `makers/${m.slug}/`), ...atlasRegions.map(r => `regions/${regionSlug(r)}/`), ...collections.map(c => `collections/${c.slug}/`)].map(path => atlasBase + path);
+const atlasExtraPaths = ['works/', 'exhibitions/', ...exhibitions.map(show => `exhibitions/${show.slug}/`), 'makers/', 'regions/', 'collections/', 'collection/', 'contribute/', ...atlasWorks.map(w => `works/${w.slug}/`), ...atlasMakers.map(m => `makers/${m.slug}/`), ...atlasRegions.map(r => `regions/${regionSlug(r)}/`), ...collections.map(c => `collections/${c.slug}/`)].map(path => atlasBase + path);
 const atlasRender = async (route, title, body, description) => writePage(route, page(`${title} · Indian Art Atlas`, body, {url:route, description, script:atlasScript}));
-await atlasRender(`${atlasBase}works/`, 'Works', worksPage(atlasWorks, traditions), 'Explore documented works in the Indian Art Atlas.');
+await atlasRender(`${atlasBase}works/`, 'Works', worksPage(atlasWorks, traditions, atlasGeography), 'Explore documented works in the Indian Art Atlas.');
+await atlasRender(`${atlasBase}exhibitions/`, 'Exhibitions', exhibitionsPage(exhibitions, atlasWorks), 'Explore curated exhibitions in the Indian Art Atlas.');
+for (const show of exhibitions) await atlasRender(`${atlasBase}exhibitions/${show.slug}/`, show.title, exhibitionPage(show, atlasWorks, traditions), show.question);
 for (const work of atlasWorks) await atlasRender(`${atlasBase}works/${work.slug}/`, work.title, workPage(work, traditions, atlasWorks, atlasMakers), work.description || `Explore ${work.title} in the Indian Art Atlas.`);
 await atlasRender(`${atlasBase}makers/`, 'Makers', makersPage(atlasMakers, traditions), 'Meet artists and artisans in the Indian Art Atlas.');
 for (const maker of atlasMakers) await atlasRender(`${atlasBase}makers/${maker.slug}/`, maker.name, makerPage(maker, traditions, atlasWorks), maker.description);
 await atlasRender(`${atlasBase}regions/`, 'Places', regionsPage(traditions, indiaOutline, atlasGeography), 'Explore traditions by place in the Indian Art Atlas.');
-for (const region of atlasRegions) await atlasRender(`${atlasBase}regions/${regionSlug(region)}/`, region, regionPage(region, traditions), `Explore traditions connected with ${region}.`);
+for (const region of atlasRegions) await atlasRender(`${atlasBase}regions/${regionSlug(region)}/`, region, regionPage(region, traditions, atlasWorks), `Explore traditions connected with ${region}.`);
 await atlasRender(`${atlasBase}collections/`, 'Collections', collectionsPage(), 'Explore curated paths and create a collection of art and craft records.');
 for (const collection of collections) await atlasRender(`${atlasBase}collections/${collection.slug}/`, collection.title, curatedPage(collection, atlasWorks, traditions), collection.description);
 await atlasRender(`${atlasBase}collection/`, 'Saved works', savedPage(atlasWorks, traditions), 'Save and share a personal selection of works.');
@@ -308,7 +336,8 @@ for (const project of portfolio.projects) searchIndex.push({ title: project.titl
 searchIndex.push({title:'Just Because',url:'/just-because/',date:'Personal projects',text:'Projects made from curiosity, including the Indian Art Atlas',categories:['Projects'],tags:['Art']});
 searchIndex.push({title:'Indian Art Atlas',url:atlasBase,date:'Visual arts & crafts',text:'Traditions, places, makers and documented works in Indian visual arts and crafts',categories:['Indian Art Atlas'],tags:['Art','Craft']});
 for (const form of traditions) searchIndex.push({title:form.title,url:`${atlasBase}${form.slug}/`,date:'Art tradition',text:[form.intro,form.region,form.materials,...form.tradition,...form.process,...form.localNames.map(name=>name.text)].join(' '),categories:['Indian Art Atlas',form.category],tags:form.locations});
-for (const work of atlasWorks) searchIndex.push({title:work.title,url:`${atlasBase}works/${work.slug}/`,date:'Artwork record',text:[work.maker,work.description,work.medium].join(' '),categories:['Indian Art Atlas'],tags:[work.tradition]});
+for (const work of atlasWorks) searchIndex.push({title:work.title,url:`${atlasBase}works/${work.slug}/`,date:'Artwork record',text:[work.maker,work.description,work.medium].join(' '),categories:['Indian Art Atlas'],tags:[work.tradition, ...(work.places || [])].filter(Boolean)});
+for (const exhibition of exhibitions) searchIndex.push({title:exhibition.title,url:`${atlasBase}exhibitions/${exhibition.slug}/`,date:'Exhibition',text:[exhibition.question, exhibition.introduction, ...exhibition.works.map(entry => entry.label)].join(' '),categories:['Indian Art Atlas'],tags:['Exhibitions']});
 for (const maker of atlasMakers) searchIndex.push({title:maker.name,url:`${atlasBase}makers/${maker.slug}/`,date:'Artist or maker',text:maker.description,categories:['Indian Art Atlas'],tags:maker.traditions});
 await writeFile(path.join(out, 'search-index.json'), JSON.stringify(searchIndex));
 await writePage('/search/', page('Search', `<section class="inner-page">${browseNav}<header class="page-heading"><p class="kicker">FIND A THREAD</p><h1>Search</h1><label class="search-label" for="search-input">Search writing, projects, notes, and the art atlas</label><input id="search-input" class="search-input" type="search" autocomplete="off" placeholder="Try ‘machine learning’"><p id="search-status" aria-live="polite">Start typing to find a note.</p></header><div id="search-results" class="post-list"></div><noscript><p>Search requires JavaScript. You can browse the <a href="/archives/">archive</a> instead.</p></noscript></section>`, { url: '/search/' }));

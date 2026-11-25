@@ -35,17 +35,65 @@
     update(false);
   }
 
+  const workFilters = document.querySelector('[data-work-filters]');
+  if (workFilters) {
+    const inputs = [...workFilters.querySelectorAll('input, select')];
+    const sections = [...document.querySelectorAll('[data-filter-section]')].map(section => ({
+      section, cards: [...section.querySelectorAll('[data-work-id]')],
+    }));
+    const params = new URLSearchParams(location.search);
+    for (const input of inputs) input.value = params.get(input.name) || '';
+    const update = (writeUrl = true) => {
+      const [search, place, tradition, medium] = inputs.map(input => input.value.trim());
+      const terms = search.normalize('NFKC').toLocaleLowerCase().split(/\s+/).filter(Boolean);
+      let count = 0;
+      for (const {section, cards} of sections) {
+        let visible = 0;
+        for (const card of cards) {
+          const {search: haystack, places, tradition: workTradition, medium: workMedium} = card.dataset;
+          const match = terms.every(term => haystack.includes(term)) && (!place || places.split('|').includes(place)) &&
+            (!tradition || workTradition === tradition) && (!medium || workMedium === medium);
+          card.hidden = !match;
+          if (match) visible++;
+        }
+        section.hidden = visible === 0;
+        count += visible;
+      }
+      workFilters.querySelector('[role="status"]').textContent = `${count} ${count === 1 ? 'record' : 'records'}`;
+      document.querySelector('[data-work-empty]').hidden = count > 0;
+      if (!writeUrl) return;
+      const url = new URL(location.href);
+      for (const input of inputs) {
+        const value = input.value.trim();
+        if (value) url.searchParams.set(input.name, value);
+        else url.searchParams.delete(input.name);
+      }
+      history.replaceState(null, '', url);
+    };
+    for (const input of inputs) input.addEventListener(input.type === 'search' ? 'input' : 'change', () => update());
+    workFilters.querySelector('button').addEventListener('click', () => {
+      for (const input of inputs) input.value = '';
+      update();
+      inputs[0].focus();
+    });
+    workFilters.hidden = false;
+    update(false);
+  }
+
   const zoom = document.querySelector('#atlas-zoom');
   if (zoom && typeof zoom.showModal === 'function') {
+    let opener;
     document.addEventListener('click', event => {
       const link = event.target.closest('[data-zoom-src]');
-      if (!link) return;
+      if (!link || event.defaultPrevented || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+      opener = link;
       event.preventDefault();
       const image = zoom.querySelector('img');
       image.src = link.dataset.zoomSrc;
       image.alt = link.dataset.zoomAlt;
       zoom.showModal();
     });
+    zoom.addEventListener('close', () => opener?.focus());
     zoom.addEventListener('click', event => { if (event.target === zoom) zoom.close(); });
   }
 

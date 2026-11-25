@@ -156,6 +156,7 @@ check(pattachitra('main a[href="https://odisha.gov.in/en/odisha-tourism/patta-ch
 check(pattachitra('main a[href="https://www.ngv.vic.gov.au/explore/collection/work/155146/"]').length > 0, 'Field note must link to its object source');
 const atlasForms = JSON.parse(await readFile('data/indian-art.json', 'utf8'));
 const atlasWorks = JSON.parse(await readFile('data/atlas-works.json', 'utf8'));
+const exhibitions = JSON.parse(await readFile('data/atlas-exhibitions.json', 'utf8'));
 const atlasMakers = JSON.parse(await readFile('data/atlas-makers.json', 'utf8'));
 const atlasSlugs = atlasForms.map(form => form.slug);
 check(atlas('.atlas-row').length === atlasSlugs.length && atlasSlugs.length >= 39, 'Atlas must list every researched tradition');
@@ -194,6 +195,7 @@ for (const work of atlasWorks) {
   if (work.image) {
     const image = $('.work-detail .work-image img');
     check(image.length === 1 && !!image.attr('alt') && $('main a[href="' + work.imageSource + '"]').length > 0, `Image needs alt and source: ${work.slug}`);
+    check(image.attr('srcset')?.includes(work.image) && $('.work-detail figcaption a[href="' + work.licenseUrl + '"]').length === 1, `Responsive image and visible licence are required: ${work.slug}`);
     check(image.attr('src') === (work.preview || work.image) && image.attr('loading') === 'lazy', `Work should use its lazy-loaded preview: ${work.slug}`);
     check(image.parent().attr('href') === work.image && image.parent().attr('data-zoom-src') === work.image, `Work should link to the original image: ${work.slug}`);
   }
@@ -204,7 +206,18 @@ const atlasMap = cheerio.load(await readFile(path.join(root, 'just-because/india
 check(atlasMap('.region-list li').length === 37 && atlasMap('main').text().includes('Union Territories'), 'Regional directory must list 28 states, 8 Union Territories and Nepal');
 for (const place of [...atlasPlaces.states, ...atlasPlaces.unionTerritories, ...atlasPlaces.beyondIndia]) {
   const slug = place.name.toLowerCase().replace(/[^a-z0-9]+/g, '-');
-  check(await exists(path.join(root, 'just-because/indian-art/regions', slug, 'index.html')), `Missing place page: ${place.name}`);
+  const file = path.join(root, 'just-because/indian-art/regions', slug, 'index.html');
+  if (!await exists(file)) { failures.push(`Missing place page: ${place.name}`); continue; }
+  const $ = cheerio.load(await readFile(file, 'utf8'));
+  const expected = atlasWorks.filter(work => work.image && work.places?.includes(place.name)).map(work => work.slug);
+  const published = $('.atlas-work-section [data-work-id]').map((_, node) => $(node).attr('data-work-id')).get();
+  check(JSON.stringify(published) === JSON.stringify(expected), `Incorrect verified works for ${place.name}`);
+}
+for (const show of exhibitions) {
+  const route = `/just-because/indian-art/exhibitions/${show.slug}/`;
+  check(sitemapLocations.has(`https://wildchaser1703.github.io${route}`) && atlasSearch.some(entry => entry.url === route), `Exhibition must be indexed: ${show.slug}`);
+  const $ = cheerio.load(await readFile(path.join(root, route, 'index.html'), 'utf8'));
+  check($('.museum-stop .work-image img').length === show.works.length && $('.museum-stop h2 a').length === show.works.length, `Exhibition must display and link every work: ${show.slug}`);
 }
 const durgaProfile = cheerio.load(await readFile(path.join(root, 'just-because/indian-art/makers/durga-bai-vyam/index.html'), 'utf8'));
 check(durgaProfile('main a[href="/just-because/indian-art/works/deer-with-foxes/"]').length > 0, 'Maker aliases must connect the correct works');
