@@ -525,6 +525,7 @@ em { font-style: normal; }
 .atlas-map path { fill: color-mix(in srgb, var(--clay) 12%, var(--paper)); stroke: var(--muted); stroke-width: 1; }
 .atlas-map circle { fill: var(--clay); stroke: var(--paper); stroke-width: 2; }
 .atlas-map a:focus circle, .atlas-map a:hover circle { fill: var(--ink); stroke-width: 3; }
+.atlas-places-directory section + section { margin-top: 2rem; }
 .region-list { list-style: none; padding: 0; margin: 0; }
 .region-list a { display: flex; justify-content: space-between; padding: .8rem 0; border-top: 1px solid var(--line); text-decoration: none; }
 .share-controls { display: flex; flex-wrap: wrap; gap: .5rem; margin: .5rem 0 1rem; }

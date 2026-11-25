@@ -119,5 +119,89 @@
     ],
     "description": "LACMA identifies Amsuka Devi as the maker of the Mithila painting Brahma and Vishnu, dated 15 February 1974. The museum record is the source for this attribution.",
     "url": "https://collections.lacma.org/object/76268"
+  },
+  {
+    "slug": "hem-chandra-goswami",
+    "name": "Hem Chandra Goswami",
+    "aliases": [
+      "Hemchandra Goswami"
+    ],
+    "traditions": [
+      "majuli-masks"
+    ],
+    "description": "The Press Information Bureau describes Hem Chandra Goswami’s mask making in Majuli and his role in teaching the craft. An academic museum publication attributes a Kaliya mask to his workshop.",
+    "url": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=1909724&lang=2&reg=48"
+  },
+  {
+    "slug": "nek-chand",
+    "name": "Nek Chand",
+    "traditions": [
+      "nek-chand-rock-garden"
+    ],
+    "description": "Nek Chand founded Chandigarh’s Rock Garden. The district administration describes the sculptural environment and its use of recovered materials.",
+    "url": "https://chandigarhdistrict.nic.in/tourist-place/rock-garden/"
+  },
+  {
+    "slug": "sai-kiran",
+    "name": "Sai Kiran",
+    "traditions": [
+      "cheriyal-scrolls"
+    ],
+    "description": "Lalit Kala Akademi identifies Sai Kiran as a Cheriyal artist from Telangana and documents a mural in its Pari project.",
+    "url": "https://lalitkala.gov.in/uploads/pariproject/Spot%2011%20About%20the%20Artist.pdf"
+  },
+  {
+    "slug": "sultan-ahmad",
+    "name": "Sultan Ahmad",
+    "traditions": [
+      "khurja-pottery"
+    ],
+    "description": "Dastkari Haat Samiti credits Sultan Ahmad with Mohammad Arif on a set of hand-painted plates from Khurja.",
+    "url": "https://artsandculture.google.com/asset/hand-painted-plates-sultan-ahmad-mohammad-arif/-AF35g7QSe5_pA?hl=en"
+  },
+  {
+    "slug": "mohammad-arif",
+    "name": "Mohammad Arif",
+    "traditions": [
+      "khurja-pottery"
+    ],
+    "description": "Dastkari Haat Samiti credits Mohammad Arif with Sultan Ahmad on hand-painted Khurja plates and describes the project’s calligraphic designs.",
+    "url": "https://artsandculture.google.com/asset/hand-painted-plates-sultan-ahmad-mohammad-arif/-AF35g7QSe5_pA?hl=en"
+  },
+  {
+    "slug": "poornima-sukumar",
+    "name": "Poornima Sukumar",
+    "traditions": [
+      "aipan"
+    ],
+    "description": "Project FUEL identifies Poornima Sukumar as the head artist who conceptualised murals in Khati and shows her painting Aipan patterns.",
+    "url": "https://artsandculture.google.com/asset/aipan/2AHgttOhUVC7VQ"
+  },
+  {
+    "slug": "vk-munusamy",
+    "name": "V. K. Munusamy",
+    "traditions": [
+      "villianur-terracotta"
+    ],
+    "description": "NIFT describes V. K. Munusamy as a master artisan who collaborated with students and Karunanithi on a Villianur terracotta design project.",
+    "url": "https://www.nift.ac.in/varanasi/project/villianur-terracotta-craft"
+  },
+  {
+    "slug": "karunanithi",
+    "name": "Karunanithi",
+    "traditions": [
+      "villianur-terracotta"
+    ],
+    "description": "NIFT identifies Karunanithi as a master artisan in its collaborative Villianur terracotta design project.",
+    "url": "https://www.nift.ac.in/varanasi/project/villianur-terracotta-craft"
+  },
+  {
+    "slug": "tonyot-tashi",
+    "name": "Tonyot Tashi",
+    "traditions": [
+      "ladakhi-thangka"
+    ],
+    "description": "Ladakhi thangka artist Tonyot Tashi discusses his training and paintings in an interview with Reach Ladakh.",
+    "url": "https://www.reachladakh.com/news/in-conversation-with-reach-ladakh/state-awardee-tonyot-tashi-thangka-painter"
   }
 ]

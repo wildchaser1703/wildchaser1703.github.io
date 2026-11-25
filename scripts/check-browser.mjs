@@ -334,6 +334,7 @@ try {
   await visit(atlas, '/just-because/indian-art/works/kalamkari-panel/');
   await atlas.locator('[data-zoom-src]').first().click();
   assert.equal(await atlas.locator('#atlas-zoom').evaluate(el => el.open), true, 'Image opens in accessible dialog');
+  await decode(atlas.locator('#atlas-zoom img'));
   await atlas.locator('#atlas-zoom button').click();
   assert.equal(await atlas.locator('#atlas-zoom').evaluate(el => el.open), false, 'Image dialog closes');
   await atlas.locator('[data-save-work="kalamkari-panel"]').first().click();
@@ -347,6 +348,7 @@ try {
   await atlas.locator('[data-save-shared]').click();
   assert.equal(await atlas.locator('[data-saved-grid] .work-card:visible').count(), 1, 'Shared works can be saved locally');
   await visit(atlas, '/just-because/indian-art/regions/');
+  assert.equal(await atlas.locator('.region-list li').count(), 37, 'All states and Union Territories are listed alongside Nepal');
   await atlas.locator('.region-list a[href="/just-because/indian-art/regions/odisha/"]').click();
   assert.ok(await atlas.locator('.atlas-row').count() >= 2, 'Regional links lead to matching traditions');
   await atlas.close();
@@ -539,6 +541,8 @@ try {
       assert.equal(await page.locator(`.atlas-row h3 a[href="${route}"]`).isVisible(), true, `Atlas link without JS: ${slug}`);
       assert.equal((await page.request.get(base + route)).status(), 200, `Atlas route without JS: ${slug}`);
     }
+    await visit(page, '/just-because/indian-art/regions/', false);
+    assert.equal(await page.locator('.region-list a:visible').count(), 37, 'All places remain navigable without JavaScript');
     await visit(page, '/food/');
     assert.equal(await page.locator('.food-selection a:visible').count(), 3);
     await visit(page, '/studies/what-makes-a-wait-feel-long/');

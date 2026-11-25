@@ -158,7 +158,10 @@ const atlasForms = JSON.parse(await readFile('data/indian-art.json', 'utf8'));
 const atlasWorks = JSON.parse(await readFile('data/atlas-works.json', 'utf8'));
 const atlasMakers = JSON.parse(await readFile('data/atlas-makers.json', 'utf8'));
 const atlasSlugs = atlasForms.map(form => form.slug);
-check(atlas('.atlas-row').length === atlasSlugs.length && atlasSlugs.length >= 15, 'Atlas must list every researched tradition');
+check(atlas('.atlas-row').length === atlasSlugs.length && atlasSlugs.length >= 39, 'Atlas must list every researched tradition');
+const atlasPlaces = JSON.parse(await readFile('data/atlas-geography.json', 'utf8'));
+check(atlasPlaces.states.length === 28 && atlasPlaces.unionTerritories.length === 8, 'Geography must include all Indian states and Union Territories');
+for (const place of [...atlasPlaces.states, ...atlasPlaces.unionTerritories]) check(atlasForms.some(form => form.locations.includes(place.name)), `No sourced tradition for ${place.name}`);
 check(atlas('#atlas-search').length === 1 && atlas('#atlas-category').length === 1 && atlas('#atlas-region').length === 1 && atlas('#atlas-reset').length === 1 && atlas('[data-atlas-status]').length === 1, 'Atlas discovery controls must be present');
 const atlasSitemap = cheerio.load(await readFile(path.join(root, 'sitemap.xml'), 'utf8'), { xmlMode: true });
 const sitemapLocations = new Set(atlasSitemap('url > loc').map((index, element) => atlasSitemap(element).text()).get());
@@ -170,6 +173,7 @@ for (const slug of atlasSlugs) {
   if (!await exists(file)) { failures.push(`Missing atlas page: ${slug}`); continue; }
   const entry = cheerio.load(await readFile(file, 'utf8'));
   check(entry('main h1').length === 1, `Atlas entry needs one primary heading: ${slug}`);
+  check(atlasWorks.some(work => work.tradition === slug), `Atlas tradition needs a documented work or source record: ${slug}`);
   check(entry('main a[href^="https://"]').length >= 1, `Atlas entry needs a source: ${slug}`);
   check(entry('main a[href="/just-because/indian-art/"]').length >= 1, `Atlas entry needs a return link: ${slug}`);
   check(sitemapLocations.has(`https://wildchaser1703.github.io${route}`), `Atlas entry missing from sitemap: ${slug}`);
@@ -187,10 +191,21 @@ for (const work of atlasWorks) {
   if (!await exists(file)) { failures.push(`Missing work page: ${work.slug}`); continue; }
   const $ = cheerio.load(await readFile(file, 'utf8'));
   check($('main h1').length === 1 && $('main a[href="' + work.recordUrl + '"]').length > 0, `Work needs title and source: ${work.slug}`);
-  if (work.image) check($('main img[alt]').length > 0 && $('main a[href="' + work.imageSource + '"]').length > 0, `Image needs alt and source: ${work.slug}`);
+  if (work.image) {
+    const image = $('.work-detail .work-image img');
+    check(image.length === 1 && !!image.attr('alt') && $('main a[href="' + work.imageSource + '"]').length > 0, `Image needs alt and source: ${work.slug}`);
+    check(image.attr('src') === (work.preview || work.image) && image.attr('loading') === 'lazy', `Work should use its lazy-loaded preview: ${work.slug}`);
+    check(image.parent().attr('href') === work.image && image.parent().attr('data-zoom-src') === work.image, `Work should link to the original image: ${work.slug}`);
+  }
   check(sitemapLocations.has(`https://wildchaser1703.github.io${route}`), `Work missing from sitemap: ${work.slug}`);
 }
 for (const maker of atlasMakers) check(await exists(path.join(root, 'just-because/indian-art/makers', maker.slug, 'index.html')), `Missing maker page: ${maker.slug}`);
+const atlasMap = cheerio.load(await readFile(path.join(root, 'just-because/indian-art/regions/index.html'), 'utf8'));
+check(atlasMap('.region-list li').length === 37 && atlasMap('main').text().includes('Union Territories'), 'Regional directory must list 28 states, 8 Union Territories and Nepal');
+for (const place of [...atlasPlaces.states, ...atlasPlaces.unionTerritories, ...atlasPlaces.beyondIndia]) {
+  const slug = place.name.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+  check(await exists(path.join(root, 'just-because/indian-art/regions', slug, 'index.html')), `Missing place page: ${place.name}`);
+}
 const durgaProfile = cheerio.load(await readFile(path.join(root, 'just-because/indian-art/makers/durga-bai-vyam/index.html'), 'utf8'));
 check(durgaProfile('main a[href="/just-because/indian-art/works/deer-with-foxes/"]').length > 0, 'Maker aliases must connect the correct works');
 for (const section of ['works', 'makers', 'regions', 'collections', 'collection', 'contribute']) check(await exists(path.join(root, 'just-because/indian-art', section, 'index.html')), `Missing atlas section: ${section}`);

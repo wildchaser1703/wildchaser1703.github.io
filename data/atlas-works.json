@@ -17,12 +17,13 @@
     "recordUrl": "https://commons.wikimedia.org/wiki/File:Madhubani_painting_by_Bhuvana_Meenakshi.jpg",
     "image": "https://upload.wikimedia.org/wikipedia/commons/5/51/Madhubani_painting_by_Bhuvana_Meenakshi.jpg",
     "imageAlt": "Madhubani painting by Bhuvana Meenakshi",
-    "credit": "Bhuvana Meenakshi, Madhubani painting, CC BY-SA 3.0; no changes.",
+    "credit": "Bhuvana Meenakshi, Madhubani painting, CC BY-SA 3.0; preview resized; full-size image linked.",
     "imageSource": "https://commons.wikimedia.org/wiki/File:Madhubani_painting_by_Bhuvana_Meenakshi.jpg",
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
     "description": "Maker: Bhuvana Meenakshi, as identified by the uploader. Medium: Not specified in available record.",
     "slug": "mithila-featured",
-    "tradition": "mithila"
+    "tradition": "mithila",
+    "preview": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/51/Madhubani_painting_by_Bhuvana_Meenakshi.jpg/500px-Madhubani_painting_by_Bhuvana_Meenakshi.jpg?utm_campaign=index&utm_content=thumbnail&utm_source=commons.wikimedia.org"
   },
   {
     "title": "Untitled (Tree of Life)",
@@ -58,10 +59,11 @@
     "image": "https://upload.wikimedia.org/wikipedia/commons/9/9d/Kalamkari_Panel_with_Niche_MET_wb-27.215.1.jpeg",
     "imageAlt": "Historic painted and dyed cotton textile panel with a niche design",
     "imageSource": "https://commons.wikimedia.org/wiki/File:Kalamkari_Panel_with_Niche_MET_wb-27.215.1.jpeg",
-    "credit": "Kalamkari Panel with Niche, late 17th–early 18th century, attributed to Burhanpur, India. Gift of Mrs. Frederic B. Pratt, 1927, The Metropolitan Museum of Art, 27.215.1. Public domain.",
+    "credit": "Kalamkari Panel with Niche, late 17th–early 18th century, attributed to Burhanpur, India. Gift of Mrs. Frederic B. Pratt, 1927, The Metropolitan Museum of Art, 27.215.1. Public domain. Preview resized; full-size image linked.",
     "description": "The Met attributes this painted and dyed cotton to Burhanpur in the Deccan. The maker is not identified.",
     "slug": "kalamkari-featured",
-    "tradition": "kalamkari"
+    "tradition": "kalamkari",
+    "preview": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/9d/Kalamkari_Panel_with_Niche_MET_wb-27.215.1.jpeg/500px-Kalamkari_Panel_with_Niche_MET_wb-27.215.1.jpeg?utm_campaign=index&utm_content=thumbnail&utm_source=commons.wikimedia.org"
   },
   {
     "title": "Figure of Hindu god Ganesh, Dhokra style",
@@ -169,8 +171,9 @@
     "image": "https://upload.wikimedia.org/wikipedia/commons/3/3a/Kalamkari_Rumal_MET_DP335160.jpg",
     "imageAlt": "Painted and dyed Kalamkari rumal in the Metropolitan Museum of Art collection",
     "imageSource": "https://commons.wikimedia.org/wiki/File:Kalamkari_Rumal_MET_DP335160.jpg",
-    "credit": "The Metropolitan Museum of Art, Rogers Fund, 1928. Public domain.",
-    "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/"
+    "credit": "The Metropolitan Museum of Art, Rogers Fund, 1928. Public domain. Preview resized; full-size image linked.",
+    "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "preview": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/3a/Kalamkari_Rumal_MET_DP335160.jpg/960px-Kalamkari_Rumal_MET_DP335160.jpg?utm_campaign=index&utm_content=thumbnail&utm_source=commons.wikimedia.org"
   },
   {
     "slug": "dhokra-vishnu",
@@ -339,8 +342,9 @@
     "image": "https://upload.wikimedia.org/wikipedia/commons/8/80/India%2C_Bengal%2C_19th_century_-_Kantha_-_1996.350_-_Cleveland_Museum_of_Art.jpg",
     "imageAlt": "Cream cotton quilt embroidered with figures, animals and floral designs",
     "imageSource": "https://commons.wikimedia.org/wiki/File:India,_Bengal,_19th_century_-_Kantha_-_1996.350_-_Cleveland_Museum_of_Art.jpg",
-    "credit": "The Cleveland Museum of Art, gift of William E. Ward in memory of Evelyn Svec Ward, 1996.350. CC0.",
-    "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/"
+    "credit": "The Cleveland Museum of Art, gift of William E. Ward in memory of Evelyn Svec Ward, 1996.350. CC0. Preview resized; full-size image linked.",
+    "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "preview": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/80/India%2C_Bengal%2C_19th_century_-_Kantha_-_1996.350_-_Cleveland_Museum_of_Art.jpg/960px-India%2C_Bengal%2C_19th_century_-_Kantha_-_1996.350_-_Cleveland_Museum_of_Art.jpg?utm_campaign=index&utm_content=thumbnail&utm_source=commons.wikimedia.org"
   },
   {
     "slug": "bidri-basin",
@@ -356,5 +360,255 @@
     "imageSource": "https://www.clevelandart.org/art/2020.205",
     "credit": "The Cleveland Museum of Art, Severance and Greta Millikin Purchase Fund, 2020.205. Open access.",
     "licenseUrl": "https://www.clevelandart.org/open-access"
+  },
+  {
+    "slug": "chamba-cover",
+    "tradition": "chamba-rumal",
+    "title": "Cover (Rumal)",
+    "maker": "Maker not identified",
+    "date": "18th century",
+    "medium": "Cotton and silk",
+    "recordUrl": "https://www.metmuseum.org/art/collection/search/73138",
+    "description": "The Met records this embroidered cover as a work from Chamba. Its description identifies Radha and Krishna in a grove.",
+    "image": "https://collectionapi.metmuseum.org/api/collection/v1/iiif/73138/126957/main-image",
+    "imageAlt": "An embroidered Chamba cover with figures in a grove",
+    "imageSource": "https://www.metmuseum.org/art/collection/search/73138",
+    "credit": "The Metropolitan Museum of Art, The Friedsam Collection, Bequest of Michael Friedsam, 1931. Public domain."
+  },
+  {
+    "slug": "phulkari-hanging",
+    "tradition": "phulkari",
+    "title": "Hanging (Phulkari work)",
+    "maker": "Maker not identified",
+    "date": "c. 1875–1900",
+    "medium": "Embroidered silk on cotton",
+    "recordUrl": "https://www.clevelandart.org/art/1942.367",
+    "description": "The Cleveland Museum of Art records this embroidered hanging as a work from Punjab.",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/9/93/India%2C_Punjab%2C_Late_19th_century_-_Hanging_%28Phulkari_work%29_-_1942.367_-_Cleveland_Museum_of_Art.jpg",
+    "preview": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/India%2C_Punjab%2C_Late_19th_century_-_Hanging_%28Phulkari_work%29_-_1942.367_-_Cleveland_Museum_of_Art.jpg/960px-India%2C_Punjab%2C_Late_19th_century_-_Hanging_%28Phulkari_work%29_-_1942.367_-_Cleveland_Museum_of_Art.jpg",
+    "imageAlt": "An embroidered Phulkari hanging from Punjab",
+    "imageSource": "https://commons.wikimedia.org/wiki/File:India,_Punjab,_Late_19th_century_-_Hanging_(Phulkari_work)_-_1942.367_-_Cleveland_Museum_of_Art.jpg",
+    "credit": "The Cleveland Museum of Art, Gift of Mrs. J. Livingstone Taylor, 1942.367. CC0. Preview resized; full-size image linked.",
+    "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  {
+    "slug": "kaliya-majuli-mask",
+    "tradition": "majuli-masks",
+    "title": "Head and body mask of Kaliya",
+    "maker": "Workshop of Hemchandra Goswami",
+    "date": "2015",
+    "medium": "See the source",
+    "recordUrl": "https://uplopen.com/en/books/11705/files/98bcb729-368d-4223-b168-131857729fa9.pdf",
+    "description": "An academic museum publication identifies this mask as made by the workshop at Samaguri and records it in the British Museum, inventory 2015,3041.1."
+  },
+  {
+    "slug": "aranmula-mirror-object",
+    "tradition": "aranmula-kannadi",
+    "title": "Aranmula Mirror",
+    "maker": "Maker not identified",
+    "date": "1931–1970, as recorded by the museum",
+    "medium": "Metal mirror and brass frame",
+    "recordUrl": "https://artsandculture.google.com/asset/aranmula-mirror/QgGx5hemgnZqgg?hl=en",
+    "description": "Sanskriti Museums describes a circular metal mirror set in an ornate frame."
+  },
+  {
+    "slug": "naga-tsungkotepsu",
+    "tradition": "naga-textiles",
+    "title": "Tsüngkotepsü — Naga Shawl",
+    "maker": "Maker not identified",
+    "date": "Not stated in the online record",
+    "medium": "See the museum record",
+    "recordUrl": "https://nationalcraftsmuseum.nic.in/artifacts-detail/26805",
+    "description": "The National Crafts Museum records this shawl under accession 85/6861 and locates it in Nagaland."
+  },
+  {
+    "slug": "thanjavur-natraja",
+    "tradition": "thanjavur-painting",
+    "title": "Natraja",
+    "maker": "Artist unknown",
+    "date": "Early 19th century, approximately",
+    "medium": "Natural colour on cloth and wood",
+    "recordUrl": "https://museumsofindia.gov.in/repository/record/nat_del-75-355-117280",
+    "description": "The National Museum lists this Tanjore-style painting as accession 75.355."
+  },
+  {
+    "slug": "khurja-hand-painted-plates",
+    "tradition": "khurja-pottery",
+    "title": "Hand painted Plates",
+    "maker": "Sultan Ahmad and Mohammad Arif",
+    "date": "Date not stated",
+    "medium": "Hand-painted pottery",
+    "recordUrl": "https://artsandculture.google.com/asset/hand-painted-plates-sultan-ahmad-mohammad-arif/-AF35g7QSe5_pA?hl=en",
+    "description": "Dastkari Haat Samiti credits the makers and identifies Qamar Dagar as a guide for the project."
+  },
+  {
+    "slug": "nek-chand-rock-garden-work",
+    "tradition": "nek-chand-rock-garden",
+    "title": "The Rock Garden of Chandigarh",
+    "maker": "Nek Chand and collaborators",
+    "date": "Begun 1957, according to the district account",
+    "medium": "Reused ceramics, stone and other recovered materials",
+    "recordUrl": "https://chandigarhdistrict.nic.in/tourist-place/rock-garden/",
+    "description": "A sculptural environment, rather than a single portable object. Chandigarh district names Nek Chand as its founder; many people contributed to its history."
+  },
+  {
+    "slug": "kashmir-wall-plaque",
+    "tradition": "kashmir-papier-mache",
+    "title": "Wall Plaque",
+    "maker": "Maker not identified",
+    "date": "Not stated in the online record",
+    "medium": "Papier-mâché",
+    "recordUrl": "https://nationalcraftsmuseum.nic.in/artifacts-detail/31694",
+    "description": "The National Crafts Museum describes a round papier-mâché wall plaque, accession 84/217, from Jammu and Kashmir."
+  },
+  {
+    "slug": "khati-aipan-mural",
+    "tradition": "aipan",
+    "title": "Aipan mural, Khati",
+    "maker": "Poornima Sukumar and Wise Wall Project collaborators",
+    "date": "2018",
+    "medium": "Weather-proof exterior wall paint",
+    "recordUrl": "https://artsandculture.google.com/asset/aipan/2AHgttOhUVC7VQ",
+    "description": "Project FUEL says its head artist Poornima Sukumar conceptualised the murals with community contributions and shows her painting an Aipan pattern."
+  },
+  {
+    "slug": "goa-santa-monica-kaavi",
+    "tradition": "kaavi-art",
+    "title": "Kaavi art at the Convent of Santa Monica",
+    "maker": "Maker not identified",
+    "date": "Date of artwork not stated",
+    "medium": "Wall art; see source",
+    "recordUrl": "https://commons.wikimedia.org/wiki/File:Kaavi_Art_in_the_Convent_of_Santa_Monica,_Old_Goa,_India..jpg",
+    "description": "A photograph documents a Kaavi surface revealed during restoration at the convent in Old Goa. The record does not identify the artist or date the wall art."
+  },
+  {
+    "slug": "hazaribagh-sohrai-museum",
+    "tradition": "sohrai-khovar",
+    "title": "Sohrai paintings at Sanskriti Museum",
+    "maker": "Santhal women artists; individuals not identified in source",
+    "date": "Documented 2026",
+    "medium": "Paint on surfaces; see the source",
+    "recordUrl": "https://repository.tribal.gov.in/repository/details/MTA0",
+    "description": "The Ministry of Tribal Affairs describes a photographed group of works at the Sanskriti Museum and Art Gallery, Hazaribagh."
+  },
+  {
+    "slug": "delhi-zardozi-in-progress",
+    "tradition": "delhi-zardozi",
+    "title": "Zari Zardozi: Making of zari embroidery",
+    "maker": "Maker not identified",
+    "date": "Photographed 2018",
+    "medium": "Embroidery on textile",
+    "recordUrl": "https://artsandculture.google.com/asset/zari-zardozi-making-of-zari-embroidery/TwGeomMAD4Xgnw?hl=en",
+    "description": "Dastkari Haat Samiti documents a work in progress in its account of Delhi zardozi."
+  },
+  {
+    "slug": "cheriyal-pari-mural",
+    "tradition": "cheriyal-scrolls",
+    "title": "Cheriyal mural for the Pari project",
+    "maker": "Sai Kiran",
+    "date": "Date not stated in the source",
+    "medium": "Painted wall mural",
+    "recordUrl": "https://lalitkala.gov.in/uploads/pariproject/Spot%2011%20About%20the%20Artist.pdf",
+    "description": "Lalit Kala Akademi credits Sai Kiran and illustrates a mural in its Pari project artist note."
+  },
+  {
+    "slug": "villianur-design-collection",
+    "tradition": "villianur-terracotta",
+    "title": "Villianur terracotta design collection",
+    "maker": "NIFT Chennai students, V. K. Munusamy and Karunanithi",
+    "date": "2025",
+    "medium": "Terracotta",
+    "recordUrl": "https://www.nift.ac.in/varanasi/project/villianur-terracotta-craft",
+    "description": "NIFT describes a collaborative collection of outdoor décor, lighting and other objects developed with master artisans and students. This record refers to the collection, not one object."
+  },
+  {
+    "slug": "lakshadweep-shell-turtles",
+    "tradition": "lakshadweep-coconut-shell",
+    "title": "Coconut-shell turtles at Kavaratti",
+    "maker": "Makers not identified",
+    "date": "Date not stated",
+    "medium": "Coconut shell",
+    "recordUrl": "https://www.mpiwg-berlin.mpg.de/research/projects/coral-communities-history-marine-species-lakshadweep-islands-india",
+    "description": "The Max Planck Institute for the History of Science captions a photograph of a display of coconut-shell turtles at the Handicrafts Museum, Kavaratti. The record refers to a group, not a single object."
+  },
+  {
+    "slug": "monpa-mithun-paper-kit",
+    "tradition": "monpa-handmade-paper",
+    "title": "Mithun-shaped Mon Shugu paper",
+    "maker": "NID Ahmedabad and collaborating artisans",
+    "date": "2026",
+    "medium": "Mon Shugu handmade paper",
+    "recordUrl": "https://www.nid.edu/getNewsevents/design-of-the-at-home-invite-to-republic-day-26th-january-2026-guests-at-rashtrapati-bhavan",
+    "description": "A Mithun-shaped handmade paper component of the 2026 Republic Day invitation kit. The National Institute of Design describes the collaboration with artisans; it does not identify the individual maker of this component."
+  },
+  {
+    "slug": "lepcha-nettle-kit",
+    "tradition": "lepcha-weaving",
+    "title": "Lepcha woven and embroidered panel",
+    "maker": "NID Ahmedabad and collaborating artisans",
+    "date": "2026",
+    "medium": "Woven nettle fabric and embroidery",
+    "recordUrl": "https://www.nid.edu/getNewsevents/design-of-the-at-home-invite-to-republic-day-26th-january-2026-guests-at-rashtrapati-bhavan",
+    "description": "A woven and embroidered component of the 2026 Republic Day invitation kit, described by the National Institute of Design as reflecting a connection to the mountains. The individual maker is not identified."
+  },
+  {
+    "slug": "puanchei-invitation-kit",
+    "tradition": "mizo-puanchei",
+    "title": "Puan Chei textile component",
+    "maker": "NID Ahmedabad and collaborating artisans",
+    "date": "2026",
+    "medium": "Handwoven cotton",
+    "recordUrl": "https://www.nid.edu/getNewsevents/design-of-the-at-home-invite-to-republic-day-26th-january-2026-guests-at-rashtrapati-bhavan",
+    "description": "A Puan Chei textile component of the collaborative 2026 Republic Day invitation kit. The National Institute of Design describes the weaving; it does not name the individual artisan responsible for this component."
+  },
+  {
+    "slug": "meghalaya-eri-chaddar",
+    "tradition": "ryndia-weaving",
+    "title": "Eri silk chaddar",
+    "maker": "Maker not identified",
+    "date": "2007",
+    "medium": "Handspun and handwoven eri silk",
+    "recordUrl": "https://mississippientomologicalmuseum.org.msstate.edu/AnthroEnt/Textiles/Species/Samia_ricini.html",
+    "description": "A woman’s wrapper made in Meghalaya, measuring 65 × 187 cm. The Mississippi Entomological Museum describes the preparation of its silk and records the year; the maker is not named."
+  },
+  {
+    "slug": "reang-risha",
+    "tradition": "tripura-risa",
+    "title": "Risha from the Reang community",
+    "maker": "Maker not identified",
+    "date": "Date not stated",
+    "medium": "Woven textile",
+    "recordUrl": "https://tilla.in/pages/the-risha-marg",
+    "description": "A Risha from the Reang community pictured in a research project by Aratrik Dev Varman and Jisha Unnikrishnan. The page does not identify the weaver or date this individual textile."
+  },
+  {
+    "slug": "nicobar-pandanus-mat",
+    "tradition": "nicobari-mats",
+    "title": "Pandanus mat in the making",
+    "maker": "Maker not identified",
+    "date": "Documented by 2008",
+    "medium": "Pandanus leaves",
+    "recordUrl": "https://nopr.niscpr.res.in/bitstream/123456789/566/1/IJTK%207%281%29%20%282008%29%2042-49.pdf",
+    "description": "A mat being made is pictured as figure 24 in a 2008 ethnobotanical study of the Nicobar Islands. The source does not name the maker; its historical descriptions include language that readers may find outdated."
+  },
+  {
+    "slug": "panipat-panja-durrie-study",
+    "tradition": "panipat-durries",
+    "title": "Panja durrie in a field study",
+    "maker": "Maker not identified",
+    "date": "Studied by 2018",
+    "medium": "Woven textile",
+    "recordUrl": "https://www.ijrssh.com/abstract.php?id=1118",
+    "description": "A 2018 field study discusses Panipat production and takes a panja durrie as an object of study. The abstract does not give an individual maker, date or object image."
+  },
+  {
+    "slug": "tonyot-tashi-genduk-choknis",
+    "tradition": "ladakhi-thangka",
+    "title": "Genduk Choknis",
+    "maker": "Tonyot Tashi",
+    "date": "Date not stated",
+    "medium": "Painting; materials not stated",
+    "recordUrl": "https://www.reachladakh.com/news/in-conversation-with-reach-ladakh/state-awardee-tonyot-tashi-thangka-painter",
+    "description": "In an interview, thangka artist Tonyot Tashi names Genduk Choknis among paintings displayed in museums. The interview does not assign this painting to a specific institution or date it."
   }
 ]
