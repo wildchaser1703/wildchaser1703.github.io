@@ -13,9 +13,9 @@
       "The Odisha government describes one traditional method of preparing a cloth support with chalk and glue made from tamarind seeds. In that account, the border comes first, followed by a brush sketch, flat colours and fine finishing lines. Materials and order vary between makers and works. Its account describes colour sources including lampblack, mineral pigments and white made from shells. Contemporary practice can also use newer materials; do not assume a particular object uses natural pigments unless its own record says so."
     ],
     "maker": {
-      "name": "Ramo Maharana",
+      "name": "Ramo and Panu Maharana",
       "url": "https://collections.lacma.org/object/134861",
-      "description": "Ramo Maharana is credited by the Los Angeles County Museum of Art for Krishna's Dance of Delight (Rasa Lila), dated 1952. The museum's individual record is a useful place to begin exploring a named painter and object."
+      "description": "LACMA credits both Ramo Maharana and Panu Maharana as makers of Krishna’s Dance of Delight (Rasa Lila), dated 1952."
     },
     "artwork": {
       "title": "Pattachitra with Kali defeating Shiva",
@@ -64,6 +64,20 @@
     "materials": "Paint on cloth, paper and other surfaces",
     "locations": [
       "Odisha"
+    ],
+    "localNames": [
+      {
+        "text": "पट्टचित्र",
+        "lang": "hi"
+      }
+    ],
+    "keywords": [],
+    "traditionSourceRefs": [
+      0,
+      1
+    ],
+    "processSourceRefs": [
+      0
     ]
   },
   {
@@ -92,10 +106,11 @@
       "recordUrl": "https://commons.wikimedia.org/wiki/File:Madhubani_painting_by_Bhuvana_Meenakshi.jpg",
       "image": "https://upload.wikimedia.org/wikipedia/commons/5/51/Madhubani_painting_by_Bhuvana_Meenakshi.jpg",
       "imageAlt": "Madhubani painting by Bhuvana Meenakshi",
-      "credit": "Bhuvana Meenakshi, Madhubani painting, CC BY-SA 3.0; no changes.",
+      "credit": "Bhuvana Meenakshi, Madhubani painting, CC BY-SA 3.0; preview resized; full-size image linked.",
       "imageSource": "https://commons.wikimedia.org/wiki/File:Madhubani_painting_by_Bhuvana_Meenakshi.jpg",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
-      "description": "Maker: Bhuvana Meenakshi, as identified by the uploader. Medium: Not specified in available record."
+      "description": "Maker: Bhuvana Meenakshi, as identified by the uploader. Medium: Not specified in available record.",
+      "preview": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/51/Madhubani_painting_by_Bhuvana_Meenakshi.jpg/500px-Madhubani_painting_by_Bhuvana_Meenakshi.jpg?utm_campaign=index&utm_content=thumbnail&utm_source=commons.wikimedia.org"
     },
     "sources": [
       {
@@ -123,6 +138,20 @@
     "locations": [
       "Bihar",
       "Nepal"
+    ],
+    "localNames": [
+      {
+        "text": "मधुबनी चित्रकला",
+        "lang": "hi"
+      }
+    ],
+    "keywords": [],
+    "traditionSourceRefs": [
+      0,
+      1
+    ],
+    "processSourceRefs": [
+      0
     ]
   },
   {
@@ -144,17 +173,17 @@
       "description": "Durga Bai Vyam is an artist whose work includes folktales and images rooted in her Gond Pardhan community. IGNCA describes the role of family, childhood painting and storytelling in her practice."
     },
     "artwork": {
-      "title": "Gond painting",
+      "title": "Untitled (Tree of Life)",
       "maker": "Durgabai Vyam",
-      "date": "Not specified",
-      "medium": "Not specified in available record",
-      "recordUrl": "https://commons.wikimedia.org/wiki/File:2015.2.24_Durga_Bai_Gond.jpg",
+      "date": "Undated",
+      "medium": "Gouache and ink on paper",
+      "recordUrl": "https://sarmaya.in/objects/indigenous-tribal-art/untitled-tree-of-life-2/",
       "image": "https://upload.wikimedia.org/wikipedia/commons/0/01/2015.2.24_Durga_Bai_Gond.jpg",
-      "imageAlt": "Painting by Durgabai Vyam",
+      "imageAlt": "A painting of a tree, birds and figures by Durgabai Vyam",
       "credit": "Durgabai Vyam, © Sarmaya Arts Foundation, CC BY 4.0; no changes.",
       "imageSource": "https://commons.wikimedia.org/wiki/File:2015.2.24_Durga_Bai_Gond.jpg",
       "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
-      "description": "Maker: Durgabai Vyam. Medium: Not specified in available record."
+      "description": "Sarmaya identifies this Gond-Pardhan painting as an undated work in gouache and ink, accession 2015.2.24."
     },
     "sources": [
       {
@@ -171,25 +200,43 @@
         "label": "Artwork record",
         "url": "https://commons.wikimedia.org/wiki/File:2015.2.24_Durga_Bai_Gond.jpg",
         "description": ""
+      },
+      {
+        "label": "Sarmaya: Untitled (Tree of Life), Durgabai Vyam",
+        "url": "https://sarmaya.in/objects/indigenous-tribal-art/untitled-tree-of-life-2/"
       }
     ],
     "materials": "Wall, paper and other surfaces",
     "locations": [
       "Madhya Pradesh"
+    ],
+    "localNames": [
+      {
+        "text": "गोंड चित्रकला",
+        "lang": "hi"
+      }
+    ],
+    "keywords": [],
+    "traditionSourceRefs": [
+      0,
+      1
+    ],
+    "processSourceRefs": [
+      0
     ]
   },
   {
     "slug": "warli",
     "title": "Warli painting",
-    "region": "Western India, including Maharashtra and Gujarat",
+    "region": "Maharashtra, Gujarat, and Dadra and Nagar Haveli and Daman and Diu",
     "category": "Painting",
     "intro": "Human figures, animals and settings bring communities and their stories into view.",
     "tradition": [
-      "Warli painting is associated with Warli communities in western India. India's official list of geographical-indication handicrafts names Maharashtra, Gujarat, and Dadra and Nagar Haveli and Daman and Diu for Warli painting. Regions overlap, and the practice cannot be reduced to a single administrative border. Government craft documentation describes paintings of gatherings, weddings and fairs. Individual makers and works are varied: avoid assuming that every image depicts the same event or was made for the same purpose.",
+      "Warli painting is associated with Warli communities in western India, including parts of Maharashtra, Gujarat, and Dadra and Nagar Haveli and Daman and Diu. Regions overlap, and the practice cannot be reduced to a single administrative border. Paintings can depict gatherings and aspects of daily life. Individual makers and works are varied: avoid assuming every image depicts the same event or was made for the same purpose.",
       "Contemporary practitioners work on a range of surfaces. Museum collections hold individual works by artists such as Jivya Soma Mashe, alongside the continuing practice of wall painting."
     ],
     "process": [
-      "One traditional process documented by the Office of the Development Commissioner for Handicrafts describes a prepared wall coloured with red earth and painting in white rice-powder solution using bamboo sticks. Contemporary artists may use other materials, including paper, canvas and acrylic paint. The relationship between the ground, white marks and the surrounding space can make images feel rhythmic and active. That observation is a way to look, not a universal meaning assigned to every shape."
+      "One traditional process described by craft sources uses a prepared wall and white rice-paste marks. Contemporary artists may use other materials, including paper, canvas and acrylic paint. The relationship between the ground, white marks and the surrounding space can make images feel rhythmic and active. That observation is a way to look, not a universal meaning assigned to every shape."
     ],
     "maker": {
       "name": "Jivya Soma Mashe",
@@ -206,14 +253,12 @@
     },
     "sources": [
       {
-        "label": "Government of India: registered handicrafts",
-        "url": "https://handicrafts.nic.in/pdf/LIST_OF_CRAFT_REGISTRED_UNDER_GEOGRAPHICAL_INDICATION_HANDICRAFTS.pdf",
-        "description": ""
+        "label": "Incredible India: Warli painting in Maharashtra and beyond",
+        "url": "https://www.incredibleindia.gov.in/en/maharashtra/the-enduring-tribal-artistry-of-maharashtra-warli-paintings"
       },
       {
-        "label": "Government of India: craft processes",
-        "url": "https://handicrafts.gov.in/CmsUpload/2039201602393132craftprocess.pdf",
-        "description": ""
+        "label": "Asia InCH: Warli painting of Maharashtra",
+        "url": "https://www.asiainch.org/craft/warli-painting/"
       },
       {
         "label": "Fondation Cartier: Jivya Soma Mashe",
@@ -229,12 +274,31 @@
         "label": "Artwork record",
         "url": "https://commons.wikimedia.org/wiki/File:Warli_art_-_acrylic_painting_on_canvas.jpg",
         "description": ""
+      },
+      {
+        "label": "Dadra and Nagar Haveli district: Warli painting in Silvassa",
+        "url": "https://dnh.gov.in/handicraft-2/"
       }
     ],
     "materials": "Wall, rice paste, paper and canvas",
     "locations": [
       "Maharashtra",
-      "Gujarat"
+      "Gujarat",
+      "Dadra and Nagar Haveli and Daman and Diu"
+    ],
+    "localNames": [
+      {
+        "text": "वारली चित्रकला",
+        "lang": "hi"
+      }
+    ],
+    "keywords": [],
+    "traditionSourceRefs": [
+      0,
+      1
+    ],
+    "processSourceRefs": [
+      1
     ]
   },
   {
@@ -264,8 +328,9 @@
       "image": "https://upload.wikimedia.org/wikipedia/commons/9/9d/Kalamkari_Panel_with_Niche_MET_wb-27.215.1.jpeg",
       "imageAlt": "Historic painted and dyed cotton textile panel with a niche design",
       "imageSource": "https://commons.wikimedia.org/wiki/File:Kalamkari_Panel_with_Niche_MET_wb-27.215.1.jpeg",
-      "credit": "Kalamkari Panel with Niche, late 17th–early 18th century, attributed to Burhanpur, India. Gift of Mrs. Frederic B. Pratt, 1927, The Metropolitan Museum of Art, 27.215.1. Public domain.",
-      "description": "The Met attributes this painted and dyed cotton to Burhanpur in the Deccan. The maker is not identified."
+      "credit": "Kalamkari Panel with Niche, late 17th–early 18th century, attributed to Burhanpur, India. Gift of Mrs. Frederic B. Pratt, 1927, The Metropolitan Museum of Art, 27.215.1. Public domain. Preview resized; full-size image linked.",
+      "description": "The Met attributes this painted and dyed cotton to Burhanpur in the Deccan. The maker is not identified.",
+      "preview": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/9d/Kalamkari_Panel_with_Niche_MET_wb-27.215.1.jpeg/500px-Kalamkari_Panel_with_Niche_MET_wb-27.215.1.jpeg?utm_campaign=index&utm_content=thumbnail&utm_source=commons.wikimedia.org"
     },
     "sources": [
       {
@@ -296,7 +361,23 @@
     ],
     "materials": "Painted and printed cotton textiles",
     "locations": [
-      "Andhra Pradesh"
+      "Andhra Pradesh",
+      "Madhya Pradesh"
+    ],
+    "localNames": [
+      {
+        "text": "कलमकारी",
+        "lang": "hi"
+      }
+    ],
+    "keywords": [],
+    "traditionSourceRefs": [
+      0,
+      3
+    ],
+    "processSourceRefs": [
+      0,
+      3
     ]
   },
   {
@@ -306,7 +387,7 @@
     "category": "Metal",
     "intro": "Dhokra, also spelled Dokra, is a family of metal-casting practices in which artisans use wax and clay to shape the final object.",
     "tradition": [
-      "The Government of India documents Dhokra centres in Odisha, West Bengal, Bihar, Chhattisgarh and parts of Andhra Pradesh. Objects and practices vary across communities and workshops. Dhokra can include figures, ornaments, boxes and other objects.",
+      "Dhokra practices are documented in Odisha, West Bengal and Chhattisgarh, among other places. Objects and practices vary across communities and workshops. Dhokra can include figures, ornaments, boxes and other objects.",
       "Artisans continue to make both functional and decorative work for changing uses and audiences. A name such as Dhokra describes related practices, not a single style or community."
     ],
     "process": [
@@ -323,14 +404,12 @@
     },
     "sources": [
       {
-        "label": "Government of India: Craft processes, Dhokra",
-        "url": "https://www.handicrafts.nic.in/CmsUpload/2039201602393132%20craft%20process.pdf",
-        "description": ""
+        "label": "Asia InCH: Dhokra metal casting of Chhattisgarh",
+        "url": "https://www.asiainch.org/craft/dhokra-metal-casting-of-chattisgarh/"
       },
       {
-        "label": "Government of India: Geographical indications compendium, Bastar Dhokra",
-        "url": "https://handicrafts.nic.in/CmsUpload/12222017102212GI%20BOOK%20FINAL%202-5-17_resized.pdf",
-        "description": ""
+        "label": "Asia InCH: Dhokra metal casting of Odisha",
+        "url": "https://asiainch.org/craft/dhokra-metal-casting-of-odisha/"
       },
       {
         "label": "Wikimedia Commons: God astride an owl",
@@ -341,6 +420,10 @@
         "label": "Science Museum Group: figure of Ganesh in Dhokra style",
         "url": "https://collection.sciencemuseumgroup.org.uk/objects/co122890/figure-of-hindu-god-ganesh-dhokra-style",
         "description": ""
+      },
+      {
+        "label": "Asia InCH: Dhokra of West Bengal",
+        "url": "https://asiainch.org/craft/dokra-metal-craft-of-west-bengal/"
       }
     ],
     "materials": "Wax, clay mould and cast metal",
@@ -348,6 +431,21 @@
       "Odisha",
       "West Bengal",
       "Chhattisgarh"
+    ],
+    "localNames": [
+      {
+        "text": "ढोकरा",
+        "lang": "hi"
+      }
+    ],
+    "keywords": [],
+    "traditionSourceRefs": [
+      0,
+      1,
+      4
+    ],
+    "processSourceRefs": [
+      0
     ]
   },
   {
@@ -397,6 +495,1393 @@
     "materials": "Clay and stone powder",
     "locations": [
       "Manipur"
+    ],
+    "localNames": [],
+    "keywords": [],
+    "traditionSourceRefs": [
+      1,
+      2
+    ],
+    "processSourceRefs": [
+      1,
+      2
+    ],
+    "illustration": {
+      "image": "https://upload.wikimedia.org/wikipedia/commons/e/e6/Longpi_pottery.jpg",
+      "imageAlt": "Black Longpi pottery from Manipur",
+      "credit": "Longpi pottery, photographed by Atcelsius, 2020. Pottery maker not identified. CC BY-SA 4.0; preview resized; full-size image linked.",
+      "imageSource": "https://commons.wikimedia.org/wiki/File:Longpi_pottery.jpg",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "preview": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e6/Longpi_pottery.jpg/500px-Longpi_pottery.jpg?utm_campaign=index&utm_content=thumbnail&utm_source=commons.wikimedia.org"
+    }
+  },
+  {
+    "slug": "ajrakh",
+    "title": "Ajrakh block printing",
+    "region": "Kutch, Gujarat, and across Sindh",
+    "category": "Textile",
+    "intro": "Layered block printing and resist dyeing build up colour on cloth.",
+    "tradition": [
+      "Ajrakh is a family of block-printed textile practices associated with Kutch in Gujarat and with Sindh across the present-day India–Pakistan border. Asia InCH documents cloth made for garments and household use in Kutch. This entry begins there; it cannot describe every regional practice.",
+      "Makers and workshops make different choices about colour, pattern, scale and materials. A textile is the result of their decisions, not simply a catalogue of motifs."
+    ],
+    "process": [
+      "The Kutch account describes printing with carved wooden blocks alongside repeated dyeing and resist processes. Indigo and madder are among the colour sources recorded; a particular textile may use different dyes. Alignment, washing and successive applications are part of the work."
+    ],
+    "materials": "Cotton, carved blocks, dyes and resists",
+    "locations": [
+      "Gujarat"
+    ],
+    "sources": [
+      {
+        "label": "Asia InCH: Ajrakh block printing in Gujarat",
+        "url": "https://www.asiainch.org/craft/hand-block-printing-ajrak-of-gujarat/"
+      },
+      {
+        "label": "Khamir: Ajrakh",
+        "url": "https://www.khamir.org/crafts/ajrakh-blockprint"
+      }
+    ],
+    "localNames": [
+      {
+        "text": "अजरख",
+        "lang": "hi"
+      }
+    ],
+    "keywords": [],
+    "maker": null,
+    "artwork": null,
+    "traditionSourceRefs": [
+      0
+    ],
+    "processSourceRefs": [
+      0
+    ]
+  },
+  {
+    "slug": "kantha",
+    "title": "Kantha embroidery",
+    "region": "West Bengal and Bangladesh",
+    "category": "Textile",
+    "intro": "Running stitches hold layers of cloth together and create images, borders and texture.",
+    "tradition": [
+      "Kantha describes several embroidered textiles associated with Bengal, including present-day West Bengal and Bangladesh. Asia InCH describes West Bengal examples made from layers of worn saris and dhotis, often stitched by women.",
+      "Some examples are quilts, while others serve as covers, wraps or contemporary textiles. Their images and stitches reflect individual makers and their circumstances."
+    ],
+    "process": [
+      "In one documented method, layers of cloth are held together with running stitches, sometimes using thread drawn from old sari borders. Layers, colours and stitches vary by maker and by object."
+    ],
+    "materials": "Reused cloth, thread and running stitches",
+    "locations": [
+      "West Bengal"
+    ],
+    "sources": [
+      {
+        "label": "Asia InCH: Kantha embroidery of West Bengal",
+        "url": "https://www.asiainch.org/craft/kantha-embroidery-of-west-bengal/"
+      },
+      {
+        "label": "IGNCA: Kantha",
+        "url": "https://ignca.gov.in/PDF_data/kantha_flyer.pdf"
+      }
+    ],
+    "localNames": [
+      {
+        "text": "कांथा",
+        "lang": "hi"
+      }
+    ],
+    "keywords": [],
+    "maker": null,
+    "artwork": null,
+    "traditionSourceRefs": [
+      0
+    ],
+    "processSourceRefs": [
+      0
+    ]
+  },
+  {
+    "slug": "bidriware",
+    "title": "Bidriware",
+    "region": "Bidar, Karnataka",
+    "category": "Metal",
+    "intro": "Darkened metal surfaces are inlaid with contrasting designs.",
+    "tradition": [
+      "Bidriware takes its name from Bidar in Karnataka. It includes vessels and other objects made with an alloy and contrasting inlay. Its history and present-day forms span changing patrons, uses and workshops.",
+      "Craft accounts describe the surface finishing and inlay work; look at a particular maker and object for the materials actually used."
+    ],
+    "process": [
+      "A documented process casts an alloy, engraves a design, and sets wire or sheet in the cut grooves. A finishing treatment darkens the body while the inlaid metal remains bright. The method and alloys can vary."
+    ],
+    "materials": "Cast alloy and metal inlay",
+    "locations": [
+      "Karnataka"
+    ],
+    "sources": [
+      {
+        "label": "Asia InCH: Bidri metal inlay of Karnataka",
+        "url": "https://asiainch.org/craft/bidri-inlay-on-metal-of-karnataka/"
+      },
+      {
+        "label": "Incredible India: cultural canvas in Bidar",
+        "url": "https://www.incredibleindia.gov.in/en/karnataka/bidar/cultural-canvas-in-bidar"
+      }
+    ],
+    "localNames": [
+      {
+        "text": "बिदरी",
+        "lang": "hi"
+      }
+    ],
+    "keywords": [],
+    "maker": null,
+    "artwork": null,
+    "traditionSourceRefs": [
+      0
+    ],
+    "processSourceRefs": [
+      0
+    ],
+    "illustration": {
+      "image": "https://upload.wikimedia.org/wikipedia/commons/d/d8/Bidriware_vases.jpg",
+      "imageAlt": "Bidriware vessels with pale inlaid decoration",
+      "credit": "Bidriware vases, photograph by Randhirreddy. Makers not identified. CC BY-SA 3.0; preview resized; full-size image linked.",
+      "imageSource": "https://commons.wikimedia.org/wiki/File:Bidriware_vases.jpg",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+      "preview": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d8/Bidriware_vases.jpg/960px-Bidriware_vases.jpg?utm_campaign=index&utm_content=thumbnail&utm_source=commons.wikimedia.org"
+    }
+  },
+  {
+    "slug": "phad",
+    "title": "Phad painting",
+    "region": "Bhilwara and other parts of Rajasthan",
+    "category": "Painting",
+    "intro": "Painted scrolls carry stories that are performed and retold.",
+    "tradition": [
+      "IGNCA describes Phad as painted scrolls associated with Rajasthan, made by artists of the Joshi lineage and used by Bhopa performers who narrate the stories depicted. Accounts include scrolls devoted to local deities and legendary heroes.",
+      "The scroll is part of a relationship between painters, performers and audiences. Contemporary works can take different forms and scales; this page does not treat every scroll as identical."
+    ],
+    "process": [
+      "Paintings place many episodes on a cloth scroll. IGNCA describes an example displayed on a bamboo frame during narration; the scroll can be folded for travel. Refer to an individual work for its materials and dimensions."
+    ],
+    "materials": "Painted cloth scrolls",
+    "locations": [
+      "Rajasthan"
+    ],
+    "sources": [
+      {
+        "label": "IGNCA: Phad scroll paintings and their narration",
+        "url": "https://ignca.gov.in/ICH/ich_detail/ich00013.pdf"
+      },
+      {
+        "label": "IGNCA: Aakhyan exhibition brochure",
+        "url": "https://ignca.gov.in/PDF_data/aakhyan_brochure.pdf"
+      }
+    ],
+    "localNames": [
+      {
+        "text": "फड़",
+        "lang": "hi"
+      }
+    ],
+    "keywords": [],
+    "maker": null,
+    "artwork": null,
+    "traditionSourceRefs": [
+      0
+    ],
+    "processSourceRefs": [
+      0
+    ]
+  },
+  {
+    "slug": "molela-terracotta",
+    "title": "Molela terracotta",
+    "region": "Molela, Rajasthan",
+    "category": "Pottery",
+    "intro": "Clay plaques and figures made for devotion, homes and new settings.",
+    "tradition": [
+      "The craft associated with Molela in Rajasthan includes modelled terracotta plaques with figures and other forms. The Government of India’s geographical-indications compendium records the craft and its location.",
+      "Makers work for different communities and contexts; a plaque’s identity and purpose should be read from its own maker or record."
+    ],
+    "process": [
+      "Clay is shaped into relief forms and fired. The government compendium describes making and firing as part of the craft. Finishing and colour differ between examples."
+    ],
+    "materials": "Clay and fired terracotta",
+    "locations": [
+      "Rajasthan"
+    ],
+    "sources": [
+      {
+        "label": "Government of India: GI handicrafts compendium",
+        "url": "https://handicrafts.nic.in/CmsUpload/12222017102212GI%20BOOK%20FINAL%202-5-17_resized.pdf"
+      },
+      {
+        "label": "IGNCA via National Digital Library: Molela terracotta",
+        "url": "https://ndl.iitkgp.ac.in/ch_document/ignca_ichi/ignca_iichi/5"
+      }
+    ],
+    "localNames": [],
+    "keywords": [],
+    "maker": null,
+    "artwork": null,
+    "traditionSourceRefs": [
+      0,
+      1
+    ],
+    "processSourceRefs": [
+      1
+    ]
+  },
+  {
+    "slug": "kalighat",
+    "title": "Kalighat painting",
+    "region": "Kolkata, West Bengal",
+    "category": "Painting",
+    "intro": "Bold lines and painted figures from a changing urban tradition.",
+    "tradition": [
+      "The Victoria and Albert Museum traces Kalighat painting to nineteenth-century Kolkata, where patua painters made works for a broad market. Their subjects developed from deities and mythological figures to include other aspects of urban life.",
+      "The Metropolitan Museum notes that descendants of painters continue working in the Kalighat area. Individual works and artists should be encountered on their own terms."
+    ],
+    "process": [
+      "The V&A describes painters using bold outlines and colours on paper. The Met’s records document watercolor and other materials in particular works; these should not be assumed for every painting."
+    ],
+    "materials": "Paint and ink on paper",
+    "locations": [
+      "West Bengal"
+    ],
+    "sources": [
+      {
+        "label": "V&A: Kalighat painting",
+        "url": "https://www.vam.ac.uk/articles/kalighat-painting"
+      },
+      {
+        "label": "The Met: The avatar Narasimha",
+        "url": "https://www.metmuseum.org/art/collection/search/857030"
+      }
+    ],
+    "localNames": [
+      {
+        "text": "कालीघाट चित्रकला",
+        "lang": "hi"
+      }
+    ],
+    "keywords": [],
+    "maker": null,
+    "artwork": null,
+    "traditionSourceRefs": [
+      0,
+      1
+    ],
+    "processSourceRefs": [
+      0
+    ]
+  },
+  {
+    "slug": "channapatna",
+    "title": "Channapatna lacquer toys",
+    "region": "Channapatna, Karnataka",
+    "category": "Wood",
+    "intro": "Turned wooden forms are shaped and finished with colour.",
+    "tradition": [
+      "Channapatna in Karnataka is associated with lacquered wooden toys and objects. Government and craft accounts describe the making tradition and the workshops involved.",
+      "Toys and contemporary objects take different shapes and uses; the name refers to a place and a field of practice rather than one unchanging design."
+    ],
+    "process": [
+      "The craft accounts describe wood shaped on a lathe and finished with lacquer. Materials and colour treatments differ, so check the source for each object."
+    ],
+    "materials": "Wood and lacquer",
+    "locations": [
+      "Karnataka"
+    ],
+    "sources": [
+      {
+        "label": "Intellectual Property India: Channapatna Toys & Dolls",
+        "url": "https://search.ipindia.gov.in/GIRPublicSearch/Application/Details/23"
+      },
+      {
+        "label": "Incredible India: Channapatna Toys & Dolls",
+        "url": "https://www.incredibleindia.gov.in/en/karnataka/channapatna-toys-and-dolls"
+      },
+      {
+        "label": "Asia InCH: Channapatna lacquer toys",
+        "url": "https://asiainch.org/craft/channapatna-toys-and-dolls-of-karnataka/"
+      }
+    ],
+    "localNames": [],
+    "keywords": [],
+    "maker": null,
+    "artwork": null,
+    "traditionSourceRefs": [
+      0,
+      1
+    ],
+    "processSourceRefs": [
+      1,
+      2
+    ]
+  },
+  {
+    "slug": "kutch-embroidery",
+    "title": "Kutch embroidery",
+    "region": "Kutch, Gujarat",
+    "category": "Textile",
+    "intro": "Many communities and individual makers create distinct embroidered textiles.",
+    "tradition": [
+      "Embroidery in Kutch is not one style. The Craft Revival Trust documents different regional practices, including embroidery associated with Meghwal makers in the Banni region. Communities, stitches and uses differ.",
+      "Avoid assigning a community, a maker or a symbolic meaning to a textile solely from its appearance. The history of a particular piece is best learned from the maker and its documented record."
+    ],
+    "process": [
+      "Needlework builds patterns on a cloth or other ground. Different Kutch practices use different stitches, materials and layouts; not every embroidered object includes mirrors."
+    ],
+    "materials": "Cloth, thread and needlework",
+    "locations": [
+      "Gujarat"
+    ],
+    "sources": [
+      {
+        "label": "Asia InCH: Mukka embroidery of Kutch",
+        "url": "https://www.asiainch.org/craft/mukka-embroidery-of-gujarat/"
+      },
+      {
+        "label": "Khamir: Kachchh embroidery",
+        "url": "https://www.khamir.org/crafts/embroidery"
+      }
+    ],
+    "localNames": [],
+    "keywords": [],
+    "maker": null,
+    "artwork": null,
+    "traditionSourceRefs": [
+      0
+    ],
+    "processSourceRefs": [
+      0
+    ]
+  },
+  {
+    "slug": "monpa-handmade-paper",
+    "title": "Monpa handmade paper",
+    "region": "Tawang and West Kameng, Arunachal Pradesh",
+    "category": "Paper",
+    "intro": "Sheets made by hand from plant fibre for writing, printing and other uses.",
+    "tradition": [
+      "Monpa handmade paper is associated with Tawang and West Kameng in Arunachal Pradesh. An Indian government account describes an effort to support the craft in Tawang; the local tourism account calls the paper Mon-Shug.",
+      "Paper is both a craft and a support for other visual and written work. Its uses and the makers who produce it deserve attention alongside the finished sheet."
+    ],
+    "process": [
+      "The National Institute of Design describes gathering the shrub’s inner bark, boiling and beating it into pulp, and pouring the diluted mixture into frames to dry as sheets. Its 2026 invitation project shaped the handmade paper into a Mithun silhouette."
+    ],
+    "materials": "Plant fibre and handmade paper",
+    "locations": [
+      "Arunachal Pradesh"
+    ],
+    "sources": [
+      {
+        "label": "Government of India: Monpa handmade paper in Tawang",
+        "url": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=1683797&lang=2&reg=48"
+      },
+      {
+        "label": "Tawang Tourism: local handpaper",
+        "url": "https://tawangtourism.in/arts-craft/local-handpaper/"
+      },
+      {
+        "label": "National Institute of Design: Mon Shugu paper",
+        "url": "https://www.nid.edu/getNewsevents/design-of-the-at-home-invite-to-republic-day-26th-january-2026-guests-at-rashtrapati-bhavan"
+      }
+    ],
+    "localNames": [],
+    "keywords": [],
+    "maker": null,
+    "artwork": null,
+    "traditionSourceRefs": [
+      0,
+      1
+    ],
+    "processSourceRefs": [
+      2
+    ]
+  },
+  {
+    "slug": "majuli-masks",
+    "title": "Majuli mask making",
+    "region": "Majuli, Assam",
+    "category": "Sculpture",
+    "intro": "Expressive masks shaped, painted and used in the cultural life of Majuli.",
+    "tradition": [
+      "The district administration describes mask making at Samaguri Satra on Majuli, Assam. The masks are connected to the visual world of Bhaona, while this entry focuses on their making as objects.",
+      "Individual makers and workshops make different characters, sizes and expressions. These crafted forms belong to a living practice rather than a single fixed design."
+    ],
+    "process": [
+      "Assam’s industries department describes masks made from materials including bamboo, cloth, clay and wood, then painted. Not every mask uses the same combination of materials."
+    ],
+    "materials": "Bamboo, cloth, clay, wood and paint",
+    "locations": [
+      "Assam"
+    ],
+    "sources": [
+      {
+        "label": "Majuli district: Sri Sri Samaguri Satra",
+        "url": "https://majuli.assam.gov.in/tourist-place-detail/274"
+      },
+      {
+        "label": "Government of Assam: traditional handicraft industries",
+        "url": "https://industriescom.assam.gov.in/portlet-innerpage/old-handicrafts-industries-in-assam"
+      },
+      {
+        "label": "Incredible India: Samaguri Satra and mask making",
+        "url": "https://www.incredibleindia.gov.in/en/assam/majuli/samaguri-satra"
+      }
+    ],
+    "localNames": [],
+    "keywords": [],
+    "maker": null,
+    "artwork": null,
+    "traditionSourceRefs": [
+      0,
+      1,
+      2
+    ],
+    "processSourceRefs": [
+      1,
+      2
+    ]
+  },
+  {
+    "slug": "kaavi-art",
+    "title": "Kaavi wall art",
+    "region": "Goa and the Konkan coast",
+    "category": "Painting",
+    "intro": "Red and white wall surfaces are worked to reveal a design.",
+    "tradition": [
+      "Kaavi is a wall-art practice associated with Goa and the wider Konkan coast. A Museum of Christian Art account describes Kaavi as a sgraffito technique using lime plaster and natural pigments.",
+      "Examples appear in different architectural and religious settings. Buildings and communities have distinct histories, so a motif should be understood in its own setting."
+    ],
+    "process": [
+      "The museum describes a red-and-white process in which a coloured layer and lime ground are worked to create an image. Particular materials and conservation methods differ between sites."
+    ],
+    "materials": "Lime plaster and red pigment on walls",
+    "locations": [
+      "Goa"
+    ],
+    "sources": [
+      {
+        "label": "Goa Department of Information: Kaavi art",
+        "url": "https://dip.goa.gov.in/governor-calls-for-collective-efforts-for-enrichment-of-kaavi-art/"
+      },
+      {
+        "label": "Museum of Christian Art: Kaavi workshop",
+        "url": "https://archgoadaman.com/etching-heritage-kaavi-art-comes-alive-at-moca/"
+      }
+    ],
+    "localNames": [],
+    "keywords": [],
+    "maker": null,
+    "artwork": null,
+    "traditionSourceRefs": [
+      0,
+      1
+    ],
+    "processSourceRefs": [
+      1
+    ]
+  },
+  {
+    "slug": "panipat-durries",
+    "title": "Panipat durries",
+    "region": "Panipat, Haryana",
+    "category": "Textile",
+    "intro": "Flat-woven floor coverings from a city with a long textile industry.",
+    "tradition": [
+      "Panipat is a centre for rugs and other handloom textiles in Haryana. An application in India’s geographical indications register and an Asia InCH craft account identify the city with durries and floor coverings.",
+      "A field study follows a panja durrie from hand production toward the wider textile market. Asia InCH also describes geometric floor coverings associated with Haryana. Individual floor coverings have different makers, uses and designs."
+    ],
+    "process": [
+      "A study of Panipat production describes weavers inserting coloured weft yarns on small or medium frames, and the later use of handlooms. Fibre, loom, pattern and the balance of hand and industrial work vary by workshop."
+    ],
+    "materials": "Woven yarn and textile floor coverings",
+    "locations": [
+      "Haryana"
+    ],
+    "sources": [
+      {
+        "label": "Intellectual Property India: Panipat Durrie application",
+        "url": "https://search.ipindia.gov.in/GIRPublicSearch/Application/Details/1417"
+      },
+      {
+        "label": "Asia InCH: floor coverings of Haryana",
+        "url": "https://www.asiainch.org/craft/embroidery-of-haryana/"
+      },
+      {
+        "label": "Riya Chhikara: field study of Panja durries",
+        "url": "https://www.ijrssh.com/abstract.php?id=1118"
+      }
+    ],
+    "localNames": [],
+    "keywords": [],
+    "maker": null,
+    "artwork": null,
+    "traditionSourceRefs": [
+      0,
+      1,
+      2
+    ],
+    "processSourceRefs": [
+      2
+    ]
+  },
+  {
+    "slug": "chamba-rumal",
+    "title": "Chamba rumal embroidery",
+    "region": "Chamba, Himachal Pradesh",
+    "category": "Textile",
+    "intro": "Images embroidered on cloth, often worked from both sides.",
+    "tradition": [
+      "The Chamba rumal is a pictorial embroidery associated with Chamba in Himachal Pradesh. Government and craft accounts document embroidered covers and other textiles in different sizes.",
+      "Designs and subjects vary; the hands that draw, stitch and commission a rumal all contribute to the history of a particular work."
+    ],
+    "process": [
+      "One documented stitch is do-rukha, a double satin stitch worked so the embroidery can be read from both faces of the cloth. Other stitches and approaches are also used."
+    ],
+    "materials": "Cloth and embroidery thread",
+    "locations": [
+      "Himachal Pradesh"
+    ],
+    "sources": [
+      {
+        "label": "Government of India: GI handicrafts compendium",
+        "url": "https://handicrafts.nic.in/CmsUpload/12222017102212GI%20BOOK%20FINAL%202-5-17_resized.pdf"
+      },
+      {
+        "label": "Asia InCH: Chamba rumal embroidery",
+        "url": "https://www.asiainch.org/craft/chamba-rumal-embroidery-of-himachal-pradesh/"
+      }
+    ],
+    "localNames": [],
+    "keywords": [],
+    "maker": null,
+    "artwork": {
+      "title": "Cover (Rumal)",
+      "maker": "Maker not identified",
+      "date": "18th century",
+      "medium": "Cotton and silk",
+      "recordUrl": "https://www.metmuseum.org/art/collection/search/73138",
+      "description": "The Met records this embroidered cover as a work from Chamba. Its description identifies Radha and Krishna in a grove.",
+      "image": "https://collectionapi.metmuseum.org/api/collection/v1/iiif/73138/126957/main-image",
+      "imageAlt": "An embroidered Chamba cover with figures in a grove",
+      "imageSource": "https://www.metmuseum.org/art/collection/search/73138",
+      "credit": "The Metropolitan Museum of Art, The Friedsam Collection, Bequest of Michael Friedsam, 1931. Public domain."
+    },
+    "traditionSourceRefs": [
+      0,
+      1
+    ],
+    "processSourceRefs": [
+      1
+    ]
+  },
+  {
+    "slug": "sohrai-khovar",
+    "title": "Sohrai and Khovar painting",
+    "region": "Hazaribagh region, Jharkhand",
+    "category": "Painting",
+    "intro": "Distinct wall-painting practices carried by artists and communities in Hazaribagh.",
+    "tradition": [
+      "Jharkhand’s Tribal Welfare Research Institute documents Sohrai and Khovar as two wall-painting practices associated with Hazaribagh. They are related in place but should not be treated as identical.",
+      "Asia InCH associates Sohrai painting with the harvest season and distinguishes it from Khovar, which is associated with weddings. Individual women artists and communities bring their own knowledge to the work."
+    ],
+    "process": [
+      "Asia InCH describes natural pigments and prepared wall surfaces, with tools including twig or leaf brushes and combs that create texture. Materials and methods vary between makers and works."
+    ],
+    "materials": "Earth colours and wall surfaces",
+    "locations": [
+      "Jharkhand"
+    ],
+    "sources": [
+      {
+        "label": "Jharkhand Tribal Welfare Research Institute: paintings",
+        "url": "https://www.trijharkhand.in/en/tribal-and-folk-paintings-of-india-old"
+      },
+      {
+        "label": "Asia InCH: wall painting of Hazaribagh",
+        "url": "https://www.asiainch.org/craft/wall-painting-of-hazaribagh-jharkhand/"
+      }
+    ],
+    "localNames": [],
+    "keywords": [],
+    "maker": null,
+    "artwork": null,
+    "traditionSourceRefs": [
+      0,
+      1
+    ],
+    "processSourceRefs": [
+      1
+    ]
+  },
+  {
+    "slug": "aranmula-kannadi",
+    "title": "Aranmula metal mirrors",
+    "region": "Aranmula, Kerala",
+    "category": "Metal",
+    "intro": "A reflective surface made by casting and polishing metal rather than silvering glass.",
+    "tradition": [
+      "Aranmula Kannadi are handcrafted metal mirrors associated with Aranmula in Kerala. Kerala Tourism describes the work of specialist artisan households and distinguishes these mirrors from ordinary glass mirrors.",
+      "Unlike a glass mirror, the reflective surface is polished metal. An Asia InCH account describes a copper-and-tin alloy; its exact composition and working knowledge belong to the makers."
+    ],
+    "process": [
+      "Kerala Tourism describes metal casting followed by careful polishing to create a reflective front surface. Frames and proportions differ across examples."
+    ],
+    "materials": "Polished metal alloy and frames",
+    "locations": [
+      "Kerala"
+    ],
+    "sources": [
+      {
+        "label": "Kerala Tourism: Aranmula Kannadi",
+        "url": "https://www.keralatourism.org/campaigns/kerala365/aranmula-kannadi-pathanamthitta"
+      },
+      {
+        "label": "Kerala Tourism: the mirror of Aranmula",
+        "url": "https://www.keralatourism.org/kerala-article/2009/mirror-aranmula/13"
+      },
+      {
+        "label": "Asia InCH: Aranmula metal mirrors",
+        "url": "https://www.asiainch.org/craft/aranmula-kannadi-metal-mirror-of-kerala/"
+      }
+    ],
+    "localNames": [],
+    "keywords": [],
+    "maker": null,
+    "artwork": null,
+    "traditionSourceRefs": [
+      0,
+      1,
+      2
+    ],
+    "processSourceRefs": [
+      0,
+      1,
+      2
+    ]
+  },
+  {
+    "slug": "ryndia-weaving",
+    "title": "Ryndia weaving",
+    "region": "Ri Bhoi and other areas, Meghalaya",
+    "category": "Textile",
+    "intro": "Eri silk is spun, dyed and woven into textiles in Meghalaya.",
+    "tradition": [
+      "Meghalaya Tourism describes Ryndia as an eri-silk textile practice sustained by weavers and other workers, especially women. The region’s wider textile practices include distinct Khasi, Garo and Jaintia work.",
+      "In a 2015 V&A account, weaver Kwickstar Tmung describes learning natural dyeing and weaving from her mother and teaching others. Eri work is connected to family knowledge and livelihoods as well as finished cloth."
+    ],
+    "process": [
+      "The V&A describes rearing eri silkworms, spinning the fibre, dyeing yarn and weaving it on floor or frame looms in Meghalaya. A documented chaddar in this atlas was handspun and handwoven; materials and processes vary across textiles."
+    ],
+    "materials": "Eri silk yarn and woven cloth",
+    "locations": [
+      "Meghalaya"
+    ],
+    "sources": [
+      {
+        "label": "Meghalaya Tourism: local crafts and Ryndia",
+        "url": "https://www.meghalayatourism.in/experiences/culture-%26-lifestyle/local-life-%26-leisure/local-crafts/"
+      },
+      {
+        "label": "NEHHDC: Ryndia and Meghalaya textiles",
+        "url": "https://nehhdc.com/ryndia"
+      },
+      {
+        "label": "Victoria and Albert Museum: Eri weaving in Meghalaya",
+        "url": "https://www.vam.ac.uk/blog/fabric-of-india/guest-post-eri-weaving-in-meghalaya"
+      }
+    ],
+    "localNames": [],
+    "keywords": [],
+    "maker": null,
+    "artwork": null,
+    "traditionSourceRefs": [
+      0,
+      1,
+      2
+    ],
+    "processSourceRefs": [
+      2
+    ]
+  },
+  {
+    "slug": "mizo-puanchei",
+    "title": "Mizo Puanchei",
+    "region": "Mizoram",
+    "category": "Textile",
+    "intro": "A woven textile with bands and supplementary-yarn designs.",
+    "tradition": [
+      "Mizo Puanchei is a woven textile from Mizoram. The state’s Art and Culture Department describes its importance as clothing and the skill needed to make its elaborate designs.",
+      "Textiles are made and worn in changing contexts, from family use to contemporary markets. Specific patterns and meanings belong to their makers and communities."
+    ],
+    "process": [
+      "The state account describes a traditional loin loom, supplementary yarns used to create designs, and multiple woven pieces joined to form a complete puan. Yarn choices have changed over time."
+    ],
+    "materials": "Woven yarn and supplementary patterning",
+    "locations": [
+      "Mizoram"
+    ],
+    "sources": [
+      {
+        "label": "Intellectual Property India: Mizo Puanchei",
+        "url": "https://search.ipindia.gov.in/GIRPublicSearch/Application/Details/583"
+      },
+      {
+        "label": "Mizoram Art and Culture Department: Mizo Puanchei",
+        "url": "https://mizoculture.mizoram.gov.in/page/mizo-puanchei-gi-583"
+      }
+    ],
+    "localNames": [],
+    "keywords": [],
+    "maker": null,
+    "artwork": null,
+    "traditionSourceRefs": [
+      0,
+      1
+    ],
+    "processSourceRefs": [
+      1
+    ]
+  },
+  {
+    "slug": "naga-textiles",
+    "title": "Naga textile weaving",
+    "region": "Nagaland",
+    "category": "Textile",
+    "intro": "Distinct woven cloths made by different Naga communities.",
+    "tradition": [
+      "Naga textiles are a diverse group of weaving practices, not one pattern. IGNCA describes different cloths, techniques and associations among communities in Nagaland.",
+      "The National Crafts Museum documents individual shawls with their own histories. A design seen on one textile should not be attributed to all Naga communities."
+    ],
+    "process": [
+      "IGNCA describes tension-loom weaving and a range of bands, stripes and other arrangements. Yarn, design and use vary with the weaver, community and garment."
+    ],
+    "materials": "Woven yarn and cloth",
+    "locations": [
+      "Nagaland"
+    ],
+    "sources": [
+      {
+        "label": "IGNCA: textiles of Nagaland",
+        "url": "https://ignca.gov.in/divisionss/janapada-sampada/northeastern-regional-centre/textiles-of-nagaland/"
+      },
+      {
+        "label": "National Crafts Museum: Tsüngkotepsü shawl",
+        "url": "https://nationalcraftsmuseum.nic.in/artifacts-detail/26805"
+      }
+    ],
+    "localNames": [],
+    "keywords": [],
+    "maker": null,
+    "artwork": null,
+    "traditionSourceRefs": [
+      0,
+      1
+    ],
+    "processSourceRefs": [
+      0
+    ]
+  },
+  {
+    "slug": "phulkari",
+    "title": "Phulkari embroidery",
+    "region": "Punjab, Haryana and Rajasthan",
+    "category": "Textile",
+    "intro": "Embroidered cloth made with patterned stitches across the Punjab region.",
+    "tradition": [
+      "Phulkari is an embroidery associated with the Punjab region and with communities in present-day Punjab, Haryana and Rajasthan. The government craft compendium records this geographic reach.",
+      "The textiles are made and exchanged in different family and social settings. Colours, patterns and names vary by maker and community, including across today’s national borders."
+    ],
+    "process": [
+      "The Philadelphia Museum of Art describes darning stitch as a principal technique in Phulkari and documents silk embroidery on handwoven cotton khaddar. Stitch choices, colours and the amount of visible ground differ among textiles."
+    ],
+    "materials": "Cloth and coloured embroidery thread",
+    "locations": [
+      "Punjab",
+      "Haryana",
+      "Rajasthan"
+    ],
+    "sources": [
+      {
+        "label": "Government of India: GI handicrafts compendium",
+        "url": "https://handicrafts.nic.in/CmsUpload/12222017102212GI%20BOOK%20FINAL%202-5-17_resized.pdf"
+      },
+      {
+        "label": "Incredible India: Phulkari",
+        "url": "https://www.incredibleindia.gov.in/en/punjab/phulkari"
+      },
+      {
+        "label": "Philadelphia Museum of Art: Phulkari textile",
+        "url": "https://www.philamuseum.org/objects/323476"
+      }
+    ],
+    "localNames": [
+      {
+        "text": "ਫੁਲਕਾਰੀ",
+        "lang": "pa"
+      }
+    ],
+    "keywords": [],
+    "maker": null,
+    "artwork": {
+      "title": "Hanging (Phulkari work)",
+      "maker": "Maker not identified",
+      "date": "c. 1875–1900",
+      "medium": "Embroidered silk on cotton",
+      "recordUrl": "https://www.clevelandart.org/art/1942.367",
+      "description": "The Cleveland Museum of Art records this embroidered hanging as a work from Punjab.",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/9/93/India%2C_Punjab%2C_Late_19th_century_-_Hanging_%28Phulkari_work%29_-_1942.367_-_Cleveland_Museum_of_Art.jpg",
+      "preview": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/India%2C_Punjab%2C_Late_19th_century_-_Hanging_%28Phulkari_work%29_-_1942.367_-_Cleveland_Museum_of_Art.jpg/960px-India%2C_Punjab%2C_Late_19th_century_-_Hanging_%28Phulkari_work%29_-_1942.367_-_Cleveland_Museum_of_Art.jpg",
+      "imageAlt": "An embroidered Phulkari hanging from Punjab",
+      "imageSource": "https://commons.wikimedia.org/wiki/File:India,_Punjab,_Late_19th_century_-_Hanging_(Phulkari_work)_-_1942.367_-_Cleveland_Museum_of_Art.jpg",
+      "credit": "The Cleveland Museum of Art, Gift of Mrs. J. Livingstone Taylor, 1942.367. CC0. Preview resized; full-size image linked.",
+      "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/"
+    },
+    "traditionSourceRefs": [
+      0,
+      1
+    ],
+    "processSourceRefs": [
+      2
+    ]
+  },
+  {
+    "slug": "lepcha-weaving",
+    "title": "Lepcha weaving",
+    "region": "Sikkim and neighbouring Himalayan areas",
+    "category": "Textile",
+    "intro": "Narrow woven bands of colour, joined and used in clothing and other textiles.",
+    "tradition": [
+      "Lepcha weaving is associated with the Lepcha community in Sikkim and adjoining Himalayan areas. The National Institute of Design and Asia InCH describe Lepcha woven textiles and the materials used.",
+      "Designs, materials and uses are part of living community knowledge. The woven objects made by individual people have histories beyond a single regional label."
+    ],
+    "process": [
+      "Asia InCH describes work on a backstrap loom, with narrow woven widths sometimes joined together. Cotton and wool are among materials recorded today; older accounts also describe plant fibres."
+    ],
+    "materials": "Cotton or wool yarn and woven cloth",
+    "locations": [
+      "Sikkim"
+    ],
+    "sources": [
+      {
+        "label": "National Institute of Design: Lepcha woven fabric in an invitation kit",
+        "url": "https://www.nid.edu/getNewsevents/design-of-the-at-home-invite-to-republic-day-26th-january-2026-guests-at-rashtrapati-bhavan"
+      },
+      {
+        "label": "Asia InCH: Lepcha weaving of Sikkim",
+        "url": "https://www.asiainch.org/craft/lepcha-weaving-of-sikkim/"
+      },
+      {
+        "label": "Incredible India: Lepcha thara weaving",
+        "url": "https://www.incredibleindia.gov.in/en/sikkim/thara-ancient-craft"
+      }
+    ],
+    "localNames": [],
+    "keywords": [],
+    "maker": null,
+    "artwork": null,
+    "traditionSourceRefs": [
+      0,
+      1,
+      2
+    ],
+    "processSourceRefs": [
+      1,
+      2
+    ]
+  },
+  {
+    "slug": "thanjavur-painting",
+    "title": "Thanjavur painting",
+    "region": "Thanjavur, Tamil Nadu",
+    "category": "Painting",
+    "intro": "Painted images with raised decoration and luminous foil.",
+    "tradition": [
+      "Thanjavur painting takes its name from Thanjavur in Tamil Nadu. India’s National Museum describes works with vivid colour, gold foil and raised gesso decoration.",
+      "The museum holds individual paintings that can be studied for their subjects, materials and histories. Artists continue to make and adapt the form."
+    ],
+    "process": [
+      "A Craft Revival Trust collection account describes the use of gesso and gold in a particular Tanjore painting. The materials and technique of a given work should be checked against its own record."
+    ],
+    "materials": "Paint, gesso and gold foil on prepared supports",
+    "locations": [
+      "Tamil Nadu"
+    ],
+    "sources": [
+      {
+        "label": "National Museum: Thanjavur paintings",
+        "url": "https://nationalmuseumindia.gov.in/en/thanjavur-paintings"
+      },
+      {
+        "label": "Asia InCH: Tanjore painting",
+        "url": "https://www.asiainch.org/collection/tanjore-painting/"
+      },
+      {
+        "label": "Incredible India: Thanjavur painting",
+        "url": "https://www.prod.incredibleindia.gov.in/content/incredible-india-v2/en/destinations/kanyakumari/art-and-crafts/tanjore-paintings.html"
+      }
+    ],
+    "localNames": [],
+    "keywords": [],
+    "maker": null,
+    "artwork": null,
+    "traditionSourceRefs": [
+      0,
+      1,
+      2
+    ],
+    "processSourceRefs": [
+      1,
+      2
+    ]
+  },
+  {
+    "slug": "cheriyal-scrolls",
+    "title": "Cheriyal scroll painting",
+    "region": "Cheriyal, Telangana",
+    "category": "Painting",
+    "intro": "Narrative images painted on cloth in a Nakashi painting tradition.",
+    "tradition": [
+      "Cheriyal scroll painting is associated with Telangana and Nakashi painters. Government and craft accounts describe painted narratives and the relationships between painters, storytellers and audiences.",
+      "Artists also make works at different scales for contemporary settings. One scroll or one family’s practice cannot represent every maker."
+    ],
+    "process": [
+      "Asia InCH describes cotton cloth prepared as a painting surface and used for narrative compositions. Materials and preparation vary by artist."
+    ],
+    "materials": "Prepared cotton cloth and paint",
+    "locations": [
+      "Telangana"
+    ],
+    "sources": [
+      {
+        "label": "Incredible India: Cheriyal paintings",
+        "url": "https://www.incredibleindia.gov.in/en/telangana/cheriyal-paintings"
+      },
+      {
+        "label": "Asia InCH: Cheriyal scroll painting",
+        "url": "https://asiainch.org/craft/scroll-painting-of-cherial-andhra-pradesh/"
+      }
+    ],
+    "localNames": [],
+    "keywords": [],
+    "maker": null,
+    "artwork": null,
+    "traditionSourceRefs": [
+      0,
+      1
+    ],
+    "processSourceRefs": [
+      1
+    ]
+  },
+  {
+    "slug": "tripura-risa",
+    "title": "Tripura Risa textile",
+    "region": "Tripura",
+    "category": "Textile",
+    "intro": "A handwoven cloth with varied uses and community significance.",
+    "tradition": [
+      "The Government of India describes Risa as a handwoven textile rooted in Tripuri community traditions. It documents weaving by women and household-based production in the state.",
+      "Risa can be worn or presented in different ways. Patterns and meanings vary across makers and communities; no single piece captures the whole tradition."
+    ],
+    "process": [
+      "The government account describes weaving on loin or backstrap looms. Fibres, designs and finishing depend on the weaver and the individual textile."
+    ],
+    "materials": "Handwoven yarn and cloth",
+    "locations": [
+      "Tripura"
+    ],
+    "sources": [
+      {
+        "label": "Intellectual Property India: Tripura Risa textile",
+        "url": "https://search.ipindia.gov.in/GIRPublicSearch/Application/Details/893"
+      },
+      {
+        "label": "Press Information Bureau: Tripura Risa textile",
+        "url": "https://www.pib.gov.in/PressReleaseIframePage.aspx?PRID=2181700&lang=2&reg=48"
+      }
+    ],
+    "localNames": [],
+    "keywords": [],
+    "maker": null,
+    "artwork": null,
+    "traditionSourceRefs": [
+      0,
+      1
+    ],
+    "processSourceRefs": [
+      1
+    ]
+  },
+  {
+    "slug": "khurja-pottery",
+    "title": "Khurja pottery",
+    "region": "Khurja, Uttar Pradesh",
+    "category": "Pottery",
+    "intro": "Glazed ceramic forms from a major pottery-making centre.",
+    "tradition": [
+      "Khurja in Uttar Pradesh is a centre for pottery and glazed ceramics. India’s geographic-indications register identifies Khurja Pottery, and craft accounts describe its workshops and products.",
+      "Cups, vessels and decorative forms are made in different ways and at different scales. Maker and production details should be checked for each object."
+    ],
+    "process": [
+      "Asia InCH describes Khurja’s glazed pottery practice. Forming, glazing and firing vary by workshop, material and piece."
+    ],
+    "materials": "Clay, ceramic glazes and kiln firing",
+    "locations": [
+      "Uttar Pradesh"
+    ],
+    "sources": [
+      {
+        "label": "Intellectual Property India: Khurja Pottery",
+        "url": "https://search.ipindia.gov.in/GIRPublicSearch/Application/Details/178"
+      },
+      {
+        "label": "Asia InCH: glazed pottery of Khurja",
+        "url": "https://asiainch.org/craft/glazed-pottery-of-chinhat-uttar-pradesh/"
+      }
+    ],
+    "localNames": [],
+    "keywords": [],
+    "maker": null,
+    "artwork": null,
+    "traditionSourceRefs": [
+      0,
+      1
+    ],
+    "processSourceRefs": [
+      1
+    ]
+  },
+  {
+    "slug": "aipan",
+    "title": "Aipan painting",
+    "region": "Kumaon, Uttarakhand",
+    "category": "Painting",
+    "intro": "Painted designs made for domestic and ceremonial settings.",
+    "tradition": [
+      "Aipan is a visual art associated with Kumaon in Uttarakhand. The Pithoragarh district administration describes designs made on walls, paper and cloth.",
+      "Aipan has connections to household and ceremonial occasions, while artists also explore it in other settings. The design of an individual work should be read in its own context."
+    ],
+    "process": [
+      "Asia InCH describes freehand designs made with rice paste and geru, a red clay, among other materials. Artists make different patterns for different settings and occasions."
+    ],
+    "materials": "Rice paste, prepared grounds, walls and other surfaces",
+    "locations": [
+      "Uttarakhand"
+    ],
+    "sources": [
+      {
+        "label": "Pithoragarh district: culture and heritage",
+        "url": "https://pithoragarh.nic.in/culture-heritage/"
+      },
+      {
+        "label": "Asia InCH: Aipan painting",
+        "url": "https://asiainch.org/craft/aipanritual-floor-painting-of-almora-uttarakhand/"
+      }
+    ],
+    "localNames": [
+      {
+        "text": "ऐपण",
+        "lang": "hi"
+      }
+    ],
+    "keywords": [],
+    "maker": null,
+    "artwork": null,
+    "traditionSourceRefs": [
+      0,
+      1
+    ],
+    "processSourceRefs": [
+      1
+    ]
+  },
+  {
+    "slug": "nicobari-mats",
+    "title": "Nicobari mat weaving",
+    "region": "Nicobar Islands, Andaman and Nicobar Islands",
+    "category": "Fibre",
+    "intro": "Pandanus leaves are prepared and woven into mats.",
+    "tradition": [
+      "Asia InCH identifies chatrai or hileuoi as a mat associated with Nicobari people of the Nicobar Islands. It is a useful floor covering as well as an example of skilled fibre work.",
+      "The Nicobar Islands are home to diverse people and knowledge. A mat’s maker, community and use should be identified from the record of that particular object."
+    ],
+    "process": [
+      "The craft account describes selecting, drying, trimming and splitting pandanus leaves before they are woven. The resulting pattern and finish vary."
+    ],
+    "materials": "Pandanus leaves and plant fibre",
+    "locations": [
+      "Andaman and Nicobar Islands"
+    ],
+    "sources": [
+      {
+        "label": "CSIR: Nicobari folk artefacts",
+        "url": "https://nopr.niscpr.res.in/handle/123456789/566"
+      },
+      {
+        "label": "Asia InCH: Nicobari mat",
+        "url": "https://www.asiainch.org/craft/mat-chatrai-hileuoi-of-andaman-and-nicobar/"
+      }
+    ],
+    "localNames": [],
+    "keywords": [],
+    "maker": null,
+    "artwork": null,
+    "traditionSourceRefs": [
+      0,
+      1
+    ],
+    "processSourceRefs": [
+      1
+    ]
+  },
+  {
+    "slug": "nek-chand-rock-garden",
+    "title": "Nek Chand’s Rock Garden",
+    "region": "Chandigarh",
+    "category": "Sculpture",
+    "intro": "A sculptural environment made with recovered materials.",
+    "tradition": [
+      "The Chandigarh district administration identifies Nek Chand as the founder of the Rock Garden, a sculpture garden in Chandigarh. Its figures and environments are a particular artist’s work, not a claim about a single regional craft tradition.",
+      "The garden also has a history of collaborators, conservation and public stewardship. The foundation and institutions caring for related works provide additional perspectives."
+    ],
+    "process": [
+      "SPACES Archives describes sculptures made using materials such as discarded ceramics, tiles, bangles and other recovered objects. Materials differ among the works and settings."
+    ],
+    "materials": "Reused ceramic, stone and other recovered materials",
+    "locations": [
+      "Chandigarh"
+    ],
+    "sources": [
+      {
+        "label": "Chandigarh district: Rock Garden",
+        "url": "https://chandigarhdistrict.nic.in/tourist-place/rock-garden/"
+      },
+      {
+        "label": "SPACES Archives: Rock Garden of Chandigarh",
+        "url": "https://www.spacesarchives.org/explore/search-the-online-collection/nek-chand-rock-garden-of-chandigarh/"
+      }
+    ],
+    "localNames": [],
+    "keywords": [],
+    "maker": {
+      "name": "Nek Chand",
+      "url": "https://research.jmkac.org/artist/chand-nek/",
+      "description": "Nek Chand founded Chandigarh’s Rock Garden, a sculptural environment incorporating recovered materials. The John Michael Kohler Arts Center documents his work and related sculptures."
+    },
+    "artwork": null,
+    "traditionSourceRefs": [
+      0,
+      1
+    ],
+    "processSourceRefs": [
+      1
+    ]
+  },
+  {
+    "slug": "delhi-zardozi",
+    "title": "Delhi zardozi embroidery",
+    "region": "Delhi and other Indian craft centres",
+    "category": "Textile",
+    "intro": "Metallic threads and ornament worked onto cloth.",
+    "tradition": [
+      "Zardozi is practised in several regions of India, including the older quarters of Delhi. Asia InCH and Dastkari Haat Samiti document Delhi’s embroidery and the materials and workshops around it.",
+      "The term covers varied work for garments and other textiles; the maker, materials and precise techniques should be identified for each object."
+    ],
+    "process": [
+      "The craft accounts describe metallic threads and decorative elements worked onto fabric, including work made using a frame and hooked needle. Materials and methods vary."
+    ],
+    "materials": "Textile, metallic thread and ornament",
+    "locations": [
+      "Delhi"
+    ],
+    "sources": [
+      {
+        "label": "Asia InCH: zardozi embroidery of Delhi",
+        "url": "https://asiainch.org/craft/zari-zardozi-metal-wire-and-tinsel-embroidery-of-delhi/"
+      },
+      {
+        "label": "Dastkari Haat Samiti: zardozi of Old Delhi",
+        "url": "https://artsandculture.google.com/story/zari-zardozi-embroidery-of-old-delhi-dastkari-haat-samiti/ZAVBZdU3dI3GKg?hl=en"
+      }
+    ],
+    "localNames": [],
+    "keywords": [],
+    "maker": null,
+    "artwork": null,
+    "traditionSourceRefs": [
+      0,
+      1
+    ],
+    "processSourceRefs": [
+      1
+    ]
+  },
+  {
+    "slug": "kashmir-papier-mache",
+    "title": "Kashmir papier-mâché",
+    "region": "Kashmir, Jammu and Kashmir",
+    "category": "Paper",
+    "intro": "Painted objects built on a prepared paper or wooden core.",
+    "tradition": [
+      "Kashmir papier-mâché includes painted boxes, vessels and other objects. The Craft Development Institute documents the registered craft and distinguishes the body of an object from its surface painting.",
+      "An Asia InCH account distinguishes the work of sakta makers, who prepare bodies from paper pulp, from that of naqqash painters who decorate them. Some objects pass through several specialised hands."
+    ],
+    "process": [
+      "The institute describes cores made from paper pulp, paperboard or light wood, followed by surface preparation and hand painting. Some pieces also use metallic decoration."
+    ],
+    "materials": "Paper pulp, prepared surfaces and paint",
+    "locations": [
+      "Jammu and Kashmir"
+    ],
+    "sources": [
+      {
+        "label": "Government of India: GI handicrafts compendium",
+        "url": "https://handicrafts.nic.in/CmsUpload/12222017102212GI%20BOOK%20FINAL%202-5-17_resized.pdf"
+      },
+      {
+        "label": "Craft Development Institute: Kashmir paper machie",
+        "url": "https://cdiptqccgi.com/gi-crafts"
+      },
+      {
+        "label": "Asia InCH: papier-mâché of Kashmir",
+        "url": "https://asiainch.org/craft/papier-machekar-i-qalamdani-of-kashmir/"
+      }
+    ],
+    "localNames": [],
+    "keywords": [],
+    "maker": null,
+    "artwork": null,
+    "traditionSourceRefs": [
+      1,
+      2
+    ],
+    "processSourceRefs": [
+      1,
+      2
+    ]
+  },
+  {
+    "slug": "ladakhi-thangka",
+    "title": "Ladakhi thangka painting",
+    "region": "Ladakh and the wider Himalayan region",
+    "category": "Painting",
+    "intro": "Painted scrolls made within diverse Himalayan Buddhist visual traditions.",
+    "tradition": [
+      "Thangka paintings are made in Ladakh as well as other Himalayan and Tibetan Buddhist communities. Asia InCH describes painted, woven and embroidered examples, each situated in a particular religious and artistic context.",
+      "The Ladakh administration documents contemporary thangka making among several crafts. This page focuses on painting, while acknowledging that not all thangkas are painted."
+    ],
+    "process": [
+      "One account describes a prepared cloth support, drawing, pigments and textile mounting. Materials and iconography depend on the maker, community and individual work."
+    ],
+    "materials": "Prepared cloth, pigments and textile mounting",
+    "locations": [
+      "Ladakh"
+    ],
+    "sources": [
+      {
+        "label": "Ladakh administration: arts and crafts exhibition",
+        "url": "https://ladakh.gov.in/ladakh-festival-2026-traditional-arts-crafts-and-local-products-showcased-on-third-day-in-leh/"
+      },
+      {
+        "label": "Asia InCH: thangka painting of Ladakh",
+        "url": "https://asiainch.org/craft/thangka-painting-of-ladakh/"
+      }
+    ],
+    "localNames": [],
+    "keywords": [],
+    "maker": null,
+    "artwork": null,
+    "traditionSourceRefs": [
+      0,
+      1
+    ],
+    "processSourceRefs": [
+      1
+    ]
+  },
+  {
+    "slug": "lakshadweep-coconut-shell",
+    "title": "Lakshadweep coconut-shell craft",
+    "region": "Lakshadweep",
+    "category": "Fibre",
+    "intro": "Coconut shells are shaped into useful and decorative objects.",
+    "tradition": [
+      "Government accounts identify coconut-shell handicrafts and coir work among the crafts of Lakshadweep. The islands have distinct communities and practices that cannot be reduced to one object.",
+      "Bowls, spoons and ornaments are among the forms documented in a NITI Aayog account. Each object has its own maker and history."
+    ],
+    "process": [
+      "The government account describes polished coconut-shell objects. A shell can be shaped and smoothed for a particular use; the details differ among makers."
+    ],
+    "materials": "Coconut shell and natural fibre",
+    "locations": [
+      "Lakshadweep"
+    ],
+    "sources": [
+      {
+        "label": "Lakshadweep administration: industries",
+        "url": "https://lakshadweep.gov.in/departments-new/department-of-industries/"
+      },
+      {
+        "label": "NITI Aayog: Lakshadweep crafts",
+        "url": "https://www.niti.gov.in/node/2250"
+      }
+    ],
+    "localNames": [],
+    "keywords": [],
+    "maker": null,
+    "artwork": null,
+    "traditionSourceRefs": [
+      0,
+      1
+    ],
+    "processSourceRefs": [
+      1
+    ]
+  },
+  {
+    "slug": "villianur-terracotta",
+    "title": "Villianur terracotta",
+    "region": "Villianur, Puducherry",
+    "category": "Pottery",
+    "intro": "Clay sculptures and objects shaped and fired by craftspeople.",
+    "tradition": [
+      "Villianur terracotta is a clay craft associated with Villianur in Puducherry. India’s geographic-indications register records the craft, and Incredible India describes a range of sculptural subjects.",
+      "The forms and purposes of individual works differ. A workshop’s story or a single object is a starting point for the craft, not a complete account."
+    ],
+    "process": [
+      "The government tourism account describes shaping clay, allowing a work to dry and firing it. Coils, slabs and other construction choices depend on the piece and its maker."
+    ],
+    "materials": "Clay and fired terracotta",
+    "locations": [
+      "Puducherry"
+    ],
+    "sources": [
+      {
+        "label": "Intellectual Property India: Villianur Terracotta Works",
+        "url": "https://search.ipindia.gov.in/GIRPublicSearch/Application/Details/201"
+      },
+      {
+        "label": "Incredible India: Villianur terracotta",
+        "url": "https://www.incredibleindia.gov.in/en/puducherry/villianur-terracotta-works"
+      }
+    ],
+    "localNames": [],
+    "keywords": [],
+    "maker": null,
+    "artwork": null,
+    "traditionSourceRefs": [
+      0,
+      1
+    ],
+    "processSourceRefs": [
+      1
     ]
   }
 ]

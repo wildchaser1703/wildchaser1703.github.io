@@ -459,14 +459,15 @@ em { font-style: normal; }
 
 /* The atlas remains browsable without JavaScript. */
 .atlas-controls:not([hidden]) { display: flex; flex-wrap: wrap; align-items: end; gap: 1rem; padding: 0 0 2rem; }
-.atlas-controls label { display: grid; gap: .5rem; font: .75rem var(--mono); }
+.atlas-controls label { display: grid; grid-template-columns: minmax(0, 1fr); min-width: 0; max-width: 100%; gap: .5rem; font: .75rem var(--mono); }
 .atlas-controls input, .atlas-controls select, .atlas-controls button { min-height: 2.9rem; border: 1px solid var(--line); padding: .6rem .8rem; color: inherit; background: transparent; font: inherit; }
 .atlas-controls input { min-width: min(20rem, 70vw); }
+.atlas-controls select { min-width: 0; max-width: 100%; }
 .atlas-controls button { cursor: pointer; }
 .atlas-controls [role="status"] { margin: 0 0 .75rem auto; font: .75rem var(--mono); }
 .atlas-row[hidden], [data-atlas-empty][hidden] { display: none; }
 .atlas-featured-work img { object-fit: contain; }
-@media (max-width: 760px) { .atlas-controls:not([hidden]) { align-items: stretch; } .atlas-controls label:first-child { width: 100%; } .atlas-controls input { width: 100%; min-width: 0; } .atlas-controls [role="status"] { width: 100%; margin: 0; } }
+@media (max-width: 760px) { .atlas-controls:not([hidden]) { align-items: stretch; } .atlas-controls label { width: 100%; } .atlas-controls input, .atlas-controls select { width: 100%; min-width: 0; } .atlas-controls [role="status"] { width: 100%; margin: 0; } }
 .atlas-list { display: block; column-count: 2; column-gap: clamp(1rem, 3vw, 2.5rem); }
 .atlas-row { display: inline-flex; width: 100%; box-sizing: border-box; break-inside: avoid; vertical-align: top; flex-direction: column; align-items: flex-start; min-width: 0; gap: .8rem; padding: 1.5rem 0; border-top: 1px solid var(--line); }
 .atlas-card-image { width: 100%; margin: 0 0 1rem; }
@@ -474,3 +475,70 @@ em { font-style: normal; }
 .atlas-card-image figcaption { max-width: 40rem; margin-top: .5rem; font: .7rem/1.5 var(--mono); }
 .atlas-link { margin-top: auto; padding-top: .8rem; }
 @media (max-width: 760px) { .atlas-list { column-count: 1; } .atlas-card-image img { height: auto; max-height: 420px; } .atlas-link { text-align: left; } }
+/* Indian Art Atlas: an accessible, source-led collection. */
+.atlas-nav { display: flex; flex-wrap: wrap; gap: .35rem 1.4rem; padding: 1.2rem 0; border-bottom: 1px solid var(--line); font: .78rem/1.6 var(--mono); }
+.atlas-nav a { min-height: 2.5rem; display: inline-flex; align-items: center; text-decoration: none; }
+.atlas-nav a:hover { color: var(--clay); text-decoration: underline; }
+.atlas-subhead { max-width: 68rem; padding: clamp(3rem, 7vw, 7rem) 0 3rem; }
+.atlas-subhead h1 { margin: 1rem 0 1.5rem; font-size: clamp(3.4rem, 7vw, 7rem); letter-spacing: -.065em; line-height: .98; font-weight: 400; }
+.atlas-subhead h1 span { color: var(--clay); }
+.atlas-subhead > p:not(.kicker) { max-width: 42rem; font-size: clamp(1.15rem, 1.8vw, 1.5rem); }
+.atlas-local { color: var(--clay); font-size: 1rem; }
+.atlas-references { white-space: normal; font: .8rem var(--mono); }
+.atlas-reading { max-width: 48rem; line-height: 1.7; }
+.atlas-record-list { border-top: 1px solid var(--line); }
+.atlas-record-list p { padding: .8rem 0; border-bottom: 1px solid var(--line); }
+.work-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 2rem 1.5rem; margin: 2rem 0; }
+.work-card { min-width: 0; border: 1px solid var(--line); display: flex; flex-direction: column; }
+.work-card[hidden], [data-saved-empty][hidden], [data-saved-controls][hidden], [data-save-work][hidden], [data-save-shared][hidden] { display: none !important; }
+.work-card-img { min-height: 15rem; aspect-ratio: 4/3; background: var(--paper); border-bottom: 1px solid var(--line); }
+.work-card-img img { display: block; width: 100%; height: 100%; object-fit: contain; }
+.work-card-label { padding: .8rem 1.4rem; border-bottom: 1px solid var(--line); background: color-mix(in srgb, var(--clay) 9%, var(--paper)); color: var(--muted); font: .7rem var(--mono); }
+.atlas-work-section { padding-top: 2rem; }
+.atlas-work-section h2 { font-size: clamp(1.7rem, 3vw, 3rem); font-weight: 400; letter-spacing: -.04em; margin-bottom: .5rem; }
+.work-card-body { display: flex; flex: 1; flex-direction: column; align-items: flex-start; padding: 1.4rem; }
+.work-card-body h3 { font-size: 1.5rem; line-height: 1.15; letter-spacing: -.035em; margin: .3rem 0 .8rem; font-weight: 400; }
+.work-card-body h3 a { text-decoration: none; }
+.work-card-body > p:not(.kicker) { margin: 0 0 .8rem; }
+.work-card-body .atlas-image-credit { font: .69rem/1.5 var(--mono); overflow-wrap: anywhere; }
+.work-actions { display: flex; flex-wrap: wrap; gap: 1rem; align-items: center; margin-top: auto; padding-top: 1rem; }
+.work-actions button, .work-meta button, .share-controls button, .atlas-zoom button { font: .75rem/1.4 var(--mono); padding: .7rem; border: 1px solid var(--line); background: transparent; color: inherit; cursor: pointer; }
+.work-actions button:hover, .work-meta button:hover, .share-controls button:hover { border-color: var(--clay); }
+.work-detail { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(14rem, .65fr); gap: clamp(2rem, 5vw, 5rem); align-items: start; }
+.work-detail .atlas-featured-work { width: 100%; margin: 0; }
+.work-meta dl { border-top: 1px solid var(--line); margin: 0; }
+.work-meta dt { margin-top: 1rem; font: .75rem var(--mono); color: var(--muted); text-transform: uppercase; }
+.work-meta dd { margin: .3rem 0 1rem; padding-bottom: 1rem; border-bottom: 1px solid var(--line); }
+.work-no-image { min-height: 23rem; display: flex; flex-direction: column; justify-content: center; padding: 2rem; background: color-mix(in srgb, var(--clay) 9%, var(--paper)); }
+.work-no-image span { font: .8rem var(--mono); text-transform: uppercase; }
+.work-no-image p { max-width: 25rem; }
+.atlas-related { border-top: 1px solid var(--line); margin-top: 5rem; padding-top: 2rem; }
+.atlas-related h2, .maker-list h2, .atlas-map-layout h2, .atlas-reading h2 { font-size: clamp(1.6rem, 3vw, 2.7rem); line-height: 1.15; letter-spacing: -.04em; font-weight: 400; }
+.atlas-zoom { width: min(92vw, 1200px); max-height: 92vh; padding: 1rem; color: var(--ink); background: var(--paper); border: 1px solid var(--line); }
+.atlas-zoom::backdrop { background: #000c; }
+.atlas-zoom form { text-align: right; }
+.atlas-zoom img { display: block; max-width: 100%; max-height: 78vh; margin: 1rem auto; object-fit: contain; }
+.maker-list { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 0 3rem; }
+.maker-list article { padding: 1.5rem 0; border-top: 1px solid var(--line); }
+.maker-list h2 { margin: .5rem 0; }
+.atlas-map-layout { display: grid; grid-template-columns: minmax(0, 1fr) minmax(15rem, .8fr); gap: clamp(2rem, 5vw, 5rem); align-items: start; }
+.atlas-map { display: block; width: min(100%, 35rem); max-height: 38rem; overflow: visible; }
+.atlas-map path { fill: color-mix(in srgb, var(--clay) 12%, var(--paper)); stroke: var(--muted); stroke-width: 1; }
+.atlas-map circle { fill: var(--clay); stroke: var(--paper); stroke-width: 2; }
+.atlas-map a:focus circle, .atlas-map a:hover circle { fill: var(--ink); stroke-width: 3; }
+.atlas-places-directory section + section { margin-top: 2rem; }
+.region-list { list-style: none; padding: 0; margin: 0; }
+.region-list a { display: flex; justify-content: space-between; padding: .8rem 0; border-top: 1px solid var(--line); text-decoration: none; }
+.share-controls { display: flex; flex-wrap: wrap; gap: .5rem; margin: .5rem 0 1rem; }
+.share-controls input { flex: 1 1 18rem; min-width: 0; padding: .7rem; background: transparent; border: 1px solid var(--line); color: inherit; }
+@media (max-width: 760px) {
+  .work-grid { grid-template-columns: repeat(2, minmax(0,1fr)); gap: 1rem; }
+  .work-card-img { min-height: 10rem; }
+  .work-card-body { padding: 1rem; }
+  .work-card-body h3 { font-size: 1.25rem; }
+  .work-detail, .atlas-map-layout { grid-template-columns: 1fr; }
+}
+@media (max-width: 440px) { .work-grid, .maker-list { grid-template-columns: 1fr; } .work-card-img { min-height: 14rem; } }
+
+/* Keep long place and tradition names inside narrow viewports. */
+.atlas-subhead h1, .tradition-hero h1 { overflow-wrap: anywhere; }

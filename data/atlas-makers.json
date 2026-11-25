@@ -1,0 +1,225 @@
+[
+  {
+    "slug": "ramo-maharana",
+    "name": "Ramo Maharana",
+    "traditions": [
+      "pattachitra"
+    ],
+    "description": "LACMA credits Ramo Maharana alongside Panu Maharana for Krishna’s Dance of Delight (Rasa Lila), dated 1952. The museum record is the source for this attribution.",
+    "url": "https://collections.lacma.org/object/134861"
+  },
+  {
+    "slug": "panu-maharana",
+    "name": "Panu Maharana",
+    "traditions": [
+      "pattachitra"
+    ],
+    "description": "LACMA credits Panu Maharana alongside Ramo Maharana for Krishna’s Dance of Delight (Rasa Lila), dated 1952. The museum record is the source for this attribution.",
+    "url": "https://collections.lacma.org/object/134861"
+  },
+  {
+    "slug": "ganga-devi",
+    "name": "Ganga Devi",
+    "traditions": [
+      "mithila"
+    ],
+    "description": "Mithila artist Ganga Devi is associated with kachni linework and paintings that include traditional subjects alongside personal experiences. Smarthistory discusses the range of her work and the tradition's social context.",
+    "url": "https://smarthistory.org/painting-mithila-introduction/"
+  },
+  {
+    "slug": "durga-bai-vyam",
+    "name": "Durga Bai Vyam",
+    "traditions": [
+      "gond"
+    ],
+    "description": "Durga Bai Vyam is an artist whose work includes folktales and images rooted in her Gond Pardhan community. IGNCA describes the role of family, childhood painting and storytelling in her practice.",
+    "url": "https://ignca.gov.in/divisionss/janapada-sampada/tribal-art-culture/tribal-art-culture-of-madhya-pradesh-rajasthan/durga-bai/",
+    "aliases": [
+      "Durga Bai",
+      "Durgabai Vyam"
+    ]
+  },
+  {
+    "slug": "jivya-soma-mashe",
+    "name": "Jivya Soma Mashe",
+    "traditions": [
+      "warli"
+    ],
+    "description": "Jivya Soma Mashe was an artist from the Warli community whose works are represented in the Fondation Cartier collection and the Fukuoka Asian Art Museum. Explore an individual work through the museum record to see his name attached to a particular painting.",
+    "url": "https://www.fondationcartier.com/en/collection/artists/jivya-soma-mashe"
+  },
+  {
+    "slug": "theertham-balaji",
+    "name": "Theertham Balaji",
+    "traditions": [
+      "kalamkari"
+    ],
+    "description": "In a 2010 interview, Srikalahasti artist Theertham Balaji described training under S. Rambhoji Naik, working mainly in natural dyes on cotton, and painting village life as well as religious subjects.",
+    "url": "https://asiainch.org/article/kalamkari-in-conversation-with-theertham-balaji/"
+  },
+  {
+    "slug": "as-wungmareo-khaiyar",
+    "name": "A. S. Wungmareo Khaiyar",
+    "traditions": [
+      "longpi"
+    ],
+    "description": "The National Institute of Fashion Technology profiles A. S. Wungmareo Khaiyar of Nungbi Khullen, an artisan who makes hand-moulded pottery including bowls, kettles and cups.",
+    "url": "https://nift.ac.in/chhaap2026/ASWungmareoKhaiyar.html"
+  },
+  {
+    "slug": "machihan-sasa",
+    "name": "Machihan Sasa",
+    "traditions": [
+      "longpi"
+    ],
+    "description": "The Government of India’s Padma Awards citation describes Machihan Sasa’s work in Longpi blackstone pottery and his role in expanding the range of forms made.",
+    "url": "https://www.padmaawards.gov.in/Document/pdf/CitationsForTickets/2024/2024108.pdf"
+  },
+  {
+    "slug": "sufiyan-ismail-khatri",
+    "name": "Sufiyan Ismail Khatri",
+    "traditions": [
+      "ajrakh"
+    ],
+    "description": "The Museum of International Folk Art credits Sufiyan Ismail Khatri with the Ajrakh block-printed base of a silk scarf also embroidered by Asif Shaikh.",
+    "url": "https://collection.moifa.org/objects/89546/scarf-ajrakh-block-printed-with-ari-chainstitch-and-pitta"
+  },
+  {
+    "slug": "asif-shaikh",
+    "name": "Asif Shaikh",
+    "traditions": [
+      "ajrakh"
+    ],
+    "description": "The Museum of International Folk Art credits Asif Shaikh with the embroidery on a scarf block-printed by Sufiyan Ismail Khatri.",
+    "url": "https://collection.moifa.org/objects/89546/scarf-ajrakh-block-printed-with-ari-chainstitch-and-pitta"
+  },
+  {
+    "slug": "prakash-joshi",
+    "name": "Prakash Joshi",
+    "traditions": [
+      "phad"
+    ],
+    "description": "The Crafts Museum credits Prakash Joshi of Bhilwara, Rajasthan, with the Phad-inspired painting on its entrance gate.",
+    "url": "https://artsandculture.google.com/asset/phad-painting-prakash-joshi/LQGOlk_93rwuRg?hl=en"
+  },
+  {
+    "slug": "bhagawati-devi",
+    "name": "Bhagawati Devi",
+    "traditions": [
+      "mithila"
+    ],
+    "description": "LACMA identifies Bhagawati Devi as the maker of the Mithila painting Three Dancing Women, dated 1979. The museum record is the source for this attribution.",
+    "url": "https://collections.lacma.org/object/97981"
+  },
+  {
+    "slug": "amsuka-devi",
+    "name": "Amsuka Devi",
+    "traditions": [
+      "mithila"
+    ],
+    "description": "LACMA identifies Amsuka Devi as the maker of the Mithila painting Brahma and Vishnu, dated 15 February 1974. The museum record is the source for this attribution.",
+    "url": "https://collections.lacma.org/object/76268"
+  },
+  {
+    "slug": "hem-chandra-goswami",
+    "name": "Hem Chandra Goswami",
+    "aliases": [
+      "Hemchandra Goswami"
+    ],
+    "traditions": [
+      "majuli-masks"
+    ],
+    "description": "The Press Information Bureau describes Hem Chandra Goswami’s mask making in Majuli and his role in teaching the craft. An academic museum publication attributes a Kaliya mask to his workshop.",
+    "url": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=1909724&lang=2&reg=48"
+  },
+  {
+    "slug": "nek-chand",
+    "name": "Nek Chand",
+    "traditions": [
+      "nek-chand-rock-garden"
+    ],
+    "description": "Nek Chand founded Chandigarh’s Rock Garden. The district administration describes the sculptural environment and its use of recovered materials.",
+    "url": "https://chandigarhdistrict.nic.in/tourist-place/rock-garden/"
+  },
+  {
+    "slug": "sai-kiran",
+    "name": "Sai Kiran",
+    "traditions": [
+      "cheriyal-scrolls"
+    ],
+    "description": "Lalit Kala Akademi identifies Sai Kiran as a Cheriyal artist from Telangana and documents a mural in its Pari project.",
+    "url": "https://lalitkala.gov.in/uploads/pariproject/Spot%2011%20About%20the%20Artist.pdf"
+  },
+  {
+    "slug": "sultan-ahmad",
+    "name": "Sultan Ahmad",
+    "traditions": [
+      "khurja-pottery"
+    ],
+    "description": "Dastkari Haat Samiti credits Sultan Ahmad with Mohammad Arif on a set of hand-painted plates from Khurja.",
+    "url": "https://artsandculture.google.com/asset/hand-painted-plates-sultan-ahmad-mohammad-arif/-AF35g7QSe5_pA?hl=en"
+  },
+  {
+    "slug": "mohammad-arif",
+    "name": "Mohammad Arif",
+    "traditions": [
+      "khurja-pottery"
+    ],
+    "description": "Dastkari Haat Samiti credits Mohammad Arif with Sultan Ahmad on hand-painted Khurja plates and describes the project’s calligraphic designs.",
+    "url": "https://artsandculture.google.com/asset/hand-painted-plates-sultan-ahmad-mohammad-arif/-AF35g7QSe5_pA?hl=en"
+  },
+  {
+    "slug": "poornima-sukumar",
+    "name": "Poornima Sukumar",
+    "traditions": [
+      "aipan"
+    ],
+    "description": "Project FUEL identifies Poornima Sukumar as the head artist who conceptualised murals in Khati and shows her painting Aipan patterns.",
+    "url": "https://artsandculture.google.com/asset/aipan/2AHgttOhUVC7VQ"
+  },
+  {
+    "slug": "vk-munusamy",
+    "name": "V. K. Munusamy",
+    "traditions": [
+      "villianur-terracotta"
+    ],
+    "description": "NIFT describes V. K. Munusamy as a master artisan who collaborated with students and Karunanithi on a Villianur terracotta design project.",
+    "url": "https://www.nift.ac.in/varanasi/project/villianur-terracotta-craft"
+  },
+  {
+    "slug": "karunanithi",
+    "name": "Karunanithi",
+    "traditions": [
+      "villianur-terracotta"
+    ],
+    "description": "NIFT identifies Karunanithi as a master artisan in its collaborative Villianur terracotta design project.",
+    "url": "https://www.nift.ac.in/varanasi/project/villianur-terracotta-craft"
+  },
+  {
+    "slug": "tonyot-tashi",
+    "name": "Tonyot Tashi",
+    "traditions": [
+      "ladakhi-thangka"
+    ],
+    "description": "Ladakhi thangka artist Tonyot Tashi discusses his training and paintings in an interview with Reach Ladakh.",
+    "url": "https://www.reachladakh.com/news/in-conversation-with-reach-ladakh/state-awardee-tonyot-tashi-thangka-painter"
+  },
+  {
+    "slug": "kwickstar-tmung",
+    "name": "Kwickstar Tmung",
+    "traditions": [
+      "ryndia-weaving"
+    ],
+    "description": "In a 2015 Victoria and Albert Museum account, Meghalaya weaver Kwickstar Tmung describes learning natural dyeing and weaving from her mother and teaching others.",
+    "url": "https://www.vam.ac.uk/blog/fabric-of-india/guest-post-eri-weaving-in-meghalaya"
+  },
+  {
+    "slug": "loin-nongpoh",
+    "name": "Loin Nongpoh",
+    "traditions": [
+      "ryndia-weaving"
+    ],
+    "description": "A 2015 Victoria and Albert Museum account records Meghalaya artisan Loin Nongpoh speaking about rearing and spinning eri silk.",
+    "url": "https://www.vam.ac.uk/blog/fabric-of-india/guest-post-eri-weaving-in-meghalaya"
+  }
+]

@@ -1,0 +1,193 @@
+{
+  "states": [
+    {
+      "name": "Andhra Pradesh",
+      "longitude": 79.7,
+      "latitude": 15.8
+    },
+    {
+      "name": "Arunachal Pradesh",
+      "longitude": 94.7,
+      "latitude": 28.0
+    },
+    {
+      "name": "Assam",
+      "longitude": 92.8,
+      "latitude": 26.2
+    },
+    {
+      "name": "Bihar",
+      "longitude": 85.4,
+      "latitude": 25.7
+    },
+    {
+      "name": "Chhattisgarh",
+      "longitude": 82,
+      "latitude": 21.5
+    },
+    {
+      "name": "Goa",
+      "longitude": 74.0,
+      "latitude": 15.4
+    },
+    {
+      "name": "Gujarat",
+      "longitude": 72,
+      "latitude": 22.5
+    },
+    {
+      "name": "Haryana",
+      "longitude": 76.3,
+      "latitude": 29.3
+    },
+    {
+      "name": "Himachal Pradesh",
+      "longitude": 77.1,
+      "latitude": 31.5
+    },
+    {
+      "name": "Jharkhand",
+      "longitude": 85.5,
+      "latitude": 23.6
+    },
+    {
+      "name": "Karnataka",
+      "longitude": 76,
+      "latitude": 14.5
+    },
+    {
+      "name": "Kerala",
+      "longitude": 76.5,
+      "latitude": 10.3
+    },
+    {
+      "name": "Madhya Pradesh",
+      "longitude": 78.5,
+      "latitude": 23.3
+    },
+    {
+      "name": "Maharashtra",
+      "longitude": 75,
+      "latitude": 19.5
+    },
+    {
+      "name": "Manipur",
+      "longitude": 94,
+      "latitude": 24.8
+    },
+    {
+      "name": "Meghalaya",
+      "longitude": 91.3,
+      "latitude": 25.5
+    },
+    {
+      "name": "Mizoram",
+      "longitude": 92.9,
+      "latitude": 23.5
+    },
+    {
+      "name": "Nagaland",
+      "longitude": 94.5,
+      "latitude": 26.0
+    },
+    {
+      "name": "Odisha",
+      "longitude": 85,
+      "latitude": 20.9
+    },
+    {
+      "name": "Punjab",
+      "longitude": 75.5,
+      "latitude": 30.9
+    },
+    {
+      "name": "Rajasthan",
+      "longitude": 74.8,
+      "latitude": 26.6
+    },
+    {
+      "name": "Sikkim",
+      "longitude": 88.5,
+      "latitude": 27.5
+    },
+    {
+      "name": "Tamil Nadu",
+      "longitude": 78.5,
+      "latitude": 11.0
+    },
+    {
+      "name": "Telangana",
+      "longitude": 79.0,
+      "latitude": 17.9
+    },
+    {
+      "name": "Tripura",
+      "longitude": 91.7,
+      "latitude": 23.8
+    },
+    {
+      "name": "Uttar Pradesh",
+      "longitude": 80.9,
+      "latitude": 26.9
+    },
+    {
+      "name": "Uttarakhand",
+      "longitude": 79.2,
+      "latitude": 30.2
+    },
+    {
+      "name": "West Bengal",
+      "longitude": 87.7,
+      "latitude": 23.5
+    }
+  ],
+  "unionTerritories": [
+    {
+      "name": "Andaman and Nicobar Islands",
+      "longitude": 92.8,
+      "latitude": 11.7
+    },
+    {
+      "name": "Chandigarh",
+      "longitude": 76.8,
+      "latitude": 30.7
+    },
+    {
+      "name": "Dadra and Nagar Haveli and Daman and Diu",
+      "longitude": 73.0,
+      "latitude": 20.3
+    },
+    {
+      "name": "Delhi",
+      "longitude": 77.2,
+      "latitude": 28.6
+    },
+    {
+      "name": "Jammu and Kashmir",
+      "longitude": 75.2,
+      "latitude": 33.4
+    },
+    {
+      "name": "Ladakh",
+      "longitude": 77.6,
+      "latitude": 34.4
+    },
+    {
+      "name": "Lakshadweep",
+      "longitude": 72.6,
+      "latitude": 10.6
+    },
+    {
+      "name": "Puducherry",
+      "longitude": 79.8,
+      "latitude": 11.9
+    }
+  ],
+  "beyondIndia": [
+    {
+      "name": "Nepal",
+      "longitude": 84.1,
+      "latitude": 28.0
+    }
+  ]
+}
