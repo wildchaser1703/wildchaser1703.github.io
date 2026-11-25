@@ -29,3 +29,15 @@ npm run test:browser
 ```
 
 The checks cover existing post content and URLs, internal links, geography, source references, search, image loading, saved and shared collections, keyboard and mobile behaviour, and browsing without JavaScript. Browser checks need Playwright's Chromium; install it with `npx playwright install --with-deps chromium` when needed. Check the resulting pages and images visually as well as relying on automated tests.
+
+## Publish an artwork or exhibition
+
+Keep an existing work's slug and object source stable. Add a row to `data/atlas-works.json` for a distinct work, with its title, maker, date, medium, context and object URL. Set `places` only when the work or its named practice has a documented regional connection. A related tradition is optional for an independently catalogued regional work. The place directory lists all 28 states and eight Union Territories even when an artwork image is pending.
+
+Create a matching entry in `data/atlas-image-audit.json`. Record the object and image sources separately, the photographer or provider, licence and policy URLs, exact-match evidence, date checked, and any outstanding permissions. Keep unresolved records discoverable from the collection’s research section. See the [image audit](indian-art-image-audit.md) for the current place gaps and draft permission requests.
+
+For a verified reproduction, use Sharp to auto-orient and encode full-frame WebP files under `assets/img/museum/`. Produce a thumbnail, preview and larger view, fitting within 480×672, 960×1344 and 2000×2800 without enlargement. Record the output widths, large height, matching local file paths, descriptive alt text and visible credit in the work record. Keep the original source URL in the audit. The site’s generated pages and assets currently fit within the existing Pages limit.
+
+Add exhibitions in `data/atlas-exhibitions.json` with a unique slug, a curatorial question, an introduction and an ordered list of work slugs and original labels. The build requires verified images for every stop. Exhibition pages link to object records and appear in site search and the sitemap. Existing curated collections and saved selections use their original URLs.
+
+Pull requests run the existing Build and Deploy workflow. After checks pass and the PR is merged, the workflow on `main` deploys GitHub Pages. Verify the museum entrance, image loading, a regional page, site search, and save and share interactions on the public domain.

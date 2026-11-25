@@ -13,6 +13,7 @@ const engineering = JSON.parse(await readFile('data/engineering-projects.json', 
 const legacy = JSON.parse(await readFile('data/legacy-posts.json', 'utf8'));
 const atlasForms = JSON.parse(await readFile('data/indian-art.json', 'utf8'));
 const atlasWorks = JSON.parse(await readFile('data/atlas-works.json', 'utf8'));
+const exhibitions = JSON.parse(await readFile('data/atlas-exhibitions.json', 'utf8'));
 const atlasPlaces = JSON.parse(await readFile('data/atlas-geography.json', 'utf8'));
 const screenshotDir = process.env.SCREENSHOT_DIR ? path.resolve(process.env.SCREENSHOT_DIR) : null;
 if (screenshotDir) await mkdir(screenshotDir, { recursive: true });
@@ -69,8 +70,7 @@ async function screenshot(page, name, fullPage = true) {
   for (const img of await page.locator('main img').all()) {
     if (!await img.isVisible()) continue;
     const sourceIsLocal = await img.evaluate(element => new URL(element.src).origin === location.origin);
-    // Atlas art is externally hosted and lazy-loaded. Scroll and decode it for
-    // both desktop and mobile captures so the screenshots show real content.
+    // Decode gallery images before capturing lazy-loaded pages.
     const isAtlasArt = await img.evaluate(element => Boolean(element.closest('.atlas-featured-work, .atlas-card-image, .work-card-img')));
     if (!sourceIsLocal && !isAtlasArt) continue;
     if (!fullPage && !await img.evaluate(element => { const r = element.getBoundingClientRect(); return r.top < innerHeight && r.bottom > 0; })) continue;
@@ -200,8 +200,9 @@ try {
   const viewports = [{ width: 1440, height: 900, name: 'desktop' }, { width: 390, height: 844, name: 'mobile' }, { width: 320, height: 800, name: 'narrow' }, { width: 844, height: 390, name: 'landscape' }];
   const atlasSlugs = atlasForms.map(form => form.slug);
   const placeRoutes = Object.values(atlasPlaces).flat().map(place => `/just-because/indian-art/regions/${place.name.toLowerCase().replace(/[^a-z0-9]+/g, '-')}/`);
-  const routes = ['/', '/projects/', '/projects/archive/', '/art/', '/food/', '/just-because/', '/just-because/indian-art/', '/just-because/indian-art/works/', '/just-because/indian-art/makers/', '/just-because/indian-art/regions/', '/just-because/indian-art/collections/', '/just-because/indian-art/contribute/', '/just-because/indian-art/works/kalamkari-panel/', ...atlasSlugs.map(slug => `/just-because/indian-art/${slug}/`), ...placeRoutes, '/about/', '/writing/', '/archives/', '/categories/', '/tags/', '/posts/context-engineering/', '/posts/llms-101/', '/notes/art-and-science-of-paper/', '/projects/counter/', '/studies/what-makes-a-wait-feel-long/', ...engineering.map(item => `/projects/${item.slug}/`)];
-  const captures = new Map([['/', 'home'], ['/projects/', 'projects'], ['/art/', 'art'], ['/food/', 'food'], ['/just-because/indian-art/', 'indian-art-atlas'], ['/just-because/indian-art/pattachitra/', 'pattachitra'], ['/just-because/indian-art/works/', 'atlas-works'], ['/just-because/indian-art/regions/', 'atlas-places'], ['/posts/context-engineering/', 'article']]);
+  const exhibitionRoutes = exhibitions.map(show => `/just-because/indian-art/exhibitions/${show.slug}/`);
+  const routes = ['/just-because/indian-art/exhibitions/', ...exhibitionRoutes, '/', '/projects/', '/projects/archive/', '/art/', '/food/', '/just-because/', '/just-because/indian-art/', '/just-because/indian-art/works/', '/just-because/indian-art/makers/', '/just-because/indian-art/regions/', '/just-because/indian-art/collections/', '/just-because/indian-art/contribute/', '/just-because/indian-art/works/kalamkari-panel/', ...atlasSlugs.map(slug => `/just-because/indian-art/${slug}/`), ...placeRoutes, '/about/', '/writing/', '/archives/', '/categories/', '/tags/', '/posts/context-engineering/', '/posts/llms-101/', '/notes/art-and-science-of-paper/', '/projects/counter/', '/studies/what-makes-a-wait-feel-long/', ...engineering.map(item => `/projects/${item.slug}/`)];
+  const captures = new Map([...exhibitionRoutes.map((route, index) => [route, exhibitions[index].slug]), ['/', 'home'], ['/projects/', 'projects'], ['/art/', 'art'], ['/food/', 'food'], ['/just-because/indian-art/', 'indian-art-atlas'], ['/just-because/indian-art/pattachitra/', 'pattachitra'], ['/just-because/indian-art/works/', 'atlas-works'], ['/just-because/indian-art/regions/', 'atlas-places'], ['/posts/context-engineering/', 'article']]);
   for (const { width, height, name } of viewports) {
     const page = await browser.newPage({ viewport: { width, height }, reducedMotion: 'reduce' });
     observe(page, name, true);
@@ -228,6 +229,14 @@ try {
       if (placeRoutes.includes(route)) {
         assert.equal(await page.locator('main h1').count(), 1, `Place needs a heading: ${route}`);
         assert.ok(await page.locator('.atlas-row').count() > 0, `Place needs at least one tradition: ${route}`);
+      }
+      if (exhibitionRoutes.includes(route)) {
+        const show = exhibitions[exhibitionRoutes.indexOf(route)];
+        assert.equal(await page.locator('.museum-stop').count(), show.works.length);
+        if (name === 'desktop') for (const image of await page.locator('.museum-stop img').all()) {
+          await image.scrollIntoViewIfNeeded();
+          await decode(image);
+        }
       }
       if (route === '/projects/') await checkDirectory(page, width);
       if (route === '/just-because/indian-art/') {
@@ -341,12 +350,31 @@ try {
   assert.equal(await atlas.locator('#atlas-search').inputValue(), 'tamarind');
   assert.equal(await atlas.locator('#atlas-region').inputValue(), 'Odisha');
   assert.equal(await atlas.locator('.atlas-row:visible').count(), 1, 'Shared filters restore');
+  await visit(atlas, '/just-because/indian-art/works/?q=rumal&places=Himachal+Pradesh&tradition=chamba-rumal&medium=Cotton+and+silk');
+  assert.equal(await atlas.locator('.work-card:visible').count(), 1, 'Collection deep-links combine all filters');
+  assert.equal(await atlas.locator('.work-card:visible').getAttribute('data-work-id'), 'chamba-cover');
+  await atlas.getByRole('searchbox', {name:'Search works'}).fill('no matching museum objects');
+  assert.equal(await atlas.locator('[data-work-empty]').isVisible(), true);
+  await atlas.locator('[data-work-filters] button').click();
+  assert.equal(await atlas.locator('.work-card:visible').count(), atlasWorks.length);
+  for (const work of atlasWorks.filter(work => work.image)) {
+    await visit(atlas, `/just-because/indian-art/works/${work.slug}/`);
+    const image = atlas.locator('.work-detail img');
+    await image.scrollIntoViewIfNeeded();
+    await decode(image);
+    assert.ok(await image.evaluate(img => img.currentSrc.startsWith(location.origin + '/assets/img/museum/')));
+    assert.equal(await atlas.locator('.work-detail figcaption a').filter({hasText:'Licence'}).getAttribute('href'), work.licenseUrl);
+    const original = await atlas.request.get(new URL(work.image, base).href);
+    assert.equal(original.status(), 200, `${work.slug} larger image`);
+  }
   await visit(atlas, '/just-because/indian-art/works/kalamkari-panel/');
-  await atlas.locator('[data-zoom-src]').first().click();
+  await atlas.locator('[data-zoom-src]').first().focus();
+  await atlas.keyboard.press('Enter');
   assert.equal(await atlas.locator('#atlas-zoom').evaluate(el => el.open), true, 'Image opens in accessible dialog');
   await decode(atlas.locator('#atlas-zoom img'));
-  await atlas.locator('#atlas-zoom button').click();
+  await atlas.keyboard.press('Escape');
   assert.equal(await atlas.locator('#atlas-zoom').evaluate(el => el.open), false, 'Image dialog closes');
+  assert.equal(await atlas.locator('[data-zoom-src]').first().evaluate(el => el === document.activeElement), true, 'Focus returns to the zoom trigger');
   await atlas.locator('[data-save-work="kalamkari-panel"]').first().click();
   await visit(atlas, '/just-because/indian-art/collection/');
   assert.equal(await atlas.locator('[data-saved-grid] .work-card:visible').count(), 1, 'Saved work persists across pages');
@@ -550,6 +578,14 @@ try {
       const route = `/just-because/indian-art/${slug}/`;
       assert.equal(await page.locator(`.atlas-row h3 a[href="${route}"]`).isVisible(), true, `Atlas link without JS: ${slug}`);
       assert.equal((await page.request.get(base + route)).status(), 200, `Atlas route without JS: ${slug}`);
+    }
+    await visit(page, '/just-because/indian-art/works/', false);
+    assert.equal(await page.locator('.work-card:visible').count(), atlasWorks.length);
+    for (const route of exhibitionRoutes) {
+      await visit(page, route, false);
+      assert.ok(await page.locator('.museum-stop:visible').count() >= 2);
+      const link = page.locator('.museum-stop [data-zoom-src]').first();
+      assert.ok((await page.request.get(new URL(await link.getAttribute('href'), base).href)).ok());
     }
     await visit(page, '/just-because/indian-art/regions/', false);
     assert.equal(await page.locator('.region-list a:visible').count(), 37, 'All places remain navigable without JavaScript');

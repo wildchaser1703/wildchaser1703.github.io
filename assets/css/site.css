@@ -542,3 +542,35 @@ em { font-style: normal; }
 
 /* Keep long place and tradition names inside narrow viewports. */
 .atlas-subhead h1, .tradition-hero h1 { overflow-wrap: anywhere; }
+
+.atlas-page > .back-link { margin-bottom: .75rem; }
+.museum-entrance { display: grid; grid-template-columns: minmax(16rem, .8fr) minmax(0, 1.2fr); align-items: center; gap: clamp(1.5rem, 5vw, 6rem); padding: clamp(2rem, 6vw, 5rem) 0 2rem; }
+.museum-intro h1 { margin: .7rem 0 1.25rem; font-weight: 400; font-size: clamp(3.25rem, 7.3vw, 8rem); line-height: .91; letter-spacing: -.065em; }
+.museum-intro h1 em { color: var(--clay); font-family: Georgia, serif; }
+.museum-intro > p:not(.kicker), .museum-exhibition-intro { max-width: 38rem; font-size: clamp(1.1rem, 2vw, 1.5rem); line-height: 1.5; }
+.museum-actions { display: flex; flex-wrap: wrap; align-items: center; gap: .75rem 1.2rem; margin: 1.7rem 0 0; }
+.museum-entrance .museum-featured { margin: 0; min-width: 0; }
+.museum-entrance img { background: var(--paper); border: 1px solid var(--line); }
+.museum-featured-exhibition { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: end; gap: 1rem 2rem; padding: clamp(1.25rem, 4vw, 3rem); border: 1px solid var(--line); }
+.museum-featured-exhibition h2 { margin: .4rem 0; font: clamp(2rem, 6vw, 4rem)/1 Georgia, serif; }
+.museum-featured-exhibition p:last-child { margin-bottom: 0; }
+.museum-exhibitions { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(1.25rem, 5vw, 4rem); }
+.museum-exhibitions img { display: block; width: 100%; aspect-ratio: 4 / 3; height: auto; object-fit: contain; background: var(--paper); }
+.museum-exhibitions h2, .museum-stop h2 { font: clamp(1.5rem, 4vw, 2.5rem)/1.12 Georgia, serif; margin: .6rem 0; }
+.museum-stops { display: grid; gap: clamp(2rem, 7vw, 6rem); margin: 3rem 0; }
+.museum-stop { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(12rem, .75fr); gap: clamp(1.25rem, 6vw, 5rem); align-items: center; padding-top: 2rem; border-top: 1px solid var(--line); }
+.museum-stop .work-image { margin: 0; width: 100%; }
+.museum-filters label { max-width: min(100%, 16rem); }
+.museum-filters input { min-width: 0; }
+.work-detail .work-meta > p:first-child { margin-top: 0; }
+.work-card .work-card-img { min-height: 0; }
+.work-card-img img { aspect-ratio: 4 / 3; }
+.atlas-subhead > p:empty { display: none; }
+@media (max-width: 760px) {
+  .museum-entrance, .museum-exhibitions, .museum-stop { grid-template-columns: minmax(0, 1fr); }
+  .atlas-page { padding-top: 1.5rem; }
+  .museum-entrance { padding-top: .75rem; }
+  .museum-intro .museum-actions { margin-top: .9rem; }
+  .museum-intro h1 { font-size: clamp(3.25rem, 13vw, 6rem); }
+  .museum-filters label { max-width: 100%; }
+}

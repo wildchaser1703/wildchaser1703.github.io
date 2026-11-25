@@ -1,0 +1,46 @@
+[
+  {
+    "slug": "stories-on-cloth",
+    "title": "Stories on Cloth",
+    "question": "How does a piece of cloth guide the eye through a story?",
+    "introduction": "Start with a painted temple, move through an embroidered grove, and finish with a quilt whose small scenes reward a slower look. The three cloths ask us to read pictures at different distances.",
+    "works": [
+      {
+        "slug": "jagannatha-temple-puri",
+        "label": "Begin at the centre. The three deities anchor the temple complex, while shrines and figures fill the surrounding space. LACMA identifies this as a pilgrimage painting from Puri."
+      },
+      {
+        "slug": "chamba-cover",
+        "label": "Follow the figures through the trees. The Met identifies Radha and Krishna in the grove. The stitched scene gathers the figures in a cloth that can be approached from more than one side."
+      },
+      {
+        "slug": "cleveland-kantha",
+        "label": "Move closer to the little stitched figures and animals. The repetition of small marks gives this quilt from Bengal a rhythm that becomes easier to see when you look at the whole cloth again."
+      }
+    ]
+  },
+  {
+    "slug": "earth-fire-and-form",
+    "title": "Earth, Fire and Form",
+    "question": "How does the material change the way a work catches light?",
+    "introduction": "Look across three surfaces from southern and central India. Start with a figure cut from stone, then see how a cast bronze opens up space, and end with pale metal inlaid into a dark alloy.",
+    "works": [
+      {
+        "slug": "mp-dancing-ganesha",
+        "label": "Find the spaces beneath the arms and around the waist. The sandstone sculpture uses depth and shadow to make the movement of Ganesha’s dance readable."
+      },
+      {
+        "slug": "chola-nataraja",
+        "label": "Follow the profile of the bronze from the standing foot into the ring of flames. Open spaces between the limbs make Shiva’s pose legible from across the room."
+      },
+      {
+        "slug": "bidri-basin",
+        "label": "Look along the broad rim, where the silver and brass forms stand out from the dark zinc alloy. Here the maker makes the surface itself carry the ornament."
+      },
+      {
+        "slug": "bidri-hookah-roses",
+        "label": "Compare the broad rim of the basin with the curved wall of this vessel. The inlaid rose bushes repeat around the bowl and invite the viewer to follow them as the object turns."
+      }
+    ]
+  }
+]
