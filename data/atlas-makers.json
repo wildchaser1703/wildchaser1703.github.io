@@ -203,5 +203,23 @@
     ],
     "description": "Ladakhi thangka artist Tonyot Tashi discusses his training and paintings in an interview with Reach Ladakh.",
     "url": "https://www.reachladakh.com/news/in-conversation-with-reach-ladakh/state-awardee-tonyot-tashi-thangka-painter"
+  },
+  {
+    "slug": "kwickstar-tmung",
+    "name": "Kwickstar Tmung",
+    "traditions": [
+      "ryndia-weaving"
+    ],
+    "description": "In a 2015 Victoria and Albert Museum account, Meghalaya weaver Kwickstar Tmung describes learning natural dyeing and weaving from her mother and teaching others.",
+    "url": "https://www.vam.ac.uk/blog/fabric-of-india/guest-post-eri-weaving-in-meghalaya"
+  },
+  {
+    "slug": "loin-nongpoh",
+    "name": "Loin Nongpoh",
+    "traditions": [
+      "ryndia-weaving"
+    ],
+    "description": "A 2015 Victoria and Albert Museum account records Meghalaya artisan Loin Nongpoh speaking about rearing and spinning eri silk.",
+    "url": "https://www.vam.ac.uk/blog/fabric-of-india/guest-post-eri-weaving-in-meghalaya"
   }
 ]

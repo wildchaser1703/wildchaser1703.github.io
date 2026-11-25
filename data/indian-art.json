@@ -871,7 +871,7 @@
       "Paper is both a craft and a support for other visual and written work. Its uses and the makers who produce it deserve attention alongside the finished sheet."
     ],
     "process": [
-      "The Tawang account describes making the paper from the bark of the locally named Shug-Sheng plant, then using the sheets for printed texts, flags and other purposes. Preparations and uses can differ."
+      "The National Institute of Design describes gathering the shrub’s inner bark, boiling and beating it into pulp, and pouring the diluted mixture into frames to dry as sheets. Its 2026 invitation project shaped the handmade paper into a Mithun silhouette."
     ],
     "materials": "Plant fibre and handmade paper",
     "locations": [
@@ -885,6 +885,10 @@
       {
         "label": "Tawang Tourism: local handpaper",
         "url": "https://tawangtourism.in/arts-craft/local-handpaper/"
+      },
+      {
+        "label": "National Institute of Design: Mon Shugu paper",
+        "url": "https://www.nid.edu/getNewsevents/design-of-the-at-home-invite-to-republic-day-26th-january-2026-guests-at-rashtrapati-bhavan"
       }
     ],
     "localNames": [],
@@ -896,7 +900,7 @@
       1
     ],
     "processSourceRefs": [
-      1
+      2
     ]
   },
   {
@@ -985,10 +989,10 @@
     "intro": "Flat-woven floor coverings from a city with a long textile industry.",
     "tradition": [
       "Panipat is a centre for rugs and other handloom textiles in Haryana. An application in India’s geographical indications register and an Asia InCH craft account identify the city with durries and floor coverings.",
-      "Floor coverings have many makers, uses and designs. Production includes both hand work and industrial manufacture; an individual object should be identified from its own record."
+      "A field study follows a panja durrie from hand production toward the wider textile market. Asia InCH also describes geometric floor coverings associated with Haryana. Individual floor coverings have different makers, uses and designs."
     ],
     "process": [
-      "Asia InCH identifies durries as a floor-covering craft in Panipat. Weaving brings yarns together into a textile; fibre, loom and pattern vary by workshop and object."
+      "A study of Panipat production describes weavers inserting coloured weft yarns on small or medium frames, and the later use of handlooms. Fibre, loom, pattern and the balance of hand and industrial work vary by workshop."
     ],
     "materials": "Woven yarn and textile floor coverings",
     "locations": [
@@ -1002,6 +1006,10 @@
       {
         "label": "Asia InCH: floor coverings of Haryana",
         "url": "https://www.asiainch.org/craft/embroidery-of-haryana/"
+      },
+      {
+        "label": "Riya Chhikara: field study of Panja durries",
+        "url": "https://www.ijrssh.com/abstract.php?id=1118"
       }
     ],
     "localNames": [],
@@ -1010,10 +1018,11 @@
     "artwork": null,
     "traditionSourceRefs": [
       0,
-      1
+      1,
+      2
     ],
     "processSourceRefs": [
-      1
+      2
     ]
   },
   {
@@ -1074,10 +1083,10 @@
     "intro": "Distinct wall-painting practices carried by artists and communities in Hazaribagh.",
     "tradition": [
       "Jharkhand’s Tribal Welfare Research Institute documents Sohrai and Khovar as two wall-painting practices associated with Hazaribagh. They are related in place but should not be treated as identical.",
-      "Individual women artists and communities bring their own forms and knowledge to these works. Paintings are made for particular settings and occasions as well as on portable surfaces today."
+      "Asia InCH associates Sohrai painting with the harvest season and distinguishes it from Khovar, which is associated with weddings. Individual women artists and communities bring their own knowledge to the work."
     ],
     "process": [
-      "Asia InCH describes wall painting in the Hazaribagh region, including the use of prepared earth colours and different tools and techniques. Materials and methods vary between makers and works."
+      "Asia InCH describes natural pigments and prepared wall surfaces, with tools including twig or leaf brushes and combs that create texture. Materials and methods vary between makers and works."
     ],
     "materials": "Earth colours and wall surfaces",
     "locations": [
@@ -1113,7 +1122,7 @@
     "intro": "A reflective surface made by casting and polishing metal rather than silvering glass.",
     "tradition": [
       "Aranmula Kannadi are handcrafted metal mirrors associated with Aranmula in Kerala. Kerala Tourism describes the work of specialist artisan households and distinguishes these mirrors from ordinary glass mirrors.",
-      "Each mirror is an object made through skilled metalwork. The exact alloy and working knowledge belong to its makers; the finish and mounting vary by object."
+      "Unlike a glass mirror, the reflective surface is polished metal. An Asia InCH account describes a copper-and-tin alloy; its exact composition and working knowledge belong to the makers."
     ],
     "process": [
       "Kerala Tourism describes metal casting followed by careful polishing to create a reflective front surface. Frames and proportions differ across examples."
@@ -1130,6 +1139,10 @@
       {
         "label": "Kerala Tourism: the mirror of Aranmula",
         "url": "https://www.keralatourism.org/kerala-article/2009/mirror-aranmula/13"
+      },
+      {
+        "label": "Asia InCH: Aranmula metal mirrors",
+        "url": "https://www.asiainch.org/craft/aranmula-kannadi-metal-mirror-of-kerala/"
       }
     ],
     "localNames": [],
@@ -1138,10 +1151,13 @@
     "artwork": null,
     "traditionSourceRefs": [
       0,
-      1
+      1,
+      2
     ],
     "processSourceRefs": [
-      1
+      0,
+      1,
+      2
     ]
   },
   {
@@ -1152,10 +1168,10 @@
     "intro": "Eri silk is spun, dyed and woven into textiles in Meghalaya.",
     "tradition": [
       "Meghalaya Tourism describes Ryndia as an eri-silk textile practice sustained by weavers and other workers, especially women. The region’s wider textile practices include distinct Khasi, Garo and Jaintia work.",
-      "Makers use the cloth in both familiar garments and contemporary designs. A single textile cannot stand for the full range of Meghalaya’s communities."
+      "In a 2015 V&A account, weaver Kwickstar Tmung describes learning natural dyeing and weaving from her mother and teaching others. Eri work is connected to family knowledge and livelihoods as well as finished cloth."
     ],
     "process": [
-      "The North Eastern Handicrafts and Handlooms Development Corporation describes eri silk and traditional weaving in the Ri Bhoi area. Fibre, dyes and weave vary across individual textiles."
+      "The V&A describes rearing eri silkworms, spinning the fibre, dyeing yarn and weaving it on floor or frame looms in Meghalaya. A documented chaddar in this atlas was handspun and handwoven; materials and processes vary across textiles."
     ],
     "materials": "Eri silk yarn and woven cloth",
     "locations": [
@@ -1169,6 +1185,10 @@
       {
         "label": "NEHHDC: Ryndia and Meghalaya textiles",
         "url": "https://nehhdc.com/ryndia"
+      },
+      {
+        "label": "Victoria and Albert Museum: Eri weaving in Meghalaya",
+        "url": "https://www.vam.ac.uk/blog/fabric-of-india/guest-post-eri-weaving-in-meghalaya"
       }
     ],
     "localNames": [],
@@ -1177,10 +1197,11 @@
     "artwork": null,
     "traditionSourceRefs": [
       0,
-      1
+      1,
+      2
     ],
     "processSourceRefs": [
-      1
+      2
     ]
   },
   {
@@ -1272,7 +1293,7 @@
       "The textiles are made and exchanged in different family and social settings. Colours, patterns and names vary by maker and community, including across today’s national borders."
     ],
     "process": [
-      "Government craft accounts describe embroidery worked in coloured thread on cloth. The handling of stitches and the relationship between patterned and open ground differ among examples."
+      "The Philadelphia Museum of Art describes darning stitch as a principal technique in Phulkari and documents silk embroidery on handwoven cotton khaddar. Stitch choices, colours and the amount of visible ground differ among textiles."
     ],
     "materials": "Cloth and coloured embroidery thread",
     "locations": [
@@ -1288,6 +1309,10 @@
       {
         "label": "Incredible India: Phulkari",
         "url": "https://www.incredibleindia.gov.in/en/punjab/phulkari"
+      },
+      {
+        "label": "Philadelphia Museum of Art: Phulkari textile",
+        "url": "https://www.philamuseum.org/objects/323476"
       }
     ],
     "localNames": [
@@ -1317,7 +1342,7 @@
       1
     ],
     "processSourceRefs": [
-      1
+      2
     ]
   },
   {
@@ -1526,7 +1551,7 @@
       "Aipan has connections to household and ceremonial occasions, while artists also explore it in other settings. The design of an individual work should be read in its own context."
     ],
     "process": [
-      "Asia InCH describes freehand designs made using rice paste over a prepared ground in one practice. Materials and patterns can vary with place and occasion."
+      "Asia InCH describes freehand designs made with rice paste and geru, a red clay, among other materials. Artists make different patterns for different settings and occasions."
     ],
     "materials": "Rice paste, prepared grounds, walls and other surfaces",
     "locations": [
@@ -1688,7 +1713,7 @@
     "intro": "Painted objects built on a prepared paper or wooden core.",
     "tradition": [
       "Kashmir papier-mâché includes painted boxes, vessels and other objects. The Craft Development Institute documents the registered craft and distinguishes the body of an object from its surface painting.",
-      "The craft involves specialised stages and the work of individual makers. Designs and materials differ across objects and workshops."
+      "An Asia InCH account distinguishes the work of sakta makers, who prepare bodies from paper pulp, from that of naqqash painters who decorate them. Some objects pass through several specialised hands."
     ],
     "process": [
       "The institute describes cores made from paper pulp, paperboard or light wood, followed by surface preparation and hand painting. Some pieces also use metallic decoration."
@@ -1705,6 +1730,10 @@
       {
         "label": "Craft Development Institute: Kashmir paper machie",
         "url": "https://cdiptqccgi.com/gi-crafts"
+      },
+      {
+        "label": "Asia InCH: papier-mâché of Kashmir",
+        "url": "https://asiainch.org/craft/papier-machekar-i-qalamdani-of-kashmir/"
       }
     ],
     "localNames": [],
@@ -1712,11 +1741,12 @@
     "maker": null,
     "artwork": null,
     "traditionSourceRefs": [
-      0,
-      1
+      1,
+      2
     ],
     "processSourceRefs": [
-      1
+      1,
+      2
     ]
   },
   {
