@@ -490,13 +490,16 @@ em { font-style: normal; }
 .work-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 2rem 1.5rem; margin: 2rem 0; }
 .work-card { min-width: 0; border: 1px solid var(--line); display: flex; flex-direction: column; }
 .work-card[hidden], [data-saved-empty][hidden], [data-saved-controls][hidden], [data-save-work][hidden], [data-save-shared][hidden] { display: none !important; }
-.work-card-img, .work-card-placeholder { min-height: 15rem; aspect-ratio: 4/3; background: var(--paper); border-bottom: 1px solid var(--line); }
+.work-card-img { min-height: 15rem; aspect-ratio: 4/3; background: var(--paper); border-bottom: 1px solid var(--line); }
 .work-card-img img { display: block; width: 100%; height: 100%; object-fit: contain; }
-.work-card-placeholder { display: flex; align-items: end; padding: 1.2rem; box-sizing: border-box; background: color-mix(in srgb, var(--clay) 9%, var(--paper)); color: var(--muted); font: .72rem var(--mono); }
+.work-card-label { padding: .8rem 1.4rem; border-bottom: 1px solid var(--line); background: color-mix(in srgb, var(--clay) 9%, var(--paper)); color: var(--muted); font: .7rem var(--mono); }
+.atlas-work-section { padding-top: 2rem; }
+.atlas-work-section h2 { font-size: clamp(1.7rem, 3vw, 3rem); font-weight: 400; letter-spacing: -.04em; margin-bottom: .5rem; }
 .work-card-body { display: flex; flex: 1; flex-direction: column; align-items: flex-start; padding: 1.4rem; }
 .work-card-body h3 { font-size: 1.5rem; line-height: 1.15; letter-spacing: -.035em; margin: .3rem 0 .8rem; font-weight: 400; }
 .work-card-body h3 a { text-decoration: none; }
 .work-card-body > p:not(.kicker) { margin: 0 0 .8rem; }
+.work-card-body .atlas-image-credit { font: .69rem/1.5 var(--mono); overflow-wrap: anywhere; }
 .work-actions { display: flex; flex-wrap: wrap; gap: 1rem; align-items: center; margin-top: auto; padding-top: 1rem; }
 .work-actions button, .work-meta button, .share-controls button, .atlas-zoom button { font: .75rem/1.4 var(--mono); padding: .7rem; border: 1px solid var(--line); background: transparent; color: inherit; cursor: pointer; }
 .work-actions button:hover, .work-meta button:hover, .share-controls button:hover { border-color: var(--clay); }
@@ -528,9 +531,9 @@ em { font-style: normal; }
 .share-controls input { flex: 1 1 18rem; min-width: 0; padding: .7rem; background: transparent; border: 1px solid var(--line); color: inherit; }
 @media (max-width: 760px) {
   .work-grid { grid-template-columns: repeat(2, minmax(0,1fr)); gap: 1rem; }
-  .work-card-img, .work-card-placeholder { min-height: 10rem; }
+  .work-card-img { min-height: 10rem; }
   .work-card-body { padding: 1rem; }
   .work-card-body h3 { font-size: 1.25rem; }
   .work-detail, .atlas-map-layout { grid-template-columns: 1fr; }
 }
-@media (max-width: 440px) { .work-grid, .maker-list { grid-template-columns: 1fr; } .work-card-img, .work-card-placeholder { min-height: 14rem; } }
+@media (max-width: 440px) { .work-grid, .maker-list { grid-template-columns: 1fr; } .work-card-img { min-height: 14rem; } }

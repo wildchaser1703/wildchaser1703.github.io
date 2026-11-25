@@ -493,7 +493,14 @@
     "processSourceRefs": [
       1,
       2
-    ]
+    ],
+    "illustration": {
+      "image": "https://upload.wikimedia.org/wikipedia/commons/e/e6/Longpi_pottery.jpg",
+      "imageAlt": "Black Longpi pottery from Manipur",
+      "credit": "Longpi pottery, photographed by Atcelsius, 2020. Pottery maker not identified. CC BY-SA 4.0; no changes.",
+      "imageSource": "https://commons.wikimedia.org/wiki/File:Longpi_pottery.jpg",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/"
+    }
   },
   {
     "slug": "ajrakh",
@@ -622,7 +629,14 @@
     ],
     "processSourceRefs": [
       0
-    ]
+    ],
+    "illustration": {
+      "image": "https://upload.wikimedia.org/wikipedia/commons/d/d8/Bidriware_vases.jpg",
+      "imageAlt": "Bidriware vessels with pale inlaid decoration",
+      "credit": "Bidriware vases, photograph by Randhirreddy. Makers not identified. CC BY-SA 3.0; no changes.",
+      "imageSource": "https://commons.wikimedia.org/wiki/File:Bidriware_vases.jpg",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/"
+    }
   },
   {
     "slug": "phad",

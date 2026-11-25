@@ -68,7 +68,7 @@ async function screenshot(page, name, fullPage = true) {
     const sourceIsLocal = await img.evaluate(element => new URL(element.src).origin === location.origin);
     // Atlas art is externally hosted and lazy-loaded. Scroll and decode it for
     // both desktop and mobile captures so the screenshots show real content.
-    const isAtlasArt = await img.evaluate(element => Boolean(element.closest('.atlas-featured-work, .atlas-card-image')));
+    const isAtlasArt = await img.evaluate(element => Boolean(element.closest('.atlas-featured-work, .atlas-card-image, .work-card-img')));
     if (!sourceIsLocal && !isAtlasArt) continue;
     if (!fullPage && !await img.evaluate(element => { const r = element.getBoundingClientRect(); return r.top < innerHeight && r.bottom > 0; })) continue;
     if (fullPage) await img.scrollIntoViewIfNeeded();
@@ -260,6 +260,12 @@ try {
         assert.equal(await visibleRows.count(), 1, 'Keyboard search');
         assert.match(await visibleRows.first().textContent(), /warli/i);
         await reset.click();
+      }
+      if (route === '/just-because/indian-art/works/' && width === 1440) {
+        for (const image of await page.locator('.work-card-img img').all()) {
+          await image.scrollIntoViewIfNeeded();
+          await decode(image);
+        }
       }
       if (route === '/art/') {
         await checkGallery(page, '.art-item a[data-gallery="art"]', 10, portfolio.art.map(item => `${item.title} — ${item.caption}`));

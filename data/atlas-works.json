@@ -166,10 +166,11 @@
     "medium": "Cotton; mordant painted and dyed, resist dyed",
     "recordUrl": "https://www.metmuseum.org/art/collection/search/448214",
     "description": "The Met marks this image public domain.",
-    "image": "https://collectionapi.metmuseum.org/api/collection/v1/iiif/448214/1407216/main-image",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/3/3a/Kalamkari_Rumal_MET_DP335160.jpg",
     "imageAlt": "Painted and dyed Kalamkari rumal in the Metropolitan Museum of Art collection",
-    "imageSource": "https://www.metmuseum.org/art/collection/search/448214",
-    "credit": "The Metropolitan Museum of Art. Public domain."
+    "imageSource": "https://commons.wikimedia.org/wiki/File:Kalamkari_Rumal_MET_DP335160.jpg",
+    "credit": "The Metropolitan Museum of Art, Rogers Fund, 1928. Public domain.",
+    "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/"
   },
   {
     "slug": "dhokra-vishnu",
@@ -185,11 +186,11 @@
     "slug": "moonshadow-longpi-stambh",
     "tradition": "longpi",
     "title": "Moonshadow Longpi Stambh",
-    "maker": "Maker not identified in the source",
+    "maker": "Potters not individually identified",
     "date": "See publication",
     "medium": "Black serpentine stone and clay",
     "recordUrl": "https://www.indiaculture.gov.in/sites/default/files/pdf/Sustain_The_Craft_Idiom_16012024.pdf",
-    "description": "The Ministry of Culture publication illustrates and describes this work as three stacked vases. It does not identify an individual maker."
+    "description": "The Ministry of Culture publication describes this work as three stacked vases in the Stambh exhibition project; its catalogue credits Ashiesh Shah as artist and designer for the project. The individual potters are not identified."
   },
   {
     "slug": "narasimha",
@@ -200,10 +201,11 @@
     "medium": "Watercolor, colloidal tin, ink and graphite on mill paper",
     "recordUrl": "https://www.metmuseum.org/art/collection/search/857030",
     "description": "The Met marks this image public domain.",
-    "image": "https://collectionapi.metmuseum.org/api/collection/v1/iiif/857030/2059607/main-image",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/d/d1/Unidentified_artist_-_The_avatar_Narasimha_-_2021.425_-_Metropolitan_Museum_of_Art.jpg",
     "imageAlt": "Kalighat painting of Narasimha in the Metropolitan Museum of Art collection",
-    "imageSource": "https://www.metmuseum.org/art/collection/search/857030",
-    "credit": "The Metropolitan Museum of Art, Purchase, Bequest of Robert West, by exchange, 2022. Public domain."
+    "imageSource": "https://commons.wikimedia.org/wiki/File:Unidentified_artist_-_The_avatar_Narasimha_-_2021.425_-_Metropolitan_Museum_of_Art.jpg",
+    "credit": "The Metropolitan Museum of Art, Purchase, Bequest of Robert West, by exchange, 2022. Public domain.",
+    "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/"
   },
   {
     "slug": "ajrakh-embroidered-scarf",
