@@ -2,17 +2,17 @@
   {
     "slug": "inference-gate",
     "title": "Inference Gate",
-    "homeSummary": "A bounded queue for deciding how much inference work to admit.",
+    "homeSummary": "How much work should one GPU accept before its queue fills?",
     "kind": "LLM systems",
-    "summary": "An inference gateway that compares token-budget admission with a fixed concurrency limit under controlled workloads.",
-    "source": "/assets/downloads/inference-gate-45fa4c3.zip",
-    "sourceLabel": "Download source and results",
-    "sourceCommit": "45fa4c3c41611be5687faac15a73a26e8f451d7a",
+    "summary": "I built a gateway that budgets inference by token count and tested it against a fixed request limit on one Tesla T4.",
+    "source": "https://github.com/wildchaser1703/wildchaser1703.github.io/tree/d1c5603ed398c36c9a229576d2c7d2c8ea08e1a4/projects/inference-gate",
+    "sourceLabel": "View source on GitHub",
+    "sourceCommit": "d1c5603ed398c36c9a229576d2c7d2c8ea08e1a4",
     "stack": [
       "Python",
       "FastAPI",
       "PyTorch",
-      "Transformers",
+      "vLLM",
       "Docker",
       "pytest"
     ],
@@ -20,7 +20,7 @@
     "approach": [
       "Count prompt tokens and reserve capacity for the requested maximum output before admitting work. Bound the queue and reject or expire requests when capacity or time runs out.",
       "Compare token-budget admission with fixed concurrency against the same open-loop request trace. Record outcomes, latency, throughput and peak reservations.",
-      "Use a real local Transformers backend for CPU inference, a synthetic fixture for controlled overload, and a vLLM adapter intended for a future free Kaggle GPU run."
+      "Replay three seeded traces at 2, 10 and 30 requests per second against SmolLM2-135M-Instruct. Both policies use the same vLLM engine, queue size and deadline."
     ],
     "decisions": [
       {
@@ -37,10 +37,8 @@
       }
     ],
     "limitations": [
-      "The Kaggle T4/vLLM experiment did not complete: GPU compatibility, memory behavior and performance remain unverified.",
-      "One CPU trial is a functional observation, not a statistically supported speedup. The synthetic fixture is not GPU performance evidence.",
-      "Local research service: no authentication, distributed admission, streaming or production availability claim. Queued requests are in memory.",
-      "M4/MPS execution is implemented but has not been verified on the user's Mac."
+      "Peak sampled board memory was 8,071 MiB under both policies. A smaller reservation budget did not lower measured GPU memory in this run.",
+      "The comparison covers one small model on one T4, three traces per load level and non-streaming generation. Latency percentiles cover successful requests."
     ],
     "diagram": {
       "nodes": [
@@ -54,12 +52,24 @@
     },
     "evidence": [
       {
-        "label": "Download source, tests and recorded results",
-        "url": "/assets/downloads/inference-gate-45fa4c3.zip"
+        "label": "Read the T4 benchmark",
+        "url": "https://github.com/wildchaser1703/wildchaser1703.github.io/blob/d1c5603ed398c36c9a229576d2c7d2c8ea08e1a4/projects/inference-gate/evidence/kaggle-t4/report.md"
+      },
+      {
+        "label": "Inspect all 18 trials",
+        "url": "https://github.com/wildchaser1703/wildchaser1703.github.io/blob/d1c5603ed398c36c9a229576d2c7d2c8ea08e1a4/projects/inference-gate/evidence/kaggle-t4/trials.csv"
+      },
+      {
+        "label": "Download the raw evidence",
+        "url": "https://github.com/wildchaser1703/wildchaser1703.github.io/blob/d1c5603ed398c36c9a229576d2c7d2c8ea08e1a4/projects/inference-gate/evidence/kaggle-t4/inference-gate-gpu-evidence.zip?raw=true"
+      },
+      {
+        "label": "Reproduce the experiment",
+        "url": "https://github.com/wildchaser1703/wildchaser1703.github.io/blob/d1c5603ed398c36c9a229576d2c7d2c8ea08e1a4/projects/inference-gate/docs/kaggle.md"
       }
     ],
-    "result": "Fifteen tests passed locally. One real CPU trial completed 12/12 requests under each policy; one synthetic overload trial showed the token budget capped reservations while rejecting more requests. GPU evaluation remains pending.",
-    "stage": "CPU-verified · GPU pending"
+    "result": "At 10 requests per second, both policies completed 179 of 180 requests. The token budget reduced peak reservations from 2,688 to 2,048 tokens. At 30 requests per second, fixed concurrency completed 93 of 180 and the token policy completed 92. Every rejected request hit a full queue.",
+    "stage": "Benchmarked on Kaggle T4"
   },
   {
     "slug": "durable-tool-runs",

@@ -1,0 +1,232 @@
+{
+  "backend": "TransformersBackend",
+  "configuration": {
+    "policy": "tokens",
+    "budget_tokens": 512,
+    "reserved_tokens": 0,
+    "active": 0,
+    "queued": 0,
+    "peak_reserved_tokens": 48,
+    "peak_active": 1,
+    "healthy": true,
+    "closed": false,
+    "backend": "TransformersBackend",
+    "context_limit": 2048,
+    "device": "cpu"
+  },
+  "final_state": {
+    "policy": "tokens",
+    "budget_tokens": 512,
+    "reserved_tokens": 0,
+    "active": 0,
+    "queued": 0,
+    "peak_reserved_tokens": 400,
+    "peak_active": 1,
+    "healthy": true,
+    "closed": false,
+    "backend": "TransformersBackend",
+    "context_limit": 2048,
+    "device": "cpu"
+  },
+  "python": "3.12.14",
+  "platform": "Linux-6.18.57-x86_64-with-glibc2.41",
+  "seed": 7,
+  "offered_requests_per_second": 2.0,
+  "trace_sha256": "aec702900249d232658773a169440e17987edbabdbc95573d7dd05167d367b4f",
+  "summary": {
+    "requests": 12,
+    "outcomes": {
+      "200": 12
+    },
+    "successful_requests_per_second": 0.6252502079715289,
+    "successful_output_tokens_per_second": 21.675340543013,
+    "success_p50_seconds": 7.9990160949964775,
+    "success_p95_seconds": 13.691986983001698,
+    "success_p99_seconds": 13.691986983001698,
+    "elapsed_seconds": 19.19231668699649
+  },
+  "requests": [
+    {
+      "index": 0,
+      "status": 200,
+      "latency_seconds": 0.7616048740019323,
+      "schedule_lag_seconds": 0.000180278999323491,
+      "response": {
+        "id": "c987017c-4ca4-4702-a867-5c6788ea5475",
+        "text": "A database transaction is a set of instructions that specify how to perform a specific action",
+        "prompt_tokens": 87,
+        "output_tokens": 16,
+        "queue_seconds": 0.001251453002623748,
+        "latency_seconds": 0.7582192249974469,
+        "reserved_tokens": 112
+      }
+    },
+    {
+      "index": 1,
+      "status": 200,
+      "latency_seconds": 2.752534941006161,
+      "schedule_lag_seconds": 0.0013726729957852513,
+      "response": {
+        "id": "49d99e03-5684-472f-b563-e9d4cb5dc266",
+        "text": "A database transaction is a set of instructions that specify how to perform a specific action on a database. It is a sequence of statements that define the actions that will be taken when a transaction is committed or rolled back. The purpose of a database transaction is to ensure that the database is properly organized, consistent, and secure.",
+        "prompt_tokens": 87,
+        "output_tokens": 64,
+        "queue_seconds": 0.25573818900011247,
+        "latency_seconds": 2.7483034010001575,
+        "reserved_tokens": 160
+      }
+    },
+    {
+      "index": 2,
+      "status": 200,
+      "latency_seconds": 2.9722879070031922,
+      "schedule_lag_seconds": 0.005311490996973589,
+      "response": {
+        "id": "42d895fb-eb63-46fd-aa9c-a670df65aa5c",
+        "text": "A database transaction is a sequence of operations that a database server performs to store,",
+        "prompt_tokens": 38,
+        "output_tokens": 16,
+        "queue_seconds": 2.244914021997829,
+        "latency_seconds": 2.9686163189981016,
+        "reserved_tokens": 64
+      }
+    },
+    {
+      "index": 3,
+      "status": 200,
+      "latency_seconds": 3.930526097996335,
+      "schedule_lag_seconds": 0.0014807760016992688,
+      "response": {
+        "id": "41c7ccf7-3723-46b8-b021-364cb77a5160",
+        "text": "A database transaction is a set of instructions that specify how to perform a specific action",
+        "prompt_tokens": 367,
+        "output_tokens": 16,
+        "queue_seconds": 2.471468625997659,
+        "latency_seconds": 3.9165453940004227,
+        "reserved_tokens": 384
+      }
+    },
+    {
+      "index": 4,
+      "status": 200,
+      "latency_seconds": 6.028799555999285,
+      "schedule_lag_seconds": 0.001425747999746818,
+      "response": {
+        "id": "7cb457f4-dfb7-4cad-b7ad-5e4779c5650f",
+        "text": "A database transaction is a set of instructions that specify how to perform a specific action on a database. It is a sequence of statements that define the actions that will be taken when a transaction is committed or rolled back. The purpose of a database transaction is to ensure that the database is properly organized, consistent, and secure.",
+        "prompt_tokens": 87,
+        "output_tokens": 64,
+        "queue_seconds": 3.4131891390061355,
+        "latency_seconds": 6.021786954006529,
+        "reserved_tokens": 160
+      }
+    },
+    {
+      "index": 5,
+      "status": 200,
+      "latency_seconds": 7.9990160949964775,
+      "schedule_lag_seconds": 0.0015293030010070652,
+      "response": {
+        "id": "f324bf4d-75b9-4193-89b6-3410caad9b65",
+        "text": "A database transaction is a sequence of operations that a database server performs to store, manage, and retrieve data. It's a critical component of any database system, as it allows the database to perform various operations, such as updating data, inserting new data, deleting existing data, and performing other operations.\n\nThe transaction",
+        "prompt_tokens": 38,
+        "output_tokens": 64,
+        "queue_seconds": 5.5240884080049,
+        "latency_seconds": 7.992702391005878,
+        "reserved_tokens": 112
+      }
+    },
+    {
+      "index": 6,
+      "status": 200,
+      "latency_seconds": 8.190360473003238,
+      "schedule_lag_seconds": 0.0015825969967409037,
+      "response": {
+        "id": "cb5314b2-2f2c-4199-ab54-e02057449cb4",
+        "text": "A database transaction is a sequence of operations that a database server performs to store,",
+        "prompt_tokens": 38,
+        "output_tokens": 16,
+        "queue_seconds": 7.49168944300618,
+        "latency_seconds": 8.185909642001207,
+        "reserved_tokens": 64
+      }
+    },
+    {
+      "index": 7,
+      "status": 200,
+      "latency_seconds": 8.943185570002242,
+      "schedule_lag_seconds": 0.001309532999584917,
+      "response": {
+        "id": "8fefdccd-72c6-49de-9436-b7b1217fc87d",
+        "text": "A database transaction is a sequence of operations that a database server performs to store, manage, and retrieve data. It's a critical component of any database system,",
+        "prompt_tokens": 38,
+        "output_tokens": 32,
+        "queue_seconds": 7.687049514002865,
+        "latency_seconds": 8.936914212004922,
+        "reserved_tokens": 80
+      }
+    },
+    {
+      "index": 8,
+      "status": 200,
+      "latency_seconds": 9.253627885998867,
+      "schedule_lag_seconds": 0.0007941779986140318,
+      "response": {
+        "id": "bc98622c-0d6c-4a40-89b9-90797fad03d1",
+        "text": "A database transaction is a set of instructions that specify how to perform a specific action",
+        "prompt_tokens": 87,
+        "output_tokens": 16,
+        "queue_seconds": 8.437269622001622,
+        "latency_seconds": 9.247537215000193,
+        "reserved_tokens": 112
+      }
+    },
+    {
+      "index": 9,
+      "status": 200,
+      "latency_seconds": 9.39467276600044,
+      "schedule_lag_seconds": 0.0015987629958544858,
+      "response": {
+        "id": "92ab6620-d07e-4075-98e9-db9e9a5c4549",
+        "text": "A database transaction is a sequence of operations that a database server performs to store,",
+        "prompt_tokens": 38,
+        "output_tokens": 16,
+        "queue_seconds": 8.745204317005118,
+        "latency_seconds": 9.388238596999145,
+        "reserved_tokens": 64
+      }
+    },
+    {
+      "index": 10,
+      "status": 200,
+      "latency_seconds": 11.753970161000325,
+      "schedule_lag_seconds": 0.0014701999971293844,
+      "response": {
+        "id": "b3506e89-6f3f-44e8-95b7-1ab2de9dc677",
+        "text": "A database transaction is a set of instructions that specify how to perform a specific action on a database. It is a crucial component of a database management system (DB",
+        "prompt_tokens": 367,
+        "output_tokens": 32,
+        "queue_seconds": 8.887846434001403,
+        "latency_seconds": 11.748742499003129,
+        "reserved_tokens": 400
+      }
+    },
+    {
+      "index": 11,
+      "status": 200,
+      "latency_seconds": 13.691986983001698,
+      "schedule_lag_seconds": 0.0003064219999941997,
+      "response": {
+        "id": "21ff257c-8d86-4f7f-b6a8-2953aa165cbb",
+        "text": "A database transaction is a sequence of operations that a database server performs to store, manage, and retrieve data. It's a critical component of any database system, as it allows the database to perform various operations, such as updating data, inserting new data, deleting existing data, and performing other operations.\n\nThe transaction",
+        "prompt_tokens": 38,
+        "output_tokens": 64,
+        "queue_seconds": 11.250714522997441,
+        "latency_seconds": 13.686155302995758,
+        "reserved_tokens": 112
+      }
+    }
+  ],
+  "gpu_samples": [],
+  "gpu_measurement_note": "Board-wide samples include engine preallocation; empty means no NVIDIA evidence."
+}

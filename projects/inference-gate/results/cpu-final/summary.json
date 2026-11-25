@@ -1,0 +1,67 @@
+{
+  "backend": "transformers",
+  "trials": [
+    {
+      "repeat": 0,
+      "policy": "fixed",
+      "trace_sha256": "aec702900249d232658773a169440e17987edbabdbc95573d7dd05167d367b4f",
+      "summary": {
+        "requests": 12,
+        "outcomes": {
+          "200": 12
+        },
+        "successful_requests_per_second": 0.5772181997639297,
+        "successful_output_tokens_per_second": 20.010230925149564,
+        "success_p50_seconds": 9.120711203999235,
+        "success_p95_seconds": 15.288406954998209,
+        "success_p99_seconds": 15.288406954998209,
+        "elapsed_seconds": 20.789365277996694
+      },
+      "state": {
+        "policy": "fixed",
+        "budget_tokens": 512,
+        "reserved_tokens": 0,
+        "active": 0,
+        "queued": 0,
+        "peak_reserved_tokens": 400,
+        "peak_active": 1,
+        "healthy": true,
+        "closed": false,
+        "backend": "TransformersBackend",
+        "context_limit": 2048,
+        "device": "cpu"
+      }
+    },
+    {
+      "repeat": 0,
+      "policy": "tokens",
+      "trace_sha256": "aec702900249d232658773a169440e17987edbabdbc95573d7dd05167d367b4f",
+      "summary": {
+        "requests": 12,
+        "outcomes": {
+          "200": 12
+        },
+        "successful_requests_per_second": 0.6252502079715289,
+        "successful_output_tokens_per_second": 21.675340543013,
+        "success_p50_seconds": 7.9990160949964775,
+        "success_p95_seconds": 13.691986983001698,
+        "success_p99_seconds": 13.691986983001698,
+        "elapsed_seconds": 19.19231668699649
+      },
+      "state": {
+        "policy": "tokens",
+        "budget_tokens": 512,
+        "reserved_tokens": 0,
+        "active": 0,
+        "queued": 0,
+        "peak_reserved_tokens": 400,
+        "peak_active": 1,
+        "healthy": true,
+        "closed": false,
+        "backend": "TransformersBackend",
+        "context_limit": 2048,
+        "device": "cpu"
+      }
+    }
+  ]
+}
