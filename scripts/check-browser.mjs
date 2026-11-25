@@ -364,7 +364,7 @@ try {
     await decode(image);
     assert.ok(await image.evaluate(img => img.currentSrc.startsWith(location.origin + '/assets/img/museum/')));
     assert.equal(await atlas.locator('.work-detail figcaption a').filter({hasText:'Licence'}).getAttribute('href'), work.licenseUrl);
-    const original = await atlas.request.get(work.image);
+    const original = await atlas.request.get(new URL(work.image, base).href);
     assert.equal(original.status(), 200, `${work.slug} larger image`);
   }
   await visit(atlas, '/just-because/indian-art/works/kalamkari-panel/');
@@ -585,7 +585,7 @@ try {
       await visit(page, route, false);
       assert.ok(await page.locator('.museum-stop:visible').count() >= 2);
       const link = page.locator('.museum-stop [data-zoom-src]').first();
-      assert.ok((await page.request.get(await link.getAttribute('href'))).ok());
+      assert.ok((await page.request.get(new URL(await link.getAttribute('href'), base).href)).ok());
     }
     await visit(page, '/just-because/indian-art/regions/', false);
     assert.equal(await page.locator('.region-list a:visible').count(), 37, 'All places remain navigable without JavaScript');
