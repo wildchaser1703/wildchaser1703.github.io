@@ -539,3 +539,6 @@ em { font-style: normal; }
   .work-detail, .atlas-map-layout { grid-template-columns: 1fr; }
 }
 @media (max-width: 440px) { .work-grid, .maker-list { grid-template-columns: 1fr; } .work-card-img { min-height: 14rem; } }
+
+/* Keep long place and tradition names inside narrow viewports. */
+.atlas-subhead h1, .tradition-hero h1 { overflow-wrap: anywhere; }

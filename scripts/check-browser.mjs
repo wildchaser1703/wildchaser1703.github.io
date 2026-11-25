@@ -13,6 +13,7 @@ const engineering = JSON.parse(await readFile('data/engineering-projects.json', 
 const legacy = JSON.parse(await readFile('data/legacy-posts.json', 'utf8'));
 const atlasForms = JSON.parse(await readFile('data/indian-art.json', 'utf8'));
 const atlasWorks = JSON.parse(await readFile('data/atlas-works.json', 'utf8'));
+const atlasPlaces = JSON.parse(await readFile('data/atlas-geography.json', 'utf8'));
 const screenshotDir = process.env.SCREENSHOT_DIR ? path.resolve(process.env.SCREENSHOT_DIR) : null;
 if (screenshotDir) await mkdir(screenshotDir, { recursive: true });
 const probe = net.createServer();
@@ -198,7 +199,8 @@ try {
   }
   const viewports = [{ width: 1440, height: 900, name: 'desktop' }, { width: 390, height: 844, name: 'mobile' }, { width: 320, height: 800, name: 'narrow' }, { width: 844, height: 390, name: 'landscape' }];
   const atlasSlugs = atlasForms.map(form => form.slug);
-  const routes = ['/', '/projects/', '/projects/archive/', '/art/', '/food/', '/just-because/', '/just-because/indian-art/', '/just-because/indian-art/works/', '/just-because/indian-art/makers/', '/just-because/indian-art/regions/', '/just-because/indian-art/collections/', '/just-because/indian-art/contribute/', '/just-because/indian-art/works/kalamkari-panel/', ...atlasSlugs.map(slug => `/just-because/indian-art/${slug}/`), '/about/', '/writing/', '/archives/', '/categories/', '/tags/', '/posts/context-engineering/', '/posts/llms-101/', '/notes/art-and-science-of-paper/', '/projects/counter/', '/studies/what-makes-a-wait-feel-long/', ...engineering.map(item => `/projects/${item.slug}/`)];
+  const placeRoutes = Object.values(atlasPlaces).flat().map(place => `/just-because/indian-art/regions/${place.name.toLowerCase().replace(/[^a-z0-9]+/g, '-')}/`);
+  const routes = ['/', '/projects/', '/projects/archive/', '/art/', '/food/', '/just-because/', '/just-because/indian-art/', '/just-because/indian-art/works/', '/just-because/indian-art/makers/', '/just-because/indian-art/regions/', '/just-because/indian-art/collections/', '/just-because/indian-art/contribute/', '/just-because/indian-art/works/kalamkari-panel/', ...atlasSlugs.map(slug => `/just-because/indian-art/${slug}/`), ...placeRoutes, '/about/', '/writing/', '/archives/', '/categories/', '/tags/', '/posts/context-engineering/', '/posts/llms-101/', '/notes/art-and-science-of-paper/', '/projects/counter/', '/studies/what-makes-a-wait-feel-long/', ...engineering.map(item => `/projects/${item.slug}/`)];
   const captures = new Map([['/', 'home'], ['/projects/', 'projects'], ['/art/', 'art'], ['/food/', 'food'], ['/just-because/indian-art/', 'indian-art-atlas'], ['/just-because/indian-art/pattachitra/', 'pattachitra'], ['/just-because/indian-art/works/', 'atlas-works'], ['/just-because/indian-art/regions/', 'atlas-places'], ['/posts/context-engineering/', 'article']]);
   for (const { width, height, name } of viewports) {
     const page = await browser.newPage({ viewport: { width, height }, reducedMotion: 'reduce' });
@@ -222,6 +224,10 @@ try {
         await checkGallery(page, selector, 3, await artCaptions(page, selector));
         assert.doesNotMatch(await page.locator('main').textContent(), /Krishna|Statue of Liberty/i);
         await checkStaticSculpture(page, name);
+      }
+      if (placeRoutes.includes(route)) {
+        assert.equal(await page.locator('main h1').count(), 1, `Place needs a heading: ${route}`);
+        assert.ok(await page.locator('.atlas-row').count() > 0, `Place needs at least one tradition: ${route}`);
       }
       if (route === '/projects/') await checkDirectory(page, width);
       if (route === '/just-because/indian-art/') {
