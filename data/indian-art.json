@@ -928,6 +928,10 @@
       {
         "label": "Government of Assam: traditional handicraft industries",
         "url": "https://industriescom.assam.gov.in/portlet-innerpage/old-handicrafts-industries-in-assam"
+      },
+      {
+        "label": "Incredible India: Samaguri Satra and mask making",
+        "url": "https://www.incredibleindia.gov.in/en/assam/majuli/samaguri-satra"
       }
     ],
     "localNames": [],
@@ -936,10 +940,12 @@
     "artwork": null,
     "traditionSourceRefs": [
       0,
-      1
+      1,
+      2
     ],
     "processSourceRefs": [
-      1
+      1,
+      2
     ]
   },
   {
@@ -1370,6 +1376,10 @@
       {
         "label": "Asia InCH: Lepcha weaving of Sikkim",
         "url": "https://www.asiainch.org/craft/lepcha-weaving-of-sikkim/"
+      },
+      {
+        "label": "Incredible India: Lepcha thara weaving",
+        "url": "https://www.incredibleindia.gov.in/en/sikkim/thara-ancient-craft"
       }
     ],
     "localNames": [],
@@ -1378,10 +1388,12 @@
     "artwork": null,
     "traditionSourceRefs": [
       0,
-      1
+      1,
+      2
     ],
     "processSourceRefs": [
-      1
+      1,
+      2
     ]
   },
   {
@@ -1409,6 +1421,10 @@
       {
         "label": "Asia InCH: Tanjore painting",
         "url": "https://www.asiainch.org/collection/tanjore-painting/"
+      },
+      {
+        "label": "Incredible India: Thanjavur painting",
+        "url": "https://www.prod.incredibleindia.gov.in/content/incredible-india-v2/en/destinations/kanyakumari/art-and-crafts/tanjore-paintings.html"
       }
     ],
     "localNames": [],
@@ -1417,10 +1433,12 @@
     "artwork": null,
     "traditionSourceRefs": [
       0,
-      1
+      1,
+      2
     ],
     "processSourceRefs": [
-      1
+      1,
+      2
     ]
   },
   {
