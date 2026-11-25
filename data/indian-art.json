@@ -232,11 +232,11 @@
     "category": "Painting",
     "intro": "Human figures, animals and settings bring communities and their stories into view.",
     "tradition": [
-      "Warli painting is associated with Warli communities in western India. India's official list of geographical-indication handicrafts names Maharashtra, Gujarat, and Dadra and Nagar Haveli and Daman and Diu for Warli painting. Regions overlap, and the practice cannot be reduced to a single administrative border. Government craft documentation describes paintings of gatherings, weddings and fairs. Individual makers and works are varied: avoid assuming that every image depicts the same event or was made for the same purpose.",
+      "Warli painting is associated with Warli communities in western India, including parts of Maharashtra, Gujarat, and Dadra and Nagar Haveli and Daman and Diu. Regions overlap, and the practice cannot be reduced to a single administrative border. Paintings can depict gatherings and aspects of daily life. Individual makers and works are varied: avoid assuming every image depicts the same event or was made for the same purpose.",
       "Contemporary practitioners work on a range of surfaces. Museum collections hold individual works by artists such as Jivya Soma Mashe, alongside the continuing practice of wall painting."
     ],
     "process": [
-      "One traditional process documented by the Office of the Development Commissioner for Handicrafts describes a prepared wall coloured with red earth and painting in white rice-powder solution using bamboo sticks. Contemporary artists may use other materials, including paper, canvas and acrylic paint. The relationship between the ground, white marks and the surrounding space can make images feel rhythmic and active. That observation is a way to look, not a universal meaning assigned to every shape."
+      "One traditional process described by craft sources uses a prepared wall and white rice-paste marks. Contemporary artists may use other materials, including paper, canvas and acrylic paint. The relationship between the ground, white marks and the surrounding space can make images feel rhythmic and active. That observation is a way to look, not a universal meaning assigned to every shape."
     ],
     "maker": {
       "name": "Jivya Soma Mashe",
@@ -253,14 +253,12 @@
     },
     "sources": [
       {
-        "label": "Government of India: registered handicrafts",
-        "url": "https://handicrafts.nic.in/pdf/LIST_OF_CRAFT_REGISTRED_UNDER_GEOGRAPHICAL_INDICATION_HANDICRAFTS.pdf",
-        "description": ""
+        "label": "Incredible India: Warli painting in Maharashtra and beyond",
+        "url": "https://www.incredibleindia.gov.in/en/maharashtra/the-enduring-tribal-artistry-of-maharashtra-warli-paintings"
       },
       {
-        "label": "Government of India: craft processes",
-        "url": "https://handicrafts.gov.in/CmsUpload/2039201602393132craftprocess.pdf",
-        "description": ""
+        "label": "Asia InCH: Warli painting of Maharashtra",
+        "url": "https://www.asiainch.org/craft/warli-painting/"
       },
       {
         "label": "Fondation Cartier: Jivya Soma Mashe",
@@ -389,7 +387,7 @@
     "category": "Metal",
     "intro": "Dhokra, also spelled Dokra, is a family of metal-casting practices in which artisans use wax and clay to shape the final object.",
     "tradition": [
-      "The Government of India documents Dhokra centres in Odisha, West Bengal, Bihar, Chhattisgarh and parts of Andhra Pradesh. Objects and practices vary across communities and workshops. Dhokra can include figures, ornaments, boxes and other objects.",
+      "Dhokra practices are documented in Odisha, West Bengal and Chhattisgarh, among other places. Objects and practices vary across communities and workshops. Dhokra can include figures, ornaments, boxes and other objects.",
       "Artisans continue to make both functional and decorative work for changing uses and audiences. A name such as Dhokra describes related practices, not a single style or community."
     ],
     "process": [
@@ -406,14 +404,12 @@
     },
     "sources": [
       {
-        "label": "Government of India: Craft processes, Dhokra",
-        "url": "https://www.handicrafts.nic.in/CmsUpload/2039201602393132%20craft%20process.pdf",
-        "description": ""
+        "label": "Asia InCH: Dhokra metal casting of Chhattisgarh",
+        "url": "https://www.asiainch.org/craft/dhokra-metal-casting-of-chattisgarh/"
       },
       {
-        "label": "Government of India: Geographical indications compendium, Bastar Dhokra",
-        "url": "https://handicrafts.nic.in/CmsUpload/12222017102212GI%20BOOK%20FINAL%202-5-17_resized.pdf",
-        "description": ""
+        "label": "Asia InCH: Dhokra metal casting of Odisha",
+        "url": "https://asiainch.org/craft/dhokra-metal-casting-of-odisha/"
       },
       {
         "label": "Wikimedia Commons: God astride an owl",
@@ -424,6 +420,10 @@
         "label": "Science Museum Group: figure of Ganesh in Dhokra style",
         "url": "https://collection.sciencemuseumgroup.org.uk/objects/co122890/figure-of-hindu-god-ganesh-dhokra-style",
         "description": ""
+      },
+      {
+        "label": "Asia InCH: Dhokra of West Bengal",
+        "url": "https://asiainch.org/craft/dokra-metal-craft-of-west-bengal/"
       }
     ],
     "materials": "Wax, clay mould and cast metal",
@@ -441,7 +441,8 @@
     "keywords": [],
     "traditionSourceRefs": [
       0,
-      1
+      1,
+      4
     ],
     "processSourceRefs": [
       0
@@ -608,7 +609,7 @@
     "intro": "Darkened metal surfaces are inlaid with contrasting designs.",
     "tradition": [
       "Bidriware takes its name from Bidar in Karnataka. It includes vessels and other objects made with an alloy and contrasting inlay. Its history and present-day forms span changing patrons, uses and workshops.",
-      "The government craft account describes the surface finishing and inlay work; look at a particular maker and object for the materials actually used."
+      "Craft accounts describe the surface finishing and inlay work; look at a particular maker and object for the materials actually used."
     ],
     "process": [
       "A documented process casts an alloy, engraves a design, and sets wire or sheet in the cut grooves. A finishing treatment darkens the body while the inlaid metal remains bright. The method and alloys can vary."
@@ -619,8 +620,8 @@
     ],
     "sources": [
       {
-        "label": "Government of India: craft processes",
-        "url": "https://handicrafts.nic.in/CmsUpload/2039201602393132craftprocess.pdf"
+        "label": "Asia InCH: Bidri metal inlay of Karnataka",
+        "url": "https://asiainch.org/craft/bidri-inlay-on-metal-of-karnataka/"
       },
       {
         "label": "Incredible India: cultural canvas in Bidar",
@@ -784,7 +785,7 @@
     "category": "Wood",
     "intro": "Turned wooden forms are shaped and finished with colour.",
     "tradition": [
-      "Channapatna in Karnataka is associated with lacquered wooden toys and objects. Government craft and toy-cluster accounts describe the making tradition and the people and workshops involved.",
+      "Channapatna in Karnataka is associated with lacquered wooden toys and objects. Government and craft accounts describe the making tradition and the workshops involved.",
       "Toys and contemporary objects take different shapes and uses; the name refers to a place and a field of practice rather than one unchanging design."
     ],
     "process": [
@@ -796,16 +797,16 @@
     ],
     "sources": [
       {
-        "label": "Government of India: geographical indications compendium",
-        "url": "https://handicrafts.nic.in/CmsUpload/12222017102212GI%20BOOK%20FINAL%202-5-17_resized.pdf"
+        "label": "Intellectual Property India: Channapatna Toys & Dolls",
+        "url": "https://search.ipindia.gov.in/GIRPublicSearch/Application/Details/23"
       },
       {
-        "label": "Government of India: toy cluster note",
-        "url": "https://www.handicrafts.nic.in/pdf/Note_on_Toy_Cluster.pdf"
+        "label": "Incredible India: Channapatna Toys & Dolls",
+        "url": "https://www.incredibleindia.gov.in/en/karnataka/channapatna-toys-and-dolls"
       },
       {
-        "label": "Government of India: Indian handicrafts",
-        "url": "https://handicrafts.nic.in/pdf/THCI-Book.pdf"
+        "label": "Asia InCH: Channapatna lacquer toys",
+        "url": "https://asiainch.org/craft/channapatna-toys-and-dolls-of-karnataka/"
       }
     ],
     "localNames": [],
@@ -813,10 +814,12 @@
     "maker": null,
     "artwork": null,
     "traditionSourceRefs": [
-      0
+      0,
+      1
     ],
     "processSourceRefs": [
-      0
+      1,
+      2
     ]
   },
   {
@@ -842,8 +845,8 @@
         "url": "https://www.asiainch.org/craft/mukka-embroidery-of-gujarat/"
       },
       {
-        "label": "Asia InCH: Khamir craft resource centre",
-        "url": "https://www.asiainch.org/organisation/khamir-craft-resource-centre/"
+        "label": "Khamir: Kachchh embroidery",
+        "url": "https://www.khamir.org/crafts/embroidery"
       }
     ],
     "localNames": [],
@@ -981,7 +984,7 @@
     "category": "Textile",
     "intro": "Flat-woven floor coverings from a city with a long textile industry.",
     "tradition": [
-      "Panipat is a centre for rugs and other handloom textiles in Haryana. Haryana Tourism and Asia InCH both identify the city with textile and floor-covering work.",
+      "Panipat is a centre for rugs and other handloom textiles in Haryana. An application in India’s geographical indications register and an Asia InCH craft account identify the city with durries and floor coverings.",
       "Floor coverings have many makers, uses and designs. Production includes both hand work and industrial manufacture; an individual object should be identified from its own record."
     ],
     "process": [
@@ -993,8 +996,8 @@
     ],
     "sources": [
       {
-        "label": "Haryana Tourism: crafts of Haryana",
-        "url": "https://haryanatourism.gov.in/about-us/"
+        "label": "Intellectual Property India: Panipat Durrie application",
+        "url": "https://search.ipindia.gov.in/GIRPublicSearch/Application/Details/1417"
       },
       {
         "label": "Asia InCH: floor coverings of Haryana",
@@ -1324,11 +1327,11 @@
     "category": "Textile",
     "intro": "Narrow woven bands of colour, joined and used in clothing and other textiles.",
     "tradition": [
-      "Lepcha weaving is associated with the Lepcha community in Sikkim and adjoining Himalayan areas. UNESCO and Asia InCH describe woven cloth used for clothing and household objects.",
+      "Lepcha weaving is associated with the Lepcha community in Sikkim and adjoining Himalayan areas. The National Institute of Design and Asia InCH describe Lepcha woven textiles and the materials used.",
       "Designs, materials and uses are part of living community knowledge. The woven objects made by individual people have histories beyond a single regional label."
     ],
     "process": [
-      "UNESCO describes work on a backstrap loom, with narrow woven widths sometimes joined together. Cotton and wool are among materials recorded today; older accounts also describe plant fibres."
+      "Asia InCH describes work on a backstrap loom, with narrow woven widths sometimes joined together. Cotton and wool are among materials recorded today; older accounts also describe plant fibres."
     ],
     "materials": "Cotton or wool yarn and woven cloth",
     "locations": [
@@ -1336,8 +1339,8 @@
     ],
     "sources": [
       {
-        "label": "UNESCO: Lepcha weaving",
-        "url": "https://www.unesco.org/sites/default/files/medias/fichiers/2022/11/382921eng.pdf"
+        "label": "National Institute of Design: Lepcha woven fabric in an invitation kit",
+        "url": "https://www.nid.edu/getNewsevents/design-of-the-at-home-invite-to-republic-day-26th-january-2026-guests-at-rashtrapati-bhavan"
       },
       {
         "label": "Asia InCH: Lepcha weaving of Sikkim",
@@ -1606,7 +1609,7 @@
       "The garden also has a history of collaborators, conservation and public stewardship. The foundation and institutions caring for related works provide additional perspectives."
     ],
     "process": [
-      "Chandigarh Tourism describes sculptures made using materials such as discarded ceramic, tiles, bangles and other recovered objects. Materials differ among the works and settings."
+      "SPACES Archives describes sculptures made using materials such as discarded ceramics, tiles, bangles and other recovered objects. Materials differ among the works and settings."
     ],
     "materials": "Reused ceramic, stone and other recovered materials",
     "locations": [
@@ -1618,8 +1621,8 @@
         "url": "https://chandigarhdistrict.nic.in/tourist-place/rock-garden/"
       },
       {
-        "label": "Chandigarh Tourism: Rock Garden",
-        "url": "https://chandigarhtourism.gov.in/pages/page/rock-garden"
+        "label": "SPACES Archives: Rock Garden of Chandigarh",
+        "url": "https://www.spacesarchives.org/explore/search-the-online-collection/nek-chand-rock-garden-of-chandigarh/"
       }
     ],
     "localNames": [],

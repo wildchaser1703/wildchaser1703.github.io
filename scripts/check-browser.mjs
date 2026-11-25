@@ -211,7 +211,11 @@ try {
       assert.equal(await page.locator('.brand .flow-mark').isVisible(), true);
       assert.equal(await page.locator('link[rel="icon"]').getAttribute('href'), '/assets/img/flow-mark.png');
       await page.evaluate(() => document.fonts.ready);
-      assert.equal(await page.evaluate(() => document.documentElement.scrollWidth > innerWidth), false, `${route} overflow at ${width}x${height}`);
+      const overflow = await page.evaluate(() => ({
+        hasOverflow: document.documentElement.scrollWidth > innerWidth,
+        offenders: [...document.querySelectorAll('body *')].filter(el => el.getBoundingClientRect().right > innerWidth + 1).slice(0, 8).map(el => `${el.tagName.toLowerCase()}${el.id ? '#' + el.id : ''}${el.className && typeof el.className === 'string' ? '.' + el.className.trim().replace(/\s+/g, '.') : ''}`),
+      }));
+      assert.equal(overflow.hasOverflow, false, `${route} overflow at ${width}x${height}: ${overflow.offenders.join(', ')}`);
       if (route === '/') {
         await checkNavigation(page, width);
         const selector = '.home-art-grid a[data-gallery="home-art"]';
