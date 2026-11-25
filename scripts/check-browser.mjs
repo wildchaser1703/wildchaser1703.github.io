@@ -56,7 +56,9 @@ async function visit(page, route, scriptsEnabled = true) {
 async function decode(image) {
   await image.evaluate(async element => {
     element.loading = 'eager';
-    await element.decode();
+    let timer;
+    try { await Promise.race([element.decode(), new Promise((_, reject) => { timer = setTimeout(() => reject(new Error(`Image timed out: ${element.src}`)), 20000); })]); }
+    finally { clearTimeout(timer); }
     if (!element.complete || !element.naturalWidth) throw new Error(`Image failed: ${element.src}`);
   });
 }

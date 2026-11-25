@@ -33,7 +33,11 @@
       "gond"
     ],
     "description": "Durga Bai Vyam is an artist whose work includes folktales and images rooted in her Gond Pardhan community. IGNCA describes the role of family, childhood painting and storytelling in her practice.",
-    "url": "https://ignca.gov.in/divisionss/janapada-sampada/tribal-art-culture/tribal-art-culture-of-madhya-pradesh-rajasthan/durga-bai/"
+    "url": "https://ignca.gov.in/divisionss/janapada-sampada/tribal-art-culture/tribal-art-culture-of-madhya-pradesh-rajasthan/durga-bai/",
+    "aliases": [
+      "Durga Bai",
+      "Durgabai Vyam"
+    ]
   },
   {
     "slug": "jivya-soma-mashe",
@@ -97,5 +101,23 @@
     ],
     "description": "The Crafts Museum credits Prakash Joshi of Bhilwara, Rajasthan, with the Phad-inspired painting on its entrance gate.",
     "url": "https://artsandculture.google.com/asset/phad-painting-prakash-joshi/LQGOlk_93rwuRg?hl=en"
+  },
+  {
+    "slug": "bhagawati-devi",
+    "name": "Bhagawati Devi",
+    "traditions": [
+      "mithila"
+    ],
+    "description": "LACMA identifies Bhagawati Devi as the maker of the Mithila painting Three Dancing Women, dated 1979. The museum record is the source for this attribution.",
+    "url": "https://collections.lacma.org/object/97981"
+  },
+  {
+    "slug": "amsuka-devi",
+    "name": "Amsuka Devi",
+    "traditions": [
+      "mithila"
+    ],
+    "description": "LACMA identifies Amsuka Devi as the maker of the Mithila painting Brahma and Vishnu, dated 15 February 1974. The museum record is the source for this attribution.",
+    "url": "https://collections.lacma.org/object/76268"
   }
 ]

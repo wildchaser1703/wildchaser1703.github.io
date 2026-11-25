@@ -191,6 +191,8 @@ for (const work of atlasWorks) {
   check(sitemapLocations.has(`https://wildchaser1703.github.io${route}`), `Work missing from sitemap: ${work.slug}`);
 }
 for (const maker of atlasMakers) check(await exists(path.join(root, 'just-because/indian-art/makers', maker.slug, 'index.html')), `Missing maker page: ${maker.slug}`);
+const durgaProfile = cheerio.load(await readFile(path.join(root, 'just-because/indian-art/makers/durga-bai-vyam/index.html'), 'utf8'));
+check(durgaProfile('main a[href="/just-because/indian-art/works/deer-with-foxes/"]').length > 0, 'Maker aliases must connect the correct works');
 for (const section of ['works', 'makers', 'regions', 'collections', 'collection', 'contribute']) check(await exists(path.join(root, 'just-because/indian-art', section, 'index.html')), `Missing atlas section: ${section}`);
 const sculpture = home('figure[data-sculpture]');
 check(sculpture.length === 1 && sculpture.attr('data-renderer') === 'static' && sculpture.attr('data-paused') === 'true' && sculpture.attr('data-variant') === '0', 'Sculpture must start as a static poster');

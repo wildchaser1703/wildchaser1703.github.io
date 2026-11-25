@@ -14,6 +14,7 @@ const paragraphs = (items, form, refs) => items.map((text, i) => `<p>${e(text)}$
 const names = makers => makers.map(m => `<a href="${makerUrl(m)}">${e(m.name)}</a>`).join(', ');
 const workFor = (works, slug) => works.filter(w => w.tradition === slug);
 const makerFor = (makers, slug) => makers.filter(m => m.traditions.includes(slug));
+const makerMatches = (work, maker) => [maker.name, ...(maker.aliases || [])].some(name => work.maker.toLocaleLowerCase().includes(name.toLocaleLowerCase()));
 const finish = () => `<aside class="atlas-method"><p class="kicker">HELP THIS GROW</p><h2>Know something we missed?</h2><p>Sources, corrections and first-hand knowledge can make this atlas better. <a href="${base}contribute/">Suggest an update</a>.</p></aside>`;
 function puriFigure() {
   return `<figure class="atlas-featured-work"><img src="https://thumb.wikimedia.org/wikipedia/commons/thumb/8/85/Jagannatha%2C_Balabhadra%2C_and_Subhadra_in_the_Jagganatha_Temple_LACMA_M.82.107.jpg/960px-Jagannatha%2C_Balabhadra%2C_and_Subhadra_in_the_Jagganatha_Temple_LACMA_M.82.107.jpg?utm_campaign=index&amp;utm_content=thumbnail&amp;utm_source=commons.wikimedia.org" alt="A colourful painting depicting the Jagannath temple in Puri and its surrounding shrines" width="2100" height="1639" loading="lazy" decoding="async"><figcaption><span>Unknown artist, <em>Jagannatha, Balabhadra, and Subhadra in the Jagannatha Temple</em>, c. 1875–1900. Opaque watercolor on cloth. Indian Art Special Purpose Fund, LACMA M.82.107.</span> ${ext('https://collections.lacma.org/object/39937', 'Museum record')} · ${ext('https://commons.wikimedia.org/wiki/File:Jagannatha,_Balabhadra,_and_Subhadra_in_the_Jagganatha_Temple_LACMA_M.82.107.jpg', 'Public-domain image via Wikimedia Commons')}<br><span>LACMA describes this as a Puri pilgrimage painting; it is included as regional context.</span></figcaption></figure>`;
@@ -52,14 +53,14 @@ export function worksPage(works, forms) {
 export function workPage(work, forms, works, makers) {
   const form = forms.find(f => f.slug === work.tradition);
   const related = workFor(works, work.tradition).filter(w => w.slug !== work.slug).slice(0,3);
-  const people = makerFor(makers, work.tradition).filter(m => work.maker.toLowerCase().includes(m.name.toLowerCase()));
+  const people = makerFor(makers, work.tradition).filter(m => makerMatches(work, m));
   return `<article class="curiosity-page">${back(`${base}works/`, 'All works')}${menu()}${head(`${form.title} / OBJECT RECORD`, work.title, work.description || 'A documented work in the atlas.')}<div class="work-detail">${imageBlock(work)}<div class="work-meta"><dl><dt>Maker</dt><dd>${e(work.maker)}</dd><dt>Date</dt><dd>${e(work.date || 'Not stated')}</dd><dt>Materials</dt><dd>${e(work.medium || 'Not stated')}</dd><dt>Tradition</dt><dd><a href="${formUrl(form)}">${e(form.title)}</a></dd></dl>${people.length ? `<p>Related maker ${names(people)}</p>` : ''}<p>${ext(work.recordUrl, 'Visit the source record')}</p>${saveButton(work)}</div></div>${related.length ? `<section class="atlas-related"><p class="kicker">FOLLOW THE THREAD</p><h2>More from ${e(form.title)}</h2><div class="work-grid">${related.map(w => workCard(w, forms)).join('')}</div></section>` : ''}${dialog()}</article>`;
 }
 export function makersPage(makers, forms) {
   return `<section class="curiosity-page">${back(base, 'Indian Art Atlas')}${menu()}${head('PEOPLE / PRACTICE', 'Meet the makers', 'Begin with individual artists and artisans, and follow their work through the sources.')}<div class="maker-list">${makers.map(m => `<article><p class="kicker">${e(forms.find(f => m.traditions.includes(f.slug))?.title || '')}</p><h2><a href="${makerUrl(m)}">${e(m.name)}</a></h2><p>${e(m.description)}</p></article>`).join('')}</div>${finish()}</section>`;
 }
 export function makerPage(maker, forms, works) {
-  const associated = works.filter(w => w.maker.toLowerCase().includes(maker.name.toLowerCase()));
+  const associated = works.filter(w => makerMatches(w, maker));
   return `<article class="curiosity-page">${back(`${base}makers/`, 'All makers')}${menu()}${head('MAKER / PRACTICE', maker.name, maker.description)}<div class="atlas-reading"><p>${ext(maker.url, 'Read the source')}</p><p>Tradition: ${maker.traditions.map(s => {const f=forms.find(x=>x.slug===s);return `<a href="${formUrl(f)}">${e(f.title)}</a>`;}).join(', ')}</p><p class="atlas-note">This short profile reflects the linked source; it is not a complete biography.</p></div>${associated.length ? `<section class="atlas-related"><h2>Recorded work</h2><div class="work-grid">${associated.map(w=>workCard(w,forms)).join('')}</div></section>` : ''}${finish()}</article>`;
 }
 const coordinates = {Odisha:[85,20.9],Bihar:[85.4,25.7],Nepal:[84.1,28], 'Madhya Pradesh':[78.5,23.3],Maharashtra:[75,19.5],Gujarat:[72,22.5],'Andhra Pradesh':[79.7,15.8],Chhattisgarh:[82,21.5],'West Bengal':[87.7,23.5],Manipur:[94,24.8],Rajasthan:[74.8,26.6],Karnataka:[76,14.5]};

@@ -172,17 +172,17 @@
       "description": "Durga Bai Vyam is an artist whose work includes folktales and images rooted in her Gond Pardhan community. IGNCA describes the role of family, childhood painting and storytelling in her practice."
     },
     "artwork": {
-      "title": "Gond painting",
+      "title": "Untitled (Tree of Life)",
       "maker": "Durgabai Vyam",
-      "date": "Not specified",
-      "medium": "Not specified in available record",
-      "recordUrl": "https://commons.wikimedia.org/wiki/File:2015.2.24_Durga_Bai_Gond.jpg",
+      "date": "Undated",
+      "medium": "Gouache and ink on paper",
+      "recordUrl": "https://sarmaya.in/objects/indigenous-tribal-art/untitled-tree-of-life-2/",
       "image": "https://upload.wikimedia.org/wikipedia/commons/0/01/2015.2.24_Durga_Bai_Gond.jpg",
-      "imageAlt": "Painting by Durgabai Vyam",
+      "imageAlt": "A painting of a tree, birds and figures by Durgabai Vyam",
       "credit": "Durgabai Vyam, © Sarmaya Arts Foundation, CC BY 4.0; no changes.",
       "imageSource": "https://commons.wikimedia.org/wiki/File:2015.2.24_Durga_Bai_Gond.jpg",
       "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
-      "description": "Maker: Durgabai Vyam. Medium: Not specified in available record."
+      "description": "Sarmaya identifies this Gond-Pardhan painting as an undated work in gouache and ink, accession 2015.2.24."
     },
     "sources": [
       {
@@ -199,6 +199,10 @@
         "label": "Artwork record",
         "url": "https://commons.wikimedia.org/wiki/File:2015.2.24_Durga_Bai_Gond.jpg",
         "description": ""
+      },
+      {
+        "label": "Sarmaya: Untitled (Tree of Life), Durgabai Vyam",
+        "url": "https://sarmaya.in/objects/indigenous-tribal-art/untitled-tree-of-life-2/"
       }
     ],
     "materials": "Wall, paper and other surfaces",
