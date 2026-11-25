@@ -324,5 +324,35 @@
     "medium": "See museum record",
     "recordUrl": "https://www.metmuseum.org/art/collection/search/857029",
     "description": "The Metropolitan Museum of Art attributes this painting to an unidentified artist working in Kolkata."
+  },
+  {
+    "slug": "cleveland-kantha",
+    "tradition": "kantha",
+    "title": "Kantha",
+    "maker": "Maker not identified",
+    "date": "19th century",
+    "medium": "Embroidery and quilting, cotton",
+    "recordUrl": "https://www.clevelandart.org/art/1996.350",
+    "description": "The Cleveland Museum of Art identifies this embroidered and quilted cotton as a nineteenth-century work from Bengal.",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/8/80/India%2C_Bengal%2C_19th_century_-_Kantha_-_1996.350_-_Cleveland_Museum_of_Art.jpg",
+    "imageAlt": "Cream cotton quilt embroidered with figures, animals and floral designs",
+    "imageSource": "https://commons.wikimedia.org/wiki/File:India,_Bengal,_19th_century_-_Kantha_-_1996.350_-_Cleveland_Museum_of_Art.jpg",
+    "credit": "The Cleveland Museum of Art, gift of William E. Ward in memory of Evelyn Svec Ward, 1996.350. CC0.",
+    "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  {
+    "slug": "bidri-basin",
+    "tradition": "bidriware",
+    "title": "Bidri Basin",
+    "maker": "Maker not identified",
+    "date": "c. 1650",
+    "medium": "Zinc alloy with silver and brass inlay",
+    "recordUrl": "https://www.clevelandart.org/art/2020.205",
+    "description": "The Cleveland Museum of Art identifies this wide-rimmed basin as made in Bidar, Karnataka.",
+    "image": "https://www.clevelandart.org/_next/image?q=75&url=https%3A%2F%2Fpiction.clevelandart.org%2Fcma%2Fump.di%3Fe%3D34A02DC1FC371AF9AD0F51F0BE55A9574EDC18F1F06A27F47EB59216443EC30E%26s%3D24247294%26se%3D399313166%26v%3D4%26f%3D%5Cd4886%5Cu249748864%5C2020.205_o5.jpg&w=640",
+    "imageAlt": "A dark zinc alloy basin with silver and brass floral inlay",
+    "imageSource": "https://www.clevelandart.org/art/2020.205",
+    "credit": "The Cleveland Museum of Art, Severance and Greta Millikin Purchase Fund, 2020.205. Open access.",
+    "licenseUrl": "https://www.clevelandart.org/open-access"
   }
 ]

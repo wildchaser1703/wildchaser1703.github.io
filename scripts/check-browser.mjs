@@ -133,7 +133,7 @@ async function artCaptions(page, selector) {
 }
 async function checkDirectory(page, width) {
   const rows = page.locator('.directory-row[data-kind]');
-  assert.equal(await rows.count(), atlasForms.length);
+  assert.equal(await rows.count(), 7);
   const filters = page.locator('.directory-filters');
   await filters.waitFor({ state: 'visible' });
   for (const [kind, count] of [['Machine learning', 3], ['LLM systems', 4], ['All', 7]]) {
