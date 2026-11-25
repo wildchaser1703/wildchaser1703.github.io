@@ -13,9 +13,9 @@
       "The Odisha government describes one traditional method of preparing a cloth support with chalk and glue made from tamarind seeds. In that account, the border comes first, followed by a brush sketch, flat colours and fine finishing lines. Materials and order vary between makers and works. Its account describes colour sources including lampblack, mineral pigments and white made from shells. Contemporary practice can also use newer materials; do not assume a particular object uses natural pigments unless its own record says so."
     ],
     "maker": {
-      "name": "Ramo Maharana",
+      "name": "Ramo and Panu Maharana",
       "url": "https://collections.lacma.org/object/134861",
-      "description": "Ramo Maharana is credited by the Los Angeles County Museum of Art for Krishna's Dance of Delight (Rasa Lila), dated 1952. The museum's individual record is a useful place to begin exploring a named painter and object."
+      "description": "LACMA credits both Ramo Maharana and Panu Maharana as makers of Krishna’s Dance of Delight (Rasa Lila), dated 1952."
     },
     "artwork": {
       "title": "Pattachitra with Kali defeating Shiva",
@@ -64,6 +64,20 @@
     "materials": "Paint on cloth, paper and other surfaces",
     "locations": [
       "Odisha"
+    ],
+    "localNames": [
+      {
+        "text": "पट्टचित्र",
+        "lang": "hi"
+      }
+    ],
+    "keywords": [],
+    "traditionSourceRefs": [
+      0,
+      1
+    ],
+    "processSourceRefs": [
+      0
     ]
   },
   {
@@ -123,6 +137,20 @@
     "locations": [
       "Bihar",
       "Nepal"
+    ],
+    "localNames": [
+      {
+        "text": "मधुबनी चित्रकला",
+        "lang": "hi"
+      }
+    ],
+    "keywords": [],
+    "traditionSourceRefs": [
+      0,
+      1
+    ],
+    "processSourceRefs": [
+      0
     ]
   },
   {
@@ -176,6 +204,20 @@
     "materials": "Wall, paper and other surfaces",
     "locations": [
       "Madhya Pradesh"
+    ],
+    "localNames": [
+      {
+        "text": "गोंड चित्रकला",
+        "lang": "hi"
+      }
+    ],
+    "keywords": [],
+    "traditionSourceRefs": [
+      0,
+      1
+    ],
+    "processSourceRefs": [
+      0
     ]
   },
   {
@@ -235,6 +277,20 @@
     "locations": [
       "Maharashtra",
       "Gujarat"
+    ],
+    "localNames": [
+      {
+        "text": "वारली चित्रकला",
+        "lang": "hi"
+      }
+    ],
+    "keywords": [],
+    "traditionSourceRefs": [
+      0,
+      1
+    ],
+    "processSourceRefs": [
+      1
     ]
   },
   {
@@ -296,7 +352,23 @@
     ],
     "materials": "Painted and printed cotton textiles",
     "locations": [
-      "Andhra Pradesh"
+      "Andhra Pradesh",
+      "Madhya Pradesh"
+    ],
+    "localNames": [
+      {
+        "text": "कलमकारी",
+        "lang": "hi"
+      }
+    ],
+    "keywords": [],
+    "traditionSourceRefs": [
+      0,
+      3
+    ],
+    "processSourceRefs": [
+      0,
+      3
     ]
   },
   {
@@ -348,6 +420,20 @@
       "Odisha",
       "West Bengal",
       "Chhattisgarh"
+    ],
+    "localNames": [
+      {
+        "text": "ढोकरा",
+        "lang": "hi"
+      }
+    ],
+    "keywords": [],
+    "traditionSourceRefs": [
+      0,
+      1
+    ],
+    "processSourceRefs": [
+      0
     ]
   },
   {
@@ -397,6 +483,346 @@
     "materials": "Clay and stone powder",
     "locations": [
       "Manipur"
+    ],
+    "localNames": [],
+    "keywords": [],
+    "traditionSourceRefs": [
+      1,
+      2
+    ],
+    "processSourceRefs": [
+      1,
+      2
+    ]
+  },
+  {
+    "slug": "ajrakh",
+    "title": "Ajrakh block printing",
+    "region": "Kutch, Gujarat, and across Sindh",
+    "category": "Textile",
+    "intro": "Layered block printing and resist dyeing build up colour on cloth.",
+    "tradition": [
+      "Ajrakh is a family of block-printed textile practices associated with Kutch in Gujarat and with Sindh across the present-day India–Pakistan border. Asia InCH documents cloth made for garments and household use in Kutch. This entry begins there; it cannot describe every regional practice.",
+      "Makers and workshops make different choices about colour, pattern, scale and materials. A textile is the result of their decisions, not simply a catalogue of motifs."
+    ],
+    "process": [
+      "The Kutch account describes printing with carved wooden blocks alongside repeated dyeing and resist processes. Indigo and madder are among the colour sources recorded; a particular textile may use different dyes. Alignment, washing and successive applications are part of the work."
+    ],
+    "materials": "Cotton, carved blocks, dyes and resists",
+    "locations": [
+      "Gujarat"
+    ],
+    "sources": [
+      {
+        "label": "Asia InCH: Ajrakh block printing in Gujarat",
+        "url": "https://www.asiainch.org/craft/hand-block-printing-ajrak-of-gujarat/"
+      },
+      {
+        "label": "Khamir: Ajrakh",
+        "url": "https://www.khamir.org/crafts/ajrakh-blockprint"
+      }
+    ],
+    "localNames": [
+      {
+        "text": "अजरख",
+        "lang": "hi"
+      }
+    ],
+    "keywords": [],
+    "maker": null,
+    "artwork": null,
+    "traditionSourceRefs": [
+      0
+    ],
+    "processSourceRefs": [
+      0
+    ]
+  },
+  {
+    "slug": "kantha",
+    "title": "Kantha embroidery",
+    "region": "West Bengal and Bangladesh",
+    "category": "Textile",
+    "intro": "Running stitches hold layers of cloth together and create images, borders and texture.",
+    "tradition": [
+      "Kantha describes several embroidered textiles associated with Bengal, including present-day West Bengal and Bangladesh. Asia InCH describes West Bengal examples made from layers of worn saris and dhotis, often stitched by women.",
+      "Some examples are quilts, while others serve as covers, wraps or contemporary textiles. Their images and stitches reflect individual makers and their circumstances."
+    ],
+    "process": [
+      "In one documented method, layers of cloth are held together with running stitches, sometimes using thread drawn from old sari borders. Layers, colours and stitches vary by maker and by object."
+    ],
+    "materials": "Reused cloth, thread and running stitches",
+    "locations": [
+      "West Bengal"
+    ],
+    "sources": [
+      {
+        "label": "Asia InCH: Kantha embroidery of West Bengal",
+        "url": "https://www.asiainch.org/craft/kantha-embroidery-of-west-bengal/"
+      },
+      {
+        "label": "IGNCA: Kantha",
+        "url": "https://ignca.gov.in/PDF_data/kantha_flyer.pdf"
+      }
+    ],
+    "localNames": [
+      {
+        "text": "कांथा",
+        "lang": "hi"
+      }
+    ],
+    "keywords": [],
+    "maker": null,
+    "artwork": null,
+    "traditionSourceRefs": [
+      0
+    ],
+    "processSourceRefs": [
+      0
+    ]
+  },
+  {
+    "slug": "bidriware",
+    "title": "Bidriware",
+    "region": "Bidar, Karnataka",
+    "category": "Metal",
+    "intro": "Darkened metal surfaces are inlaid with contrasting designs.",
+    "tradition": [
+      "Bidriware takes its name from Bidar in Karnataka. It includes vessels and other objects made with an alloy and contrasting inlay. Its history and present-day forms span changing patrons, uses and workshops.",
+      "The government craft account describes the surface finishing and inlay work; look at a particular maker and object for the materials actually used."
+    ],
+    "process": [
+      "A documented process casts an alloy, engraves a design, and sets wire or sheet in the cut grooves. A finishing treatment darkens the body while the inlaid metal remains bright. The method and alloys can vary."
+    ],
+    "materials": "Cast alloy and metal inlay",
+    "locations": [
+      "Karnataka"
+    ],
+    "sources": [
+      {
+        "label": "Government of India: craft processes",
+        "url": "https://handicrafts.nic.in/CmsUpload/2039201602393132craftprocess.pdf"
+      },
+      {
+        "label": "Incredible India: cultural canvas in Bidar",
+        "url": "https://www.incredibleindia.gov.in/en/karnataka/bidar/cultural-canvas-in-bidar"
+      }
+    ],
+    "localNames": [
+      {
+        "text": "बिदरी",
+        "lang": "hi"
+      }
+    ],
+    "keywords": [],
+    "maker": null,
+    "artwork": null,
+    "traditionSourceRefs": [
+      0
+    ],
+    "processSourceRefs": [
+      0
+    ]
+  },
+  {
+    "slug": "phad",
+    "title": "Phad painting",
+    "region": "Bhilwara and other parts of Rajasthan",
+    "category": "Painting",
+    "intro": "Painted scrolls carry stories that are performed and retold.",
+    "tradition": [
+      "IGNCA describes Phad as painted scrolls associated with Rajasthan, made by artists of the Joshi lineage and used by Bhopa performers who narrate the stories depicted. Accounts include scrolls devoted to local deities and legendary heroes.",
+      "The scroll is part of a relationship between painters, performers and audiences. Contemporary works can take different forms and scales; this page does not treat every scroll as identical."
+    ],
+    "process": [
+      "Paintings place many episodes on a cloth scroll. IGNCA describes an example displayed on a bamboo frame during narration; the scroll can be folded for travel. Refer to an individual work for its materials and dimensions."
+    ],
+    "materials": "Painted cloth scrolls",
+    "locations": [
+      "Rajasthan"
+    ],
+    "sources": [
+      {
+        "label": "IGNCA: Phad scroll paintings and their narration",
+        "url": "https://ignca.gov.in/ICH/ich_detail/ich00013.pdf"
+      },
+      {
+        "label": "IGNCA: Aakhyan exhibition brochure",
+        "url": "https://ignca.gov.in/PDF_data/aakhyan_brochure.pdf"
+      }
+    ],
+    "localNames": [
+      {
+        "text": "फड़",
+        "lang": "hi"
+      }
+    ],
+    "keywords": [],
+    "maker": null,
+    "artwork": null,
+    "traditionSourceRefs": [
+      0
+    ],
+    "processSourceRefs": [
+      0
+    ]
+  },
+  {
+    "slug": "molela-terracotta",
+    "title": "Molela terracotta",
+    "region": "Molela, Rajasthan",
+    "category": "Pottery",
+    "intro": "Clay plaques and figures made for devotion, homes and new settings.",
+    "tradition": [
+      "The craft associated with Molela in Rajasthan includes modelled terracotta plaques with figures and other forms. The Government of India’s geographical-indications compendium records the craft and its location.",
+      "Makers work for different communities and contexts; a plaque’s identity and purpose should be read from its own maker or record."
+    ],
+    "process": [
+      "Clay is shaped into relief forms and fired. The government compendium describes making and firing as part of the craft. Finishing and colour differ between examples."
+    ],
+    "materials": "Clay and fired terracotta",
+    "locations": [
+      "Rajasthan"
+    ],
+    "sources": [
+      {
+        "label": "Government of India: GI handicrafts compendium",
+        "url": "https://handicrafts.nic.in/CmsUpload/12222017102212GI%20BOOK%20FINAL%202-5-17_resized.pdf"
+      }
+    ],
+    "localNames": [],
+    "keywords": [],
+    "maker": null,
+    "artwork": null,
+    "traditionSourceRefs": [
+      0
+    ],
+    "processSourceRefs": [
+      0
+    ]
+  },
+  {
+    "slug": "kalighat",
+    "title": "Kalighat painting",
+    "region": "Kolkata, West Bengal",
+    "category": "Painting",
+    "intro": "Bold lines and painted figures from a changing urban tradition.",
+    "tradition": [
+      "The Victoria and Albert Museum traces Kalighat painting to nineteenth-century Kolkata, where patua painters made works for a broad market. Their subjects developed from deities and mythological figures to include other aspects of urban life.",
+      "The Metropolitan Museum notes that descendants of painters continue working in the Kalighat area. Individual works and artists should be encountered on their own terms."
+    ],
+    "process": [
+      "The V&A describes painters using bold outlines and colours on paper. The Met’s records document watercolor and other materials in particular works; these should not be assumed for every painting."
+    ],
+    "materials": "Paint and ink on paper",
+    "locations": [
+      "West Bengal"
+    ],
+    "sources": [
+      {
+        "label": "V&A: Kalighat painting",
+        "url": "https://www.vam.ac.uk/articles/kalighat-painting"
+      },
+      {
+        "label": "The Met: The avatar Narasimha",
+        "url": "https://www.metmuseum.org/art/collection/search/857030"
+      }
+    ],
+    "localNames": [
+      {
+        "text": "कालीघाट चित्रकला",
+        "lang": "hi"
+      }
+    ],
+    "keywords": [],
+    "maker": null,
+    "artwork": null,
+    "traditionSourceRefs": [
+      0,
+      1
+    ],
+    "processSourceRefs": [
+      0
+    ]
+  },
+  {
+    "slug": "channapatna",
+    "title": "Channapatna lacquer toys",
+    "region": "Channapatna, Karnataka",
+    "category": "Wood",
+    "intro": "Turned wooden forms are shaped and finished with colour.",
+    "tradition": [
+      "Channapatna in Karnataka is associated with lacquered wooden toys and objects. Government craft and toy-cluster accounts describe the making tradition and the people and workshops involved.",
+      "Toys and contemporary objects take different shapes and uses; the name refers to a place and a field of practice rather than one unchanging design."
+    ],
+    "process": [
+      "The craft accounts describe wood shaped on a lathe and finished with lacquer. Materials and colour treatments differ, so check the source for each object."
+    ],
+    "materials": "Wood and lacquer",
+    "locations": [
+      "Karnataka"
+    ],
+    "sources": [
+      {
+        "label": "Government of India: geographical indications compendium",
+        "url": "https://handicrafts.nic.in/CmsUpload/12222017102212GI%20BOOK%20FINAL%202-5-17_resized.pdf"
+      },
+      {
+        "label": "Government of India: toy cluster note",
+        "url": "https://www.handicrafts.nic.in/pdf/Note_on_Toy_Cluster.pdf"
+      },
+      {
+        "label": "Government of India: Indian handicrafts",
+        "url": "https://handicrafts.nic.in/pdf/THCI-Book.pdf"
+      }
+    ],
+    "localNames": [],
+    "keywords": [],
+    "maker": null,
+    "artwork": null,
+    "traditionSourceRefs": [
+      0
+    ],
+    "processSourceRefs": [
+      0
+    ]
+  },
+  {
+    "slug": "kutch-embroidery",
+    "title": "Kutch embroidery",
+    "region": "Kutch, Gujarat",
+    "category": "Textile",
+    "intro": "Many communities and individual makers create distinct embroidered textiles.",
+    "tradition": [
+      "Embroidery in Kutch is not one style. The Craft Revival Trust documents different regional practices, including embroidery associated with Meghwal makers in the Banni region. Communities, stitches and uses differ.",
+      "Avoid assigning a community, a maker or a symbolic meaning to a textile solely from its appearance. The history of a particular piece is best learned from the maker and its documented record."
+    ],
+    "process": [
+      "Needlework builds patterns on a cloth or other ground. Different Kutch practices use different stitches, materials and layouts; not every embroidered object includes mirrors."
+    ],
+    "materials": "Cloth, thread and needlework",
+    "locations": [
+      "Gujarat"
+    ],
+    "sources": [
+      {
+        "label": "Asia InCH: Mukka embroidery of Kutch",
+        "url": "https://www.asiainch.org/craft/mukka-embroidery-of-gujarat/"
+      },
+      {
+        "label": "Asia InCH: Khamir craft resource centre",
+        "url": "https://www.asiainch.org/organisation/khamir-craft-resource-centre/"
+      }
+    ],
+    "localNames": [],
+    "keywords": [],
+    "maker": null,
+    "artwork": null,
+    "traditionSourceRefs": [
+      0
+    ],
+    "processSourceRefs": [
+      0
     ]
   }
 ]

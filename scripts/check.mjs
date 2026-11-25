@@ -153,9 +153,12 @@ check(atlas('main a[href="/just-because/indian-art/pattachitra/"]').length > 0, 
 check(atlas('.atlas-featured-work img[alt][width][height]').length === 1 && atlas('.atlas-featured-work figcaption a[href="https://collections.lacma.org/object/39937"]').length === 1, 'Atlas featured work needs an accessible image and museum record');
 check(pattachitra('.atlas-featured-work figcaption').text().includes('regional context'), 'Puri painting must be clearly labelled as regional context');
 check(pattachitra('main a[href="https://odisha.gov.in/en/odisha-tourism/patta-chitra"]').length === 1, 'Field note must cite its process source');
-check(pattachitra('main a[href="https://www.ngv.vic.gov.au/explore/collection/work/155146/"]').length > 0, 'Field note must link to its object record');
-const atlasSlugs = ['pattachitra', 'mithila', 'gond', 'warli', 'kalamkari', 'dhokra', 'longpi'];
-check(atlas('.atlas-row').length === atlasSlugs.length, 'Atlas must list seven traditions');
+check(pattachitra('main a[href="https://www.ngv.vic.gov.au/explore/collection/work/155146/"]').length > 0, 'Field note must link to its object source');
+const atlasForms = JSON.parse(await readFile('data/indian-art.json', 'utf8'));
+const atlasWorks = JSON.parse(await readFile('data/atlas-works.json', 'utf8'));
+const atlasMakers = JSON.parse(await readFile('data/atlas-makers.json', 'utf8'));
+const atlasSlugs = atlasForms.map(form => form.slug);
+check(atlas('.atlas-row').length === atlasSlugs.length && atlasSlugs.length >= 15, 'Atlas must list every researched tradition');
 check(atlas('#atlas-search').length === 1 && atlas('#atlas-category').length === 1 && atlas('#atlas-region').length === 1 && atlas('#atlas-reset').length === 1 && atlas('[data-atlas-status]').length === 1, 'Atlas discovery controls must be present');
 const atlasSitemap = cheerio.load(await readFile(path.join(root, 'sitemap.xml'), 'utf8'), { xmlMode: true });
 const sitemapLocations = new Set(atlasSitemap('url > loc').map((index, element) => atlasSitemap(element).text()).get());
@@ -171,6 +174,24 @@ for (const slug of atlasSlugs) {
   check(entry('main a[href="/just-because/indian-art/"]').length >= 1, `Atlas entry needs a return link: ${slug}`);
   check(sitemapLocations.has(`https://wildchaser1703.github.io${route}`), `Atlas entry missing from sitemap: ${slug}`);
 }
+const atlasSearch = JSON.parse(await readFile(path.join(root, 'search-index.json'), 'utf8'));
+check(atlasSearch.some(entry => entry.url === '/just-because/indian-art/pattachitra/' && entry.text.toLowerCase().includes('tamarind')), 'Site search must index atlas process materials');
+check(home('a[href="/just-because/"]').length > 0, 'Homepage must link to Just Because');
+check(atlas('meta[property="og:image"]').length === 1 && atlas('meta[name="twitter:card"]').length === 1, 'Atlas needs social sharing metadata');
+check(pattachitra('main').text().includes('Ramo Maharana') && pattachitra('main').text().includes('Panu Maharana'), 'Both Maharana painters must be credited');
+const longpi = cheerio.load(await readFile(path.join(root, 'just-because/indian-art/longpi/index.html'), 'utf8'));
+check(longpi('main').text().includes('maker’s profile'), 'A maker profile must not be labelled as a single object');
+for (const work of atlasWorks) {
+  const route = `/just-because/indian-art/works/${work.slug}/`;
+  const file = path.join(root, route.slice(1), 'index.html');
+  if (!await exists(file)) { failures.push(`Missing work page: ${work.slug}`); continue; }
+  const $ = cheerio.load(await readFile(file, 'utf8'));
+  check($('main h1').length === 1 && $('main a[href="' + work.recordUrl + '"]').length > 0, `Work needs title and source: ${work.slug}`);
+  if (work.image) check($('main img[alt]').length > 0 && $('main a[href="' + work.imageSource + '"]').length > 0, `Image needs alt and source: ${work.slug}`);
+  check(sitemapLocations.has(`https://wildchaser1703.github.io${route}`), `Work missing from sitemap: ${work.slug}`);
+}
+for (const maker of atlasMakers) check(await exists(path.join(root, 'just-because/indian-art/makers', maker.slug, 'index.html')), `Missing maker page: ${maker.slug}`);
+for (const section of ['works', 'makers', 'regions', 'collections', 'collection', 'contribute']) check(await exists(path.join(root, 'just-because/indian-art', section, 'index.html')), `Missing atlas section: ${section}`);
 const sculpture = home('figure[data-sculpture]');
 check(sculpture.length === 1 && sculpture.attr('data-renderer') === 'static' && sculpture.attr('data-paused') === 'true' && sculpture.attr('data-variant') === '0', 'Sculpture must start as a static poster');
 check(sculpture.find('img.sculpture-poster:not([hidden])').length === 1 && sculpture.find('[data-sculpture-next]').length === 1 && sculpture.find('[data-sculpture-toggle]').length === 1, 'Missing sculpture poster or controls');
